@@ -318,24 +318,20 @@ C
       
       ENDIF
       
-!      IF(INDEXPL.EQ.1) THEN
+
+!!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+             IF(KOJPAK.EQ.4) THEN
+                call mcm_solution
+! Write dynamic relaxation data
+                call mcm_write_drelax
+             ENDIF
+!!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+             !      IF(INDEXPL.EQ.1) THEN
 !C
 !CE      BASIC LOOP OVER TIME PERIODS OF EXPLICIT INTEGRATION
 !CS      OSNOVNA PETLJA PO VREMENSKIM PERIODIMA ZA EKSPLICITNU INTEGRACIJU
 !C
-!
-!!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-             IF(KOJPAK.EQ.4) THEN
-                call mcm_solution
-!
-! Write dynamic relaxation data
-!
-                call mcm_write_drelax
-!
-             ENDIF
-!
-!!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
 !        LPUU=IPOMAK
 !        LPUV=IBRZINA
