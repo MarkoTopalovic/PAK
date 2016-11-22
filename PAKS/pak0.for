@@ -156,7 +156,6 @@ CS    POCETNI REPER ZA PAKS
 !  
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO MCM BEZ PAKA!!!!!!!!!!!!!!!!!!!!!!!!!!!!        
         
-        
  9999   IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5) THEN
            IF (myid.ne.0) goto 10
            LMAX=LMAXF
