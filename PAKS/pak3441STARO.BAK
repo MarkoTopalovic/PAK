@@ -1,0 +1,545 @@
+C=======================================================================
+C=======================================================================
+CS    GENERALISANI MODEL SA KAPOM  3/D ELEMENT
+CE    GENERALIZED CAP MODEL 3D ELEMENT
+C=======================================================================
+C=======================================================================
+CE    SUBROUTINE D3M41
+CE               TI3441
+C
+      SUBROUTINE D3M41(TAU,DEF,IRAC,LPOCG,LPOC1,IBTC)
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+CE    PROGRAM FOR DEFINITION OF LOCATIONS AT INTEGRATION PIONT LEVEL
+C
+      include 'paka.inc'
+C
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT
+      COMMON /REPERM/ MREPER(4)
+      COMMON /DUPLAP/ IDVA
+      COMMON /CDEBUG/ IDEBUG
+C
+      DIMENSION TAU(6),DEF(6)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' D3M41'
+C
+      LFUN=MREPER(1)
+      LNTA=MREPER(2) 
+      MATE=MREPER(4)
+C
+      LTAU=LPOCG
+      LDEFT=LTAU + 6*IDVA
+      LDEFPP=LDEFT + 6*IDVA
+      LEMP=LDEFPP + 6*IDVA
+      LXT=LEMP + 1*IDVA
+C
+      LTAU1=LPOC1
+      LDEFT1=LTAU1 + 6*IDVA
+      LDEFP1=LDEFT1 + 6*IDVA
+      LEMP1=LDEFP1 + 6*IDVA
+      LXTDT=LEMP1 + 1*IDVA
+C
+      CALL TI3441(A(LTAU),A(LDEFT),A(LDEFPP),A(LEMP),A(LXT),
+     1       A(LTAU1),A(LDEFT1),A(LDEFP1),A(LEMP1),A(LXTDT), 
+     1       A(LFUN),A(LNTA),MATE,TAU,DEF,IRAC,IBTC)
+C
+      RETURN
+      END
+C
+C  =====================================================================
+C
+      SUBROUTINE TI3441(TAUT,DEFT,DEFPP,EMP,XT,
+     1                  TAU1,DEF1,DEFP1,EMP1,XTDT,
+     1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+CS    PODPROGRAM ZA INTEGRACIJU KONSTITUTIVNIH RELACIJA ZA 
+CS    DRUCKER-PRAGER MODEL 
+CE    PROGRAM FOR STRESS INTEGRATION FOR DRUCKER-PRAGER MODEL
+C
+      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT
+      COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
+      COMMON /TAUD3/ TAUD(6),DEFDPR(6),DEFDS(6),DDEFP(6),
+     1               DETAU(6),DDEF(6),TAUDE(6)
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /PLASTI/ LPLAST,LPLAS1,LSIGMA
+      COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8
+      COMMON /ITERAC/ METOD,MAXIT,TOLE,TOLS,TOLM,KONVE,KONVS,KONVM
+      COMMON /ITERBR/ ITER
+      COMMON /CONMAT/ AE,EP,DVT
+      COMMON /MATERb/ korz(100,100,3),evg(100,100,3)
+      COMMON /CDEBUG/ IDEBUG
+C
+      DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
+     +          DEFP1(6)
+      DIMENSION FUN(11,*),NTA(*),DSIG(6),DEPS(6),DFDS(6),DGDS(6),ALAM(6)
+     +         ,CP(6,6),POM(6), CEP(6,6),DDEFE(6)
+     +         ,DFdDS(6),DFcDS(6),DGdDS(6),DGcDS(6),ALAMd(6),ALAMc(6)
+     +         ,al1p(6),al2p(6),ddefpd(6),ddefpc(6),taue(6)
+C
+      IF(IDEBUG.EQ.1) PRINT *, 'TI3441'
+C
+      IF(IRAC.EQ.2) RETURN
+CE    BASIC KONSTANTS
+      TOLL=  1.D-8
+      TOL =  1.D-6
+      MAXT=  500
+C====================================================================
+C
+CE.   MATERIAL CONSTANTS
+      E       = FUN(1,MAT) 
+      ANI     = FUN(2,MAT)
+C
+      AK      = FUN(3,MAT)
+      ALF     = FUN(6,MAT)
+      T       = FUN(7,MAT) 
+      X0      =-FUN(8,MAT)
+C
+      W       =-FUN(9,MAT)
+      D       =-FUN(10,MAT)
+C====================================================================
+c      SRF     = 2.0
+c      AK      = AK/SRF
+c      ALF     = ALF/SRF
+C====================================================================
+      IF(KOR.EQ.1) THEN   
+         XT=X0
+      ENDIF
+ce    elasticity matrix for 3d
+      call mel3el(elast,e,ani)    ! formiranje matrice elasticnosti
+C
+C     DE
+      CALL JEDNA1(DEPS,DEF,6)     ! DEPS(I)=DEF(I)
+      CALL ZBIRMM(DEPS,DEFT,6)    ! DEPS(I)=DEPS(I)-DEFT(I) 
+C
+C     DSIGEL
+      CALL CLEAR(DSIG,6)
+      CALL MNOZM1(DSIG,ELAST,DEPS,6,1,6)  ! DSIG(I,J)=ELAST(I,K)*DEPS(K,J)
+C
+C     SIGEL
+      CALL ZBIR2B(TAU,TAUT,DSIG,6)        ! TAU(I)=TAUT(I)+DSIG(I)
+C
+C     I1
+      AI1E=TAU(1)+TAU(2)+TAU(3)           ! I1=SIGMA1+SIGMA2+SIGMA3
+C
+C     J2DE
+      AJ2DE=1.D0/6.D0*((TAU(1)-TAU(2))*(TAU(1)-TAU(2))+
+     +                 (TAU(2)-TAU(3))*(TAU(2)-TAU(3))+
+     +                 (TAU(3)-TAU(1))*(TAU(3)-TAU(1)))+
+     +                  TAU(4)*TAU(4)+TAU(5)*TAU(5)+TAU(6)*TAU(6)
+C
+C     SQRT(J2DE)
+      AJ2DE=DSQRT(AJ2DE*AJ2DE)
+      AJ2DQE=DSQRT(AJ2DE)
+C
+C     TENSION CUTOFF
+      IF(AI1E.GT.T) THEN
+          DO I=1,6
+              IF(I.LE.3)THEN
+                 TAU(I)=T/3.D0
+              ELSE
+                 TAU(I)=0
+              ENDIF
+          ENDDO
+cr         stop 'Tension cut-off limit!!!'
+         GO TO 400
+      ENDIF 
+C
+C     INCREMENT OF PLASTIC DEFORMATION IZ ZERRO IN ELASTIC DOMAIN
+      DDEFP(1)=0.d0
+      DDEFP(2)=0.d0
+      DDEFP(3)=0.d0
+      DDEFP(4)=0.d0
+      DDEFP(5)=0.d0
+      DDEFP(6)=0.d0
+c
+      demp=0.d0
+C
+C     DRUCKER-PRAGER LINE
+      FDPE=ALF*AI1E+AJ2DQE-AK
+      FCE=XT-AI1E
+	    Iobl=0
+C
+      ai1=ai1e
+	    CALL JEDNA1(taue,tau,6)
+c     aj2d=aj2de
+c	    AJ2DQ=AJ2DQE
+c     write(3,*) 'kor,fdpe,fce',fdpe, fce
+CE    DRUCKER-PRAGER YIELDING FDP<0
+      write(3,*)'AK, ALF, T,MAXT X0',AK, ALF, T,MAXT X0
+      IF(FDPE.GT.TOLL.AND.FCE.LT.TOLL) GOTO 100
+      IF(FDPE.LE.TOLL.AND.FCE.GT.TOLL) GOTO 200
+      IF(FDPE.gt.TOLL.AND.FCE.GT.TOLL) GOTO 300
+      IF(FDPE.LE.TOLL.AND.FCE.LE.TOLL) GOTO 400
+c     GOTO 400
+      STOP 'PROSAO SVE USLOVE!!!'
+C========================================================================
+CE        PLASTIC STRAIN
+C
+C         DELTA F/DELTA SIGMA
+  100     Iobl=1
+          DFDS(1)=ALF+( 2.D0*TAU(1)-TAU(2)-TAU(3))/(6.D0*AJ2DQE)
+          DFDS(2)=ALF+(-TAU(1)+2.D0*TAU(2)-TAU(3))/(6.D0*AJ2DQE) 
+          DFDS(3)=ALF+(-TAU(1)-TAU(2)+2.D0*TAU(3))/(6.D0*AJ2DQE)
+          DFDS(4)=TAU(4)/AJ2DQE
+          DFDS(5)=TAU(5)/AJ2DQE  
+          DFDS(6)=TAU(6)/AJ2DQE
+C
+C         DELTA G/DELTA SIGMA = DELTA F/DELTA SIGMA
+          CALL JEDNA1(DGDS,DFDS,6)            ! DGDS(I)=DFDS(I)
+C
+C         LAMBDA
+          CALL CLEAR(ALAM,6)
+          CALL MNOZT1(ALAM,DFDS,ELAST,6,6)    ! ALAM(I)=DFDS(J)*ELAST(J,I)
+          FCG=DOT(ALAM,DGDS,6)
+          DLAM=DOT(ALAM,DEPS,6)
+          DLAM=DLAM/FCG
+C
+          CALL JEDNAK(DDEFP,DGDS,DLAM,6)
+          CALL ODUZ2B(DDEFE,DEPS,DDEFP,6)
+          CALL CLEAR (DSIG,6)
+          CALL MNOZI1(DSIG,ELAST,DDEFE,6,6)
+          CALL ZBIR2B(TAU,TAUT,DSIG,6)        ! TAU(I)=TAUT(I)+DSIG(I)
+          AI1=TAU(1)+TAU(2)+TAU(3)        
+          aj2d=1.d0/6.d0*((tau(1)-tau(2))**2 +
+     &                        (tau(2)-tau(3))**2 +
+     &                        (tau(3)-tau(1))**2)+
+     &                         tau(4)**2+tau(5)**2+tau(6)**2
+          AJ2D=DSQRT(AJ2D*AJ2D)
+          AJ2DQ=DSQRT(AJ2D)
+          FDPm=ALF*AI1+AJ2DQ-AK
+          FDPP=FDPe
+          Fdp=FDPE
+C
+          I=0
+          DLAMM= DLAM
+          DLAMP= 0.d0
+          DLAM = 0.d0
+          DX=0.1*DLAMm
+          AF=2.d0
+          IB=0
+          JP=2
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CD        BISECTION LOOP                            
+  110     I = I + 1
+c              CALL BISECTG (DLAM,DLAMM,DLAMP,DX,FDPP,FM,FP,AF,IB,JP)
+c              call BISECTG (dlam,dlamm,dlamp,dx,Fph,Fphm,Fphp,af,ib,jp)
+              CALL BISECTG (dlam,dlamM,dlamP,dx,Fdp,FdpM,FdpP,AF,IB,jp)
+              CALL JEDNAK(DDEFP,DGDS,DLAM,6)
+              CALL ODUZ2B(DDEFE,DEPS,DDEFP,6)
+              CALL CLEAR (DSIG,6)
+              CALL MNOZI1(DSIG,ELAST,DDEFE,6,6)
+C
+              demp=(ddefp(1)+ddefp(2)+ddefp(3))/3.d0
+
+              emp1=emp+demp
+c             call wrr6(CEP,36,'CEP=') 
+c
+              evp1=3.d0*emp1
+C
+C             SIGMA
+              CALL ZBIR2B(TAU,TAUT,DSIG,6)        ! TAU(I)=TAUT(I)+DSIG(I)
+
+C             I1
+              AI1=TAU(1)+TAU(2)+TAU(3)        
+c
+c             j2d
+              aj2d=1.d0/6.d0*((tau(1)-tau(2))**2 +
+     &                        (tau(2)-tau(3))**2 +
+     &                        (tau(3)-tau(1))**2)+
+     &                         tau(4)**2+tau(5)**2+tau(6)**2
+C             SQRT(J2D)
+              AJ2D=DSQRT(AJ2D*AJ2D)
+              AJ2DQ=DSQRT(AJ2D)
+C
+              if(evp1.gt.(0.999*w)) then
+                  xtdt=x0-dlog(1.d0-evp1/w)/d
+              else
+                  xtdt=ai1e
+              endif
+c
+              if(xtdt.gt.x0) xtdt=x0
+
+C             DRUCKER-PRAGER LINE
+              FDP=ALF*AI1+AJ2DQ-AK
+c             WRITE (3,*)'kor,FDPP',kor,FDPP
+CC
+              IF(I.GT.MAXT) THEN       
+                  STOP 'MAX. NUM. ITERATION IN DRUCKER-PRAGER MODEL I'
+              ENDIF
+          IF(dabs(FDP).GT.TOL) GO TO 110
+	        GOTO 400 
+C========================================================================
+  200     Iobl=2
+          if (xt.gt.x0) goto 400
+          dfds(1)=-1.d0
+          dfds(2)=-1.d0
+          dfds(3)=-1.d0
+          dfds(4)= 0.d0
+          dfds(5)= 0.d0  
+          dfds(6)= 0.d0
+c
+c         delta g/delta sigma = delta f/delta sigma
+          call jedna1(dgds,dfds,6)          ! dgds(i)=dfds(i)
+c
+c         lambda
+          call clear(alam,6)
+          call mnozt1(alam,dfds,elast,6,6)  ! alam(i)=dfds(j)*elast(j,i)
+          fcg=dot(alam,dgds,6)
+          dlam=dot(alam,deps,6)
+          dlam=dlam/fcg
+c
+          I=0
+          dlamm=0.d0
+          dlamp=dlam
+          dx=0.01d0*dlam
+          fc=fce
+          fcm=0.d0
+          fcp=fce
+          af=3.d0 
+          ib=0
+          jp=2
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         bisection loop   
+  210     I = I + 1
+              call bisectg (dlam,dlamm,dlamp,dx,fc,fcm,fcp,af,ib,jp) 
+              call jednak(ddefp,dgds,dlam,6)      ! ddefp(6)=dlam*dgds(6)
+              call oduz2b(ddefe,deps,ddefp,6)     ! ddefe(6)=deps(6)-ddefp(6)
+              call clear (dsig,6)
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         call clear(cegs,6)
+c         call clear(fsce,6)
+c	        call clear(imen,1)
+c	        call clear(broj,36)
+c         call mnozi1(cegs,elast,dgds,6,6)
+c	        call mnozt1(fsce,dfds,elast,6,6)
+c	        imen=dot(dfds,cegs,6)
+c	        imenr=1.d0/imen
+c	        call MNOZM1(broj,cegs,fsce,6,6,1)
+c	        call jednak(CP,broj,imen,36)
+c	        call zbirmm(elast,cp,36)
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+              call mnozi1(dsig,elast,ddefe,6,6)   ! dsig(6)=elast(6,6)*ddefe(6)
+c
+c             sigma
+              call zbir2b(tau,taut,dsig,6)        ! tau(6)=taut(6)+dsig(6)
+c
+              demp=(ddefp(1)+ddefp(2)+ddefp(3))/3.d0
+
+              emp1=emp+demp
+c
+              evp1=3.d0*emp1
+
+c             i1
+              ai1=tau(1)+tau(2)+tau(3)    
+c
+c             j2d
+              aj2d=1.d0/6.d0*((tau(1)-tau(2))**2 +
+     &                        (tau(2)-tau(3))**2 +
+     &                        (tau(3)-tau(1))**2)+
+     &                         tau(4)**2+tau(5)**2+tau(6)**2
+c
+c             sqrt(j2d)
+              aj2d=dsqrt(aj2d*aj2d)
+              aj2dq=dsqrt(aj2d)
+c
+              if(evp1.gt.(0.999*w)) then
+                  xtdt=x0-dlog(1.d0-evp1/w)/d
+              else
+                  xtdt=ai1
+	            call jedna1(tau,taue,6)
+              endif
+c
+c             if(xtdt.gt.x0) xtdt=x0
+c
+c             Cap 
+              fc=xtdt-ai1
+C
+              if(i.gt.maxt) then                          
+                  stop 'max iterations in D-P model II'
+              endif
+          if(dabs(fc).gt.tol) goto 210
+          goto 400 
+c========================================================================
+  300     Iobl=3
+          if (xt.gt.x0) goto 100
+          dfdds(1)=alf+( 2.d0*tau(1)-tau(2)-tau(3))/(6.d0*aj2dqe)
+          dfdds(2)=alf+(-tau(1)+2.d0*tau(2)-tau(3))/(6.d0*aj2dqe)
+          dfdds(3)=alf+(-tau(1)-tau(2)+2.d0*tau(3))/(6.d0*aj2dqe)
+          dfdds(4)=tau(4)/aj2dqe
+          dfdds(5)=tau(5)/aj2dqe  
+          dfdds(6)=tau(6)/aj2dqe
+c
+          dfcds(1)=-1.d0
+          dfcds(2)=-1.d0
+          dfcds(3)=-1.d0
+          dfcds(4)= 0.d0
+          dfcds(5)= 0.d0  
+          dfcds(6)= 0.d0
+c
+c         delta g/delta sigma = delta f/delta sigma
+          call jedna1(dgdds,dfdds,6)      ! dgds(i)=dfds(i)
+          call jedna1(dgcds,dfcds,6)      ! dgds(i)=dfds(i)
+c
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         L11
+          call clear (al1p,6)
+          call mnozt1(al1p,dfdds,elast,6,6)
+          al11=dot(al1p,dgdds,6)
+c
+c         L12
+          al12=dot(al1p,dgcds,6)
+c
+c         L21
+          call clear (al2p,6)
+          call mnozt1(al2p,dfcds,elast,6,6)
+          al21=dot(al2p,dgdds,6)
+c
+c         L22
+          al22=dot(al2p,dgcds,6)
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         T1
+          at1=dot(al1p,deps,6)
+c
+c         T2
+          at2=dot(al2p,deps,6)
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         imenilac u lambda
+          imen=al11*al22-al12*al21
+c
+c         lambda1
+          dlamd=(at1*al22-at2*al12)/imen
+c
+c         lambda2
+          dlamc=(at2*al11-at1*al21)/imen
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         CAP
+          I=0
+c
+          dlamdm=0.d0
+          dlamdp=dlamd
+          dxd=0.01*dlamd
+          fd=fdpe
+          fdm=0.d0
+          fdp=fd
+c
+          af=1.d0
+          ib=0
+          jp=2
+          call clear(ddefpc,6) 
+          call clear(ddefpd,6) 
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c         bisection loop 1
+  310     I = I + 1
+              call bisectg (dlamd,dlamdm,dlamdp,dxd,fd,fdm,fdp,af,ib,jp)
+              call jednak(ddefpd,dgdds,dlamd,6)   
+c
+              J=0
+              dlamcm=0.d0
+              dlamcp=dlamc
+              dxc=0.01*dlamc
+              fc=fce
+              fcm=0.d0
+              fcp=fc
+              ibc=0
+              jpc=2
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c             bisection loop 2
+  320         J = J + 1
+                  call bisectg (dlamc,dlamcm,dlamcp,dxc,fc,fcm,
+     &                          fcp,af,ibc,jpc)
+                  call jednak(ddefpc,dgcds,dlamc,6)   
+                  call wrr6(dlamc,1,'dlmc')  
+                  call wrr6(dlamd,1,'dlmd')  
+c 
+                  call zbir2b(ddefp,ddefpd,ddefpc,6)  
+                  call oduz2b(ddefe,deps,ddefp,6)     
+                  call clear (dsig,6)
+                  call mnozi1(dsig,elast,ddefe,6,6) 
+c
+c                 sigma
+                  call zbir2b(tau,taut,dsig,6)        
+c
+                  demp=(ddefp(1)+ddefp(2)+ddefp(3))/3.d0
+c
+                  emp1=emp+demp
+c
+                  evp1=3.d0*emp1
+
+c                 i1
+                  ai1=tau(1)+tau(2)+tau(3)        
+c
+c                 j2d
+                  aj2d=1.d0/6.d0*((tau(1)-tau(2))**2 +
+     &                            (tau(2)-tau(3))**2 +
+     &                            (tau(3)-tau(1))**2)+
+     &                             tau(4)**2+tau(5)**2+tau(6)**2 
+c
+                  if(evp1.gt.(0.999d0*w)) then
+                      xtdt=x0-dlog(1.d0-evp1/w)/d
+                  else
+                      xtdt=ai1e
+c	                call jedna1(tau,taue,6)
+	                aj2d=ak-ai1*alf
+                  endif
+c
+c                 sqrt(j2d)
+                  aj2d =dsqrt(aj2d*aj2d)
+                  aj2dq=dsqrt(aj2d)
+c
+                  if(xtdt.gt.x0) xtdt=x0
+c
+c                 Cap line
+                  fc=xtdt-ai1
+c	                write(3,*)'i,j,fd,fc',i,j,fd,fc
+                  if(j.gt.maxt) then                               
+                      stop 'max iterations in D-P model III-j'
+                  endif
+              if(dabs(fc).gt.tol) goto 320
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+c             
+c             Drucker-Pruger line
+              fd=alf*ai1+aj2dq-ak
+c              write(3,*)'i,j,fd,fc',i,j,fd,fc
+c
+              if(i.gt.maxt) then                                   
+                  stop 'max iterations in D-P model III-i'
+              endif
+c
+c             write(3,*) 'kor,fd,fc',kor,fd,fc
+c
+          if(dabs(fd).gt.tol) goto 310 
+      goto 400 
+c========================================================================
+c
+c     updates for next step
+  400 continue
+c      write(3,*) 'kor,Iobl',kor,Iobl
+c
+       call zbir2b(defp1,defpp,ddefp,6)
+c      write(3,*) 'Iobl,fc,fd',Iobl,fc,fd
+c========================================================================
+c     >>>>>>Izracunavanje CEP<<<<<<<
+!     call clear(cegs,6)
+!     call clear(fsce,6)
+!	    call clear(imen,1)
+!			call clear(broj,36)
+!     call mnozi1(cegs,elast,dgds,6,6)
+!	    call mnozt1(fsce,dfds,elast,6,6)
+!	    imen=dot(dfds,cegs,6)
+!	    imenr=1.d0/imen
+!	    call MNOZM1(broj,cegs,fsce,6,6,1)
+!	    call jednak(CP,broj,imen,36)
+!	    call zbirmm(elast,cp,36)
+c
+c========================================================================
+c     Corection of values from previous step when convergence is reatched
+      call jedna1(def1,def,6)
+      call jedna1(tau1,tau,6)
+c     call wrr6(def1,6,'def1')
+      return   
+      end
+c=======================================================================
+

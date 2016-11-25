@@ -306,8 +306,10 @@ CE    CONCENTRATED FORCES OF FLUID-STRUCTURE INTERACTION AT TIME T+DT
 CS    KONCENTRISANE SILA OD INTERAKCIJE FLUID-STRUKTRUA U TRENUTKU T+DT
 C     VAZI ZA KRVNE SUDOVE, NE ZA CERNI
 C
-      IF((KOJPAK.EQ.3).OR.(KOJPAK.EQ.5)) THEN
+      IF(KOJPAK.EQ.3) THEN
          CALL FSINT(A(LID),A(LRTDT),A(LELCV),NPI,ICVEL)
+      ELSE IF (KOJPAK.EQ.5) THEN
+         CALL FSINTSPH(A(LID),A(LRTDT),A(LELCV),NPI,ICVEL)
       IF(NBLGR.GE.0.AND.ITER.EQ.0.AND.ISTSI.NE.-1.AND.NZADP.EQ.0)
      1CALL STAGP1(A(LRTDT),A(LID),A(LCVEL),ICVEL,NP,IGRAF,44,
      +            A(LNCVP),NCVPR)
@@ -2329,7 +2331,6 @@ C=======================================================================
 C
 C====================================================================
       SUBROUTINE FSINT(ID,RTDT,NELCV,NPI,ICVEL)
-      USE ZFLUID
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C .......................................................................
@@ -2338,6 +2339,53 @@ CE.   P R O G R A M
 CE.       TO FORM CONCENTRATED FORCES OF FLUID-STRUCTURE INTERACTION 
 CS.   P R O G R A M
 CS.       ZA FORMIRANJE KONCENTRISANIH SILA OD INTERAKCIJE FLUID-STRUKTURA 
+C .
+C .......................................................................
+C
+      CHARACTER *24 ZSILE,ZSILB
+      include 'paka.inc'
+      
+      COMMON /CERSIL/ ZSILE
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+C
+      DIMENSION VOL(3),RTDT(*),ID(NP,*),NELCV(*)
+C
+      ZSILB=ZSILE
+      ZSILE='ZFLUID                  '
+      CALL CONFIL()
+      ZSILE=ZSILB
+      READ(35,*) NCVOR
+C      READ(35,1010) NCVOR
+      DO 10 JJ=1,NCVOR
+         READ(35,*) NOD,(VOL(K),K=1,3)
+C         READ(35,1010) NOD,(VOL(K),K=1,3)
+         KPNN=NOD
+CZILE PROVERI         IF(ICVEL.NE.0) KPNN=NELCV(NOD-NPI+1)
+         DO 20 K=1,3 
+            I=ID(KPNN,K)
+            IF(I.GT.0) RTDT(I)=RTDT(I)+VOL(K)
+   20    CONTINUE
+   10 CONTINUE
+      CLOSE(35)      
+      RETURN
+C-----------------------------------------------------------------------
+C 1010 FORMAT(I5,3E13.5)
+C-----------------------------------------------------------------------
+      END
+C=======================================================================
+C
+C====================================================================
+      SUBROUTINE FSINTSPH(ID,RTDT,NELCV,NPI,ICVEL)
+      USE ZFLUID
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C .......................................................................
+C .
+CE.   P R O G R A M
+CE.       TO FORM CONCENTRATED FORCES OF SPH INTERACTION 
+CS.   P R O G R A M
+CS.       ZA FORMIRANJE KONCENTRISANIH SILA OD INTERAKCIJE sa SPH 
 C .
 C .......................................................................
 C

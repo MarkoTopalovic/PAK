@@ -1,0 +1,254 @@
+C=======================================================================
+C=======================================================================
+CS    MAKSIMOVICEV MATERIJALNI MODEL
+CE    MAKSIMOVIC MATERIAL MODEL
+C=======================================================================
+C=======================================================================
+CE    SUBROUTINE D3M45
+CE               TI3445
+C
+      SUBROUTINE D3M45(TAU,DEF,IRAC,LPOCG,LPOC1,IBTC)
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+CE    PROGRAM FOR DEFINITION OF LOCATIONS AT INTEGRATION PIONT LEVEL
+C
+      include 'paka.inc'
+C
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT
+      COMMON /REPERM/ MREPER(4)
+      COMMON /DUPLAP/ IDVA
+      COMMON /CDEBUG/ IDEBUG
+C
+      DIMENSION TAU(6),DEF(6)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' D3M45'
+C
+      LFUN=MREPER(1)
+      LNTA=MREPER(2) 
+      MATE=MREPER(4)
+C
+      LTAU=LPOCG
+      LDEFT=LTAU + 6*IDVA
+      LDEFPP=LDEFT + 6*IDVA
+      LEMP=LDEFPP + 6*IDVA
+      LXT=LEMP + 1*IDVA
+C
+      LTAU1=LPOC1
+      LDEFT1=LTAU1 + 6*IDVA
+      LDEFP1=LDEFT1 + 6*IDVA
+      LEMP1=LDEFP1 + 6*IDVA
+      LXTDT=LEMP1 + 1*IDVA
+C
+      CALL TI3445(A(LTAU),A(LDEFT),A(LDEFPP),A(LEMP),A(LXT),
+     1       A(LTAU1),A(LDEFT1),A(LDEFP1),A(LEMP1),A(LXTDT), 
+     1       A(LFUN),A(LNTA),MATE,TAU,DEF,IRAC,IBTC)
+C
+      RETURN
+      END
+C
+C  =====================================================================
+C
+      SUBROUTINE TI3445(TAUT,DEFT,DEFPP,EMP,XT,
+     1                  TAU1,DEF1,DEFP1,EMP1,XTDT,
+     1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+CS    PODPROGRAM ZA INTEGRACIJU KONSTITUTIVNIH RELACIJA ZA 
+CS    DRUCKER-PRAGER MODEL 
+CE    PROGRAM FOR STRESS INTEGRATION FOR DRUCKER-PRAGER MODEL
+C
+      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT
+      COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
+      COMMON /TAUD3/ TAUD(6),DEFDPR(6),DEFDS(6),DDEFP(6),
+     1               DETAU(6),DDEF(6),TAUDE(6)
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /PLASTI/ LPLAST,LPLAS1,LSIGMA
+      COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8
+      COMMON /ITERAC/ METOD,MAXIT,TOLE,TOLS,TOLM,KONVE,KONVS,KONVM
+      COMMON /ITERBR/ ITER
+      COMMON /CONMAT/ AE,EP,DVT
+      COMMON /MATERb/ korz(100,100,3),evg(100,100,3)
+      COMMON /CDEBUG/ IDEBUG
+C
+      DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
+     +          DEFP1(6)
+      DIMENSION FUN(11,*),NTA(*),DSIG(6),DEPS(6),DFDS(6),DGDS(6),ALAM(6)
+     +         ,CP(6,6),POM(6), CEP(6,6),DDEFE(6)
+     +         ,DFdDS(6),DFcDS(6),DGdDS(6),DGcDS(6),ALAMd(6),ALAMc(6)
+     +         ,al1p(6),al2p(6),ddefpd(6),ddefpc(6),taue(6)
+C
+      IF(IDEBUG.EQ.1) PRINT *, 'TI3445'
+C
+      IF(IRAC.EQ.2) RETURN
+CE    BASIC KONSTANTS
+      TOLL=  1.D-8
+      TOL =  1.D-6
+      MAXT=  500
+      pi   = 4*atan(1.d0)
+C====================================================================
+C
+CE.   MATERIAL CONSTANTS
+      E       = FUN(1,MAT) 
+      ANI     = FUN(2,MAT)
+C
+      fib     = FUN(3,MAT)
+      dfi     = FUN(4,MAT)
+      pn      = FUN(5,MAT) 
+C====================================================================
+ce    elasticity matrix for 3d
+      call mel3el(elast,e,ani)    ! formiranje matrice elasticnosti
+C
+C     DE
+      CALL JEDNA1(DEPS,DEF,6)     ! DEPS(I)=DEF(I)
+      CALL ZBIRMM(DEPS,DEFT,6)    ! DEPS(I)=DEPS(I)-DEFT(I) 
+C
+C     DSIGEL
+      CALL CLEAR(DSIG,6)
+      CALL MNOZM1(DSIG,ELAST,DEPS,6,1,6) !DSIG(I,J)=ELAST(I,K)*DEPS(K,J)
+C
+C     SIGEL
+      CALL ZBIR2B(TAU,TAUT,DSIG,6)       ! TAU(I)=TAUT(I)+DSIG(I)
+C
+C     I1
+      AI1=TAU(1)+TAU(2)+TAU(3)           ! I1=SIGMA1+SIGMA2+SIGMA3
+C
+C     J2DE
+      AJ2D=1.D0/6.D0*((TAU(1)-TAU(2))*(TAU(1)-TAU(2))+
+     +                 (TAU(2)-TAU(3))*(TAU(2)-TAU(3))+
+     +                 (TAU(3)-TAU(1))*(TAU(3)-TAU(1)))+
+     +                  TAU(4)*TAU(4)+TAU(5)*TAU(5)+TAU(6)*TAU(6)
+C
+C     SQRT(J2DE)
+      AJ2D=DSQRT(AJ2D*AJ2D)
+      AJ2DQ=DSQRT(AJ2D)
+C
+C     TENSION CUTOFF
+      IF(AI1.GT.0.d0) THEN
+          DO I=1,6
+             TAU(I)=0.d0
+          ENDDO
+         GO TO 400
+      ENDIF 
+C
+C     INCREMENT OF PLASTIC DEFORMATION IZ ZERRO IN ELASTIC DOMAIN
+      call clear(DDEFP,6)
+c
+      demp=0.d0
+C
+C     DRUCKER-PRAGER LINE
+      phi=fib+dfi/(1.d0-ai1/3.d0/pn)
+      ALF=2.d0*dsin(phi*pi/180.d0)/
+     &   (dsqrt(3.d0)*(3.d0-dsin(phi*pi/180.d0)))
+      FDP=ALF*AI1+AJ2DQ
+C
+CE    DRUCKER-PRAGER YIELDING FDP<0
+      IF(FDP.GT.TOLL) GOTO 100
+      IF(FDP.LE.TOLL) GOTO 400
+c     GOTO 400
+      STOP 'PROSAO SVE USLOVE!!!'
+C========================================================================
+CE        PLASTIC STRAIN
+C
+C         DELTA F/DELTA SIGMA
+  100     Iobl=1
+          DFDS(1)=ALF+( 2.D0*TAU(1)-TAU(2)-TAU(3))/(6.D0*AJ2DQ)
+          DFDS(2)=ALF+(-TAU(1)+2.D0*TAU(2)-TAU(3))/(6.D0*AJ2DQ) 
+          DFDS(3)=ALF+(-TAU(1)-TAU(2)+2.D0*TAU(3))/(6.D0*AJ2DQ)
+          DFDS(4)=TAU(4)/AJ2DQ
+          DFDS(5)=TAU(5)/AJ2DQ  
+          DFDS(6)=TAU(6)/AJ2DQ
+C
+C         DELTA G/DELTA SIGMA = DELTA F/DELTA SIGMA
+          CALL JEDNA1(DGDS,DFDS,6)            ! DGDS(I)=DFDS(I)
+C
+C         LAMBDA
+          CALL CLEAR(ALAM,6)
+          CALL MNOZT1(ALAM,DFDS,ELAST,6,6)    ! ALAM(I)=DFDS(J)*ELAST(J,I)
+          FCG=DOT(ALAM,DGDS,6)
+          DLAM=DOT(ALAM,DEPS,6)
+          DLAM=DLAM/FCG
+C
+          CALL JEDNAK(DDEFP,DGDS,DLAM,6)
+          CALL ODUZ2B(DDEFE,DEPS,DDEFP,6)
+          CALL CLEAR (DSIG,6)
+          CALL MNOZI1(DSIG,ELAST,DDEFE,6,6)
+          CALL ZBIR2B(TAU,TAUT,DSIG,6)        ! TAU(I)=TAUT(I)+DSIG(I)
+          AI1=TAU(1)+TAU(2)+TAU(3)        
+          aj2d=1.d0/6.d0*((tau(1)-tau(2))**2 +
+     &                        (tau(2)-tau(3))**2 +
+     &                        (tau(3)-tau(1))**2)+
+     &                         tau(4)**2+tau(5)**2+tau(6)**2
+          AJ2D=DSQRT(AJ2D*AJ2D)
+          AJ2DQ=DSQRT(AJ2D)
+          phi=fib+dfi/(1.d0-ai1/3.d0/pn)
+          ALF=2.d0*dsin(phi*pi/180.d0)/
+     &       (dsqrt(3.d0)*(3.d0-dsin(phi*pi/180.d0)))
+          FDPm=ALF*AI1+AJ2DQ
+          FDPP=FDP
+C
+          I=0
+          DLAMM= DLAM
+          DLAMP= 0.d0
+          DLAM = 0.d0
+          DX=0.1*DLAMm
+          AF=2.d0
+          IB=0
+          JP=2
+c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CD        BISECTION LOOP                            
+  110     I = I + 1
+              CALL BISECTG (dlam,dlamM,dlamP,dx,Fdp,FdpM,FdpP,AF,IB,jp)
+              CALL JEDNAK(DDEFP,DGDS,DLAM,6)
+              CALL ODUZ2B(DDEFE,DEPS,DDEFP,6)
+              CALL CLEAR (DSIG,6)
+              CALL MNOZI1(DSIG,ELAST,DDEFE,6,6)
+C
+              demp=(ddefp(1)+ddefp(2)+ddefp(3))/3.d0
+
+              emp1=emp+demp
+c             call wrr6(CEP,36,'CEP=') 
+c
+              evp1=3.d0*emp1
+C
+C             SIGMA
+              CALL ZBIR2B(TAU,TAUT,DSIG,6)     ! TAU(I)=TAUT(I)+DSIG(I)
+
+C             I1
+              AI1=TAU(1)+TAU(2)+TAU(3)        
+c
+c             j2d
+              aj2d=1.d0/6.d0*((tau(1)-tau(2))**2 +
+     &                        (tau(2)-tau(3))**2 +
+     &                        (tau(3)-tau(1))**2)+
+     &                         tau(4)**2+tau(5)**2+tau(6)**2
+C             SQRT(J2D)
+              AJ2D=DSQRT(AJ2D*AJ2D)
+              AJ2DQ=DSQRT(AJ2D)
+C
+C             DRUCKER-PRAGER LINE
+              phi=fib+dfi/(1.d0-ai1/3.d0/pn)
+              ALF=2.d0*dsin(phi*pi/180.d0)/
+     &            (dsqrt(3.d0)*(3.d0-dsin(phi*pi/180.d0)))
+              FDP=ALF*AI1+AJ2DQ
+c             WRITE (3,*)'kor,FDPP',kor,FDPP
+C
+              IF(I.GT.MAXT) THEN       
+                  STOP 'MAX. NUM. BISECTION IN MAKSIMOVIC MODEL!'
+              ENDIF
+          IF(dabs(FDP).GT.TOL) GO TO 110
+	GOTO 400 
+C========================================================================
+c     updates for next step
+  400 continue
+c
+      call zbir2b(defp1,defpp,ddefp,6)
+c========================================================================
+c     Corection of values from previous step when convergence is reatched
+      call jedna1(def1,def,6)
+      call jedna1(tau1,tau,6)
+      return   
+      end
+c=======================================================================
+

@@ -91,12 +91,11 @@ C
 CS INDIKATOR ZA KONVERGENCIJU KOD GREDNOG SUPERELEMENTA IKONVP
       COMMON /ENERGP/ ENE91,ENE92,ENEP,IKONVP
       COMMON /smumps/ imumps,ipar
-      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER,KOJPAKVTK
+      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER
 C
 c     NELUK - broj elemenata za koje je zapisan LM()na disk IDRAKCE
       NELUK=0
       IDRAKCE=39
-      KOJPAK = KOJPAKVTK
       OPEN(IDRAKCE,FILE='FDRAK',STATUS='UNKNOWN',
      1      FORM='UNFORMATTED',ACCESS='SEQUENTIAL')
       IKONVP=1
@@ -250,11 +249,7 @@ C       ZASTO JE UVEDEN NDOD
         IF(NBLGR.GE.0.AND.NP.GT.0) THEN
            CALL TGRAUK(A(LCORD),A(LCVEL),ICVEL,NP,49)
            CALL PAKSVTK(A(LCORD),A(LCVEL),ICVEL,NP,49)
-! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu
-!            if (KOJPAKVTK.EQ.5.OR.KOJPAK.EQ.5) THEN
-! DODAVANJE CVOROVA IZ PAKA U MCM LISTU CESTICA
-!                CALL PAKADDMCM(A(LCORD),A(LCVEL),ICVEL,NP,49)   
-!            endif           
+! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu                     
            CALL TGRAUB(A(LID),A(LCVEL),ICVEL,NP,49)
         ENDIF
         IF(ITEST.GT.0) THEN

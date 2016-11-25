@@ -1510,13 +1510,14 @@ C
 C==========================================================================
 C==========================================================================
       SUBROUTINE ZFLU(IDENT,NPTIP,SPSIL,NETIP)
+!     duplirano fajl-modul 
       USE ZFLUID
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       DIMENSION SPSIL(NETIP,*)
       DIMENSION IDENT(2,*),FORCE(3)
-      !IFILE=61
-      !OPEN(IFILE,FILE='ZFLUID')
-      !WRITE(IFILE,200) NPTI
+      IFILE=61
+      OPEN(IFILE,FILE='ZFLUID')
+      WRITE(IFILE,200) NPTI
       NPTI = NPTIP
       DO I=1,NPTI
         CALL CLEAR(FORCE,3)
@@ -1525,13 +1526,13 @@ C==========================================================================
         DO J=1,NETIP
          FORCE(J)=SPSIL(J,NODEF)
         ENDDO 
-         !WRITE(IFILE,300) NODES,(FORCE(J),J=1,3)        
+         WRITE(IFILE,300) NODES,(FORCE(J),J=1,3)        
          NODEBROJ(I) = NODES
          CVORNESILE(I,1) = FORCE(1)
          CVORNESILE(I,2) = FORCE(2)
          CVORNESILE(I,3) = FORCE(3)         
       ENDDO
-      !CLOSE(IFILE)      
+      CLOSE(IFILE)      
  200  FORMAT (I5)
  300  FORMAT (I5,3D13.5)
       END
@@ -1542,16 +1543,16 @@ C==========================================================================
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CE Subroutine ZFLU is used for writing forces from fluid calculation to file
-C
+C     duplirano fajl-modul
       DIMENSION SPSIL(NETIP,*)
       DIMENSION IDENT(2,*),FORCE(3),FORCE0(3)
 C
-      !IFILE=61
-      !OPEN(IFILE,FILE='ZFLUID')
-      !WRITE(IFILE,200) NPTI
+      IFILE=61
+      OPEN(IFILE,FILE='ZFLUID')
+      WRITE(IFILE,200) NPTI
       NPTI = NPTIP
       DO I=1,NPTI
-         !READ(IFILE,300) NODES,(FORCE0(J),J=1,3)
+        READ(IFILE,300) NODES,(FORCE0(J),J=1,3)
         NODES = NODEBROJ(I)
         FORCE0(1) = CVORNESILE(I,1)
         FORCE0(2) = CVORNESILE(I,2)
@@ -1563,7 +1564,7 @@ C
 C         FORCE(J)=SPSIL(J,NODEF)
          FORCE(J)=0.5D0*(SPSIL(J,NODEF)+FORCE0(J))
         ENDDO 
-         !WRITE(IFILE,300) NODES,(FORCE(J),J=1,3)
+         WRITE(IFILE,300) NODES,(FORCE(J),J=1,3)
          NODEBROJ(I) = NODES
          CVORNESILE(I,1) = FORCE(1)
          CVORNESILE(I,2) = FORCE(2)

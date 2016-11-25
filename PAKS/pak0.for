@@ -25,7 +25,7 @@ C
       include 'paka.inc'
       INCLUDE 'mpif.h'
       COMMON/VERSION/ IVER
-      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER,KOJPAKVTK
+      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,IOPGL(6),KOSI,NDIN,ITEST
       CHARACTER*6    FIPAKS,FIPAKF
       DIMENSION IA(1)
@@ -59,11 +59,6 @@ C       WRITE(*,*) '5 - PAKS + MCM'
 C       READ(*,*) KOJPAK
         KOJPAK=5
         mcm_kojpak = KOJPAK
-        KOJPAKVTK = KOJPAK
-!        IF(KOJPAK.EQ.4) THEN
-!        CALL mcm_main
-!        goto 51
-!        END IF
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
 CS      DA LI IMA PROSTORA ZA SVE U MEMORIJI (=0-IMA, =1-NEMA)
@@ -131,29 +126,19 @@ CS    POCETNI REPER ZA PAKS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO MCM BEZ PAKA!!!!!!!!!!!!!!!!!!!!!!!!!!!!        
         
         IF(KOJPAK.EQ.4) THEN 
-!
 ! get input file names
-!
             call mcm_startup(newproblem)
-!
             if(newproblem) then
-!
 ! read input file
-!
                 call mcm_getinput
-!
 ! problem initialisation
                 call mcm_initial
                 mcm_init_ts = mcm_dt
             else
-!
 ! read restart file
-!
 !call mcm_restart
-            endif   
-!       
-        ENDIF
-!  
+            endif         
+        ENDIF 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO MCM BEZ PAKA!!!!!!!!!!!!!!!!!!!!!!!!!!!!        
         
  9999   IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5) THEN
@@ -169,27 +154,19 @@ C
            IF(KOJPAK.EQ.3) CALL IJEDN1(A(1),A(LIPODS),200)
            
       IF(KOJPAK.EQ.5) THEN 
-!
+! ako je proracuna PAK+MCM ovde se ucitavaju SPH vrednosti
 ! get input file names
-!
             call mcm_startup(newproblem)
-!
             if(newproblem) then
-!
 ! read input file
-!
                 call mcm_getinput
-!
 ! problem initialisation
                 call mcm_initial
                 mcm_init_ts = mcm_dt
             else
-!
 ! read restart file
-!
 !call mcm_restart
-            endif   
-        
+            endif     
         ENDIF
            
 C
@@ -254,7 +231,6 @@ C
 
 C
 50    CALL MPI_FINALIZE(IERR)
-!51    continue
       STOP
       END
 C=======================================================================
@@ -295,7 +271,7 @@ C
       COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
       COMMON /EPUREP/ LPUU,LPUV,LPUA,IPUU,IPUV,IPUA,ISUU,ISUV,ISUA
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPERMT,IOPGL(6),KOSI,NDIN,ITEST
-      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER,KOJPAKVTK
+      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER
       COMMON /REPERI/ LCORD,LID,LMAXA,LMHT
       COMMON /CVOREL/ ICVEL,LCVEL,LELCV,NPA,NPI,LCEL,LELC,NMA,NMI
       COMMON /ELEMAU/ MXAU,LAU,LLMEL,LNEL,LNMAT,LTHID,LIPGC,LIPRC,LISNA
@@ -315,58 +291,54 @@ C
       KOCID=0
       VREM0=0.D0
       INDT=0
-      
-      ENDIF
-      
-
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-             IF(KOJPAK.EQ.4) THEN
-                call mcm_solution
+      IF(KOJPAK.EQ.4) THEN
+      call mcm_solution
 ! Write dynamic relaxation data
-                call mcm_write_drelax
-             ENDIF
+      call mcm_write_drelax
+      ENDIF
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
-             !      IF(INDEXPL.EQ.1) THEN
-!C
-!CE      BASIC LOOP OVER TIME PERIODS OF EXPLICIT INTEGRATION
-!CS      OSNOVNA PETLJA PO VREMENSKIM PERIODIMA ZA EKSPLICITNU INTEGRACIJU
-!C
-!
-!        LPUU=IPOMAK
-!        LPUV=IBRZINA
-!        LPUA=IUBRZ
-!        ISUU=0
-!        ISUV=0
-!        ISUA=0
-!        KORBR = 1
-!        BROJAC = 99
-!        DT=DTDT(KORBR)
-!        VREME=NKDT(KORBR)*DT
-!        DTCR=DT*10
-!        DTP=DT
-!        CALL INTKMM
-!C        
-!        DO
-!            CALL EXPLINTGR(LIPODS,A(LRTDT),A(IUBRZ),A(IBRZINA),
-!     1           A(IBRZINAIPO),A(IPOMAK),A(IMASA),A(IPRIGUSEN),
-!     2           DT,DTP,DTCR,VREM0,KORBR,KOJPAK)
-!            VREM0 = VREM0 + DT
-!            DTP=DT
-!            IF (DT>DTCR) DT=0.9*DTCR
-!            IF(BROJAC.EQ.0) THEN 
-!                CALL STAMP
-!                CALL STAGP
-!                BROJAC = 99
-!            ENDIF
-!            IF(VREM0.GT.VREME) exit
-!            BROJAC = BROJAC - 1
-!            KORBR = KORBR + 1
-!        ENDDO
-!        WRITE(*,*) 'posle petlje po vremenu, trenutno vreme =',VREM0
-!        WRITE(*,*) 'posle petlje po vremenu, ukupno vreme =',VREME
-!        pause
-!      ELSE
+      IF(INDEXPL.EQ.1) THEN
+C
+CE      BASIC LOOP OVER TIME PERIODS OF EXPLICIT INTEGRATION
+CS      OSNOVNA PETLJA PO VREMENSKIM PERIODIMA ZA EKSPLICITNU INTEGRACIJU
+C
+        LPUU=IPOMAK
+        LPUV=IBRZINA
+        LPUA=IUBRZ
+        ISUU=0
+        ISUV=0
+        ISUA=0
+        KORBR = 1
+        BROJAC = 99
+        DT=DTDT(KORBR)
+        VREME=NKDT(KORBR)*DT
+        DTCR=DT*10
+        DTP=DT
+        CALL INTKMM
+C        
+        DO
+            CALL EXPLINTGR(LIPODS,A(LRTDT),A(IUBRZ),A(IBRZINA),
+     1           A(IBRZINAIPO),A(IPOMAK),A(IMASA),A(IPRIGUSEN),
+     2           DT,DTP,DTCR,VREM0,KORBR,KOJPAK)
+            VREM0 = VREM0 + DT
+            DTP=DT
+            IF (DT>DTCR) DT=0.9*DTCR
+                IF(BROJAC.EQ.0) THEN 
+                    CALL STAMP
+                    CALL STAGP
+                    BROJAC = 99
+                ENDIF
+            IF(VREM0.GT.VREME) exit
+            BROJAC = BROJAC - 1
+            KORBR = KORBR + 1
+        ENDDO
+        WRITE(*,*) 'posle petlje po vremenu, trenutno vreme =',VREM0
+        WRITE(*,*) 'posle petlje po vremenu, ukupno vreme =',VREME
+        pause
+          ENDIF ! IF EXPLICIT
+      ENDIF ! IF (myid.eq.0)
 C
 CE    BASIC LOOP OVER TIME PERIODS
 CS    OSNOVNA PETLJA PO VREMENSKIM PERIODIMA
@@ -393,6 +365,7 @@ C          END OF ANALYSIS (KRAJP.EQ.1)
 	      IF(KRAJP.EQ.1) RETURN
             IF (myid.ne.0) goto 20
             VREM0 = VREM0 + DT
+            
 C
 C          PAKF - PROGRAM
 C
@@ -439,9 +412,7 @@ C
             
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-             IF(KOJPAK.EQ.5) THEN
-             
+             IF(KOJPAK.EQ.5) THEN            
              if (pak_initialized.eq.(.false.))then
              pak_initialized = .true.
              mcm_oldtime = 0.0_d
@@ -450,13 +421,9 @@ C
              end if
              mcm_endtime = VREM0
                 call mcm_solution
-!
 ! Write dynamic relaxation data
-!
                 call mcm_write_drelax
-!
              ENDIF
-!
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
   500   CONTINUE 
