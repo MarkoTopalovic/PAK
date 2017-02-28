@@ -57,7 +57,7 @@ C       WRITE(*,*) '3 - Interaction fluid-structure analysis'
 C       WRITE(*,*) '4 - Meshless Continuum Mechanics MCM sph'
 C       WRITE(*,*) '5 - PAKS + MCM'
 C       READ(*,*) KOJPAK
-        KOJPAK=5
+        KOJPAK=1
         mcm_kojpak = KOJPAK
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
@@ -401,7 +401,8 @@ C
                         CALL WRITED(A(LPAKS),KOLKO,IPAKS)
                     ENDIF
                 ENDIF
-                      IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.5) THEN
+!TODO                      IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.5) THEN ! za 1 ne radi proveriti
+                      IF(KOJPAK.EQ.5) THEN
                       IHELP = IVTKCOUNTER
                       IVTKCOUNTER = IHELP+1
                       CALL VTKPRINT(A(LPAKS))
