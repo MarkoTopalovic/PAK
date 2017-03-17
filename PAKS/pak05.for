@@ -839,7 +839,7 @@ C     1              INDKOV,ICOEF,(COEF(I),I=1,3)
       IF(INDFOR.EQ.2.and.ind56.eq.1)
      1READ(ACOZ,4000) NETIP,NE,IATYP,NMODM,INDBTH,INDDTH,
      1                INDKOV,ISTRESS,(COEF(I),I=1,3)
-C     1                INDKOV,ICOEF,(COEF(I),I=1,3)
+C     1                INDKOV,ICOEF,(COEF(I),I=1,3)  
 C INDIKATOR ODUZIMANJA POMERANJA IZ PRVOG KORAKA
 
       IF(NMODM.EQ.9) INDOD=1
@@ -998,6 +998,7 @@ CE       READING DATA FOR ELEMENT TYPE (=NETIP) OF ELEMENT GROUP (=NGE)
       RETURN
 C
  1000 FORMAT(8I5,3F10.0)
+ 1001 FORMAT(7I5,5X,3F10.0)     
  4000 FORMAT(I5,I10,6I5,3F10.0)
 C-----------------------------------------------------------------------
  2020 FORMAT(

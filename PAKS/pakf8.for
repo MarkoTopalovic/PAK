@@ -1097,7 +1097,7 @@ C==========================================================================
       DIMENSION GNODE(2,5,*),CCORD(3,*),CORD(3,*)
 
       IF (KKORAK.EQ.1) THEN
-       OPEN(51,FILE='BDIR', RECL=48,FORM='BINARY', ACCESS='DIRECT')
+       OPEN(51,FILE='BDIR', RECL=48,FORM='UNFORMATTED', ACCESS='DIRECT')
       ENDIF
       DO I=1,NPT
        WRITE(51,REC=I+NPT*(KKORAK-1)) 
