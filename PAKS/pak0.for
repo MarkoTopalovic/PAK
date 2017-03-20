@@ -339,7 +339,6 @@ C
         pause
           ENDIF ! IF EXPLICIT
       ENDIF ! IF (myid.eq.0)
-
 C
 CE    BASIC LOOP OVER TIME PERIODS
 
