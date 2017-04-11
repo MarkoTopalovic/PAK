@@ -26,7 +26,7 @@ REAL(kind=real_acc)    :: Volj, dwdx(mcm_ndim),deltasig(mcm_ndim),havg,dwdr,rhoi
 real(kind=real_acc), dimension(3,3) :: grad_v
 real(kind=real_acc), dimension(3,3) :: sigmai, qi
 !
-real(kind=real_acc) :: massj, rhoj, hj, holdj
+real(kind=real_acc) :: massj, rhoj, hj, holdj, factor
 real(kind=real_acc), dimension(3) :: xj
 real(kind=real_acc), dimension(3,3) :: sigmaj, qj
 real(kind=real_acc) :: inv_w_deltap, epsilon, fij, ratio,npow
@@ -61,16 +61,84 @@ do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
  ! Add acceleration due to contact force term if active
  !________________________________________________________
  !
+ !  if(mcm_contacttype.EQ.0) then
+ ! calculation of kernel repulsion for friction
+ ! isto kao i ovo gore samo se ne racuna za sve cestice vec samo za kontakt cestice
+ ! do l=1,mcm_ndim
+ !   par(i)%kernelrepulsion(l) = 0.0
+ ! enddo
+  ! deltapsilength = 0.0
+ !    do j=1,par(i)%g_ncont
+ !     if (mcm_g_contlist(j,i).eq.k) then ! k je kontaktna ghost cestica
+ !        contactparticle = .true.
+ !     end if
+ !    enddo
+ !    do j=1,par(i)%ncont
+ !     if (mcm_contlist(j,i).eq.k) then ! k je kontaktna realna cestica
+ !       contactparticle = .true.
+ !     end if
+ !    enddo
+!      do l=1,mcm_ndim
+!        par(i)%kernelrepulsion(l) = par(i)%kernelrepulsion(l) + massj * deltasig(l)
+!      enddo
+!     end if !if (contactparticle)  
+!  enddo !k=1,par(i)%nnbr + par(i)%g_nnbr    
+! end if !if(mcm_contacttype.EQ.0)
+ !if(mcm_contacttype.EQ.0) then ! za Campbellovu repulzivnu silu
+!    dotproduct = par(i)%kernelrepulsion(1)*par(i)%bndnorm(1)+par(i)%kernelrepulsion(2)*par(i)%bndnorm(2)+par(i)%kernelrepulsion(3)*par(i)%bndnorm(3)
+!    do k=1,mcm_ndim
+!     normalprojection(k) = (dotproduct/bndnormlength)*par(i)%bndnorm(k) !normalna komponenta kontaktne sile u cestici i
+!     tangentprojection(k) = par(i)%kernelrepulsion(k)-normalprojection(k)! tangentna komponenta kontaktne sile u cestici i
+!    enddo
+!  !if(mcm_contacttype.GT.0) za kontakt repulziju
+!    dotproduct = par(i)%repulsion(1)*par(i)%bndnorm(1)+par(i)%repulsion(2)*par(i)%bndnorm(2)+par(i)%repulsion(3)*par(i)%bndnorm(3)
+!    do k=1,mcm_ndim
+!     normalprojection(k) = (dotproduct/bndnormlength)*par(i)%bndnorm(k) !normalna komponenta kontaktne sile u cestici i
+!     tangentprojection(k) = par(i)%repulsion(k)-normalprojection(k)! tangentna komponenta kontaktne sile u cestici i
+!    enddo
+! else !if(mcm_contacttype.GT.0) za kontakt repulziju
+!    dotproduct = par(i)%repulsion(1)*par(i)%bndnorm(1)+par(i)%repulsion(2)*par(i)%bndnorm(2)+par(i)%repulsion(3)*par(i)%bndnorm(3)
+!    do k=1,mcm_ndim
+!     normalprojection(k) = (dotproduct/bndnormlength)*par(i)%bndnorm(k) !normalna komponenta kontaktne sile u cestici i
+!     tangentprojection(k) = par(i)%repulsion(k)-normalprojection(k)! tangentna komponenta kontaktne sile u cestici i
+!    enddo
+!  end if !if(mcm_contacttype.EQ.0)
+  
  if(mcm_contacttype.GT.0) then
   do l = 1,mcm_ndim
+      !par(i)%a(l) = par(i)%a(l) + par(i)%repulsion(l)
+    !par(i)%contactforce(l) = 0.0_d
+    !par(i)%normalforce(l) = 0.0_d
+    !par(i)%repulsion(l) = 0.0_d
+      !     normalprojection(l) = (dotproduct/par(i)%bndnormlength)*par(i)%bndnorm(l) !normalna komponenta kontaktne sile u cestici i
+!     !normalprojection(l) = (dotproduct/bndnormlength)*(-1)*par(i)%bndnorm(l) !normalna komponenta kontaktne sile u cestici i
+!     tangentprojection(l) = deltasigcont(l)-normalprojection(l)! tangentna komponenta kontaktne sile u cestici i
+!        !par(i)%contactforce(l) = par(i)%contactforce(l)+massj *tangentprojection(l)
+!        !par(i)%normalforce(l) = par(i)%normalforce(l)+factor*par(i)%bndnorm(l)
+!        !par(i)%normalforce(l) = factor*par(i)%bndnorm(l)
+!        !par(i)%repulsion(l) = par(i)%repulsion(l) + massj * deltasigcont(l)
+      !        par(i)%contactforce(l) = par(i)%contactforce(l)+tangentprojection(l)
+!        par(i)%normalforce(l) = par(i)%normalforce(l)+normalprojection(l)
   bndnormlength = par(i)%bndnorm(1)**2+par(i)%bndnorm(2)**2+par(i)%bndnorm(3)**2
     dotproduct = par(i)%repulsion(1)*par(i)%bndnorm(1)+par(i)%repulsion(2)*par(i)%bndnorm(2)+par(i)%repulsion(3)*par(i)%bndnorm(3)
     do k=1,mcm_ndim
      normalprojection(k) = (dotproduct/bndnormlength)*par(i)%bndnorm(k) !normalna komponenta kontaktne sile u cestici i
      tangentprojection(k) = par(i)%repulsion(k)-normalprojection(k)! tangentna komponenta kontaktne sile u cestici i
     enddo
+    ! sada imamo sve komponente projekcija kontaktne "sile" (ubrzanja) na normalu
+  ! treba da odredimo intentitet normalne i tangentne komponente
+  ! da bi proverili da li je zadovoljen uslov trenja
     normalmagnitude = sqrt(normalprojection(1)**2 + normalprojection(2)**2 + normalprojection(3)**2)
     tangentmagnitude = sqrt(tangentprojection(1)**2 + tangentprojection(2)**2 + tangentprojection(3)**2)
+!    if (tangentmagnitude.lt.(normalmagnitude*0.5)) then !hardcoded koeficijent trenja
+!    do l=1,mcm_ndim
+!       par(i)%a(l) = 0 ! staticko trenje ne dozvoljava kretranje
+!    enddo
+!    else
+!    do l=1,mcm_ndim
+!!       par(i)%a(l) = par(i)%a(l) - normalprojection(l)*0.3 ! hardcoded dinamicki koeficijent trenja
+!    enddo
+!    end if
     if (tangentmagnitude.lt.(normalmagnitude*mcm_staticfriction)) then
     par(i)%a(l) = par(i)%a(l) + par(i)%repulsion(l)
     else
@@ -102,9 +170,9 @@ end if
  rhoi = par(i)%rho
  sigmai = par(i)%sigma
  qi = par(i)%q
- !
+ ! dotproduct = 0.0_d
  do k=1,par(i)%nnbr + par(i)%g_nnbr
-  !
+  !contactparticle = .false.
   call mcm_get_j_moment_info(i,k,xj,massj,rhoj,hj,holdj,sigmaj,qj)
   !
   Volj = massj/rhoj
@@ -113,7 +181,7 @@ end if
   deltasigcont = 0.0_d
   normalprojection = 0.0_d
   tangentprojection = 0.0_d
-  !
+  !dotproduct = 0.0_d
   call mcm_gradw(dwdx,dwdr,par(i)%x,xj,havg)
   j = mcm_nbrlist(k,i)
   do n=1,mcm_ndim
@@ -125,14 +193,17 @@ end if
    else ! RAZLICITI KONTAKT MATERIJAL
    deltasigcont(n) = deltasigcont(n)+ ( (sigmaj(m,n)-qj(m,n))/(rhoj**2)  +          &
 	                             (sigmai(m,n)-qi(m,n))/(rhoi**2)) * dwdx(m)
+   !dotproduct = dotproduct + deltasigcont(n)*par(i)%bndnorm(n) 
+   !contactparticle = .true.
    end if
-   enddo
-  enddo
+   enddo!do m=1,mcm_ndim
+  enddo!do n=1,mcm_ndim
   !
 !   RASTAVLJANJE KONTAKTNE SILE OD CESTICE (RAZLICITOG MATERIJALA) NA NORMALNU I TANGENTNU KOMPONENTU
 !   ZA POSMATRANU CESTICU I IMAMO K KONTAKTNIH CESTICA, AKO JE RAZLICIT MATERIJAL deltasigcont(n) <> 0
   bndnormlength = par(i)%bndnorm(1)**2+par(i)%bndnorm(2)**2+par(i)%bndnorm(3)**2
    dotproduct = deltasigcont(1)*par(i)%bndnorm(1)+deltasigcont(2)*par(i)%bndnorm(2)+deltasigcont(3)*par(i)%bndnorm(3)
+   !   factor = massj*(dotproduct/par(i)%bndnormlength)
     do l=1,mcm_ndim
      normalprojection(l) = (dotproduct/bndnormlength)*par(i)%bndnorm(l) !normalna komponenta kontaktne sile u cestici i
      tangentprojection(l) = deltasigcont(l)-normalprojection(l)! tangentna komponenta kontaktne sile u cestici i
@@ -204,6 +275,7 @@ logical:: onecontact
 logical:: twocontact
 logical:: threecontact
 do i = 1, mcm_nummat
+!     initialmaterialparticle(i) = 0
  averagematnormal(i,1) = 0.0_d
  averagematnormal(i,2) = 0.0_d
  averagematnormal(i,3) = 0.0_d
@@ -235,6 +307,8 @@ do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
     do l=1,mcm_ndim
     if (deltapsilength.gt.0) then
      par(i)%bndnorm(l) = deltapsi(l)/deltapsilength
+     !  bndnormlength = par(i)%bndnorm(1)**2+par(i)%bndnorm(2)**2+par(i)%bndnorm(3)**2 ! |v|**2
+  ! i duzinu normale
      !averagematnormal(par(i)%mat,l) = averagematnormal(par(i)%mat,l) + (par(i)%bndnorm(l))
     end if 
     enddo
@@ -247,6 +321,8 @@ enddo ! do i=mcm_svp,mcm_evp
 !  dotproduct = 0.0 ! inicijalizacija
 !!!   ! svi vektori normale treba da budu istog smera kao srednji mega vektor (nisam ga skalirao/delio sa brojem cestica) jer mi samo treba pravac
 !  dotproduct = averagematnormal(par(i)%mat,1)*par(i)%bndnorm(1) + averagematnormal(par(i)%mat,2)*par(i)%bndnorm(2) + averagematnormal(par(i)%mat,3)*par(i)%bndnorm(3)
+!   dotproduct = par(initialmaterialparticle(par(i).mat))%bndnorm(1)*par(i)%bndnorm(1) + par(initialmaterialparticle(par(i).mat))%bndnorm(2)*par(i)%bndnorm(2) + par(initialmaterialparticle(par(i).mat))%bndnorm(3)*par(i)%bndnorm(3)
+! svi vektori treba da budu istog smera kao vektor normale prve cestice od tog materijala
 !      if (dotproduct.lt.0) then ! vektor suprotnog smera
 !      par(i)%bndnorm(1) = -par(i)%bndnorm(1)
 !      par(i)%bndnorm(2) = -par(i)%bndnorm(2)
@@ -254,18 +330,24 @@ enddo ! do i=mcm_svp,mcm_evp
 !      end if
 !
 !enddo ! do i=mcm_svp,mcm_evp  
-!kraj racunanja normale na osnovu Randles LIbersky rada iz 1996
+!kraj 
+!racunanja normale na osnovu Randles LIbersky rada iz 1996
 ! Smoothed Particle Hydrodynamics: Some recent improvements and applications
 ! 
 !  
 !*****************************************************************************
 !   STARO RESENJE KOJE NIJE DAVALO DOVOLJNO DOBRE NORMALE
 !  ! racunanje normale 2.0 na osnovu 3 tacke drugog materijala 
-!do i=mcm_svp,mcm_evp  
+! 
+!do i=mcm_svp,mcm_evp 
+!if (initialmaterialparticle(par(i).mat).eq.0)then
 !  distance = 0.0
 !  distance1 = 0.0
 !  distance2  = 0.0
 !  distance3 = 0.0
+! distance1 = 10000.0
+!  distance2  = 10000.0
+!  distance3 = 10000.0
 !  tempdistance = 0.0
 !  closestid1 = 0
 !  closestid2 = 0
@@ -293,6 +375,24 @@ enddo ! do i=mcm_svp,mcm_evp
 !        j = mcm_nbrlist(k,i)
 !        if ((par(i)%mat.ne.par(j)%mat).and.(j.ne.closestid1)) then ! skup svih susednih cestica od razlicitog materijala osim najblize cestice
 !        distance =sqrt((par(i)%x(1)-par(j)%x(1))**2+(par(i)%x(2)-par(j)%x(2))**2+(par(i)%x(3)-par(j)%x(3))**2)
+!***************************************
+      !  closestid3 = closestid2 !druga najbliza cestica postaje treca 
+      !distance3 = distance2
+      !closestid2 = closestid1 ! stara prva cestica postaje druga
+      !distance2 = distance1
+      !closestid1 = j ! id najblize cestice od razlicitog materijala
+      !distance1 = distance
+      !else if (distance.lt.distance2)then ! tekuca cestica je bliza od druge ali nije bliza od trece
+      !closestid3 = closestid2 !druga najbliza cestica postaje treca 
+      !distance3 = distance2
+      !closestid2 = j ! id druge najblize cestice od razlicitog materijala
+      !distance2 = distance
+      !  else if (distance.lt.distance3)then ! tekuca cestica je bliza samo od trece cestice
+      !      closestid3 = j ! id druge najblize cestice od razlicitog materijala
+      !    distance3 = distance
+      !  end if
+!par(i)%bndnorm(4) = par(i)%bndnorm(1)*par(closestid1)%x(1) + par(i)%bndnorm(2)*par(closestid1)%x(2) + par(i)%bndnorm(3)*par(closestid1)%x(3)
+!************************************************************
 !        if ((distance.lt.distance2).or.(twocontact.eq.(.false.))) then ! tekuca cestica k je druga najbliza
 !            twocontact = .true.      
 !            closestid2 = j ! id druge najblize cestice od razlicitog materijala
@@ -319,6 +419,8 @@ enddo ! do i=mcm_svp,mcm_evp
 !  if (threecontact.eq.(.true.)) then
 !!!  ! za posmatranu cesticu i sada imamo 3 najblize cestice od razlicitog materijala 
 !!!  !ako uslov nije ispunjen cestica nema 3 bliske cestice od razlicitog materijala
+! ako jeste tu cesticu uzimamo za referentnu i njenu normalu dodeljujemo svim cesticama od tog materijala
+!  initialmaterialparticle(par(i).mat) = i
 !!!  ! od te 3 cestice napravimo 2 vektora
 !   vectora(1) = par(closestid1)%x(1)-par(closestid3)%x(1)
 !   vectora(2) = par(closestid1)%x(2)-par(closestid3)%x(2)
@@ -491,6 +593,11 @@ do i=mcm_svp,mcm_evp
    par(i)%bndnorm(3) = -par(i)%bndnorm(3)    
   end if
 !
+  !  par(i)%bndnorm(1) = par(initialmaterialparticle(par(i).mat))%bndnorm(1)
+  !  par(i)%bndnorm(2) = par(initialmaterialparticle(par(i).mat))%bndnorm(2)
+  !  par(i)%bndnorm(3) = par(initialmaterialparticle(par(i).mat))%bndnorm(3)
+  !  par(i)%bndnorm(4) = par(initialmaterialparticle(par(i).mat))%bndnorm(4)
+  !  par(i)%bndnormlength = par(initialmaterialparticle(par(i).mat))%bndnormlength 
 enddo ! do i=mcm_svp,mcm_evp
 !
 end subroutine mcm_normals

@@ -41,7 +41,7 @@
 !        INODEBROJAC =1
 !      DO I=NSTART,NPTI+NSTART-1
 !            NODEBROJ(INODEBROJAC) = I
-!        
+!        WRITE(IFILE,300) I,((par(I)%h*par(I)%h)*par(I)%sigma(J,J),J=1,3)
 !         !WRITE(IFILE,300) I,((par(I)%mass)*par(I)%a(J),J=1,3)
 !!         CVORNESILE(INODEBROJAC,1) = (par(I)%mass)*par(I)%a(1)
 !!         CVORNESILE(INODEBROJAC,2) = (par(I)%mass)*par(I)%a(2)

@@ -280,7 +280,7 @@ C
       COMMON /GRUPEE/ NGEL,NGENL,LGEOM,NGEOM,ITERM
       COMMON /KAKO6O/ LLJUS,LKAKO6
       COMMON /CDEBUG/ IDEBUG
-      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER,KOJPAKVTK
+      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER
 C
       include 'paka.inc'
       
@@ -288,7 +288,6 @@ C
 C
       MTOT=NTOT
       LMAX=LMAXS
-      KOJPAK = KOJPAKVTK
 C
       IF(IMAJOS.GT.0) GO TO 9999
 C
@@ -347,7 +346,6 @@ CE    I N P U T   D A T A   F O R   E L E M E N T S
 CS    U L A Z N I   P O D A C I   Z A   E L E M E N T E
 CE    /13/ USER MANUAL
 C     -----------
-      KOJPAKVTK = KOJPAK
       CALL UCELEM
 C     -----------
 CE    R E A D   D A T A   A B O U T   T I M E   F U N C T I O N S

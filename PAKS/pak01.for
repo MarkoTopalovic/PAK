@@ -1701,14 +1701,15 @@ C      WRITE(3,*) 'RK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
-         IF(ISKDSK.NE.0) THEN
+c        za ljusku mora da se skine komentar
+CLJ         IF(ISKDSK.NE.0) THEN
             IF(NBLOCK.EQ.1) THEN
                CALL READDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL READDB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
             ENDIF
-         ENDIF
+CLJ         ENDIF
       ENDIF
       RETURN
       END
@@ -1751,14 +1752,15 @@ C      WRITE(3,*) 'WK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
-         IF(ISKDSK.NE.0) THEN
+c        za ljusku mora da se skine komentar
+CLJ         IF(ISKDSK.NE.0) THEN
             IF(NBLOCK.EQ.1) THEN
                CALL WRITDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL WRITEB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
             ENDIF
-         ENDIF 
+CLJ         ENDIF 
       ENDIF
       RETURN
       END

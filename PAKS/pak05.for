@@ -20,6 +20,7 @@ C=======================================================================
 C
 C     
       SUBROUTINE UCELEM
+      use mcm_database
       USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
@@ -91,12 +92,11 @@ C
 CS INDIKATOR ZA KONVERGENCIJU KOD GREDNOG SUPERELEMENTA IKONVP
       COMMON /ENERGP/ ENE91,ENE92,ENEP,IKONVP
       COMMON /smumps/ imumps,ipar
-      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER,KOJPAKVTK
+      COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER
 C
 c     NELUK - broj elemenata za koje je zapisan LM()na disk IDRAKCE
       NELUK=0
       IDRAKCE=39
-      KOJPAK = KOJPAKVTK
       OPEN(IDRAKCE,FILE='FDRAK',STATUS='UNKNOWN',
      1      FORM='UNFORMATTED',ACCESS='SEQUENTIAL')
       IKONVP=1
@@ -249,12 +249,11 @@ C       ZASTO JE UVEDEN NDOD
         ENDIF
         IF(NBLGR.GE.0.AND.NP.GT.0) THEN
            CALL TGRAUK(A(LCORD),A(LCVEL),ICVEL,NP,49)
+           KOJPAK = mcm_kojpak
+        IF((KOJPAK.EQ.4).OR.(KOJPAK.EQ.5)) THEN
            CALL PAKSVTK(A(LCORD),A(LCVEL),ICVEL,NP,49)
-! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu
-!            if (KOJPAKVTK.EQ.5.OR.KOJPAK.EQ.5) THEN
-! DODAVANJE CVOROVA IZ PAKA U MCM LISTU CESTICA
-!                CALL PAKADDMCM(A(LCORD),A(LCVEL),ICVEL,NP,49)   
-!            endif           
+! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu  
+        ENDIF   
            CALL TGRAUB(A(LID),A(LCVEL),ICVEL,NP,49)
         ENDIF
         IF(ITEST.GT.0) THEN
@@ -844,7 +843,7 @@ C     1              INDKOV,ICOEF,(COEF(I),I=1,3)
       IF(INDFOR.EQ.2.and.ind56.eq.1)
      1READ(ACOZ,4000) NETIP,NE,IATYP,NMODM,INDBTH,INDDTH,
      1                INDKOV,ISTRESS,(COEF(I),I=1,3)
-C     1                INDKOV,ICOEF,(COEF(I),I=1,3)
+C     1                INDKOV,ICOEF,(COEF(I),I=1,3)  
 C INDIKATOR ODUZIMANJA POMERANJA IZ PRVOG KORAKA
 
       IF(NMODM.EQ.9) INDOD=1
@@ -1003,6 +1002,7 @@ CE       READING DATA FOR ELEMENT TYPE (=NETIP) OF ELEMENT GROUP (=NGE)
       RETURN
 C
  1000 FORMAT(8I5,3F10.0)
+ 1001 FORMAT(7I5,5X,3F10.0)     
  4000 FORMAT(I5,I10,6I5,3F10.0)
 C-----------------------------------------------------------------------
  2020 FORMAT(
