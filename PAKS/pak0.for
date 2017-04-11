@@ -57,7 +57,7 @@ C       WRITE(*,*) '3 - Interaction fluid-structure analysis'
 C       WRITE(*,*) '4 - Meshless Continuum Mechanics MCM sph'
 C       WRITE(*,*) '5 - PAKS + MCM'
 C       READ(*,*) KOJPAK
-        KOJPAK=5
+        KOJPAK=5      
         mcm_kojpak = KOJPAK
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
@@ -140,6 +140,7 @@ CS    POCETNI REPER ZA PAKS
             endif         
         ENDIF 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO MCM BEZ PAKA!!!!!!!!!!!!!!!!!!!!!!!!!!!!        
+        
         
  9999   IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5) THEN
            IF (myid.ne.0) goto 10
