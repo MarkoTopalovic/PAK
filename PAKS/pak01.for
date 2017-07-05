@@ -540,6 +540,8 @@ C      PRINT *, 'II,N,LD,NK',II,N,LD,NK
          LS=LS+1
 C         PRINT *,'K,LS,IK,NN',K,LS,IK,NN
          WRITE(II,REC=LS) (A(I),I=IK,NN)
+         !write(1981,*) (A(I),I=IK,NN)
+         !write(*,*) 'W ',(A(I),I=IK,NN)
    10 CONTINUE
 C      IF(II.EQ.8) THEN
 C         WRITE(3,*) 'WN,LS,NK,LD,II',N,LS,NK,LD,II
@@ -548,6 +550,63 @@ C      ENDIF
       RETURN
       END
 C=======================================================================
+C
+C======================================================================
+      SUBROUTINE WRITDDMT(A,N,II,LS,LD)
+      USE WSTAZK
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.       TO WRITE REAL VECTOR AT DIRECT ACCESS DISK
+CS.    P R O G R A M
+CS        ZA ZAPISIVANJE REALNOG VEKTORA NA DISK SA DIREKTNIM PRISTUPOM
+C .
+C ......................................................................
+C
+      COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
+      COMMON /SKDISK/ ISKDSK
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION A(*)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' WRITDD'
+C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
+      
+      IBROJAC = 1
+      IF(N.EQ.0) RETURN
+      NK=N*8/LD
+      NN=NK*LD/8
+      IF(N.GT.NN) NK=NK+1
+C      PRINT *, 'II,N,LD,NK',II,N,LD,NK
+      DO 10 K=1,NK
+         IK=(K-1)*LD/8+1
+         NN=K*LD/8
+         IF(K.EQ.NK) NN=N
+         LS=LS+1
+C         PRINT *,'K,LS,IK,NN',K,LS,IK,NN
+         !WRITE(II,REC=LS) (A(I),I=IK,NN)
+         
+         write(1981,*) (A(I),I=IK,NN)
+         !write(*,*) 'W ',(A(I),I=IK,NN)
+   10 CONTINUE
+      
+      IF (ALLOCIRANAMATRICA.EQ.(.FALSE.)) THEN
+      ALLOCATE (RTWRITE(NN))
+      ALLOCIRANAMATRICA = .TRUE.
+      ENDIF
+      
+      DO IBR=1,NN
+         RTWRITE(IBR) = A(IBR)
+      ENDDO
+      
+C      IF(II.EQ.8) THEN
+C         WRITE(3,*) 'WN,LS,NK,LD,II',N,LS,NK,LD,II
+C         CALL WRR(A,N,'WN  ')
+C      ENDIF
+      RETURN
+      END
+C======================================================================= 
 C
 C=======================================================================
       SUBROUTINE IWRITD(IA,N,II,LS,LD)
@@ -615,7 +674,55 @@ C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
          IF(K.EQ.NK) NN=N
          LS=LS+1
          READ(II,REC=LS) (A(I),I=IK,NN)
+         !write(1982,*) (A(I),I=IK,NN)
+         !write(*,*) 'R ',(A(I),I=IK,NN)
    10 CONTINUE
+C      IF(II.EQ.8) THEN
+C         WRITE(3,*) 'RN,LS,NK,LD,II',N,LS,NK,LD,II
+C         CALL WRR(A,N,'RN  ')
+C      ENDIF
+      RETURN
+      END
+C=======================================================================
+C
+C=======================================================================
+      SUBROUTINE READDDMT(A,N,II,LS,LD)
+      USE WSTAZK
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.       TO READ REAL VECTOR ON DIRECT ACCESS FILE
+CS.    P R O G R A M
+CS        ZA CITANJE REALNOG VEKTORA SA FILE SA DIREKTNIM PRISTUPOM
+C .
+C ......................................................................
+C
+      COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
+      COMMON /SKDISK/ ISKDSK
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION A(*)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' READDD'
+C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
+      IF(N.EQ.0) RETURN
+      NK=N*8/LD
+      NN=NK*LD/8
+      IF(N.GT.NN) NK=NK+1
+      DO 10 K=1,NK
+         IK=(K-1)*LD/8+1
+         NN=K*LD/8
+         IF(K.EQ.NK) NN=N
+         LS=LS+1
+         !READ(II,REC=LS) (A(I),I=IK,NN)
+         !read(1981,*) (A(I),I=IK,NN)
+         !write(1982,*) (A(I),I=IK,NN)
+         !write(*,*) 'R ',(A(I),I=IK,NN)
+   10 CONTINUE
+            DO IBR=1,NN
+         A(IBR) = RTWRITE(IBR) 
+      ENDDO
 C      IF(II.EQ.8) THEN
 C         WRITE(3,*) 'RN,LS,NK,LD,II',N,LS,NK,LD,II
 C         CALL WRR(A,N,'RN  ')
@@ -1701,15 +1808,16 @@ C      WRITE(3,*) 'RK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
+          write (*,*) 'CLJ1'
 c        za ljusku mora da se skine komentar
-CLJ         IF(ISKDSK.NE.0) THEN
+         !IF(ISKDSK.NE.0) THEN          
             IF(NBLOCK.EQ.1) THEN
-               CALL READDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+               CALL READDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL READDB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
             ENDIF
-CLJ         ENDIF
+         !ENDIF
       ENDIF
       RETURN
       END
@@ -1752,15 +1860,16 @@ C      WRITE(3,*) 'WK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
+          write (*,*) 'CLJ2'
 c        za ljusku mora da se skine komentar
-CLJ         IF(ISKDSK.NE.0) THEN
+         !IF(ISKDSK.NE.0) THEN
             IF(NBLOCK.EQ.1) THEN
-               CALL WRITDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+               CALL WRITDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL WRITEB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
-            ENDIF
-CLJ         ENDIF 
+            ENDIF          
+         !ENDIF 
       ENDIF
       RETURN
       END

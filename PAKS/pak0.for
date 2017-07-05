@@ -4,6 +4,7 @@ C=======================================================================
       program main
       use mcm_database
       USE CVOROVI
+      USE WSTAZK
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       logical newproblem
       INTEGER IVTKCOUNTER
@@ -35,6 +36,7 @@ C
       ALLOCIRANICVOROVI = .FALSE.
       ALLOCIRANAPOMERANJA = .FALSE.
       ALLOCIRANECVORNESILE = .FALSE.
+      ALLOCIRANAMATRICA = .FALSE.
       CALL MPI_INIT(ierr)
       CALL MPI_COMM_RANK(MPI_COMM_WORLD,myid,ierr)
 
@@ -57,7 +59,9 @@ C       WRITE(*,*) '3 - Interaction fluid-structure analysis'
 C       WRITE(*,*) '4 - Meshless Continuum Mechanics MCM sph'
 C       WRITE(*,*) '5 - PAKS + MCM'
 C       READ(*,*) KOJPAK
-        KOJPAK=5      
+        KOJPAK=1
+        open (1981, file='zapisano.dat')
+        open (1982, file='procitano.dat')
         mcm_kojpak = KOJPAK
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
@@ -232,6 +236,10 @@ C
 
 C
 50    CALL MPI_FINALIZE(IERR)
+      close(1981)
+      close(1982)
+
+
       STOP
       END
 C=======================================================================
@@ -243,6 +251,7 @@ C=======================================================================
       use mcm_database
       USE ELEMENTI
       USE CVOROVI
+      USE WSTAZK
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -435,6 +444,8 @@ C
 C  
 !      ENDIF
 C
+
+      DEALLOCATE (RTWRITE)
       IF(KOJPAK.EQ.4.OR.KOJPAK.EQ.5) THEN
       DEALLOCATE (VTKELEMENTI)
 !      DEALLOCATE (VTKECVOROVI)
