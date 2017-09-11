@@ -43,7 +43,7 @@ C
       DIMENSION SKE(*),LM(*),MAXA(*),SK(*)
 C
       IF(IDEBUG.GT.0) PRINT *, ' SPAKUJ'
-      IF(MDVI.EQ.3.AND.indjob.EQ.2) return
+c      IF(MDVI.EQ.3.AND.indjob.EQ.2) return
       IF(NBLOCK.EQ.1) THEN
 CE       WITHOUT BLOCKS
 CS       BEZ BLOKOVA

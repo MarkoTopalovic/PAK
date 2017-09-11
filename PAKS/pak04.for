@@ -602,19 +602,12 @@ CC      IF(INDPC.GE.3.AND.INDPC.LE.5) THEN
 C
       CALL IMENA(IME)
 C
-
    10 OPEN (IULAZ,FILE=IME,STATUS='OLD',FORM='FORMATTED',
      1      ACCESS='SEQUENTIAL')
-      VTKIME=IME
-      
-      
+      RETURN
+
+          VTKIME=IME    
           ipaks_filelen=0
-        ! do i=30,1,-1
-        !   if(IME(i:i).eq.' ') then
-        !    ipaks_filelen=i
-        !   endif
-        ! enddo
-        !ipaks_filelen=ipaks_filelen-1
          do i=1,30
            if(VTKIME(i:i).eq.'.') then
             ipaks_filelen=i

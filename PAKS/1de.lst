@@ -1192,3 +1192,1045 @@
       GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
 
 
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    2                      T I M E = 5.60000E-01
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  3.0733E-02  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  1.4451E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  1.4451E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    2                      T I M E = 5.60000E-01
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  5.4880E-02  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  2.5805E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     3   MAX VELOC  =  2.5805E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    2                      T I M E = 5.60000E-01
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  3.9200E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  8.4320E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  8.4320E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 3.0733E-02  1.2293E-01  1.2293E-01
+    2                 1.4143E+00  2.8287E+00  2.8287E+00
+    3                -1.4451E+00 -2.8901E+00 -2.8901E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P     2
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    3                      T I M E = 8.40000E-01
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.6753E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  2.8338E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  2.8338E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    3                      T I M E = 8.40000E-01
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.9916E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.3603E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     3   MAX VELOC  =  4.3603E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    3                      T I M E = 8.40000E-01
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.3529E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.2812E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  4.2812E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 1.6753E-01  6.7012E-01  6.7012E-01
+    2                 2.6663E+00  5.3325E+00  5.3325E+00
+    3                -2.8338E+00 -5.6676E+00 -5.6676E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P     3
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    4                      T I M E = 1.12000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  4.8709E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.1441E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  4.1441E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    4                      T I M E = 1.12000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  8.1493E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.8197E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     3   MAX VELOC  =  4.8197E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    4                      T I M E = 1.12000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.3312E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -1.0001E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     2   MAX ACCEL  =  2.3312E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 4.8709E-01  1.9484E+00  1.9484E+00
+    2                 3.6570E+00  7.3140E+00  7.3140E+00
+    3                -4.1441E+00 -8.2882E+00 -8.2882E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P     4
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    5                      T I M E = 1.40000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.0170E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  5.0152E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  5.0152E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    5                      T I M E = 1.40000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.5169E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  3.8954E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     3   MAX VELOC  =  3.8954E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    5                      T I M E = 1.40000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.6828E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -5.6022E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  5.6022E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 1.0170E+00  4.0680E+00  4.0680E+00
+    2                 3.9982E+00  7.9964E+00  7.9964E+00
+    3                -5.0152E+00 -1.0030E+01 -1.0030E+01
+
+
+ R E P O R T   O N   E N D   O F   S T E P     5
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    6                      T I M E = 1.68000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.7009E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  5.2570E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  5.2570E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    6                      T I M E = 1.68000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.1675E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  1.9873E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     2   MAX VELOC  =  2.1675E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    6                      T I M E = 1.68000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.9642E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -8.0268E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  8.0268E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 1.7009E+00  6.8035E+00  6.8035E+00
+    2                 3.5561E+00  7.1122E+00  7.1122E+00
+    3                -5.2570E+00 -1.0514E+01 -1.0514E+01
+
+
+ R E P O R T   O N   E N D   O F   S T E P     6
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    7                      T I M E = 1.96000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.3969E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.9009E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  4.9009E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    7                      T I M E = 1.96000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.4641E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -2.0410E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     2   MAX VELOC  =  2.4641E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    7                      T I M E = 1.96000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.5435E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -7.6262E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  7.6262E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 2.3969E+00  9.5875E+00  9.5875E+00
+    2                 2.5040E+00  5.0080E+00  5.0080E+00
+    3                -4.9009E+00 -9.8018E+00 -9.8018E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P     7
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    8                      T I M E = 2.24000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.9133E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.1677E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  4.1677E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    8                      T I M E = 2.24000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.1651E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -1.9451E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     2   MAX VELOC  =  2.1651E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    8                      T I M E = 2.24000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -2.2897E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -4.8098E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  4.8098E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 2.9133E+00  1.1653E+01  1.1653E+01
+    2                 1.2544E+00  2.5087E+00  2.5087E+00
+    3                -4.1677E+00 -8.3354E+00 -8.3354E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P     8
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    9                      T I M E = 2.52000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  3.0714E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  3.3683E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  3.3683E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =    9                      T I M E = 2.52000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.2044E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -2.7367E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     3   MAX VELOC  =  2.7367E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =    9                      T I M E = 2.52000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -4.5723E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -8.4413E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     2   MAX ACCEL  =  4.5723E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 3.0714E+00  1.2285E+01  1.2285E+01
+    2                 2.9699E-01  5.9397E-01  5.9397E-01
+    3                -3.3683E+00 -6.7367E+00 -6.7367E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P     9
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   10                      T I M E = 2.80000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.7711E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  2.7783E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  2.7783E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =   10                      T I M E = 2.80000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -2.5409E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -2.4812E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     3   MAX VELOC  =  2.4812E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =   10                      T I M E = 2.80000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -5.8457E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  2.6693E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     2   MAX ACCEL  =  5.8457E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 2.7711E+00  1.1084E+01  1.1084E+01
+    2                 7.1968E-03  1.4394E-02  1.4394E-02
+    3                -2.7783E+00 -5.5565E+00 -5.5565E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P    10
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   11                      T I M E = 3.08000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  2.0368E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  2.5354E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  2.5354E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =   11                      T I M E = 3.08000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -1.8474E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -1.4874E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     2   MAX VELOC  =  1.8474E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =   11                      T I M E = 3.08000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -5.5349E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  4.4291E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     2   MAX ACCEL  =  5.5349E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 2.0368E+00  8.1473E+00  8.1473E+00
+    2                 4.9859E-01  9.9717E-01  9.9717E-01
+    3                -2.5354E+00 -5.0708E+00 -5.0708E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P    11
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+ kkk           2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.27551E+01
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 2.55102E+01
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.27551E+01
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   12                      T I M E = 3.36000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2  1.0223E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  2.6008E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     3   MAX DISPL  =  2.6008E+00
+
+
+
+
+
+1
+ COMPONENTS OF VELOCITIES AND ANGULAR VELOCITIES
+ -----------------------------------------------
+
+
+ S T E P  N U M B E R =   12                      T I M E = 3.36000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -3.1228E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3 -3.1683E-01  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM VELOCITY:
+ NODE =     2   MAX VELOC  =  3.1228E+00
+
+
+
+
+
+1
+ COMPONENTS OF ACCELERATIONS AND ANGULAR ACCELERATIONS
+ -----------------------------------------------------
+
+
+ S T E P  N U M B E R =   12                      T I M E = 3.36000E+00
+
+
+  NODE     X           Y           Z           XT          YT          ZT
+          1  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          2 -3.5751E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          3  3.9320E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+          4  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00
+
+
+ MAXIMUM ACCELERATION:
+ NODE =     3   MAX ACCEL  =  3.9320E+00
+
+
+1
+ ELEM. NU.       T R U S S     S T R A I N    A N D    S T R E S S       
+                          STRAIN      STRESS       FORCE
+    1                 1.0223E+00  4.0892E+00  4.0892E+00
+    2                 1.5785E+00  3.1571E+00  3.1571E+00
+    3                -2.6008E+00 -5.2017E+00 -5.2017E+00
+
+
+ R E P O R T   O N   E N D   O F   S T E P    12
+
+      MAXIMUM EFFECTIVE STRESS:
+      GROUP =    0, ELEMENT =     0,  MAX.EFF.STRESS =  0.000D+00
+
+
+
+
+ R E P O R T   O N   E N D   O F   P R O G R A M
+
+      MAXIMUM DISPLACEMENT:
+      STEP =    6,  NODE =     3,   MAX.DISPL. =  5.2570D+00
+
+      MAXIMUM VELOCITY:
+      STEP =    4,  NODE =     3,   MAX.VELOC. =  4.8197D+00
+
+      MAXIMUM ACCELERATION:
+      STEP =    1,  NODE =     3,   MAX.ACCEL. =  1.0000D+01
+
+
+
+1
+
+
+      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
+      ---------------------------------------------------------
+
+
+
+     TIME AT THE START OF READING OF INPUT DATA .....  11:22:57.898    8/ 9/2017
+
+
+
+     DOTTING STARTED ................................   0: 0: 0.  0    0/ 0/   0
+
+
+
+     DOTTING FINISHED ...............................   0: 0: 0.  0    0/ 0/   0
+
+
+
+     TIME AT THE START OF FORMING THE MATRICES ......  11:23: 1. 90    8/ 9/2017
+
+
+
+
+
+
+1
+
+
+      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
+      ---------------------------------------------------------
+
+
+
+     TIME AT THE START OF READING OF INPUT DATA ..... 11:22:57.898    8/ 9/2017
+
+
+     TIME AT THE START OF FORMING THE MATRICES ...... 11:23: 1. 90    8/ 9/2017
+
+
+     TIME AT THE START OF EIGEN VALUE SOLUTION ...... 11:34:20.785    8/ 9/2017
+
+
+     END OF JOB ..................................... 11:34:20.785    8/ 9/2017
+
+
+

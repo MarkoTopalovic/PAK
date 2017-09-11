@@ -540,8 +540,6 @@ C      PRINT *, 'II,N,LD,NK',II,N,LD,NK
          LS=LS+1
 C         PRINT *,'K,LS,IK,NN',K,LS,IK,NN
          WRITE(II,REC=LS) (A(I),I=IK,NN)
-         !write(1981,*) (A(I),I=IK,NN)
-         !write(*,*) 'W ',(A(I),I=IK,NN)
    10 CONTINUE
 C      IF(II.EQ.8) THEN
 C         WRITE(3,*) 'WN,LS,NK,LD,II',N,LS,NK,LD,II
@@ -575,6 +573,11 @@ C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
       
       IBROJAC = 1
       IF(N.EQ.0) RETURN
+      IF (ALLOCIRANAMATRICA.EQ.(.FALSE.)) THEN
+      ALLOCATE (RTWRITE(N+1))
+      ALLOCIRANAMATRICA = .TRUE.
+      ENDIF
+      IBR=1
       NK=N*8/LD
       NN=NK*LD/8
       IF(N.GT.NN) NK=NK+1
@@ -586,19 +589,15 @@ C      PRINT *, 'II,N,LD,NK',II,N,LD,NK
          LS=LS+1
 C         PRINT *,'K,LS,IK,NN',K,LS,IK,NN
          !WRITE(II,REC=LS) (A(I),I=IK,NN)
-         
-         write(1981,*) (A(I),I=IK,NN)
-         !write(*,*) 'W ',(A(I),I=IK,NN)
+         DO I=IK,NN
+         RTWRITE(IBR) = A(I)
+         IBR=IBR+1
+         ENDDO
    10 CONTINUE
       
-      IF (ALLOCIRANAMATRICA.EQ.(.FALSE.)) THEN
-      ALLOCATE (RTWRITE(NN))
-      ALLOCIRANAMATRICA = .TRUE.
-      ENDIF
       
-      DO IBR=1,NN
-         RTWRITE(IBR) = A(IBR)
-      ENDDO
+      
+      
       
 C      IF(II.EQ.8) THEN
 C         WRITE(3,*) 'WN,LS,NK,LD,II',N,LS,NK,LD,II
@@ -674,8 +673,6 @@ C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
          IF(K.EQ.NK) NN=N
          LS=LS+1
          READ(II,REC=LS) (A(I),I=IK,NN)
-         !write(1982,*) (A(I),I=IK,NN)
-         !write(*,*) 'R ',(A(I),I=IK,NN)
    10 CONTINUE
 C      IF(II.EQ.8) THEN
 C         WRITE(3,*) 'RN,LS,NK,LD,II',N,LS,NK,LD,II
@@ -707,6 +704,7 @@ C
       IF(IDEBUG.GT.0) PRINT *, ' READDD'
 C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
       IF(N.EQ.0) RETURN
+      IBR=1
       NK=N*8/LD
       NN=NK*LD/8
       IF(N.GT.NN) NK=NK+1
@@ -716,13 +714,12 @@ C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
          IF(K.EQ.NK) NN=N
          LS=LS+1
          !READ(II,REC=LS) (A(I),I=IK,NN)
-         !read(1981,*) (A(I),I=IK,NN)
-         !write(1982,*) (A(I),I=IK,NN)
-         !write(*,*) 'R ',(A(I),I=IK,NN)
+         DO I=IK,NN
+         A(I)=RTWRITE(IBR)
+         IBR=IBR+1
+         ENDDO
    10 CONTINUE
-            DO IBR=1,NN
-         A(IBR) = RTWRITE(IBR) 
-      ENDDO
+            
 C      IF(II.EQ.8) THEN
 C         WRITE(3,*) 'RN,LS,NK,LD,II',N,LS,NK,LD,II
 C         CALL WRR(A,N,'RN  ')
@@ -1808,11 +1805,11 @@ C      WRITE(3,*) 'RK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
-          write (*,*) 'CLJ1'
-c        za ljusku mora da se skine komentar
-         !IF(ISKDSK.NE.0) THEN          
-            IF(NBLOCK.EQ.1) THEN
-               CALL READDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+CLJ1        za ljusku mora da se skine komentar ! vise ne
+         !IF(ISKDSK.NE.0) THEN      ! nova topova mt metoda    
+            IF(NBLOCK.EQ.1) THEN ! modul umesto fajla
+               !CALL READDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+              CALL READDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL READDB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
@@ -1860,16 +1857,16 @@ C      WRITE(3,*) 'WK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
-          write (*,*) 'CLJ2'
-c        za ljusku mora da se skine komentar
-         !IF(ISKDSK.NE.0) THEN
-            IF(NBLOCK.EQ.1) THEN
+CLJ2        za ljusku mora da se skine komentar ! vise ne
+         !IF(ISKDSK.NE.0) THEN ! nova topova metoda mt
+            IF(NBLOCK.EQ.1) THEN ! modul umesto fajla
                CALL WRITDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+               !CALL WRITDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL WRITEB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
             ENDIF          
-         !ENDIF 
+      !ENDIF 
       ENDIF
       RETURN
       END
