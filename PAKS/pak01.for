@@ -1805,6 +1805,57 @@ C      WRITE(3,*) 'RK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
+CLJ1        za ljusku mora da se skine komentar 
+         !IF(ISKDSK.NE.0) THEN      
+            IF(NBLOCK.EQ.1) THEN 
+              CALL READDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+            ELSE
+               CALL READDB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
+     1                     NBLOCK,LR,IBLK,LMAX13)
+            ENDIF
+         !ENDIF
+      ENDIF
+      RETURN
+      END
+C=======================================================================
+C
+C=======================================================================
+      SUBROUTINE RSTAZKMT(NPODS,LRTD,NS)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.        TO READ DATA FROM FILE - IPODS
+CS.    P R O G R A M
+CS.        ZA CITANJE PODATAKA SA FILE - IPODS
+C . TOPOVA VARZIJA KOJA POZIVA CITANJE IZ MODULA
+C ......................................................................
+C
+      include 'paka.inc'
+      
+      COMMON /BLOCKS/ NBMAX,IBLK,NBLOCK,LMNQ,LICPL,LLREC,KC,LR
+      COMMON /OPSTIP/ JPS,JPBR,NPG,JIDG,JCORG,JCVEL,JELCV,NGA,NGI,NPK,
+     1                NPUP,LIPODS,IPODS,LMAX13,MAX13,JEDNG,JMAXA,JEDNP,
+     1                NWP,NWG,IDF,JPS1
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
+      COMMON /REPERI/ LCORD,LID,LMAXA,LMHT
+      COMMON /DUPLAP/ IDVA
+      COMMON /SKDISK/ ISKDSK
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION NPODS(JPS1,*)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' RSTAZK'
+C      WRITE(3,*) 'RK,NS,LRTD',NS,LRTD
+      LMAX13=NPODS(JPBR,NS)-1
+      IF(JPBR.LT.JPS1.AND.NS.EQ.60) THEN
+         CALL READDD(A(LRTD),NWP,IPODS,LMAX13,LDUZI)
+         LSKG=LRTD+NWP*IDVA
+         NWKP=NWK-NWP
+         CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
+      ELSE
 CLJ1        za ljusku mora da se skine komentar ! vise ne
          !IF(ISKDSK.NE.0) THEN      ! nova topova mt metoda    
             IF(NBLOCK.EQ.1) THEN ! modul umesto fajla
@@ -1819,7 +1870,7 @@ CLJ1        za ljusku mora da se skine komentar ! vise ne
       RETURN
       END
 C=======================================================================
-C
+C      
 C=======================================================================
       SUBROUTINE WSTAZK(NPODS,LRTD,NS)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -1831,6 +1882,58 @@ CE.        TO WRITE DATA IN FILE - IPODS
 CS.    P R O G R A M
 CS.        ZA PISANJE PODATAKA NA FILE - IPODS
 C .
+C ......................................................................
+C
+      include 'paka.inc'
+      
+      COMMON /BLOCKS/ NBMAX,IBLK,NBLOCK,LMNQ,LICPL,LLREC,KC,LR
+      COMMON /OPSTIP/ JPS,JPBR,NPG,JIDG,JCORG,JCVEL,JELCV,NGA,NGI,NPK,
+     1                NPUP,LIPODS,IPODS,LMAX13,MAX13,JEDNG,JMAXA,JEDNP,
+     1                NWP,NWG,IDF,JPS1
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
+      COMMON /REPERI/ LCORD,LID,LMAXA,LMHT
+      COMMON /DUPLAP/ IDVA
+      COMMON /SKDISK/ ISKDSK
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION NPODS(JPS1,*)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' WSTAZK'
+C      WRITE(3,*) 'WK,NS,LRTD',NS,LRTD
+      LMAX13=NPODS(JPBR,NS)-1
+      IF(JPBR.LT.JPS1.AND.NS.EQ.60) THEN
+         CALL WRITDD(A(LRTD),NWP,IPODS,LMAX13,LDUZI)
+         LSKG=LRTD+NWP*IDVA
+         NWKP=NWK-NWP
+         CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
+      ELSE
+CLJ2        za ljusku mora da se skine komentar ! vise ne
+         !IF(ISKDSK.NE.0) THEN 
+            IF(NBLOCK.EQ.1) THEN 
+               CALL WRITDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+            ELSE
+               CALL WRITEB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
+     1                     NBLOCK,LR,IBLK,LMAX13)
+            ENDIF          
+      !ENDIF 
+      ENDIF
+      RETURN
+      END
+C=======================================================================
+C
+C=======================================================================
+      SUBROUTINE WSTAZKMT(NPODS,LRTD,NS)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.        TO WRITE DATA IN FILE - IPODS
+CS.    P R O G R A M
+CS.        ZA PISANJE PODATAKA NA FILE - IPODS
+C .     MODIFIKOVANA TOPOVA VERZIJA KOJA POZIVA PISANJE U MODUL 
+c      UMESTO NA HARD DISK
 C ......................................................................
 C
       include 'paka.inc'

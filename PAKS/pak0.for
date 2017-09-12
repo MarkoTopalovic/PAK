@@ -58,7 +58,7 @@ C       WRITE(*,*) '3 - Interaction fluid-structure analysis'
 C       WRITE(*,*) '4 - Meshless Continuum Mechanics MCM sph'
 C       WRITE(*,*) '5 - PAKS + MCM'
 C       READ(*,*) KOJPAK
-        KOJPAK=1
+        KOJPAK=5
         mcm_kojpak = KOJPAK
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
@@ -234,8 +234,11 @@ C
 C
 50    CALL MPI_FINALIZE(IERR)
 
-      DEALLOCATE (RTWRITE)
       
+      IF (ALLOCIRANAMATRICA.EQ.(.TRUE.)) THEN
+      DEALLOCATE (RTWRITE)
+      ENDIF
+
       STOP
       END
 C=======================================================================
