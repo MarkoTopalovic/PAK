@@ -34,6 +34,7 @@ C
       DIMENSION NKDT(100),DTDT(100)
       integer ierr, myid
       ALLOCIRANICVOROVI = .FALSE.
+      ALLOCIRANIELEMENTI = .FALSE.
       ALLOCIRANAPOMERANJA = .FALSE.
       ALLOCIRANECVORNESILE = .FALSE.
       ALLOCIRANAMATRICA = .FALSE.
@@ -308,45 +309,45 @@ C
       ENDIF
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
-      IF(INDEXPL.EQ.1) THEN
-C
-CE      BASIC LOOP OVER TIME PERIODS OF EXPLICIT INTEGRATION
-CS      OSNOVNA PETLJA PO VREMENSKIM PERIODIMA ZA EKSPLICITNU INTEGRACIJU
-C
-        LPUU=IPOMAK
-        LPUV=IBRZINA
-        LPUA=IUBRZ
-        ISUU=0
-        ISUV=0
-        ISUA=0
-        KORBR = 1
-        BROJAC = 99
-        DT=DTDT(KORBR)
-        VREME=NKDT(KORBR)*DT
-        DTCR=DT*10
-        DTP=DT
-        CALL INTKMM
-C        
-        DO
-            CALL EXPLINTGR(LIPODS,A(LRTDT),A(IUBRZ),A(IBRZINA),
-     1           A(IBRZINAIPO),A(IPOMAK),A(IMASA),A(IPRIGUSEN),
-     2           DT,DTP,DTCR,VREM0,KORBR,KOJPAK)
-            VREM0 = VREM0 + DT
-            DTP=DT
-            IF (DT>DTCR) DT=0.9*DTCR
-                IF(BROJAC.EQ.0) THEN 
-                    CALL STAMP
-                    CALL STAGP
-                    BROJAC = 99
-                ENDIF
-            IF(VREM0.GT.VREME) exit
-            BROJAC = BROJAC - 1
-            KORBR = KORBR + 1
-        ENDDO
-        WRITE(*,*) 'posle petlje po vremenu, trenutno vreme =',VREM0
-        WRITE(*,*) 'posle petlje po vremenu, ukupno vreme =',VREME
-        pause
-          ENDIF ! IF EXPLICIT
+!      IF(INDEXPL.EQ.1) THEN
+!C
+!CE      BASIC LOOP OVER TIME PERIODS OF EXPLICIT INTEGRATION
+!CS      OSNOVNA PETLJA PO VREMENSKIM PERIODIMA ZA EKSPLICITNU INTEGRACIJU
+!C
+!        LPUU=IPOMAK
+!        LPUV=IBRZINA
+!        LPUA=IUBRZ
+!        ISUU=0
+!        ISUV=0
+!        ISUA=0
+!        KORBR = 1
+!        BROJAC = 99
+!        DT=DTDT(KORBR)
+!        VREME=NKDT(KORBR)*DT
+!        DTCR=DT*10
+!        DTP=DT
+!        CALL INTKMM
+!C        
+!        DO
+!            CALL EXPLINTGR(LIPODS,A(LRTDT),A(IUBRZ),A(IBRZINA),
+!     1           A(IBRZINAIPO),A(IPOMAK),A(IMASA),A(IPRIGUSEN),
+!     2           DT,DTP,DTCR,VREM0,KORBR,KOJPAK)
+!            VREM0 = VREM0 + DT
+!            DTP=DT
+!            IF (DT>DTCR) DT=0.9*DTCR
+!                IF(BROJAC.EQ.0) THEN 
+!                    CALL STAMP
+!                    CALL STAGP
+!                    BROJAC = 99
+!                ENDIF
+!            IF(VREM0.GT.VREME) exit
+!            BROJAC = BROJAC - 1
+!            KORBR = KORBR + 1
+!        ENDDO
+!        WRITE(*,*) 'posle petlje po vremenu, trenutno vreme =',VREM0
+!        WRITE(*,*) 'posle petlje po vremenu, ukupno vreme =',VREME
+!        pause
+!          ENDIF ! IF EXPLICIT
       ENDIF ! IF (myid.eq.0)
 C
 CE    BASIC LOOP OVER TIME PERIODS
@@ -412,7 +413,8 @@ C
                     ENDIF
                 ENDIF
 !TODO                      IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.5) THEN ! za 1 ne radi proveriti
-                      IF(KOJPAK.EQ.5) THEN
+                IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.5) THEN     
+                !IF(KOJPAK.EQ.5) THEN
                       IHELP = IVTKCOUNTER
                       IVTKCOUNTER = IHELP+1
                       CALL VTKPRINT(A(LPAKS))

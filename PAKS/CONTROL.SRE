@@ -1,4 +1,648 @@
-     END OF JOB ..................................... 13:51:31.954   11/ 9/2017
 
+
+ S T E P  N U M B E R =    1                      T I M E = 1.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    67   MAX DISPL  =  1.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    2                      T I M E = 2.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  2.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    3                      T I M E = 3.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    4                      T I M E = 4.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    5                      T I M E = 5.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  5.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    6                      T I M E = 6.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  6.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    7                      T I M E = 7.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  7.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    8                      T I M E = 8.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  8.0000E-01
+
+
+
+
+ S T E P  N U M B E R =    9                      T I M E = 9.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  9.0000E-01
+
+
+
+
+ S T E P  N U M B E R =   10                      T I M E = 1.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.0000E+00
+
+
+
+
+ S T E P  N U M B E R =   11                      T I M E = 1.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.1000E+00
+
+
+
+
+ S T E P  N U M B E R =   12                      T I M E = 1.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.2000E+00
+
+
+
+
+ S T E P  N U M B E R =   13                      T I M E = 1.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.3000E+00
+
+
+
+
+ S T E P  N U M B E R =   14                      T I M E = 1.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.4000E+00
+
+
+
+
+ S T E P  N U M B E R =   15                      T I M E = 1.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.5000E+00
+
+
+
+
+ S T E P  N U M B E R =   16                      T I M E = 1.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.6000E+00
+
+
+
+
+ S T E P  N U M B E R =   17                      T I M E = 1.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  1.7000E+00
+
+
+
+
+ S T E P  N U M B E R =   18                      T I M E = 1.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  1.8000E+00
+
+
+
+
+ S T E P  N U M B E R =   19                      T I M E = 1.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  1.9000E+00
+
+
+
+
+ S T E P  N U M B E R =   20                      T I M E = 2.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  2.0000E+00
+
+
+
+
+ S T E P  N U M B E R =   21                      T I M E = 2.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =     1   MAX DISPL  =  2.1001E+00
+
+
+
+
+ S T E P  N U M B E R =   22                      T I M E = 2.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.2001E+00
+
+
+
+
+ S T E P  N U M B E R =   23                      T I M E = 2.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.3001E+00
+
+
+
+
+ S T E P  N U M B E R =   24                      T I M E = 2.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.4001E+00
+
+
+
+
+ S T E P  N U M B E R =   25                      T I M E = 2.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.5001E+00
+
+
+
+
+ S T E P  N U M B E R =   26                      T I M E = 2.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.6001E+00
+
+
+
+
+ S T E P  N U M B E R =   27                      T I M E = 2.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.7001E+00
+
+
+
+
+ S T E P  N U M B E R =   28                      T I M E = 2.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.8001E+00
+
+
+
+
+ S T E P  N U M B E R =   29                      T I M E = 2.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  2.9001E+00
+
+
+
+
+ S T E P  N U M B E R =   30                      T I M E = 3.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.0002E+00
+
+
+
+
+ S T E P  N U M B E R =   31                      T I M E = 3.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.1002E+00
+
+
+
+
+ S T E P  N U M B E R =   32                      T I M E = 3.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.2002E+00
+
+
+
+
+ S T E P  N U M B E R =   33                      T I M E = 3.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.3002E+00
+
+
+
+
+ S T E P  N U M B E R =   34                      T I M E = 3.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.4002E+00
+
+
+
+
+ S T E P  N U M B E R =   35                      T I M E = 3.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.5002E+00
+
+
+
+
+ S T E P  N U M B E R =   36                      T I M E = 3.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.6003E+00
+
+
+
+
+ S T E P  N U M B E R =   37                      T I M E = 3.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.7003E+00
+
+
+
+
+ S T E P  N U M B E R =   38                      T I M E = 3.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.8003E+00
+
+
+
+
+ S T E P  N U M B E R =   39                      T I M E = 3.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  3.9003E+00
+
+
+
+
+ S T E P  N U M B E R =   40                      T I M E = 4.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.0004E+00
+
+
+
+
+ S T E P  N U M B E R =   41                      T I M E = 4.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.1004E+00
+
+
+
+
+ S T E P  N U M B E R =   42                      T I M E = 4.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.2004E+00
+
+
+
+
+ S T E P  N U M B E R =   43                      T I M E = 4.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.3004E+00
+
+
+
+
+ S T E P  N U M B E R =   44                      T I M E = 4.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.4005E+00
+
+
+
+
+ S T E P  N U M B E R =   45                      T I M E = 4.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.5005E+00
+
+
+
+
+ S T E P  N U M B E R =   46                      T I M E = 4.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.6005E+00
+
+
+
+
+ S T E P  N U M B E R =   47                      T I M E = 4.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.7006E+00
+
+
+
+
+ S T E P  N U M B E R =   48                      T I M E = 4.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.8006E+00
+
+
+
+
+ S T E P  N U M B E R =   49                      T I M E = 4.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  4.9007E+00
+
+
+
+
+ S T E P  N U M B E R =   50                      T I M E = 5.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.0007E+00
+
+
+
+
+ S T E P  N U M B E R =   51                      T I M E = 5.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.1007E+00
+
+
+
+
+ S T E P  N U M B E R =   52                      T I M E = 5.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.2008E+00
+
+
+
+
+ S T E P  N U M B E R =   53                      T I M E = 5.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.3008E+00
+
+
+
+
+ S T E P  N U M B E R =   54                      T I M E = 5.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.4009E+00
+
+
+
+
+ S T E P  N U M B E R =   55                      T I M E = 5.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.5009E+00
+
+
+
+
+ S T E P  N U M B E R =   56                      T I M E = 5.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.6010E+00
+
+
+
+
+ S T E P  N U M B E R =   57                      T I M E = 5.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.7010E+00
+
+
+
+
+ S T E P  N U M B E R =   58                      T I M E = 5.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.8011E+00
+
+
+
+
+ S T E P  N U M B E R =   59                      T I M E = 5.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  5.9011E+00
+
+
+
+
+ S T E P  N U M B E R =   60                      T I M E = 6.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.0012E+00
+
+
+
+
+ S T E P  N U M B E R =   61                      T I M E = 6.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.1013E+00
+
+
+
+
+ S T E P  N U M B E R =   62                      T I M E = 6.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.2013E+00
+
+
+
+
+ S T E P  N U M B E R =   63                      T I M E = 6.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.3014E+00
+
+
+
+
+ S T E P  N U M B E R =   64                      T I M E = 6.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.4015E+00
+
+
+
+
+ S T E P  N U M B E R =   65                      T I M E = 6.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.5015E+00
+
+
+
+
+ S T E P  N U M B E R =   66                      T I M E = 6.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.6016E+00
+
+
+
+
+ S T E P  N U M B E R =   67                      T I M E = 6.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.7017E+00
+
+
+
+
+ S T E P  N U M B E R =   68                      T I M E = 6.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.8017E+00
+
+
+
+
+ S T E P  N U M B E R =   69                      T I M E = 6.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  6.9018E+00
+
+
+
+
+ S T E P  N U M B E R =   70                      T I M E = 7.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  7.0019E+00
+
+
+
+
+ S T E P  N U M B E R =   71                      T I M E = 7.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  7.1020E+00
+
+
+
+
+ S T E P  N U M B E R =   72                      T I M E = 7.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    52   MAX DISPL  =  7.2021E+00
 
 
