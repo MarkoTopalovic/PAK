@@ -3123,7 +3123,7 @@ C
      1          999,999, 13, 14, 15, 16, 17, 18, 19, 20,
      2           21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
      3           31,999,999,999,999,999,999,999,999,999,
-     4           41, 42, 43, 44, 45,999,999,999,999,999,
+     4           41, 42, 43, 44, 45,999,999,999, 49,999,
      5          999, 52, 53, 54,999,999,999,999,999,999,
      6           61,999,999,999,999,999,999,999,999,999,
      7          999,999,999,999,999,999,999,999,999,999,
@@ -3196,7 +3196,10 @@ C     Hoek-Brown (rakic)
       RETURN
 C     Maksimovic (rakic)
    45 CALL D3M45(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC)
-      RETURN      
+      RETURN
+C     Micunov model privremeno iskopiran Rakicev DP 41      
+   49 CALL D3M49(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC)
+      RETURN
 C     Crystal
    52 CALL D3M52(TAU,DEF,IRAC,LPLAS,LPLA1)
       RETURN      

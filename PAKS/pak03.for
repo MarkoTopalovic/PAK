@@ -22,6 +22,7 @@ C              UMOD42
 C              UMOD43
 C              UMOD44
 C              UMOD45
+C              UMOD49
 C              UMOD52
 C              UMOD53
 C              UMOD54
@@ -298,7 +299,7 @@ C
      1          11, 11, 13, 14, 15, 14, 17, 18, 17, 20,
      2          21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
      3          31, 32, 33, 34,999,999,999,999,999, 40,
-     4          41, 42, 43, 44, 45,999,999,999,999,999,
+     4          41, 42, 43, 44, 45,999,999,999, 49,999,
      5          51, 52, 53, 54,999,999,999,999,999,999,
      6          61,999,999,999,999,999,999,999,999,999,
      7         999,999,999,999,999,999,999,999,999,999,
@@ -419,6 +420,9 @@ C       Generalized Hoek-Brown (rakic)
 C       Maksimovic (rakic)
    45   LMAX=LREP+MAT*11*IDVA
         GO TO 100
+C       Micunov model ima 17 ulaznih parametara
+   49   LMAX=LREP+MAT*11*IDVA
+        GO TO 100        
 C       ARGENTINA
    51   LMAX=LREP+MAT*33*IDVA
         GO TO 100
@@ -539,7 +543,7 @@ C
      1          11, 11, 13, 14, 15, 16, 17, 18, 19,  6,
      2          21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
      3          31, 32, 33, 34,999,999,999,999,999, 40,
-     4          41, 42, 43, 44, 45,999,999,999,999,999,
+     4          41, 42, 43, 44, 45,999,999,999, 49,999,
      5          51, 52, 53, 54,999,999,999,999,999,999,
      6          61,999,999,999,999,999,999,999,999,999,
      7         999,999,999,999,999,999,999,999,999,999,
@@ -768,6 +772,11 @@ c     Generalized Hoek-Brown (rakic)
 c     Maksimovic (rakic)
    45 LREP=MODEL(4,J)
       CALL UMOD45(A(LREP),MAT,KARTI,
+     +            GUST,NBLGR,IDEAS,I)
+      GO TO 120
+c     Micunov model
+   49 LREP=MODEL(4,J)
+      CALL UMOD49(A(LREP),MAT,KARTI,
      +            GUST,NBLGR,IDEAS,I)
       GO TO 120
 C ARGENTINA
@@ -8281,6 +8290,136 @@ C-----------------------------------------------------------------------
      120X,'W ',13X,'D '/16X,2(1PD12.5,2X))
 C-----------------------------------------------------------------------
       END
+
+      
+C     Micunov materijalni model za pocetak iskopiran Rakicev DP 
+      SUBROUTINE UMOD49(FUNMAT,MAT,KARTI,
+     +                  GUST,NBLGR,IDEAS,MATG)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.        TO READ DATA FOR MATERIAL MODEL NUMBER 41 Drucker-Prager
+CS.    P R O G R A M
+CS.        ZA UCITAVANJE PODATAKA O MATERIJALNOM MODELU BROJ 41 
+C .
+CE.             MAT - MATERIAL NUMBER
+CS.             MAT - MATERIJAL BROJ
+C .
+CE.   FUNMAT(1,MAT) - YOUNG*S MODULUS IN DIRECTION X  -  E
+CE.   FUNMAT(2,MAT) - POISSON*S RATIO                 -  V
+C
+CE.   COEFFICIENTS FOR DEFINITION CURVE F1=0.0
+CE.   FUNMAT(3,MAT) - COEFFICIENT   k 
+CE.   FUNMAT(6,MAT) - COEFFICIENT   alfa
+CE.   FUNMAT(7,MAT) - TENSION CUTOFF   T
+CE.   FUNMAT(8,MAT) - INITIAL CAP POSITION   Lo=Xo
+C
+CE.   DATA FOR HARDENING FUNCTION epv 
+CE.   FUNMAT(9,MAT)  - COEFFICIENT   W 
+CE.   FUNMAT(10,MAT) - COEFFICIENT   D 
+C .
+C .
+C ......................................................................
+C
+      CHARACTER*250 ACOZ
+      COMMON /BROJUK/ KARTIC,INDFOR,NULAZ
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SRPSKI/ ISRPS
+      DIMENSION FUNMAT(11,*),AMAT(30)
+      COMMON /CDEBUG/ IDEBUG
+C
+      IF(IDEBUG.GT.0) PRINT *, ' UMOD41'
+      CALL ISPITA(ACOZ)
+      IF(INDFOR.EQ.1)
+     1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,2)
+      IF(INDFOR.EQ.2)
+     1READ(ACOZ,1010) (FUNMAT(I,MAT),I=1,2)
+      CALL ISPITA(ACOZ)
+      IF(INDFOR.EQ.1)
+     1READ(IULAZ,*) (FUNMAT(I,MAT),I=3,8)
+      IF(INDFOR.EQ.2)
+     1READ(ACOZ,1000) (FUNMAT(I,MAT),I=3,8)
+      CALL ISPITA(ACOZ)
+      IF(INDFOR.EQ.1)
+     1READ(IULAZ,*) (FUNMAT(I,MAT),I=9,11)
+      IF(INDFOR.EQ.2)
+     1READ(ACOZ,1000) (FUNMAT(I,MAT),I=9,11)
+C
+      IF(NBLGR.GE.0) THEN
+         CALL CLEAR(AMAT,30)
+         AMAT(1)=FUNMAT(1,MAT)
+         AMAT(7)=FUNMAT(2,MAT)
+         AMAT(13)=GUST
+         ISUMGR=MAT
+         IF(IDEAS.EQ.8) THEN
+            CALL MIDEAS(AMAT,ISUMGR,MAT,IGRAF) 
+         ELSEIF(IDEAS.EQ.7) THEN
+            CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
+         ENDIF
+C            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
+            CALL TGRMAT(AMAT,MAT,49)
+      ENDIF
+C
+      IF(NULAZ.NE.1.AND.NULAZ.NE.3) RETURN
+      CALL WBROJK(KARTI,0)
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2000) MAT
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6000) MAT
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2010) (FUNMAT(J,MAT),J=1,2)
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6010) (FUNMAT(J,MAT),J=1,2)
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2045) FUNMAT(3,MAT),(FUNMAT(J,MAT),J=6,8)
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6045) FUNMAT(3,MAT),(FUNMAT(J,MAT),J=6,8)
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2065) (FUNMAT(J,MAT),J=9,10)
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6065) (FUNMAT(J,MAT),J=9,10)
+      RETURN
+C
+ 1000 FORMAT(7F10.0)
+ 1010 FORMAT(6F10.0,I5)
+C-----------------------------------------------------------------------
+ 2000 FORMAT(6X,
+     1'MODEL MATERIJALA BROJ =     41 (TLO PLASTICNOST - DRUCKER-PRAGER)
+     2'///11X,'MATERIJAL BROJ =',I5)
+ 2010 FORMAT(//
+     16X,'M  A  T  E  R  I  J  A  L  N  E     K  O  N  S  T  A  N  T  E'
+     1//16X,'M O D U L    E L A S T I C N O S T I  .  E =',1PD12.5//
+     216X,'P O I S S O N O V    B R O J  .........  V =',1PD12.5//)
+ 2045 FORMAT(//
+     116X,'K O E F I C I J E N T I  K R I V E F1=0 '/
+     121X,'k',11X,'Alfa',12X,'T ',12X,'Lo'/
+     116X,4(1PD12.5,2X)//)
+ 2065 FORMAT(//
+     1//16X,'K O E F I C I J E N T I  K R I V E  O J A C A N J A'/
+     120X,'W ',13X,'D '/16X,2(1PD12.5,2X))
+C-----------------------------------------------------------------------
+ 6000 FORMAT(6X,
+     1'MATERIAL MODEL NUMBER =    41 (SOIL PLASTICITY - DRUCKER-PRAGER)'
+     2///11X,'MATERIAL NUMBER =',I5)
+ 6010 FORMAT(//
+     16X,'M  A  T  E  R  I  A  L      C  O  N  S  T  A  N  T  S'//
+     116X,'Y O U N G S       M O D U L U S  ......  E =',1PD12.5//
+     216X,'P O I S S O N S      R A T I O  .......  V =',1PD12.5//)
+ 6045 FORMAT(//
+     112X,'C O E F F I C I J E N T S  F O R  C U R V E  F1=0 '/
+     121X,'k',11X,'Alfa',12X,'T ',12X,'Lo'/
+     116X,4(1PD12.5,2X)//)
+ 6065 FORMAT(//
+     112X,'C O E F F I C I J E N T S  F O R  H A R D E N I N G  ',  
+     1 'C U R V E'/
+     120X,'W ',13X,'D '/16X,2(1PD12.5,2X))
+C-----------------------------------------------------------------------
+      END
+      
 C=======================================================================
       SUBROUTINE UMOD52(FUNMAT,MAT,KARTI,
      +                  GUST,NBLGR,IDEAS,MATG)
