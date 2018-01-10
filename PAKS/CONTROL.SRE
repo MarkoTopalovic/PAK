@@ -4,12 +4,181 @@
 
 
  MAXIMUM DISPLACEMENT:
- NODE =    67   MAX DISPL  =  1.0000E-01
+ NODE =    18   MAX DISPL  =  3.3000E-03
 
 
 
 
- S T E P  N U M B E R =    1                      T I M E = 1.00000E+00
+ S T E P  N U M B E R =    2                      T I M E = 2.00000E+00
 
 
- S T E P  N U M B E R =    1                      T I M E = 1.00000E+00
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  6.6000E-03
+
+
+
+
+ S T E P  N U M B E R =    3                      T I M E = 3.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  9.9000E-03
+
+
+
+
+ S T E P  N U M B E R =    4                      T I M E = 4.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  1.3200E-02
+
+
+
+
+ S T E P  N U M B E R =    5                      T I M E = 5.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  1.6500E-02
+
+
+
+
+ S T E P  N U M B E R =    6                      T I M E = 6.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  1.9800E-02
+
+
+
+
+ S T E P  N U M B E R =    7                      T I M E = 7.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.3100E-02
+
+
+
+
+ S T E P  N U M B E R =    8                      T I M E = 8.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.6400E-02
+
+
+
+
+ S T E P  N U M B E R =    9                      T I M E = 9.00000E+00
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.9700E-02
+
+
+
+
+ S T E P  N U M B E R =   10                      T I M E = 1.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  3.3000E-02
+
+
+
+
+ S T E P  N U M B E R =   11                      T I M E = 1.10000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  3.2200E-02
+
+
+
+
+ S T E P  N U M B E R =   12                      T I M E = 1.20000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  3.1400E-02
+
+
+
+
+ S T E P  N U M B E R =   13                      T I M E = 1.30000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  3.0600E-02
+
+
+
+
+ S T E P  N U M B E R =   14                      T I M E = 1.40000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.9800E-02
+
+
+
+
+ S T E P  N U M B E R =   15                      T I M E = 1.50000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.9000E-02
+
+
+
+
+ S T E P  N U M B E R =   16                      T I M E = 1.60000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.8200E-02
+
+
+
+
+ S T E P  N U M B E R =   17                      T I M E = 1.70000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.7400E-02
+
+
+
+
+ S T E P  N U M B E R =   18                      T I M E = 1.80000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.6600E-02
+
+
+
+
+ S T E P  N U M B E R =   19                      T I M E = 1.90000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.5800E-02
+
+
+
+
+ S T E P  N U M B E R =   20                      T I M E = 2.00000E+01
+
+
+ MAXIMUM DISPLACEMENT:
+ NODE =    18   MAX DISPL  =  2.5000E-02
+
+
+     END OF JOB ..................................... 14:24:49.596   10/ 1/2018
+
+
+

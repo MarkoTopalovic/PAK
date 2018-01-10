@@ -86,7 +86,7 @@ C
      +         ,DFdDS(6),DFcDS(6),DGdDS(6),DGcDS(6),ALAMd(6),ALAMc(6)
      +         ,al1p(6),al2p(6),ddefpd(6),ddefpc(6),taue(6)
 C
-      IF(IDEBUG.EQ.1) PRINT *, 'TI3441'
+      IF(IDEBUG.EQ.1) PRINT *, 'TI3449'
 C
       IF(IRAC.EQ.2) RETURN
 CE    BASIC KONSTANTS
