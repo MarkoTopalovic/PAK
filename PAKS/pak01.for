@@ -1908,7 +1908,7 @@ C      WRITE(3,*) 'WK,NS,LRTD',NS,LRTD
          NWKP=NWK-NWP
          CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
       ELSE
-CLJ2        za ljusku mora da se skine komentar ! vise ne
+CLJ2        za ljusku mora da se skine komentar
          !IF(ISKDSK.NE.0) THEN 
             IF(NBLOCK.EQ.1) THEN 
                CALL WRITDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)

@@ -124,7 +124,7 @@ C            CALL CLEAR(A(LUPRI),JEDN)
             IF(INDGR.GE.0)
      1      CALL STAU09(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,49,51,
      +                  A(LNCVP),NCVPR)
-            ISRBA=1
+            ISRBA=0
             IF(ISRBA.EQ.1) THEN
 C              ZAPISIVANJE SILA NA ZADATIM POMERANJIMA ZA SRBU
                IDUM=37
@@ -140,7 +140,7 @@ C               CLOSE(IDUM,STATUS='KEEP')
 C            LMAX13=NPODS(JPBR,47)-1
 C            CALL READDD(A(LUPRI),JEDN,IPODS,LMAX13,LDUZI)
       ENDIF
-      IF(NDIN.NE.0) GO TO 10
+!      IF(NDIN.NE.0) GO TO 10
 C
 CZ      
 CZ    STAMPANJE TABELE ZA BOCAC
@@ -185,16 +185,22 @@ CE    PRINT DISPLACEMENTS TO THE GRAPHIC FILE (*.UNV)
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.IDEAS.GE.0)
      1CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,0,
      +            A(LNCVP),NCVPR)
+      
+      
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.NCXFEM.EQ.0)
      1CALL STAU09(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,49,1,
      +            A(LNCVP),NCVPR)
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.NCXFEM.GT.0)
      1CALL STAU09(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,49,1,
      +            A(LNCVP),NCVPR)
+      
+      
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.METOD.GT.5)
      1 CALL STAUAL(A(LCVEL),ICVEL,NP,49,32)
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.METOD.GT.5)
      1 CALL STAUAL(A(LCVEL),ICVEL,NP,49,33)
+      
+      
 C     OVO NIJE REGULARNO PO UPUTSTVU ZA IDEAS (TREBA SAMO VN 748)     
 C      IF(IDIREK.LE.0) THEN
       IF(IDIREK.LE.0.AND.NCVPR.EQ.0) THEN
@@ -1017,16 +1023,16 @@ C
             IF(DABS(FSP(J)).GT.1.D-10) IMA=1
    20    CONTINUE
          IF(IMA.EQ.0.AND.(IND.EQ.4.OR.IND.EQ.32.OR.IND.EQ.44)) GO TO 10
-         IF(ICVEL.EQ.0) THEN
-            WRITE(II,5000) I
-         ELSE
-            WRITE(II,5000) NCVEL(I)
-         ENDIF
-         WRITE(II,5200) (FSP(J),J=1,6)
-         ! pomeranja
-        VTKPOMERANJA(I,1) = FSP(1)
-        VTKPOMERANJA(I,2) = FSP(2)
-        VTKPOMERANJA(I,3) = FSP(3)
+                    IF(ICVEL.EQ.0) THEN
+                    WRITE(II,5000) I
+                    ELSE
+                    WRITE(II,5000) NCVEL(I)
+                    ENDIF
+                    WRITE(II,5200) (FSP(J),J=1,6)
+                    ! pomeranja
+                VTKPOMERANJA(I,1) = FSP(1)
+                VTKPOMERANJA(I,2) = FSP(2)
+                VTKPOMERANJA(I,3) = FSP(3)
    10 CONTINUE
       WRITE(II,5100) IND1
       RETURN

@@ -36,7 +36,7 @@
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.exe;$(TargetPath)">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="..\MPICH2x64\include;&quot;..\MUMPS\include&quot;;..\MCM\x64\Release" PreprocessorDefinitions="pord" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" AdditionalOptions=" /FORCE:MULTIPLE mumps.lib mumps_core_mp.lib blacs_mpi.lib blacs_mpi_CallFromC.lib blacs_mpi_CallFromF.lib mumps.lib scalapack.lib scalapack_core.lib blas_win32.lib fmpich2.lib libmetis.a mpi.lib " OutputFile="$(OUTDIR)/pakpar.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="..\MPICH2x64\lib;..\MUMPS\lib;..\MUMPS\WinMumps\Release\x64" SubSystem="subSystemConsole"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions=" /FORCE:MULTIPLE mumps.lib mumps_core_mp.lib blacs_mpi.lib blacs_mpi_CallFromC.lib blacs_mpi_CallFromF.lib mumps.lib scalapack.lib scalapack_core.lib blas_win32.lib fmpich2.lib libmetis.a mpi.lib " OutputFile="$(OUTDIR)/PAKS.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="..\MPICH2x64\lib;..\MUMPS\lib;..\MUMPS\WinMumps\Release\x64" SubSystem="subSystemConsole"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
