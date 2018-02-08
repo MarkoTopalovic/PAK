@@ -118,9 +118,13 @@ C           CALL READDD(A(LFTDT),JEDN,IPODS,LMAX13,LDUZI)
 C            CALL CLEAR(A(LUPRI),JEDN)
             CALL REACTP(A(LFTDT),A(LNZADJ),NZADP,IZLAZ,ISRPS,
      +                  A(LRTDT),A(LUPRI),INDPR)
-            IF(INDGR.GE.0.AND.IDEAS.GE.0)
-     1      CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
+            IF(INDGR.GE.0.AND.IDEAS.GE.0) then
+           CALL STAGP1MT(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
      +                  A(LNCVP),NCVPR)
+!           ovo gore je prepravljena funkcija koja ne stampa nista nego cuva pomeranja za vtk faj      
+           CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
+     +                  A(LNCVP),NCVPR)
+            endif
             IF(INDGR.GE.0)
      1      CALL STAU09(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,49,51,
      +                  A(LNCVP),NCVPR)
@@ -140,7 +144,13 @@ C               CLOSE(IDUM,STATUS='KEEP')
 C            LMAX13=NPODS(JPBR,47)-1
 C            CALL READDD(A(LUPRI),JEDN,IPODS,LMAX13,LDUZI)
       ENDIF
-!      IF(NDIN.NE.0) GO TO 10
+      IF(NDIN.NE.0) then
+          IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.IDEAS.GE.0) then
+              CALL STAGP1MT(A(LRTDT),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
+     +                  A(LNCVP),NCVPR)
+          endif
+      GO TO 10
+      endif
 C
 CZ      
 CZ    STAMPANJE TABELE ZA BOCAC
@@ -182,11 +192,14 @@ c      IF(ISRPS.EQ.1)
 c     1WRITE(IZLAZ,6000) KOR,NDT
 c      ENDIF
 CE    PRINT DISPLACEMENTS TO THE GRAPHIC FILE (*.UNV)
-      IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.IDEAS.GE.0)
-     1CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,0,
+      IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.IDEAS.GE.0) then
+          CALL STAGP1MT(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
+     +                  A(LNCVP),NCVPR)
+!           ovo gore je prepravljena funkcija koja ne stampa nista nego cuva pomeranja za vtk faj  
+      CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,0,
      +            A(LNCVP),NCVPR)
       
-      
+      endif 
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.NCXFEM.EQ.0)
      1CALL STAU09(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,49,1,
      +            A(LNCVP),NCVPR)
@@ -797,7 +810,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE STAGP1(RTH,ID,NCVEL,ICVEL,NODOVI,II,IND,NCVP,NCVPR)
-      USE CVOROVI
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -835,11 +847,6 @@ CSTOS
       DIMENSION RTH(*),ID(NP,*),NCVEL(*),NCVP(*),FSP(6)
       COMMON /CDEBUG/ IDEBUG
 C
-
-      IF (ALLOCIRANAPOMERANJA.EQ.(.FALSE.)) THEN
-      ALLOCATE (VTKPOMERANJA(NP,3))
-      ALLOCIRANAPOMERANJA = .TRUE.
-      END IF
       
       IF(IDEBUG.GT.0) PRINT *, ' STAGP1'
       IF(ideas.eq.-1) return
@@ -1029,10 +1036,6 @@ C
                     WRITE(II,5000) NCVEL(I)
                     ENDIF
                     WRITE(II,5200) (FSP(J),J=1,6)
-                    ! pomeranja
-                VTKPOMERANJA(I,1) = FSP(1)
-                VTKPOMERANJA(I,2) = FSP(2)
-                VTKPOMERANJA(I,3) = FSP(3)
    10 CONTINUE
       WRITE(II,5100) IND1
       RETURN
@@ -1061,6 +1064,82 @@ C-----------------------------------------------------------------------
  6000 FORMAT('DATE AND TIME'/
      1       'EMPTY'/
      1       'LOAD CASE         :',I10)
+C-----------------------------------------------------------------------
+      END
+C=======================================================================
+C
+C
+C=======================================================================
+      SUBROUTINE STAGP1MT(RTH,ID,NCVEL,ICVEL,NODOVI,II,IND,NCVP,NCVPR)
+      USE CVOROVI
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+      ! ova funkcija vadi pomeranja i kopira ih u modul za zapisivanje u vtk fajl
+      ! nastala je prepravkom STAGP1 funkcije
+C ......................................................................
+C
+      CHARACTER*250 NASLOV
+      include 'paka.inc'
+      
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /SOPSVR/ ISOPS,ISTYP,NSOPV,ISTSV,IPROV,IPROL
+      COMMON /GRUPEE/ NGEL,NGENL,LGEOM,NGEOM,ITERM
+      COMMON /REPERI/ LCORD,LID,LMAXA,LMHT
+      COMMON /OPSTIP/ JPS,JPBR,NPG,JIDG,JCORG,JCVEL,JELCV,NGA,NGI,NPK,
+     1                NPUP,LIPODS,IPODS,LMAX13,MAX13,JEDNG,JMAXA,JEDNP,
+     1                NWP,NWG,IDF,JPS1
+      COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
+      COMMON /NASLOV/ NASLOV
+      COMMON /MPOINC/ MMP,NMPC,NEZAV,LCMPC,LMPC,NEZA1
+      COMMON /ITERBR/ ITER
+      COMMON /SRPSKI/ ISRPS
+      COMMON /NIDEAS/ IDEAS
+      COMMON /KOJISR/ KOJSET
+CSTOS
+      COMMON /ZADATA/ LNZADJ,LNZADF,LZADFM,NZADP
+      COMMON /STOSZP/ STOSZ
+CSTOS
+      DIMENSION RTH(*),ID(NP,*),NCVEL(*),NCVP(*),FSP(6)
+      COMMON /CDEBUG/ IDEBUG
+C
+
+      IF (ALLOCIRANAPOMERANJA.EQ.(.FALSE.)) THEN
+      ALLOCATE (VTKPOMERANJA(NP,3))
+      ALLOCIRANAPOMERANJA = .TRUE.
+      END IF
+      
+      IF(IDEBUG.GT.0) PRINT *, ' STAGP1MT'
+      IF(ideas.eq.-1) return
+
+      NPP=NODOVI
+      IF(JPS.GT.1.AND.JPBR.LT.JPS1) NPP=NODOVI-NPK
+
+      DO 10 I=1,NPP
+         IF(NCVPR.GT.0) THEN
+            IJ=NCVP(I)
+            IF(IJ.EQ.0) GO TO 10
+         ENDIF
+         IMA=0
+         DO 20 J=1,6
+            FSP(J) = 0.0D0
+            IF(ID(I,J).EQ.0) GO TO 20
+            K = ID(I,J)
+            IF(K.GT.0) THEN
+               FSP(J)=RTH(K)
+            ELSE
+               FSP(J)=CONDOF(RTH,A(LCMPC),A(LMPC),K)
+            ENDIF
+            IF(DABS(FSP(J)).GT.1.D-10) IMA=1
+   20    CONTINUE
+         IF(IMA.EQ.0.AND.(IND.EQ.4.OR.IND.EQ.32.OR.IND.EQ.44)) GO TO 10
+
+        VTKPOMERANJA(I,1) = FSP(1)
+        VTKPOMERANJA(I,2) = FSP(2)
+        VTKPOMERANJA(I,3) = FSP(3)
+   10 CONTINUE
+
+      RETURN
 C-----------------------------------------------------------------------
       END
 C=======================================================================
