@@ -78,6 +78,7 @@ C
       COMMON /CONMAT/ AE,EP,DVT
       COMMON /MATERb/ korz(100,100,3),evg(100,100,3)
       COMMON /CDEBUG/ IDEBUG
+      
       common /ak/ akapa(100000,10),aw(100000,10)
       common /comeplast/  ceplast(100000,8,6)
       common /prolaz/ iprolaz(100000,8)
@@ -136,10 +137,7 @@ C
       IF(KOR.EQ.1) THEN
        XT=X0
       ENDIF
-      
-      
-              
-      
+
 !C -----------------------------------------------------------
 !c
 !c     paneerselvam phd   (page 165 tens constants)
@@ -194,9 +192,9 @@ C
 !     NSHR: Broj smicajnih komponenti napona u datom trenutku!      NSHR=3
 !     NTENS: velicina niza napona ili deformacija (NDI + NSHR)!     NTENS=6
 !     NOEL: Broj elementa
-      noel=1 !zameniti sa realnom brojem elementa iz paka
+!      noel=1 !zameniti sa realnom brojem elementa iz paka
 !     NPT: Broj integracione ta?ke
-      npt=1
+!      npt=1
 !  UILAZNE VELICINE U UMAT
 !     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
 !     DSTRAN(NTENS): Niz inkremenata deformacija
@@ -224,39 +222,23 @@ C
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      1) predictor phase      ***********************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-      
-      
-
-      
-      
-      
-      
-C====================================================================
-C
 CE    ELASTICITY MATRIX FOR 3D
       CALL MEL3EL(ELAST,E,ANI)
       IF(IRAC.EQ.2) RETURN
-C     
-CE    MEAN STRAIN emE braon knjiga 2.2.21
+C
+CE    MEAN STRAIN emE
       EMT=(DEF(1)+DEF(2)+DEF(3))/3.0D0
 C
-CE    TOTAL DEVIATORIC STRAINS e'=e-em braon knjiga 2.2.23
+CE    TOTAL DEVIATORIC STRAINS e'=e-em
       DO I=1,6
          IF(I.LE.3) THEN
             DEFDPR(I)=DEF(I)-EMT
          ELSE
-            DEFDPR(I)=0.5D0*DEF(I) !smicuce komponente e = gama/2
+            DEFDPR(I)=0.5D0*DEF(I)
          ENDIF 
       ENDDO
-
-      !  UILAZNE VELICINE U UMAT
-!     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
-!     DSTRAN(NTENS): Niz inkremenata deformacija
-  ! u paku stran je DEF    
-
-      
-CE    TRIAL ELASTIC DEVIATORIC STRAINS e''=e'-emp' braon knjiga 2.2.23
+C
+CE    TRIAL ELASTIC DEVIATORIC STRAINS e''=e'-emp'
       DO I=1,6
          IF(I.LE.3) THEN
             DEFDS(I)=DEFDPR(I)-DEFPP(I)+EMP
@@ -267,229 +249,28 @@ CE    TRIAL ELASTIC DEVIATORIC STRAINS e''=e'-emp' braon knjiga 2.2.23
 C
 CE    TRIAL ELASTIC MEAN STRAIN em''=em-emp
       EMS=EMT-EMP
-! ucitava iz prethodnog koraka
-	  
-       
-      do k1=1,ntens
-	stress(k1)=0
-	!eplas0(k1) = ceplast(noel,npt,k1) 
-		
-	!e_new(k1)     = stran(k1)+dstran(k1)-eplas0(k1)
-	!e_elas_n(k1)  = stran(k1)+dstran(k1)-eplas0(k1)
-	!e_elas_n1(k1) = stran(k1)+dstran(k1)-eplas0(k1)
-          
-      e_new(k1)     = DEFDS(k1)+kroneker(k1)*EMS!MM
-	e_elas_n(k1)  = DEFDS(k1)+kroneker(k1)*EMS!MM
-	e_elas_n1(k1) = DEFDS(k1)+kroneker(k1)*EMS!MM
-      enddo
-      a_kapa0  = akapa(noel,npt)  ! 6.20  ! ucitava iz prethodnog koraka
-	  if (a_kapa0.lt.tolk) a_kapa0=tolk
-! ucitava iz prethodnog koraka
 C
-      call stressMM(a,ntens,e_elas_n,astress0)
-
-CE    ELASTIC SOLUTION SE=2G*e'' braon knjiga 2.2.24
-!     e'  DEFDS devijatorska deformacija     
+CE    ELASTIC SOLUTION SE=2G*e''
       DO I=1,6
           TAUD(I)=2.0D0*G*DEFDS(I)
-          TAUD(I)=astress0(I)
       ENDDO
 CD
       DO I=1,6
           TAUDE(I)=TAUD(I)
       ENDDO
-CE    TRIAL ELASTIC MEAN STRESS sigmaE=cm*em'' braon knjiga 2.2.17
+CE    TRIAL ELASTIC MEAN STRESS sigmaE=cm*em''
       SMTE=EMS*CM
-C=================================================================
-C     znaci sto je u abaqusu s_dev to je u paku TAUDE
-CE    SECOND INVARIANT OF DEVIATORIC STRESSES J2d braon knjiga 1.2.44
-!     ! a_j2 = ( s_dev(1)**2+s_dev(2)**2+s_dev(3)**2)/two+
-!     !1          s_dev(4)**2+s_dev(5)**2+ s_dev(6)**2
-      
-      AJ2DE=0.5*(TAUDE(1)*TAUDE(1)+TAUDE(2)*TAUDE(2)+TAUDE(3)*TAUDE(3))+
-     1           TAUDE(4)*TAUDE(4)+TAUDE(5)*TAUDE(5)+TAUDE(6)*TAUDE(6)
-c     CALL WRR6 (TAUDE,6,'TAUDE')
-      
-      
-      a_j2 = AJ2DE
-      
-      call loadingf(f10,astress0,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
-		f0   = abs(f10) - h*a_kapa0 
-    
-      call stressMM(a,ntens,e_elas_n1,astress)    
-                   
-          !	call loadingf(f1,astress,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
-	!	f   = abs(f1) - h*a_kapa0 
-                                      
-	    call noviddsdde(a,ddsdde,ntens,e_elas_n)
-	    ! call    hyperconstitutive (a,ddsdde,ntens,e_elas_n1)
-          
-          do k1=1,ntens        
-		    eplas(k1)  = eplas0(k1)
-			stress(k1) = astress0(k1)
-          enddo
-	    dkapa = 0
-      
-          
-          !c------------------ compute  loading surface f-----------------------
-          call loadingf(f1,stress,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
-        
-          f = abs(f1) - h*a_kapa0 
-		a_kapa = a_kapa0
-	if (f.le.zero) then 
-		goto 500   
-      endif
-      
-      dkapau = 0
-	call loadingf(f1,stress,a,ntens,ndi,s_dev,a_j2,a_mu)
-      f  = abs(f1) - h*a_kapa				
-	a_kxl = x+a_kapa0**a_l	
-      
+      SMTDT=SMTE
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-!c***************      1) corector phase      ***********************  
+!c***************      2) corector phase      ************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          
-      
-      
-      do kewton = 1,newton
-            dkapa0  =  (((f/beta)**1)/a_kxl)
-			a_kapa = a_kapa0 + dkapa0
-			a_kxl = x+a_kapa**a_l
-			dkapa  =  (((f/beta)**1)/a_kxl)
-			
-			do k1 = 1,ntens
-			    eplasStari(k1)   = eplas(k1)
-			    d_eplas(k1)   =  (dkapa)*a_mu(k1)*dtime
-			    eplas(k1)   = eplas0(k1) + d_eplas(k1)
-			    Replas(k1) = eplas(k1) - eplasStari(k1)
-			enddo
-				deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
-     1    two*Replas(4)**2+two*Replas(5)**2+two*Replas(6)**2)**0.5
-	 
-	        f  = abs(f1) - h*a_kapa
-	        a_kxl = x+a_kapa**a_l
-			skonvergencija = abs(a_kapa - a_kapa0)
-			if ((skonvergencija.lt.tol1).and.(deplas_int.lt.tol2)) then
-			!write(6,*) 'radi'
-			goto 33
-			endif
-			
-      enddo
-	
-		!dkapa = a_kapa - a_kapa0
- 33        continue
 
-          do k1 = 1,ntens
-		    !eplas(k1)   =  dkapa*a_mu(k1) !6.14
-		    eplas(k1)   = eplas(k1) + (a_kapa-a_kapa0)*a_mu(k1)*dtime
-		    !eplas(k1)   = eplas(k1) + dkapa*a_mu(k1)*dtime
-		    !eplas(k1)   = eplas(k1) + dkapa*a_mu(k1)*dtime
-		    !e_elas_n1(k1) = stran(k1)+dstran(k1)-eplas(k1)
-		    ceplast(noel,npt,k1) = eplas(k1)
-              akapa(noel,npt) = a_kapa  ! 6.20  ! ucitava iz prethodnog koraka
-		enddo
-		
-		call stressMM(a,ntens,e_elas_n1,astress)
-
-	    do k1=1,ntens        
-			stress(k1) =astress(k1)
-              TAU(k1) =astress(k1)
-          enddo
-	
-	    call noviddsdde(a,ddsdde,ntens,e_elas_n1)
-	   	!invarijante	
-	
-
-      
-      AJ2DEQ  =DSQRT(AJ2DE)
-C
-CE    FIRST STRESS INVARIANT I1E=3*sigmamE braon knjiga 2.2.15 1.2.21
-      AI1E    =3.0D0*SMTE
-C
-C ================================================================     
-
-C     DRUCKER-PRAGER LINE
-      FDP=ALF*AI1E+AJ2DEQ-AK
-C      
-C     CAP LINE
-      FC=XT-AI1E
-C
-      SMTDT=SMTE
-      DELEMP=0.d0
-CE    ELASTIC SOLUTION
-!      IF(FDP.LE.TOL) GO TO 400
-      goto 400
-C==================================================================
-C
-CE    PLASTIC STRAIN
-C
-CE    DRUCKER-PRAGER YIELDING FDP>0 & FC<0
-      IF(FDP.GT.TOL)GOTO 100    
-C      
-      STOP ' NONDEFINED AREA - DRUCKER-PRAGER '
-C===================================================================
-C===================================================================
-C
-CE    DRUCKER-PRAGER YIELDING FDP>0 & FC<0
-  100 CONTINUE
-      IYIELD=1
-c     WRITE(3,*)'OBLAST 1'
-      IF(DABS(ALF).LT.TOL) THEN
-CE        INCREMENT OF MEAN PLASTIC STRAIN Demp
-        AJ2DQ=AK
-C         sqrt(J2D)=sqrt(J2DE)-Dlam*G
-CE        Dlambda
-        DLAM=(AJ2DEQ-AJ2DQ)/G
-          DELEMP=0.D0
-          ELSE
-CE      INCREMENT OF MEAN PLASTIC STRAIN Demp
-        DELEMP=(ALF*AI1E+AJ2DEQ-AK)/(3.0D0*ALF*CM+G/ALF)
-CE      Dlambda.
-        DLAM=DELEMP/ALF
-C       sqrt(J2D)=sqrt(J2DE)-Dlam*G (6.2.29)
-        AJ2DQ=AJ2DEQ-DLAM*G
-      ENDIF
-C
-CE    MEAN STRESS sigmam=sigmamE-cm*Demp
-      SMTDT=SMTE-CM*DELEMP
-C
-CE    FIRST STRESS INVARIANT
-      AI1=3.0D0*SMTDT
-C
-CE    MEAN PLASTIC STRAIN emp=emp+Demp
-      EMP1=EMP+DELEMP
-C
-C====================================================================
-CE    DEVIATORIC STRESS S
-      DEN=1.0D0+DLAM*G/AJ2DQ
-      DO I=1,6
-         TAUD(I)=TAUDE(I)/DEN
-      ENDDO
-C
-CE    ADD INCREMENT OF DEVIATORIC PLASTIC STRAIN ep'=ep'+De'p 
-      COEF=DLAM/AJ2DQ/2.0D0
-      DO I=1,6
-         DEFP1(I)=DEFPP(I)+COEF*TAUD(I)
-      ENDDO
-C
-      AJ2D=AJ2DQ*AJ2DQ
-      GO TO 400
-C====================================================================
-C====================================================================
-C
+!c------------------  end of plastic corrector ----------------------
+!cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+!c***************      3) save phase      ****************************  
+!cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CE    UPDATES FOR NEXT STEP
-  400 CONTINUE
-CE    ADD INCREMENT OF MEAN PLASTIC STRAIN ep=ep+Demp
-      DO I=1,6
-         IF(I.LE.3) THEN
-            DEFP1(I)=DEFP1(I)+DELEMP
-         ELSE
-            DEFP1(I)=DEFP1(I)
-         ENDIF
-      ENDDO
-C
-CE    STRESS CALCULATION sigma=S+sigmam
       DO I=1,6
          IF(I.LE.3) THEN
             TAU(I)=TAUD(I)+SMTDT
@@ -497,32 +278,17 @@ CE    STRESS CALCULATION sigma=S+sigmam
             TAU(I)=TAUD(I)
          ENDIF
       ENDDO
-  
-C========================================================================
-  500 CONTINUE
-      DO I=1,6
-          DEF1(I)=DEF(I) 
-          TAU1(I)=TAU(I)
-      ENDDO
-!     cuva za naredni korak
-      dw = 0
-	do k1=1,ntens
-	    dw=dw+stress(k1)*d_eplas(k1)
-		eplas(k1)   = eplas(k1) + dkapa*a_mu(k1)*dtime
-          ceplast(noel,npt,k1)  =  eplas(k1)
-      enddo 
-		akapa(noel,npt) = a_kapa
-		w = aw(noel,npt)
-		w=w+dw
-		aw(noel,npt)=w
+      DO  I=1,6
+      DEF1(I)=DEF(I) 
+      TAU1(I)=TAU(I)
+      END DO 
       
       RETURN
       END
-      
-      
-      
-      
-      
+C
+C  =====================================================================
+C
+
       subroutine loadingf(f1,stress,a,ntens,ndi,s_dev,a_j2,a_mu)
     
 !     ulazne promenljive   
@@ -590,11 +356,11 @@ C========================================================================
               a_mu(k1) = gama*kroneker(k1)+(0.5*s_dev(k1)/(a_j2**0.5))
 		endif
       enddo   
-      return
-      end
-      
-!c---------------------------------subroutine loadingf           
-           
+            RETURN
+      END
+C
+C  =====================================================================
+C   
       subroutine noviddsdde(a,ddsdde,ntens,e_elas)
 
 !     ulazne promenljive   
@@ -694,11 +460,11 @@ C========================================================================
        ddsdde(6,5)= e_elas(4)*a2
        ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3)) + a4*(e_elas(1) +  
 	1   e_elas(2) + e_elas(3))
-       return
-      end
-           
-!c----------------------subroutine noviddsdde 
-      
+             RETURN
+      END
+C
+C  =====================================================================
+C     
       subroutine hyperconstitutive(a,ddsdde,ntens,e_elas)
       
 !     ulazne promenljive   
@@ -793,12 +559,13 @@ C========================================================================
        ddsdde(6,5)= 2*e_elas(4)*a5
        ddsdde(6,6)= 2*a2 + a5*(2*e_elas(2) + 2*e_elas(3)) + 
      1  2*a4*(e_elas(1) + e_elas(2) + e_elas(3))    
-       return
-      end         
+             RETURN
+      END
+C
+C  =====================================================================
+C
 
-!c----------------------subroutine hyperconstitutive     
-      
-      subroutine stressMM(a,ntens,e_elas,stress)
+      SUBROUTINE stressMM(a,ntens,e_elas,stress)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 
 !     ulazne promenljive   
@@ -867,7 +634,8 @@ C========================================================================
 	1 +a2*(e_elas(4)*e_elas(5)
 	1 +e_elas(2)*e_elas(6)+e_elas(6)*e_elas(3))   
       
-      return
-      end
-
-!c------------------------subroutine stressMM
+            RETURN
+      END
+C
+C  =====================================================================
+C

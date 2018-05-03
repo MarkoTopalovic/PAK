@@ -981,3 +981,1008 @@
 
            ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.0000D+02
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  1.0934D-32
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.0934D-34
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    1                      T I M E = 1.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -2.0000D+02
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -6.0000D+02
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.4916D-30
+           ENERGY (  2)  /  ENERGY ( 0 )  =  2.4860D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    2                      T I M E = 2.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -2.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -9.0000D+02
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.8000D+03
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.6950D-30
+           ENERGY (  2)  /  ENERGY ( 0 )  =  9.4164D-34
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    3                      T I M E = 3.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -3.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -2.4000D+03
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -4.0000D+03
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -4.6210D-30
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.1552D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    4                      T I M E = 4.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -4.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -5.0000D+03
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -7.5000D+03
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.5194D-29
+           ENERGY (  2)  /  ENERGY ( 0 )  =  2.0259D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    5                      T I M E = 5.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -5.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -9.0000D+03
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.2600D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.0996D-28
+           ENERGY (  2)  /  ENERGY ( 0 )  =  8.7267D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    6                      T I M E = 6.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -6.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -1.4700D+04
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.9600D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -2.7035D-28
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.3794D-32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    7                      T I M E = 7.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -7.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -2.2400D+04
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -2.8800D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -6.6266D-30
+           ENERGY (  2)  /  ENERGY ( 0 )  =  2.3009D-34
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    8                      T I M E = 8.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -8.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -3.2400D+04
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -4.0500D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.8055D-28
+           ENERGY (  2)  /  ENERGY ( 0 )  =  4.4581D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    9                      T I M E = 9.00000E-02
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -9.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -4.5000D+04
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -5.5000D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -5.2332D-29
+           ENERGY (  2)  /  ENERGY ( 0 )  =  9.5149D-34
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   10                      T I M E = 1.00000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.00000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -6.0500D+04
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -7.2600D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -7.3516D-29
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.0126D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   11                      T I M E = 1.10000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.10000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -7.9200D+04
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -9.3600D+04
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.3361D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.4274D-32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   12                      T I M E = 1.20000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.20000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -1.0140D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.1830D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -2.0161D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.7042D-32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   13                      T I M E = 1.30000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.30000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -1.2740D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.4700D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -2.5309D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.7217D-32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   14                      T I M E = 1.40000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.40000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -1.5750D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.8000D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -3.5961D-28
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.9978D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   15                      T I M E = 1.50000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.50000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -1.9200D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -2.1760D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -6.3778D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  2.9310D-32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   16                      T I M E = 1.60000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.60000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -2.3120D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -2.6010D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -2.1968D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  8.4459D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   17                      T I M E = 1.70000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.70000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -2.7540D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -3.0780D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -3.1323D-26
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.0176D-31
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   18                      T I M E = 1.80000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.80000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -3.2490D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -3.6100D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -6.4244D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  1.7796D-32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   19                      T I M E = 1.90000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.90000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -3.8000D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -4.2000D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  = -1.0660D-27
+           ENERGY (  2)  /  ENERGY ( 0 )  =  2.5382D-33
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.87654E+03
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.28940E+03
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   20                      T I M E = 2.00000E-01
+
+
+ NUMBER OF ITERATIONS =    2
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -2.00000E+00
+
+
+
+1
+
+
+      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
+      ---------------------------------------------------------
+
+
+
+     TIME AT THE START OF READING OF INPUT DATA .....  11:50: 1.333    3/ 5/2018
+
+
+
+     DOTTING STARTED ................................   0: 0: 0.  0    0/ 0/   0
+
+
+
+     DOTTING FINISHED ...............................   0: 0: 0.  0    0/ 0/   0
+
+
+
+     TIME AT THE START OF FORMING THE MATRICES ......  11:50: 3.772    3/ 5/2018
+
+
+
+
+
+
+1
+
+
+      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
+      ---------------------------------------------------------
+
+
+
+     TIME AT THE START OF READING OF INPUT DATA ..... 11:50: 1.333    3/ 5/2018
+
+
+     TIME AT THE START OF FORMING THE MATRICES ...... 11:50: 3.772    3/ 5/2018
+
+
+     TIME AT THE START OF EIGEN VALUE SOLUTION ...... 11:50: 4.638    3/ 5/2018
+
+
+     END OF JOB ..................................... 11:50: 4.638    3/ 5/2018
+
+
+
