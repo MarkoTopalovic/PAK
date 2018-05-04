@@ -1,12 +1,5 @@
 C       Micunov materijalni model
 C      Oznacen brojem 49 za sada iskopiran Rakicev DP 41
-      
-C
-C=======================================================================
-C=======================================================================
-CS    GENERALISANI MODEL SA KAPOM  3/D ELEMENT
-CE    GENERALIZED CAP MODEL 3D ELEMENT
-C=======================================================================
 C=======================================================================
 CE    SUBROUTINE D3M49
 CE               TI3441
@@ -222,23 +215,27 @@ C
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      1) predictor phase      ***********************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-CE    ELASTICITY MATRIX FOR 3D
-      CALL MEL3EL(ELAST,E,ANI)
-      IF(IRAC.EQ.2) RETURN
+!     ULAZNE VELICINE U UMAT
+!     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
+!     DSTRAN(NTENS): Niz inkremenata deformacija
+!     u paku STRAN je DEF
+CE    ELASTICITY MATRIX FOR 3D MEL3EL treba zameniti sa micunovom metodom
+!      CALL MEL3EL(ELAST,E,ANI)
+!      IF(IRAC.EQ.2) RETURN
 C
-CE    MEAN STRAIN emE
+CE    MEAN STRAIN emE braon knjiga 2.2.21
       EMT=(DEF(1)+DEF(2)+DEF(3))/3.0D0
 C
-CE    TOTAL DEVIATORIC STRAINS e'=e-em
+CE    TOTAL DEVIATORIC STRAINS e'=e-em braon knjiga 2.2.23
       DO I=1,6
          IF(I.LE.3) THEN
             DEFDPR(I)=DEF(I)-EMT
          ELSE
-            DEFDPR(I)=0.5D0*DEF(I)
+            DEFDPR(I)=0.5D0*DEF(I)!smicuce komponente e = gama/2
          ENDIF 
       ENDDO
 C
-CE    TRIAL ELASTIC DEVIATORIC STRAINS e''=e'-emp'
+CE    TRIAL ELASTIC DEVIATORIC STRAINS e''=e'-emp' braon knjiga 2.2.23
       DO I=1,6
          IF(I.LE.3) THEN
             DEFDS(I)=DEFDPR(I)-DEFPP(I)+EMP
@@ -249,7 +246,9 @@ CE    TRIAL ELASTIC DEVIATORIC STRAINS e''=e'-emp'
 C
 CE    TRIAL ELASTIC MEAN STRAIN em''=em-emp
       EMS=EMT-EMP
-C
+C     
+      call noviddsdde(ELAST,E,ANI,a,ntens,ndi,DEFDS)
+      
 CE    ELASTIC SOLUTION SE=2G*e''
       DO I=1,6
           TAUD(I)=2.0D0*G*DEFDS(I)
@@ -288,7 +287,6 @@ CE    UPDATES FOR NEXT STEP
 C
 C  =====================================================================
 C
-
       subroutine loadingf(f1,stress,a,ntens,ndi,s_dev,a_j2,a_mu)
     
 !     ulazne promenljive   
@@ -361,19 +359,18 @@ C
 C
 C  =====================================================================
 C   
-      subroutine noviddsdde(a,ddsdde,ntens,e_elas)
-
+      subroutine noviddsdde(ddsdde,E,V,a,ntens,ndi,e_elas)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 !     ulazne promenljive   
-!         real a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
-!         integer ntens
-!         real  e_elas(ntens)
+         DOUBLE PRECISION a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
+         integer ntens,ndi
+         DOUBLE PRECISION  e_elas(ntens)
 !     ulazne promenljive  
 
 !     izlazne promenljive
-!         real ddsdde(ntens,ntens)
+         DOUBLE PRECISION ddsdde(ntens,ntens)
 !     izlazne promenljive
-
-      dimension ddsdde(ntens,ntens), a(17), e_elas(ntens)
+         PARAMETER (ONE=1.0D0,TWO=2.0D0,THREE=3.0D0,SIX=6.0D0)
 
       a1=a(1)
       a2=a(2)
@@ -389,77 +386,116 @@ C
 	    ddsdde(k1,k2)=0
 	  enddo
       enddo
-
-       ddsdde(1,1)= 2*a1 + 4*a5 + 4*e_elas(1)*a2 + 
-	1   4*e_elas(1)*a4 + 6*a3*(2*e_elas(1) + 
-	1 2*e_elas(2) + 2*e_elas(3)) + 2*a4*(e_elas(1) + 
-	1 e_elas(2) + e_elas(3))
- 
-       ddsdde(1,2)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
       
-       ddsdde(1,3)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
-     
-       ddsdde(1,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
-	1   e_elas(4)*a4
-       ddsdde(1,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
-	1   e_elas(5)*a4
-       ddsdde(1,6)= E23*a4 + e_elas(6)*a4
+         !ddsdde(1,1)=E*(1.-V)/(1.+V)/(1.-2.*V)
+         !ddsdde(2,2)=ddsdde(1,1)
+         !ddsdde(3,3)=ddsdde(1,1)
+         !ddsdde(1,2)=ddsdde(1,1)*V/(1.-V)
+         !ddsdde(2,1)=ddsdde(1,2)
+         !ddsdde(1,3)=ddsdde(1,2)
+         !ddsdde(3,1)=ddsdde(1,2)
+         !ddsdde(2,3)=ddsdde(1,2)
+         !ddsdde(3,2)=ddsdde(1,2)
+         !ddsdde(4,4)=ddsdde(1,1)*(1.-2.*V)/(1.-V)/2.
+         !ddsdde(5,5)=ddsdde(4,4)
+         !ddsdde(6,6)=ddsdde(4,4)
 
-       ddsdde(2,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
-     
-       ddsdde(2,2)= 2*a1 + 4*a5 + 4*e_elas(2)*a2 + 4*e_elas(2)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
-	1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
-     
-       ddsdde(2,3)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
-     
-       ddsdde(2,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
-	1   e_elas(4)*a4
-       ddsdde(2,5)= e_elas(5)*a4 + e_elas(5)*a4
-       ddsdde(2,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
-             
-       ddsdde(3,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
-     
-       ddsdde(3,2)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
-     
-       ddsdde(3,3)= 2*a1 + 4*a5 + 4*e_elas(3)*a2 + 4*e_elas(3)*a4 + 
-	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
-	1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
-     
-       ddsdde(3,4)= e_elas(4)*a4 + e_elas(4)*a4
-       ddsdde(3,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
-	1   e_elas(5)*a4
-       ddsdde(3,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
-       
-       ddsdde(4,1)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
-       ddsdde(4,2)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
-       ddsdde(4,3)= 2*e_elas(4)*a4
-       ddsdde(4,4)= a1 + a2*(e_elas(1) + e_elas(2)) + a4*(e_elas(1) + 
-	1   e_elas(2) + e_elas(3))
-       ddsdde(4,5)= e_elas(6)*a2
-       ddsdde(4,6)= e_elas(5)*a2
-       
-       ddsdde(5,1)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
-       ddsdde(5,2)= 2*e_elas(5)*a4
-       ddsdde(5,3)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
-       ddsdde(5,4)= e_elas(6)*a2
-       ddsdde(5,5)= a1 + a2*(e_elas(1) + e_elas(3)) + a4*(e_elas(1) + 
-	1   e_elas(2) + e_elas(3))
-       ddsdde(5,6)= e_elas(4)*a2
-       
-       ddsdde(6,1)= 2*e_elas(6)*a4
-       ddsdde(6,2)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
-       ddsdde(6,3)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
-       ddsdde(6,4)= e_elas(5)*a2
-       ddsdde(6,5)= e_elas(4)*a2
-       ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3)) + a4*(e_elas(1) +  
-	1   e_elas(2) + e_elas(3))
+C     ELASTIC PROPERTIES
+C    
+      EMOD=E
+      ENU=V
+      EBULK3=EMOD/(ONE-TWO*ENU)
+      EG2=EMOD/(ONE+ENU)
+      EG=EG2/TWO
+      EG3=THREE*EG
+      ELAM=(EBULK3-EG2)/THREE
+C
+C     ELASTIC STIFFNESS
+C
+C
+      DO 40 K1=1,NDI
+        DO 30 K2=1,NDI
+           DDSDDE(K2,K1)=ELAM
+ 30     CONTINUE
+        DDSDDE(K1,K1)=EG2+ELAM
+ 40   CONTINUE
+      DO 50 K1=NDI+1,NTENS
+        DDSDDE(K1,K1)=EG
+ 50   CONTINUE
+!      
+      
+      
+
+ !      ddsdde(1,1)= 2*a1 + 4*a5 + 4*e_elas(1)*a2 + 
+	!1   4*e_elas(1)*a4 + 6*a3*(2*e_elas(1) + 
+	!1 2*e_elas(2) + 2*e_elas(3)) + 2*a4*(e_elas(1) + 
+	!1 e_elas(2) + e_elas(3))
+ !
+ !      ddsdde(1,2)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+ !     
+ !      ddsdde(1,3)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+ !    
+ !      ddsdde(1,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
+	!1   e_elas(4)*a4
+ !      ddsdde(1,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
+	!1   e_elas(5)*a4
+ !      ddsdde(1,6)= E23*a4 + e_elas(6)*a4
+ !
+ !      ddsdde(2,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+ !    
+ !      ddsdde(2,2)= 2*a1 + 4*a5 + 4*e_elas(2)*a2 + 4*e_elas(2)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
+	!1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
+ !    
+ !      ddsdde(2,3)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+ !    
+ !      ddsdde(2,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
+	!1   e_elas(4)*a4
+ !      ddsdde(2,5)= e_elas(5)*a4 + e_elas(5)*a4
+ !      ddsdde(2,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
+ !            
+ !      ddsdde(3,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+ !    
+ !      ddsdde(3,2)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+ !    
+ !      ddsdde(3,3)= 2*a1 + 4*a5 + 4*e_elas(3)*a2 + 4*e_elas(3)*a4 + 
+	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
+	!1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
+ !    
+ !      ddsdde(3,4)= e_elas(4)*a4 + e_elas(4)*a4
+ !      ddsdde(3,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
+	!1   e_elas(5)*a4
+ !      ddsdde(3,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
+ !      
+ !      ddsdde(4,1)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
+ !      ddsdde(4,2)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
+ !      ddsdde(4,3)= 2*e_elas(4)*a4
+ !      ddsdde(4,4)= a1 + a2*(e_elas(1) + e_elas(2)) + a4*(e_elas(1) + 
+	!1   e_elas(2) + e_elas(3))
+ !      ddsdde(4,5)= e_elas(6)*a2
+ !      ddsdde(4,6)= e_elas(5)*a2
+ !      
+ !      ddsdde(5,1)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
+ !      ddsdde(5,2)= 2*e_elas(5)*a4
+ !      ddsdde(5,3)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
+ !      ddsdde(5,4)= e_elas(6)*a2
+ !      ddsdde(5,5)= a1 + a2*(e_elas(1) + e_elas(3)) + a4*(e_elas(1) + 
+	!1   e_elas(2) + e_elas(3))
+ !      ddsdde(5,6)= e_elas(4)*a2
+ !      
+ !      ddsdde(6,1)= 2*e_elas(6)*a4
+ !      ddsdde(6,2)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
+ !      ddsdde(6,3)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
+ !      ddsdde(6,4)= e_elas(5)*a2
+ !      ddsdde(6,5)= e_elas(4)*a2
+ !      ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3)) + a4*(e_elas(1) +  
+	!1   e_elas(2) + e_elas(3))
              RETURN
       END
 C
@@ -564,7 +600,6 @@ C
 C
 C  =====================================================================
 C
-
       SUBROUTINE stressMM(a,ntens,e_elas,stress)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 
