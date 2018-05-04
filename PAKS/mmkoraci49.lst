@@ -985,41 +985,25 @@
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   1        ENERGY  = -8.5769D+01
+           ITERATION =   1        ENERGY  = -5.2326D+03
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   2        ENERGY  =  2.7754D-02
-           ENERGY (  2)  /  ENERGY ( 0 )  = -3.2359D-04
+           ITERATION =   2        ENERGY  =  8.9856D-03
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.7172D-06
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.53316E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55853E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.80909E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81893E+05
 
 
 
@@ -1043,47 +1027,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -2.2432D+02
+           ITERATION =   0        ENERGY  = -1.0508D+04
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   1        ENERGY  = -5.1348D+02
+           ITERATION =   1        ENERGY  = -3.1600D+04
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   2        ENERGY  =  2.6007D-01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -5.0649D-04
+           ITERATION =   2        ENERGY  =  1.8561D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  = -5.8737D-05
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.47588E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55239E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.78104E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81071E+05
 
 
 
@@ -1107,47 +1075,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -1.0161D+03
+           ITERATION =   0        ENERGY  = -4.8364D+04
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   1        ENERGY  = -1.5340D+03
+           ITERATION =   1        ENERGY  = -9.6119D+04
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   2        ENERGY  =  1.1174D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -7.2842D-04
+           ITERATION =   2        ENERGY  =  2.7743D+01
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.8863D-04
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.38773E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.54445E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.73583E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.79661E+05
 
 
 
@@ -1171,92 +1123,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -2.7401D+03
+           ITERATION =   0        ENERGY  = -1.3344D+05
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   1        ENERGY  = -3.3873D+03
+           ITERATION =   1        ENERGY  = -2.1871D+05
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  1.6815D+02
+           ENERGY (  2)  /  ENERGY ( 0 )  = -7.6881D-04
  NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
- NGE,GRZAP,ITER           1   1000000.00000000                2
-
-           ITERATION =   2
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   2        ENERGY  =  3.4418D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -1.0161D-03
- NGE,GRZAP,ITER           1   1000000.00000000                3
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                3
- NGE,GRZAP,ITER           1   1000000.00000000                3
- NGE,GRZAP,ITER           1   1000000.00000000                3
- NGE,GRZAP,ITER           1   1000000.00000000                3
- NGE,GRZAP,ITER           1   1000000.00000000                3
- NGE,GRZAP,ITER           1   1000000.00000000                3
-
-           ITERATION =   3
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   3        ENERGY  =  3.4229D+00
-           ENERGY (  3)  /  ENERGY ( 0 )  = -1.0105D-03
- NGE,GRZAP,ITER           1   1000000.00000000                4
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
-
-           ITERATION =   4
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   4        ENERGY  =  3.4042D+00
-           ENERGY (  4)  /  ENERGY ( 0 )  = -1.0050D-03
- NGE,GRZAP,ITER           1   1000000.00000000                5
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
-
-           ITERATION =   5
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   5        ENERGY  =  3.3856D+00
-           ENERGY (  5)  /  ENERGY ( 0 )  = -9.9949D-04
- NGE,GRZAP,ITER           1   1000000.00000000                5
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.26653E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.54017E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.66989E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.77626E+05
 
 
 
@@ -1268,7 +1159,7 @@
  S T E P  N U M B E R =    4                      T I M E = 4.00000E-02
 
 
- NUMBER OF ITERATIONS =    5
+ NUMBER OF ITERATIONS =    2
 
 
 
@@ -1280,755 +1171,1147 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -5.7982D+03
+           ITERATION =   0        ENERGY  = -2.9100D+05
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
- NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   1        ENERGY  = -6.3021D+03
+           ITERATION =   1        ENERGY  = -4.2483D+05
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  6.2265D+02
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.4656D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+
+           ITERATION =   3        ENERGY  =  1.2765D+02
+           ENERGY (  3)  /  ENERGY ( 0 )  = -3.0046D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.59663E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.74911E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    5                      T I M E = 5.00000E-02
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -5.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -5.5483D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -7.5188D+05
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  1.5666D+03
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.0836D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+
+           ITERATION =   3        ENERGY  =  2.9682D+02
+           ENERGY (  3)  /  ENERGY ( 0 )  = -3.9477D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.66448E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.68917E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    6                      T I M E = 6.00000E-02
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -6.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -9.7002D+05
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.2460D+06
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  3.2875D+03
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.6385D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+
+           ITERATION =   3        ENERGY  =  5.7248D+02
+           ENERGY (  3)  /  ENERGY ( 0 )  = -4.5946D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.77667E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.62808E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    7                      T I M E = 7.00000E-02
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -7.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -1.5970D+06
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.9762D+06
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   2        ENERGY  =  8.7816D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -1.3934D-03
+           ITERATION =   2        ENERGY  =  5.7667D+03
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.9181D-03
  NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                3
+
+           ITERATION =   3        ENERGY  =  9.2557D+02
+           ENERGY (  3)  /  ENERGY ( 0 )  = -4.6836D-04
  NGE,GRZAP,ITER           1   1000000.00000000                3
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.94233E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.56806E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    8                      T I M E = 8.00000E-02
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -8.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -2.5147D+06
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -3.0338D+06
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  8.8272D+03
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.9096D-03
  NGE,GRZAP,ITER           1   1000000.00000000                3
+ kkk           1
+ kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                3
+
+           ITERATION =   3        ENERGY  =  1.3177D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -4.3436D-04
  NGE,GRZAP,ITER           1   1000000.00000000                3
+
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 4.16566E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.50909E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =    9                      T I M E = 9.00000E-02
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -9.00000E-01
+ NGE,GRZAP,ITER           1   1000000.00000000                0
+ kkk           1
+ kkk           2
+
+           ITERATION =   0        ENERGY  = -3.8232D+06
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -4.5346D+06
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  1.2272D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.7063D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
+ kkk           1
+ kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =   3
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  1.7245D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -3.8029D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =   3        ENERGY  =  8.7314D+00
-           ENERGY (  3)  /  ENERGY ( 0 )  = -1.3855D-03
- NGE,GRZAP,ITER           1   1000000.00000000                4
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 4.44722E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.44940E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   10                      T I M E = 1.00000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.00000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
- NGE,GRZAP,ITER           1   1000000.00000000                4
 
-           ITERATION =   4
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   4        ENERGY  =  8.6815D+00
-           ENERGY (  4)  /  ENERGY ( 0 )  = -1.3775D-03
- NGE,GRZAP,ITER           1   1000000.00000000                5
+           ITERATION =   0        ENERGY  = -5.6470D+06
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
- NGE,GRZAP,ITER           1   1000000.00000000                5
+ NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   5
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   5        ENERGY  =  8.6318D+00
-           ENERGY (  5)  /  ENERGY ( 0 )  = -1.3697D-03
- NGE,GRZAP,ITER           1   1000000.00000000                6
+           ITERATION =   1        ENERGY  = -6.6191D+06
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                6
- NGE,GRZAP,ITER           1   1000000.00000000                6
- NGE,GRZAP,ITER           1   1000000.00000000                6
- NGE,GRZAP,ITER           1   1000000.00000000                6
- NGE,GRZAP,ITER           1   1000000.00000000                6
- NGE,GRZAP,ITER           1   1000000.00000000                6
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   6
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   6        ENERGY  =  8.5825D+00
-           ENERGY (  6)  /  ENERGY ( 0 )  = -1.3618D-03
- NGE,GRZAP,ITER           1   1000000.00000000                7
+           ITERATION =   2        ENERGY  =  1.6063D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.4268D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                7
- NGE,GRZAP,ITER           1   1000000.00000000                7
- NGE,GRZAP,ITER           1   1000000.00000000                7
- NGE,GRZAP,ITER           1   1000000.00000000                7
- NGE,GRZAP,ITER           1   1000000.00000000                7
- NGE,GRZAP,ITER           1   1000000.00000000                7
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =   7
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  2.1497D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -3.2477D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =   7        ENERGY  =  8.5334D+00
-           ENERGY (  7)  /  ENERGY ( 0 )  = -1.3541D-03
- NGE,GRZAP,ITER           1   1000000.00000000                8
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 4.78527E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.38573E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   11                      T I M E = 1.10000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.10000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                8
- NGE,GRZAP,ITER           1   1000000.00000000                8
- NGE,GRZAP,ITER           1   1000000.00000000                8
- NGE,GRZAP,ITER           1   1000000.00000000                8
- NGE,GRZAP,ITER           1   1000000.00000000                8
- NGE,GRZAP,ITER           1   1000000.00000000                8
 
-           ITERATION =   8
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   8        ENERGY  =  8.4846D+00
-           ENERGY (  8)  /  ENERGY ( 0 )  = -1.3463D-03
- NGE,GRZAP,ITER           1   1000000.00000000                9
+           ITERATION =   0        ENERGY  = -8.1372D+06
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                9
- NGE,GRZAP,ITER           1   1000000.00000000                9
- NGE,GRZAP,ITER           1   1000000.00000000                9
- NGE,GRZAP,ITER           1   1000000.00000000                9
- NGE,GRZAP,ITER           1   1000000.00000000                9
- NGE,GRZAP,ITER           1   1000000.00000000                9
+ NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   9
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =   9        ENERGY  =  8.4362D+00
-           ENERGY (  9)  /  ENERGY ( 0 )  = -1.3386D-03
- NGE,GRZAP,ITER           1   1000000.00000000               10
+           ITERATION =   1        ENERGY  = -9.4516D+06
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               10
- NGE,GRZAP,ITER           1   1000000.00000000               10
- NGE,GRZAP,ITER           1   1000000.00000000               10
- NGE,GRZAP,ITER           1   1000000.00000000               10
- NGE,GRZAP,ITER           1   1000000.00000000               10
- NGE,GRZAP,ITER           1   1000000.00000000               10
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  10
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  10        ENERGY  =  8.3879D+00
-           ENERGY ( 10)  /  ENERGY ( 0 )  = -1.3310D-03
- NGE,GRZAP,ITER           1   1000000.00000000               11
+           ITERATION =   2        ENERGY  =  2.0391D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -2.1574D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               11
- NGE,GRZAP,ITER           1   1000000.00000000               11
- NGE,GRZAP,ITER           1   1000000.00000000               11
- NGE,GRZAP,ITER           1   1000000.00000000               11
- NGE,GRZAP,ITER           1   1000000.00000000               11
- NGE,GRZAP,ITER           1   1000000.00000000               11
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  11
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  2.6241D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -2.7764D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  11        ENERGY  =  8.3400D+00
-           ENERGY ( 11)  /  ENERGY ( 0 )  = -1.3234D-03
- NGE,GRZAP,ITER           1   1000000.00000000               12
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 5.17703E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.31373E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   12                      T I M E = 1.20000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.20000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               12
- NGE,GRZAP,ITER           1   1000000.00000000               12
- NGE,GRZAP,ITER           1   1000000.00000000               12
- NGE,GRZAP,ITER           1   1000000.00000000               12
- NGE,GRZAP,ITER           1   1000000.00000000               12
- NGE,GRZAP,ITER           1   1000000.00000000               12
 
-           ITERATION =  12
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  12        ENERGY  =  8.2923D+00
-           ENERGY ( 12)  /  ENERGY ( 0 )  = -1.3158D-03
- NGE,GRZAP,ITER           1   1000000.00000000               13
+           ITERATION =   0        ENERGY  = -1.1475D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               13
- NGE,GRZAP,ITER           1   1000000.00000000               13
- NGE,GRZAP,ITER           1   1000000.00000000               13
- NGE,GRZAP,ITER           1   1000000.00000000               13
- NGE,GRZAP,ITER           1   1000000.00000000               13
- NGE,GRZAP,ITER           1   1000000.00000000               13
+ NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =  13
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  13        ENERGY  =  8.2450D+00
-           ENERGY ( 13)  /  ENERGY ( 0 )  = -1.3083D-03
- NGE,GRZAP,ITER           1   1000000.00000000               14
+           ITERATION =   1        ENERGY  = -1.3222D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               14
- NGE,GRZAP,ITER           1   1000000.00000000               14
- NGE,GRZAP,ITER           1   1000000.00000000               14
- NGE,GRZAP,ITER           1   1000000.00000000               14
- NGE,GRZAP,ITER           1   1000000.00000000               14
- NGE,GRZAP,ITER           1   1000000.00000000               14
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  14
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  14        ENERGY  =  8.1979D+00
-           ENERGY ( 14)  /  ENERGY ( 0 )  = -1.3008D-03
- NGE,GRZAP,ITER           1   1000000.00000000               15
+           ITERATION =   2        ENERGY  =  2.5640D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.9393D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               15
- NGE,GRZAP,ITER           1   1000000.00000000               15
- NGE,GRZAP,ITER           1   1000000.00000000               15
- NGE,GRZAP,ITER           1   1000000.00000000               15
- NGE,GRZAP,ITER           1   1000000.00000000               15
- NGE,GRZAP,ITER           1   1000000.00000000               15
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  15
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  3.1966D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -2.4177D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  15        ENERGY  =  8.1510D+00
-           ENERGY ( 15)  /  ENERGY ( 0 )  = -1.2934D-03
- NGE,GRZAP,ITER           1   1000000.00000000               16
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 5.61963E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.22794E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   13                      T I M E = 1.30000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.30000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               16
- NGE,GRZAP,ITER           1   1000000.00000000               16
- NGE,GRZAP,ITER           1   1000000.00000000               16
- NGE,GRZAP,ITER           1   1000000.00000000               16
- NGE,GRZAP,ITER           1   1000000.00000000               16
- NGE,GRZAP,ITER           1   1000000.00000000               16
 
-           ITERATION =  16
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   0        ENERGY  = -1.5872D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
 
-           ITERATION =  16        ENERGY  =  8.1045D+00
-           ENERGY ( 16)  /  ENERGY ( 0 )  = -1.2860D-03
- NGE,GRZAP,ITER           1   1000000.00000000               17
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.179309824334D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.161194478508D+05
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -1.8147D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               17
- NGE,GRZAP,ITER           1   1000000.00000000               17
- NGE,GRZAP,ITER           1   1000000.00000000               17
- NGE,GRZAP,ITER           1   1000000.00000000               17
- NGE,GRZAP,ITER           1   1000000.00000000               17
- NGE,GRZAP,ITER           1   1000000.00000000               17
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  17
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  17        ENERGY  =  8.0582D+00
-           ENERGY ( 17)  /  ENERGY ( 0 )  = -1.2786D-03
- NGE,GRZAP,ITER           1   1000000.00000000               18
+           ITERATION =   2        ENERGY  =  3.2331D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.7816D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               18
- NGE,GRZAP,ITER           1   1000000.00000000               18
- NGE,GRZAP,ITER           1   1000000.00000000               18
- NGE,GRZAP,ITER           1   1000000.00000000               18
- NGE,GRZAP,ITER           1   1000000.00000000               18
- NGE,GRZAP,ITER           1   1000000.00000000               18
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  18
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  3.9260D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -2.1635D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  18        ENERGY  =  8.0121D+00
-           ENERGY ( 18)  /  ENERGY ( 0 )  = -1.2713D-03
- NGE,GRZAP,ITER           1   1000000.00000000               19
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 6.11056E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.12158E+05
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   14                      T I M E = 1.40000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.40000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               19
- NGE,GRZAP,ITER           1   1000000.00000000               19
- NGE,GRZAP,ITER           1   1000000.00000000               19
- NGE,GRZAP,ITER           1   1000000.00000000               19
- NGE,GRZAP,ITER           1   1000000.00000000               19
- NGE,GRZAP,ITER           1   1000000.00000000               19
 
-           ITERATION =  19
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   0        ENERGY  = -2.1578D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
 
-           ITERATION =  19        ENERGY  =  7.9664D+00
-           ENERGY ( 19)  /  ENERGY ( 0 )  = -1.2641D-03
- NGE,GRZAP,ITER           1   1000000.00000000               20
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.216354144960D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.111100731253D+06
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -2.4477D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               20
- NGE,GRZAP,ITER           1   1000000.00000000               20
- NGE,GRZAP,ITER           1   1000000.00000000               20
- NGE,GRZAP,ITER           1   1000000.00000000               20
- NGE,GRZAP,ITER           1   1000000.00000000               20
- NGE,GRZAP,ITER           1   1000000.00000000               20
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  20
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  20        ENERGY  =  7.9209D+00
-           ENERGY ( 20)  /  ENERGY ( 0 )  = -1.2569D-03
- NGE,GRZAP,ITER           1   1000000.00000000               21
+           ITERATION =   2        ENERGY  =  4.1071D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.6779D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               21
- NGE,GRZAP,ITER           1   1000000.00000000               21
- NGE,GRZAP,ITER           1   1000000.00000000               21
- NGE,GRZAP,ITER           1   1000000.00000000               21
- NGE,GRZAP,ITER           1   1000000.00000000               21
- NGE,GRZAP,ITER           1   1000000.00000000               21
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  21
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  4.8779D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -1.9928D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  21        ENERGY  =  7.8756D+00
-           ENERGY ( 21)  /  ENERGY ( 0 )  = -1.2497D-03
- NGE,GRZAP,ITER           1   1000000.00000000               22
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 6.64784E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 9.85941E+04
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   15                      T I M E = 1.50000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.50000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               22
- NGE,GRZAP,ITER           1   1000000.00000000               22
- NGE,GRZAP,ITER           1   1000000.00000000               22
- NGE,GRZAP,ITER           1   1000000.00000000               22
- NGE,GRZAP,ITER           1   1000000.00000000               22
- NGE,GRZAP,ITER           1   1000000.00000000               22
 
-           ITERATION =  22
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   0        ENERGY  = -2.8877D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
 
-           ITERATION =  22        ENERGY  =  7.8307D+00
-           ENERGY ( 22)  /  ENERGY ( 0 )  = -1.2425D-03
- NGE,GRZAP,ITER           1   1000000.00000000               23
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       4
+
+ PIVOT= -0.516557621283D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.644393463226D+06
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -3.2498D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               23
- NGE,GRZAP,ITER           1   1000000.00000000               23
- NGE,GRZAP,ITER           1   1000000.00000000               23
- NGE,GRZAP,ITER           1   1000000.00000000               23
- NGE,GRZAP,ITER           1   1000000.00000000               23
- NGE,GRZAP,ITER           1   1000000.00000000               23
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  23
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  23        ENERGY  =  7.7860D+00
-           ENERGY ( 23)  /  ENERGY ( 0 )  = -1.2355D-03
- NGE,GRZAP,ITER           1   1000000.00000000               24
+           ITERATION =   2        ENERGY  =  5.2542D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.6168D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               24
- NGE,GRZAP,ITER           1   1000000.00000000               24
- NGE,GRZAP,ITER           1   1000000.00000000               24
- NGE,GRZAP,ITER           1   1000000.00000000               24
- NGE,GRZAP,ITER           1   1000000.00000000               24
- NGE,GRZAP,ITER           1   1000000.00000000               24
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  24
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  6.1233D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -1.8842D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  24        ENERGY  =  7.7415D+00
-           ENERGY ( 24)  /  ENERGY ( 0 )  = -1.2284D-03
- NGE,GRZAP,ITER           1   1000000.00000000               25
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 7.22996E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 8.09278E+04
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   16                      T I M E = 1.60000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.60000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               25
- NGE,GRZAP,ITER           1   1000000.00000000               25
- NGE,GRZAP,ITER           1   1000000.00000000               25
- NGE,GRZAP,ITER           1   1000000.00000000               25
- NGE,GRZAP,ITER           1   1000000.00000000               25
- NGE,GRZAP,ITER           1   1000000.00000000               25
 
-           ITERATION =  25
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   0        ENERGY  = -3.8094D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
 
-           ITERATION =  25        ENERGY  =  7.6973D+00
-           ENERGY ( 25)  /  ENERGY ( 0 )  = -1.2214D-03
- NGE,GRZAP,ITER           1   1000000.00000000               26
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       4
+
+ PIVOT= -0.314785876654D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       9
+
+ PIVOT= -0.421315212838D+05
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -4.2536D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               26
- NGE,GRZAP,ITER           1   1000000.00000000               26
- NGE,GRZAP,ITER           1   1000000.00000000               26
- NGE,GRZAP,ITER           1   1000000.00000000               26
- NGE,GRZAP,ITER           1   1000000.00000000               26
- NGE,GRZAP,ITER           1   1000000.00000000               26
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  26
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  26        ENERGY  =  7.6534D+00
-           ENERGY ( 26)  /  ENERGY ( 0 )  = -1.2144D-03
- NGE,GRZAP,ITER           1   1000000.00000000               27
+           ITERATION =   2        ENERGY  =  6.7497D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.5868D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               27
- NGE,GRZAP,ITER           1   1000000.00000000               27
- NGE,GRZAP,ITER           1   1000000.00000000               27
- NGE,GRZAP,ITER           1   1000000.00000000               27
- NGE,GRZAP,ITER           1   1000000.00000000               27
- NGE,GRZAP,ITER           1   1000000.00000000               27
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  27
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  7.7394D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -1.8195D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  27        ENERGY  =  7.6097D+00
-           ENERGY ( 27)  /  ENERGY ( 0 )  = -1.2075D-03
- NGE,GRZAP,ITER           1   1000000.00000000               28
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 7.85581E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 5.75080E+04
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   17                      T I M E = 1.70000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.70000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               28
- NGE,GRZAP,ITER           1   1000000.00000000               28
- NGE,GRZAP,ITER           1   1000000.00000000               28
- NGE,GRZAP,ITER           1   1000000.00000000               28
- NGE,GRZAP,ITER           1   1000000.00000000               28
- NGE,GRZAP,ITER           1   1000000.00000000               28
 
-           ITERATION =  28
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   0        ENERGY  = -4.9598D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+ kkk           1
 
-           ITERATION =  28        ENERGY  =  7.5662D+00
-           ENERGY ( 28)  /  ENERGY ( 0 )  = -1.2006D-03
- NGE,GRZAP,ITER           1   1000000.00000000               29
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       3
+
+ PIVOT= -0.204538363531D+04
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       8
+
+ PIVOT= -0.172810514184D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       9
+
+ PIVOT= -0.447443297964D+05
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                1
+
+           ITERATION =   1        ENERGY  = -5.4960D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+ kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.124344047568D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.116887816220D+05
+ kkk           2
+ NGE,GRZAP,ITER           1   1000000.00000000                2
+
+           ITERATION =   2        ENERGY  =  8.6759D+04
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.5786D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               29
- NGE,GRZAP,ITER           1   1000000.00000000               29
- NGE,GRZAP,ITER           1   1000000.00000000               29
- NGE,GRZAP,ITER           1   1000000.00000000               29
- NGE,GRZAP,ITER           1   1000000.00000000               29
- NGE,GRZAP,ITER           1   1000000.00000000               29
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  29
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  9.8100D+03
+           ENERGY (  3)  /  ENERGY ( 0 )  = -1.7849D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  29        ENERGY  =  7.5231D+00
-           ENERGY ( 29)  /  ENERGY ( 0 )  = -1.1937D-03
- NGE,GRZAP,ITER           1   1000000.00000000               30
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 8.52452E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 2.58876E+04
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   18                      T I M E = 1.80000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.80000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               30
- NGE,GRZAP,ITER           1   1000000.00000000               30
- NGE,GRZAP,ITER           1   1000000.00000000               30
- NGE,GRZAP,ITER           1   1000000.00000000               30
- NGE,GRZAP,ITER           1   1000000.00000000               30
- NGE,GRZAP,ITER           1   1000000.00000000               30
 
-           ITERATION =  30
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  30        ENERGY  =  7.4801D+00
-           ENERGY ( 30)  /  ENERGY ( 0 )  = -1.1869D-03
- NGE,GRZAP,ITER           1   1000000.00000000               31
+           ITERATION =   0        ENERGY  = -6.3804D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       3
+
+ PIVOT= -0.604122634507D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       8
+
+ PIVOT= -0.213236466902D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       9
+
+ PIVOT= -0.226217524754D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.215151785547D+06
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               31
- NGE,GRZAP,ITER           1   1000000.00000000               31
- NGE,GRZAP,ITER           1   1000000.00000000               31
- NGE,GRZAP,ITER           1   1000000.00000000               31
- NGE,GRZAP,ITER           1   1000000.00000000               31
- NGE,GRZAP,ITER           1   1000000.00000000               31
+ NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =  31
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  31        ENERGY  =  7.4374D+00
-           ENERGY ( 31)  /  ENERGY ( 0 )  = -1.1801D-03
- NGE,GRZAP,ITER           1   1000000.00000000               32
+           ITERATION =   1        ENERGY  = -7.0186D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.768737640000D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.653749182794D+05
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               32
- NGE,GRZAP,ITER           1   1000000.00000000               32
- NGE,GRZAP,ITER           1   1000000.00000000               32
- NGE,GRZAP,ITER           1   1000000.00000000               32
- NGE,GRZAP,ITER           1   1000000.00000000               32
- NGE,GRZAP,ITER           1   1000000.00000000               32
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  32
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  32        ENERGY  =  7.3950D+00
-           ENERGY ( 32)  /  ENERGY ( 0 )  = -1.1734D-03
- NGE,GRZAP,ITER           1   1000000.00000000               33
+           ITERATION =   2        ENERGY  =  1.1122D+05
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.5847D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.176564173458D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.165135915436D+05
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               33
- NGE,GRZAP,ITER           1   1000000.00000000               33
- NGE,GRZAP,ITER           1   1000000.00000000               33
- NGE,GRZAP,ITER           1   1000000.00000000               33
- NGE,GRZAP,ITER           1   1000000.00000000               33
- NGE,GRZAP,ITER           1   1000000.00000000               33
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  33
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  1.2426D+04
+           ENERGY (  3)  /  ENERGY ( 0 )  = -1.7704D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  33        ENERGY  =  7.3528D+00
-           ENERGY ( 33)  /  ENERGY ( 0 )  = -1.1667D-03
- NGE,GRZAP,ITER           1   1000000.00000000               34
+
+
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 9.23544E+05
+
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX =-1.76564E+04
+
+
+
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
+
+
+ S T E P  N U M B E R =   19                      T I M E = 1.90000E-01
+
+
+ NUMBER OF ITERATIONS =    3
+
+
+
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -1.90000E+00
+ NGE,GRZAP,ITER           1   1000000.00000000                0
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.267592105099D+04
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.255898979314D+04
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               34
- NGE,GRZAP,ITER           1   1000000.00000000               34
- NGE,GRZAP,ITER           1   1000000.00000000               34
- NGE,GRZAP,ITER           1   1000000.00000000               34
- NGE,GRZAP,ITER           1   1000000.00000000               34
- NGE,GRZAP,ITER           1   1000000.00000000               34
 
-           ITERATION =  34
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  34        ENERGY  =  7.3109D+00
-           ENERGY ( 34)  /  ENERGY ( 0 )  = -1.1601D-03
- NGE,GRZAP,ITER           1   1000000.00000000               35
+           ITERATION =   0        ENERGY  = -8.1173D+07
+           ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       3
+
+ PIVOT= -0.293870340736D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       4
+
+ PIVOT= -0.119629408276D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       9
+
+ PIVOT= -0.608707984533D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.352822268606D+06
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               35
- NGE,GRZAP,ITER           1   1000000.00000000               35
- NGE,GRZAP,ITER           1   1000000.00000000               35
- NGE,GRZAP,ITER           1   1000000.00000000               35
- NGE,GRZAP,ITER           1   1000000.00000000               35
- NGE,GRZAP,ITER           1   1000000.00000000               35
+ NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =  35
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  35        ENERGY  =  7.2692D+00
-           ENERGY ( 35)  /  ENERGY ( 0 )  = -1.1534D-03
- NGE,GRZAP,ITER           1   1000000.00000000               36
+           ITERATION =   1        ENERGY  = -8.8678D+07
+           ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
+ NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.180109199980D+06
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.133765535005D+06
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               36
- NGE,GRZAP,ITER           1   1000000.00000000               36
- NGE,GRZAP,ITER           1   1000000.00000000               36
- NGE,GRZAP,ITER           1   1000000.00000000               36
- NGE,GRZAP,ITER           1   1000000.00000000               36
- NGE,GRZAP,ITER           1   1000000.00000000               36
+ NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =  36
-           NUMBER OF LINE SEARCH =  0
-
-           ITERATION =  36        ENERGY  =  7.2277D+00
-           ENERGY ( 36)  /  ENERGY ( 0 )  = -1.1469D-03
- NGE,GRZAP,ITER           1   1000000.00000000               37
+           ITERATION =   2        ENERGY  =  1.4186D+05
+           ENERGY (  2)  /  ENERGY ( 0 )  = -1.5997D-03
+ NGE,GRZAP,ITER           1   1000000.00000000                3
  kkk           1
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.       6
+
+ PIVOT= -0.793499933893D+05
+
+
+ MATRIX OF SYSTEM IS NOT POSITIVE DEFINITE
+
+ PIVOT IS NOT POSITIVE FOR EQUATION NO.      11
+
+ PIVOT= -0.682760032937D+05
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               37
- NGE,GRZAP,ITER           1   1000000.00000000               37
- NGE,GRZAP,ITER           1   1000000.00000000               37
- NGE,GRZAP,ITER           1   1000000.00000000               37
- NGE,GRZAP,ITER           1   1000000.00000000               37
- NGE,GRZAP,ITER           1   1000000.00000000               37
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  37
-           NUMBER OF LINE SEARCH =  0
+           ITERATION =   3        ENERGY  =  1.5686D+04
+           ENERGY (  3)  /  ENERGY ( 0 )  = -1.7688D-04
+ NGE,GRZAP,ITER           1   1000000.00000000                3
 
-           ITERATION =  37        ENERGY  =  7.1865D+00
-           ENERGY ( 37)  /  ENERGY ( 0 )  = -1.1403D-03
- NGE,GRZAP,ITER           1   1000000.00000000               38
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               38
- NGE,GRZAP,ITER           1   1000000.00000000               38
- NGE,GRZAP,ITER           1   1000000.00000000               38
- NGE,GRZAP,ITER           1   1000000.00000000               38
- NGE,GRZAP,ITER           1   1000000.00000000               38
- NGE,GRZAP,ITER           1   1000000.00000000               38
 
-           ITERATION =  38
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  38        ENERGY  =  7.1455D+00
-           ENERGY ( 38)  /  ENERGY ( 0 )  = -1.1338D-03
- NGE,GRZAP,ITER           1   1000000.00000000               39
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               39
- NGE,GRZAP,ITER           1   1000000.00000000               39
- NGE,GRZAP,ITER           1   1000000.00000000               39
- NGE,GRZAP,ITER           1   1000000.00000000               39
- NGE,GRZAP,ITER           1   1000000.00000000               39
- NGE,GRZAP,ITER           1   1000000.00000000               39
+           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 9.98802E+05
 
-           ITERATION =  39
-           NUMBER OF LINE SEARCH =  0
+           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX =-7.93500E+04
 
-           ITERATION =  39        ENERGY  =  7.1047D+00
-           ENERGY ( 39)  /  ENERGY ( 0 )  = -1.1274D-03
- NGE,GRZAP,ITER           1   1000000.00000000               40
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               40
- NGE,GRZAP,ITER           1   1000000.00000000               40
- NGE,GRZAP,ITER           1   1000000.00000000               40
- NGE,GRZAP,ITER           1   1000000.00000000               40
- NGE,GRZAP,ITER           1   1000000.00000000               40
- NGE,GRZAP,ITER           1   1000000.00000000               40
 
-           ITERATION =  40
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  40        ENERGY  =  7.0642D+00
-           ENERGY ( 40)  /  ENERGY ( 0 )  = -1.1209D-03
- NGE,GRZAP,ITER           1   1000000.00000000               41
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               41
- NGE,GRZAP,ITER           1   1000000.00000000               41
- NGE,GRZAP,ITER           1   1000000.00000000               41
- NGE,GRZAP,ITER           1   1000000.00000000               41
- NGE,GRZAP,ITER           1   1000000.00000000               41
- NGE,GRZAP,ITER           1   1000000.00000000               41
+1
+ COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
+ ---------------------------------------------
 
-           ITERATION =  41
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  41        ENERGY  =  7.0239D+00
-           ENERGY ( 41)  /  ENERGY ( 0 )  = -1.1145D-03
- NGE,GRZAP,ITER           1   1000000.00000000               42
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               42
- NGE,GRZAP,ITER           1   1000000.00000000               42
- NGE,GRZAP,ITER           1   1000000.00000000               42
- NGE,GRZAP,ITER           1   1000000.00000000               42
- NGE,GRZAP,ITER           1   1000000.00000000               42
- NGE,GRZAP,ITER           1   1000000.00000000               42
+ S T E P  N U M B E R =   20                      T I M E = 2.00000E-01
 
-           ITERATION =  42
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  42        ENERGY  =  6.9839D+00
-           ENERGY ( 42)  /  ENERGY ( 0 )  = -1.1082D-03
- NGE,GRZAP,ITER           1   1000000.00000000               43
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               43
- NGE,GRZAP,ITER           1   1000000.00000000               43
- NGE,GRZAP,ITER           1   1000000.00000000               43
- NGE,GRZAP,ITER           1   1000000.00000000               43
- NGE,GRZAP,ITER           1   1000000.00000000               43
- NGE,GRZAP,ITER           1   1000000.00000000               43
+ NUMBER OF ITERATIONS =    3
 
-           ITERATION =  43
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  43        ENERGY  =  6.9440D+00
-           ENERGY ( 43)  /  ENERGY ( 0 )  = -1.1019D-03
- NGE,GRZAP,ITER           1   1000000.00000000               44
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               44
- NGE,GRZAP,ITER           1   1000000.00000000               44
- NGE,GRZAP,ITER           1   1000000.00000000               44
- NGE,GRZAP,ITER           1   1000000.00000000               44
- NGE,GRZAP,ITER           1   1000000.00000000               44
- NGE,GRZAP,ITER           1   1000000.00000000               44
 
-           ITERATION =  44
-           NUMBER OF LINE SEARCH =  0
+ T I M E    F U N C T I O N S
+ ----------------------------
+  FUNCTION         VALUE
+         1     -2.00000E+00
 
-           ITERATION =  44        ENERGY  =  6.9045D+00
-           ENERGY ( 44)  /  ENERGY ( 0 )  = -1.0956D-03
- NGE,GRZAP,ITER           1   1000000.00000000               45
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               45
- NGE,GRZAP,ITER           1   1000000.00000000               45
- NGE,GRZAP,ITER           1   1000000.00000000               45
- NGE,GRZAP,ITER           1   1000000.00000000               45
- NGE,GRZAP,ITER           1   1000000.00000000               45
- NGE,GRZAP,ITER           1   1000000.00000000               45
 
-           ITERATION =  45
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  45        ENERGY  =  6.8651D+00
-           ENERGY ( 45)  /  ENERGY ( 0 )  = -1.0893D-03
- NGE,GRZAP,ITER           1   1000000.00000000               46
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               46
- NGE,GRZAP,ITER           1   1000000.00000000               46
- NGE,GRZAP,ITER           1   1000000.00000000               46
- NGE,GRZAP,ITER           1   1000000.00000000               46
- NGE,GRZAP,ITER           1   1000000.00000000               46
- NGE,GRZAP,ITER           1   1000000.00000000               46
+1
 
-           ITERATION =  46
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  46        ENERGY  =  6.8260D+00
-           ENERGY ( 46)  /  ENERGY ( 0 )  = -1.0831D-03
- NGE,GRZAP,ITER           1   1000000.00000000               47
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               47
- NGE,GRZAP,ITER           1   1000000.00000000               47
- NGE,GRZAP,ITER           1   1000000.00000000               47
- NGE,GRZAP,ITER           1   1000000.00000000               47
- NGE,GRZAP,ITER           1   1000000.00000000               47
- NGE,GRZAP,ITER           1   1000000.00000000               47
+      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
+      ---------------------------------------------------------
 
-           ITERATION =  47
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  47        ENERGY  =  6.7870D+00
-           ENERGY ( 47)  /  ENERGY ( 0 )  = -1.0769D-03
- NGE,GRZAP,ITER           1   1000000.00000000               48
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               48
- NGE,GRZAP,ITER           1   1000000.00000000               48
- NGE,GRZAP,ITER           1   1000000.00000000               48
- NGE,GRZAP,ITER           1   1000000.00000000               48
- NGE,GRZAP,ITER           1   1000000.00000000               48
- NGE,GRZAP,ITER           1   1000000.00000000               48
 
-           ITERATION =  48
-           NUMBER OF LINE SEARCH =  0
+     TIME AT THE START OF READING OF INPUT DATA .....  14:47:23.238    4/ 5/2018
 
-           ITERATION =  48        ENERGY  =  6.7484D+00
-           ENERGY ( 48)  /  ENERGY ( 0 )  = -1.0708D-03
- NGE,GRZAP,ITER           1   1000000.00000000               49
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               49
- NGE,GRZAP,ITER           1   1000000.00000000               49
- NGE,GRZAP,ITER           1   1000000.00000000               49
- NGE,GRZAP,ITER           1   1000000.00000000               49
- NGE,GRZAP,ITER           1   1000000.00000000               49
- NGE,GRZAP,ITER           1   1000000.00000000               49
 
-           ITERATION =  49
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  49        ENERGY  =  6.7099D+00
-           ENERGY ( 49)  /  ENERGY ( 0 )  = -1.0647D-03
- NGE,GRZAP,ITER           1   1000000.00000000               50
- kkk           1
- kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000               50
- NGE,GRZAP,ITER           1   1000000.00000000               50
- NGE,GRZAP,ITER           1   1000000.00000000               50
- NGE,GRZAP,ITER           1   1000000.00000000               50
- NGE,GRZAP,ITER           1   1000000.00000000               50
- NGE,GRZAP,ITER           1   1000000.00000000               50
+     DOTTING STARTED ................................   0: 0: 0.  0    0/ 0/   0
 
-           ITERATION =  50
-           NUMBER OF LINE SEARCH =  0
 
-           ITERATION =  50        ENERGY  =  6.6717D+00
-           ENERGY ( 50)  /  ENERGY ( 0 )  = -1.0586D-03
+
+     DOTTING FINISHED ...............................   0: 0: 0.  0    0/ 0/   0
+
+
+
+     TIME AT THE START OF FORMING THE MATRICES ......  14:47:25.653    4/ 5/2018
+
+
+
+
+
+
+1
+
+
+      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
+      ---------------------------------------------------------
+
+
+
+     TIME AT THE START OF READING OF INPUT DATA ..... 14:47:23.238    4/ 5/2018
+
+
+     TIME AT THE START OF FORMING THE MATRICES ...... 14:47:25.653    4/ 5/2018
+
+
+     TIME AT THE START OF EIGEN VALUE SOLUTION ...... 14:47:26.472    4/ 5/2018
+
+
+     END OF JOB ..................................... 14:47:26.472    4/ 5/2018
+
+
+

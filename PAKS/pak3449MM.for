@@ -247,16 +247,19 @@ C
 CE    TRIAL ELASTIC MEAN STRAIN em''=em-emp
       EMS=EMT-EMP
 C     
-      call noviddsdde(ELAST,E,ANI,a,ntens,ndi,DEFDS)
+      call noviddsdde(ELAST,E,ANI,a,ntens,ndi,DEF)
+      call stressMM(a,ntens,ndi,DEF,TAU)
+
+      
       
 CE    ELASTIC SOLUTION SE=2G*e''
-      DO I=1,6
-          TAUD(I)=2.0D0*G*DEFDS(I)
-      ENDDO
+      !DO I=1,6
+      !    TAUD(I)=2.0D0*G*DEFDS(I)
+      !ENDDO
 CD
-      DO I=1,6
-          TAUDE(I)=TAUD(I)
-      ENDDO
+      !DO I=1,6
+      !    TAUDE(I)=TAUD(I)
+      !ENDDO
 CE    TRIAL ELASTIC MEAN STRESS sigmaE=cm*em''
       SMTE=EMS*CM
       SMTDT=SMTE
@@ -270,13 +273,13 @@ CE    TRIAL ELASTIC MEAN STRESS sigmaE=cm*em''
 !c***************      3) save phase      ****************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CE    UPDATES FOR NEXT STEP
-      DO I=1,6
-         IF(I.LE.3) THEN
-            TAU(I)=TAUD(I)+SMTDT
-         ELSE
-            TAU(I)=TAUD(I)
-         ENDIF
-      ENDDO
+      !DO I=1,6
+      !   IF(I.LE.3) THEN
+      !      TAU(I)=TAUD(I)+SMTDT
+      !   ELSE
+      !      TAU(I)=TAUD(I)
+      !   ENDIF
+      !ENDDO
       DO  I=1,6
       DEF1(I)=DEF(I) 
       TAU1(I)=TAU(I)
@@ -502,21 +505,17 @@ C
 C  =====================================================================
 
 C
-      SUBROUTINE stressMM(a,ntens,e_elas,stress)
+      SUBROUTINE stressMM(a,ntens,ndi,e_elas,stress)     
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-
 !     ulazne promenljive   
-!         real a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
-!         integer ntens
-!         real  e_elas(ntens)
+         DOUBLE PRECISION a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
+         integer ntens,ndi
+         DOUBLE PRECISION  e_elas(ntens)
 !     ulazne promenljive  
 
 !     izlazne promenljive
-!         real stress(ntens,ntens)
+         DOUBLE PRECISION stress(ntens)
 !     izlazne promenljive
-      
-
-      dimension stress(ntens), a(17), e_elas(ntens)
 
       a1=a(1)
       a2=a(2)
