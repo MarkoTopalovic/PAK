@@ -402,203 +402,105 @@ C
 
 C     ELASTIC PROPERTIES
 C    
-      EMOD=E
-      ENU=V
-      EBULK3=EMOD/(ONE-TWO*ENU)
-      EG2=EMOD/(ONE+ENU)
-      EG=EG2/TWO
-      EG3=THREE*EG
-      ELAM=(EBULK3-EG2)/THREE
+      !EMOD=E
+      !ENU=V
+      !EBULK3=EMOD/(ONE-TWO*ENU)
+      !EG2=EMOD/(ONE+ENU)
+      !EG=EG2/TWO
+      !EG3=THREE*EG
+      !ELAM=(EBULK3-EG2)/THREE
 C
 C     ELASTIC STIFFNESS
 C
 C
-      DO 40 K1=1,NDI
-        DO 30 K2=1,NDI
-           DDSDDE(K2,K1)=ELAM
- 30     CONTINUE
-        DDSDDE(K1,K1)=EG2+ELAM
- 40   CONTINUE
-      DO 50 K1=NDI+1,NTENS
-        DDSDDE(K1,K1)=EG
- 50   CONTINUE
+ !     DO 40 K1=1,NDI
+ !       DO 30 K2=1,NDI
+ !          DDSDDE(K2,K1)=ELAM
+ !30     CONTINUE
+ !       DDSDDE(K1,K1)=EG2+ELAM
+ !40   CONTINUE
+ !     DO 50 K1=NDI+1,NTENS
+ !       DDSDDE(K1,K1)=EG
+ !50   CONTINUE
 !      
       
       
 
- !      ddsdde(1,1)= 2*a1 + 4*a5 + 4*e_elas(1)*a2 + 
-	!1   4*e_elas(1)*a4 + 6*a3*(2*e_elas(1) + 
-	!1 2*e_elas(2) + 2*e_elas(3)) + 2*a4*(e_elas(1) + 
-	!1 e_elas(2) + e_elas(3))
- !
- !      ddsdde(1,2)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
- !     
- !      ddsdde(1,3)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
- !    
- !      ddsdde(1,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
-	!1   e_elas(4)*a4
- !      ddsdde(1,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
-	!1   e_elas(5)*a4
- !      ddsdde(1,6)= E23*a4 + e_elas(6)*a4
- !
- !      ddsdde(2,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
- !    
- !      ddsdde(2,2)= 2*a1 + 4*a5 + 4*e_elas(2)*a2 + 4*e_elas(2)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
-	!1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
- !    
- !      ddsdde(2,3)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
- !    
- !      ddsdde(2,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
-	!1   e_elas(4)*a4
- !      ddsdde(2,5)= e_elas(5)*a4 + e_elas(5)*a4
- !      ddsdde(2,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
- !            
- !      ddsdde(3,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
- !    
- !      ddsdde(3,2)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
- !    
- !      ddsdde(3,3)= 2*a1 + 4*a5 + 4*e_elas(3)*a2 + 4*e_elas(3)*a4 + 
-	!1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
-	!1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
- !    
- !      ddsdde(3,4)= e_elas(4)*a4 + e_elas(4)*a4
- !      ddsdde(3,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
-	!1   e_elas(5)*a4
- !      ddsdde(3,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
- !      
- !      ddsdde(4,1)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
- !      ddsdde(4,2)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
- !      ddsdde(4,3)= 2*e_elas(4)*a4
- !      ddsdde(4,4)= a1 + a2*(e_elas(1) + e_elas(2)) + a4*(e_elas(1) + 
-	!1   e_elas(2) + e_elas(3))
- !      ddsdde(4,5)= e_elas(6)*a2
- !      ddsdde(4,6)= e_elas(5)*a2
- !      
- !      ddsdde(5,1)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
- !      ddsdde(5,2)= 2*e_elas(5)*a4
- !      ddsdde(5,3)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
- !      ddsdde(5,4)= e_elas(6)*a2
- !      ddsdde(5,5)= a1 + a2*(e_elas(1) + e_elas(3)) + a4*(e_elas(1) + 
-	!1   e_elas(2) + e_elas(3))
- !      ddsdde(5,6)= e_elas(4)*a2
- !      
- !      ddsdde(6,1)= 2*e_elas(6)*a4
- !      ddsdde(6,2)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
- !      ddsdde(6,3)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
- !      ddsdde(6,4)= e_elas(5)*a2
- !      ddsdde(6,5)= e_elas(4)*a2
- !      ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3)) + a4*(e_elas(1) +  
-	!1   e_elas(2) + e_elas(3))
-             RETURN
-      END
-C
-C  =====================================================================
-C     
-      subroutine hyperconstitutive(a,ddsdde,ntens,e_elas)
-      
-!     ulazne promenljive   
-!         real a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
-!         integer ntens
-!         real  e_elas(ntens)
-!     ulazne promenljive  
-
-!     izlazne promenljive
-!         real ddsdde(ntens,ntens)
-!     izlazne promenljive
-
-      dimension ddsdde(ntens,ntens), a(17), e_elas(ntens)
-
-      a1=a(1)
-      a2=a(2)
-      a3=a(3)
-      a4=a(4)
-      a5=a(5)
-      a6=a(6)
-      a7=a(7)
-      a8=a(8)
-      a9=a(9)
-      do k1=1,ntens
-	  do k2=2,ntens
-	    ddsdde(k1,k2)=0
-        enddo
-      enddo
-
-       ddsdde(1,1)= 2*a1 + a2 + 2*e_elas(1)*a4 + 2*e_elas(1)*a5 + 
-     1 3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + a4*(e_elas(1) 
-     1 + e_elas(2) + e_elas(3))
+       ddsdde(1,1)= 2*a1 + 4*a5 + 4*e_elas(1)*a2 + 
+	1   4*e_elas(1)*a4 + 6*a3*(2*e_elas(1) + 
+	1 2*e_elas(2) + 2*e_elas(3)) + 2*a4*(e_elas(1) + 
+	1 e_elas(2) + e_elas(3))
  
-       ddsdde(1,2)= 2*a1 + e_elas(1)*a4 + e_elas(2)*a4 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+       ddsdde(1,2)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
       
-       ddsdde(1,3)= 2*a1 + e_elas(1)*a4 + e_elas(3)*a4 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+       ddsdde(1,3)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
      
-       ddsdde(1,4)= 2*e_elas(4)*a4 + 2*e_elas(4)*a5
-       ddsdde(1,5)= 2*e_elas(5)*a4 + 2*e_elas(5)*a5
-       ddsdde(1,6)= 2*e_elas(6)*a4
-
-       ddsdde(2,1)= 2*a1 + e_elas(1)*a4 + e_elas(2)*a4 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+       ddsdde(1,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
+	1   e_elas(4)*a4
+       ddsdde(1,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
+	1   e_elas(5)*a4
+       ddsdde(1,6)= E23*a4 + e_elas(6)*a4
+ 
+       ddsdde(2,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
      
-       ddsdde(2,2)= 2*a1 + a2 + 2*e_elas(2)*a4 + 2*e_elas(2)*a5 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + a4*(e_elas(1) 
-     1  + e_elas(2) + e_elas(3))
+       ddsdde(2,2)= 2*a1 + 4*a5 + 4*e_elas(2)*a2 + 4*e_elas(2)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
+	1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
      
-       ddsdde(2,3)= 2*a1 + e_elas(2)*a4 + e_elas(3)*a4 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+       ddsdde(2,3)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
      
-       ddsdde(2,4)= 2*e_elas(4)*a4 + 2*e_elas(4)*a5
-       ddsdde(2,5)= 2*e_elas(5)*a4
-       ddsdde(2,6)= 2*e_elas(6)*a4 + 2*e_elas(6)*a5
+       ddsdde(2,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
+	1   e_elas(4)*a4
+       ddsdde(2,5)= e_elas(5)*a4 + e_elas(5)*a4
+       ddsdde(2,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
              
-       ddsdde(3,1)= 2*a1 + e_elas(1)*a4 + e_elas(3)*a4 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+       ddsdde(3,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
      
-       ddsdde(3,2)= 2*a1 + e_elas(2)*a4 + e_elas(3)*a4 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
+       ddsdde(3,2)= 4*a5 + 2*e_elas(2)*a4 + 2*e_elas(3)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
      
-       ddsdde(3,3)= 2*a1 + a2 + 2*e_elas(3)*a4 + 2*e_elas(3)*a5 + 
-     1  3*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + a4*(e_elas(1) 
-     1 + e_elas(2) + e_elas(3))
+       ddsdde(3,3)= 2*a1 + 4*a5 + 4*e_elas(3)*a2 + 4*e_elas(3)*a4 + 
+	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3)) + 
+	1   2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
      
-       ddsdde(3,4)= 2*e_elas(4)*a4
-       ddsdde(3,5)= 2*e_elas(5)*a4 + 2*e_elas(5)*a5
-       ddsdde(3,6)= 2*e_elas(6)*a4 + 2*e_elas(6)*a5
+       ddsdde(3,4)= e_elas(4)*a4 + e_elas(4)*a4
+       ddsdde(3,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
+	1   e_elas(5)*a4
+       ddsdde(3,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
        
-       ddsdde(4,1)= 2*e_elas(4)*a4 + 2*e_elas(4)*a5
-       ddsdde(4,2)= 2*e_elas(4)*a4 + 2*e_elas(4)*a5
+       ddsdde(4,1)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
+       ddsdde(4,2)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
        ddsdde(4,3)= 2*e_elas(4)*a4
-       ddsdde(4,4)= 2*a2 + a5*(2*e_elas(1) + 2*e_elas(2)) + 
-     1  2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
-       ddsdde(4,5)= 2*e_elas(6)*a5
-       ddsdde(4,6)= 2*e_elas(5)*a5
+       ddsdde(4,4)= a1 + a2*(e_elas(1) + e_elas(2)) + a4*(e_elas(1) + 
+	1   e_elas(2) + e_elas(3))
+       ddsdde(4,5)= e_elas(6)*a2
+       ddsdde(4,6)= e_elas(5)*a2
        
-       ddsdde(5,1)= 2*e_elas(5)*a4 + 2*e_elas(5)*a5
+       ddsdde(5,1)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
        ddsdde(5,2)= 2*e_elas(5)*a4
-       ddsdde(5,3)= 2*e_elas(5)*a4 + 2*e_elas(5)*a5
-       ddsdde(5,4)= 2*e_elas(6)*a5
-       ddsdde(5,5)= 2*a2 + a5*(2*e_elas(1) + 2*e_elas(3)) + 
-     1  2*a4*(e_elas(1) + e_elas(2) + e_elas(3))
-       ddsdde(5,6)= 2*e_elas(4)*a5
+       ddsdde(5,3)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
+       ddsdde(5,4)= e_elas(6)*a2
+       ddsdde(5,5)= a1 + a2*(e_elas(1) + e_elas(3)) + a4*(e_elas(1) + 
+	1   e_elas(2) + e_elas(3))
+       ddsdde(5,6)= e_elas(4)*a2
        
        ddsdde(6,1)= 2*e_elas(6)*a4
-       ddsdde(6,2)= 2*e_elas(6)*a4 + 2*e_elas(6)*a5
-       ddsdde(6,3)= 2*e_elas(6)*a4 + 2*e_elas(6)*a5
-       ddsdde(6,4)= 2*e_elas(5)*a5
-       ddsdde(6,5)= 2*e_elas(4)*a5
-       ddsdde(6,6)= 2*a2 + a5*(2*e_elas(2) + 2*e_elas(3)) + 
-     1  2*a4*(e_elas(1) + e_elas(2) + e_elas(3))    
+       ddsdde(6,2)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
+       ddsdde(6,3)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
+       ddsdde(6,4)= e_elas(5)*a2
+       ddsdde(6,5)= e_elas(4)*a2
+       ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3)) + a4*(e_elas(1) +  
+	1   e_elas(2) + e_elas(3))
              RETURN
       END
 C
 C  =====================================================================
+
 C
       SUBROUTINE stressMM(a,ntens,e_elas,stress)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
