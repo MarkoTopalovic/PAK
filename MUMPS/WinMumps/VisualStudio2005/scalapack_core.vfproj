@@ -34,8 +34,8 @@
 				<Tool Name="VFPreBuildEventTool" CommandLine="time /t"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="time /t"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="../$(ConfigurationName)/$(PlatformName)" IntermediateDirectory="../tmp/$(ProjectName)/$(ConfigurationName)/$(PlatformName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" Preprocess="preprocessYes" AdditionalIncludeDirectories="..\..\..\MPICH2x64\include" SuppressUsageMessages="true" ExternalNameInterpretation="extNameUpperCase" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLibrarianTool" AdditionalLibraryDirectories="..\..\..\MPICH2x64\lib"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" Preprocess="preprocessYes" SuppressUsageMessages="true" ExternalNameInterpretation="extNameUpperCase" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLibrarianTool"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
