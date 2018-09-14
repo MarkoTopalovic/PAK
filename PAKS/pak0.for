@@ -5,6 +5,7 @@ C=======================================================================
       use mcm_database
       USE CVOROVI
       USE WSTAZK
+      USE PLAST3D
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       logical newproblem
       INTEGER IVTKCOUNTER
@@ -38,6 +39,7 @@ C
       ALLOCIRANAPOMERANJA = .FALSE.
       ALLOCIRANECVORNESILE = .FALSE.
       ALLOCIRANAMATRICA = .FALSE.
+      ALLOCIRANMM = .FALSE.
       CALL MPI_INIT(ierr)
       CALL MPI_COMM_RANK(MPI_COMM_WORLD,myid,ierr)
       IF (myid.ne.0) goto 10

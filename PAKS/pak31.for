@@ -615,6 +615,7 @@ CE    POINTERS FOR INTEGRATION POINT DATA FOR TIME (T) AND (T+DT)
       ALLOCATE (PLAST(NPROS/IDVA), STAT = iAllocateStatus)
       IF (iAllocateStatus /= 0) write(3,*)'PLAST* Not enough memory ***'
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
+      
       ALLOCATE (PLAS1(NPROS/IDVA), STAT = iAllocateStatus)
       IF (iAllocateStatus /= 0) write(3,*)'PLAS1* Not enough memory ***'
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'

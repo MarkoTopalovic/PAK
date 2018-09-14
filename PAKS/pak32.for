@@ -187,6 +187,16 @@ CE    TOTAL SPACE USED FOR ALL INTEGRATION POINTS
       IF (iAllocateStatus /= 0) write(3,*)'PLAST* Not enough memory ***'
      1                                    ,ITER     
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
+      
+      
+      IF (ALLOCIRANMM.EQ.(.FALSE.)) THEN
+     
+      ALLOCATE (PLASTMM(NPROS/IDVA), STAT = iAllocateStatus)
+      IF (iAllocateStatus /= 0) write(3,*)'PLAST* No memory ***',ITER   
+      IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
+      ALLOCIRANMM = .TRUE.
+      ENDIF
+      
       ALLOCATE (PLAS1(NPROS/IDVA), STAT = iAllocateStatus)
       IF (iAllocateStatus /= 0) write(3,*)'PLAS1* Not enough memory ***'
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'

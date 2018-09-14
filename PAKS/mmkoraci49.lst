@@ -986,24 +986,24 @@
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -5.2326D+03
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  8.9856D-03
-           ENERGY (  2)  /  ENERGY ( 0 )  = -1.7172D-06
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55853E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55816E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81893E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81878E+05
 
 
 
@@ -1027,31 +1027,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -5.2542D+03
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -1.0488D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  3.5755D-01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -3.4091D-05
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55536E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55245E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81494E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81379E+05
 
 
 
@@ -1075,31 +1075,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -1.0627D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -1.5850D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  1.3044D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -8.2298D-05
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55319E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.54429E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.81102E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.80752E+05
 
 
 
@@ -1123,31 +1123,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -1.6121D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -2.1331D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  2.8260D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -1.3248D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55217E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.53367E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.80726E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.79998E+05
 
 
 
@@ -1171,31 +1171,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -2.1740D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -2.6936D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  4.8799D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -1.8117D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55230E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.52059E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.80364E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.79118E+05
 
 
 
@@ -1219,31 +1219,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -2.7485D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -3.2667D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  7.4273D+00
-           ENERGY (  2)  /  ENERGY ( 0 )  = -2.2737D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55357E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.50506E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.80018E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.78111E+05
 
 
 
@@ -1267,31 +1267,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -3.3360D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -3.8527D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  1.0431D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -2.7075D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55595E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.48705E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.79687E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.76978E+05
 
 
 
@@ -1315,31 +1315,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -3.9367D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -4.4520D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  1.3856D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -3.1124D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.55941E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.46654E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.79370E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.75717E+05
 
 
 
@@ -1363,31 +1363,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -4.5509D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -5.0646D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  1.7668D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -3.4886D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.56395E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.44352E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.79067E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.74328E+05
 
 
 
@@ -1411,31 +1411,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -5.1788D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -5.6910D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  2.1834D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -3.8367D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.56951E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.41795E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.78778E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.72810E+05
 
 
 
@@ -1459,31 +1459,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -5.8206D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -6.3312D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  2.6323D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -4.1577D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.57610E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.38978E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.78501E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.71159E+05
 
 
 
@@ -1507,31 +1507,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -6.4766D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -6.9856D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  3.1105D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -4.4528D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.58367E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.35897E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.78236E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.69374E+05
 
 
 
@@ -1555,31 +1555,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -7.1469D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -7.6542D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  3.6153D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -4.7232D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.59219E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.32546E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.77559E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.66648E+05
 
 
 
@@ -1603,31 +1603,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -7.8317D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -8.3375D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  4.1439D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -4.9702D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.60166E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.28919E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.76536E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.63749E+05
 
 
 
@@ -1651,31 +1651,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -8.5313D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -9.0354D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  4.6940D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -5.1952D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.61202E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.25008E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.75538E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.60718E+05
 
 
 
@@ -1699,31 +1699,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -9.2458D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -9.7482D+04
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  5.2634D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -5.3993D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.62327E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.20804E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.74563E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.57552E+05
 
 
 
@@ -1747,31 +1747,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -9.9754D+04
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -1.0476D+05
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  5.8498D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -5.5839D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.63537E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.16297E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.73613E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.54248E+05
 
 
 
@@ -1795,31 +1795,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -1.0720D+05
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -1.1219D+05
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  6.4513D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -5.7502D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.64830E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.11475E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.72685E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.50799E+05
 
 
 
@@ -1843,31 +1843,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -1.1480D+05
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -1.1978D+05
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  7.0662D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -5.8994D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.66202E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.06326E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.71779E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.47200E+05
 
 
 
@@ -1891,31 +1891,31 @@
  kkk           1
  kkk           2
 
-           ITERATION =   0        ENERGY  = -1.2256D+05
+           ITERATION =   0        ENERGY  =  0.0000D+00
            ENERGY (  0)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                1
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                1
 
-           ITERATION =   1        ENERGY  = -1.2752D+05
+           ITERATION =   1        ENERGY  =  0.0000D+00
            ENERGY (  1)  /  ENERGY ( 0 )  =  1.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
  kkk           1
  kkk           2
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
-           ITERATION =   2        ENERGY  =  7.6928D+01
-           ENERGY (  2)  /  ENERGY ( 0 )  = -6.0327D-04
+           ITERATION =   2        ENERGY  =  0.0000D+00
+           ENERGY (  2)  /  ENERGY ( 0 )  =  0.0000D+00
  NGE,GRZAP,ITER           1   1000000.00000000                2
 
 
 
            LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.67652E+05
+           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 3.00834E+05
 
            LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.70894E+05
+           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 1.43444E+05
 
 
 
@@ -1946,7 +1946,7 @@
 
 
 
-     TIME AT THE START OF READING OF INPUT DATA .....  13:50:31. 69    5/ 9/2018
+     TIME AT THE START OF READING OF INPUT DATA .....   8:40:40. 18   14/ 9/2018
 
 
 
@@ -1958,7 +1958,7 @@
 
 
 
-     TIME AT THE START OF FORMING THE MATRICES ......  13:50:33.437    5/ 9/2018
+     TIME AT THE START OF FORMING THE MATRICES ......   8:40:43.264   14/ 9/2018
 
 
 
@@ -1973,16 +1973,16 @@
 
 
 
-     TIME AT THE START OF READING OF INPUT DATA ..... 13:50:31. 69    5/ 9/2018
+     TIME AT THE START OF READING OF INPUT DATA .....  8:40:40. 18   14/ 9/2018
 
 
-     TIME AT THE START OF FORMING THE MATRICES ...... 13:50:33.437    5/ 9/2018
+     TIME AT THE START OF FORMING THE MATRICES ......  8:40:43.264   14/ 9/2018
 
 
-     TIME AT THE START OF EIGEN VALUE SOLUTION ...... 13:50:34.272    5/ 9/2018
+     TIME AT THE START OF EIGEN VALUE SOLUTION ......  8:40:44.382   14/ 9/2018
 
 
-     END OF JOB ..................................... 13:50:34.272    5/ 9/2018
+     END OF JOB .....................................  8:40:44.382   14/ 9/2018
 
 
 

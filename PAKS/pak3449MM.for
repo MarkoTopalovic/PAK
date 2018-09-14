@@ -38,8 +38,8 @@ C
       LEMP1=LDEFP1 + 6
       LXTDT=LEMP1 + 1
 C
-      CALL TI3449(PLAST(LTAU),PLAST(LDEFT),PLAST(LDEFPP),
-     1            PLAST(LEMP),PLAST(LXT),
+      CALL TI3449(PLAST(LTAU),PLAST(LDEFT),PLASTMM(LDEFPP),
+     1            PLAST(LEMP),PLASTMM(LXT),
      1            PLAS1(LTAU1),PLAS1(LDEFT1),PLAS1(LDEFP1),
      1            PLAS1(LEMP1),PLAS1(LXTDT), 
      1            A(LFUN),A(LNTA),MATE,TAU,DEF,IRAC,IBTC)
@@ -54,6 +54,7 @@ C
      1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+        integer kewton,newton
 C
 CS    PODPROGRAM ZA INTEGRACIJU KONSTITUTIVNIH RELACIJA ZA 
 CS    DRUCKER-PRAGER MODEL
@@ -92,6 +93,12 @@ C
       IF(IDEBUG.EQ.1) PRINT *, 'TI3449'
 C
       IF(IRAC.EQ.2) RETURN
+      
+      kewton = 1
+      newton = 200
+      
+      
+      
 CE    BASIC KONSTANTS
       TOL =   1.D-8
       TOLL=  -1.D-5
@@ -101,7 +108,7 @@ CE    BASIC KONSTANTS
       tol1 = 1.d-7 !MM
 	tol2 = 1.d-7 !MM
       tol2 = 1.0d-6!MM
-	tolk = 1.d-5 !MM
+	tolk = 1.d-4 !MM
       do k2=1, ndi
          kroneker(k2)     = one
          kroneker(k2+ndi) = zero
@@ -216,8 +223,12 @@ C
 !     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
 !     DSTRAN(NTENS): Niz inkremenata deformacija
 !     u paku STRAN je DEF
-
+      dtime=DT
       a_kapa0 = a_kapa ! reciklirana promenljiva XT iz DP modela
+            DO  I=1,6
+      eplas(I)   = DEFPP(I)
+      eplas0(I)   = DEFPP(I)
+      END DO 
       if (a_kapa0.lt.tolk) a_kapa0=tolk
       a_kapa=a_kapa0
 CE    TRIAL ELASTIC STRAINS 
@@ -229,62 +240,56 @@ CE    TRIAL ELASTIC MEAN STRAIN em''=em-emp
       EMS=EMT-EMP
 C     
       call noviddsdde(ELAST,E,ANI,a,ntens,ndi,DEFE)
-      call stressMM(a,ntens,ndi,DEFE,TAU)    
+      call stressMM(a,ntens,ndi,DEFE,TAU1)    
       
-      call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
+      call loadingf(f1,TAU1,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
         
       f = abs(f1) - h*a_kapa0 
       a_kapa = a_kapa0
-      DO  I=1,6
-      TAU1(I)=TAU(I)
-      END DO 
-      goto 30
+      
+      !goto 30
 	if (f.gt.zero) then 
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      2) corector phase      ************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       write(*,*) 'plasticno', f , f1 
-      DO  I=1,6
-      eplasStari(I)   = DEFPP(I)
-      END DO 
+
       
+      a_kxl = x+a_kapa0**a_l
       
       do kewton = 1,newton
       ! compute residuals
-          call loadingf(f1,TAU1,a,ntens,ndi,s_dev,a_j2,a_mu)
+          call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
           f = abs(f1) - h*a_kapa
-	
-        do k1 = 1,ntens		
-           Replas(k1) = DEFPP(k1) - eplasStari(k1) 
-     1     - ((f/beta)**1)/(x+a_kapa**a_l)*a_mu(k1)*DT
-        enddo
-	deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
-     1    two*Replas(4)**2+two*Replas(5)**2+two*Replas(6)**2)**0.5
-	 
-	
-	skonvergencija = abs(a_kapa - a_kapa0-((f/beta)**1)/(x+a_kapa**a_l))*DT
-      ! check convergence
-	if ((skonvergencija.lt.tol1).and.(deplas_int.lt.tol2)) then	
-          write(*,*) 'radi' !zadovoljena konvergencija izlazi iz petlje
-          goto 30
-      else ! racuna inkremente
-          dkapa  =  ((f/beta)**1)/(x+a_kapa**a_l)*DT
           
-          do k1 = 1,ntens		
+          dkapa0  =  (((f/beta)**1)/a_kxl)*dtime
+          a_kapa = a_kapa0 + dkapa0
+          a_kxl = x+a_kapa**a_l
+          dkapa  =  (((f/beta)**1)/a_kxl)*dtime
+            
+          do k1 = 1,ntens
+            
+          eplasStari(k1)   = eplas(k1)
           d_eplas(k1)   =  (dkapa)*a_mu(k1)
+          eplas(k1)   = eplas0(k1) + d_eplas(k1)
+          Replas(k1) = eplas(k1) - eplasStari(k1)
           enddo
-          ! azurira tenzor plasticne deformacije, napona i parametar ojacanja
-          do k1 = 1,ntens		
-          DEFPP(k1)   = DEFPP(k1) + d_eplas(k1)
-          DEFE(k1)=DEF(k1)-DEFPP(k1)
-          enddo
-          
-          call stressMM(a,ntens,ndi,DEFE,TAU1)
-          a_kapa = a_kapa+dkapa
-      endif
-      
-      enddo  !do kewton = 1,newton  
+              deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
+     1    two*Replas(4)**2+two*Replas(5)**2+two*Replas(6)**2)**0.5
+     
+          f  = abs(f1) - h*a_kapa
+          a_kxl = x+a_kapa**a_l
+       !write(6,*) 'a_kxl3',kewton,'=',a_kxl
+          skonvergencija = abs(a_kapa - a_kapa0)
+          a_kapa0 = a_kapa
+       if ((skonvergencija.lt.tolk).and.(deplas_int.lt.tol2)) then
+            
+            goto 30
+       
+       endif
+            
+        enddo  !do kewton = 1,newton  
 !c------------------  end of plastic corrector ----------------------  
       else
       write(*,*) 'elasticno'
@@ -296,8 +301,8 @@ C
 CE    UPDATES FOR NEXT STEP
  30   continue
       DO  I=1,6
-      DEF1(I)=DEF(I) 
-!      TAU(I)=TAU1(I)
+      DEF1(I)=DEF(I)
+      DEFPP(I)=eplas(I)
       END DO
       
       
@@ -323,7 +328,8 @@ C
 
       dimension kroneker(ntens),st(ntens)
       
-      parameter (one=1.0d0,two=2.0d0,three=3.0d0,six=6.0d0) 
+      parameter (one=1.0d0,two=2.0d0,three=3.0d0,six=6.0d0)
+      f1 = 0
       alfa =  a(12)
       gama = a(16)
       s_i1=0
