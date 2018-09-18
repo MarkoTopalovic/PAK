@@ -49,7 +49,7 @@ C
 C
 C  =====================================================================
 C
-      SUBROUTINE TI3449(TAUT,DEFT,DEFPP,EMP,a_kapa,
+      SUBROUTINE TI3449(TAUT,DEFT,DEFPP,EMP,a_kapaP,
      1                  TAU1,DEF1,DEFP1,EMP1,XTDT,
      1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
 C
@@ -80,7 +80,7 @@ C
       DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
      +          DEFP1(6),DEFE(6)
       DIMENSION FUN(11,*),NTA(*),DSIG(6),DEPS(6),DFDS(6),DGDS(6),ALAM(6)
-     +         ,CP(6,6),POM(6), CEP(6,6),DDEFE(6),TAUDE(6)
+     +         ,CP(6,6),POM(6), CEP(6,6),DDEFE(6),TAUDE(6),DSTRAN(6)
      +         ,DFdDS(6),DFcDS(6),DGdDS(6),DGcDS(6),ALAMd(6),ALAMc(6)
      +         ,al1p(6),al2p(6),ddefpd(6),ddefpc(6),taue(6)
      1         ,stress(6),e_new(6),e_elas_n(6),e_elas_n1(6),kroneker(6)!MM
@@ -95,7 +95,7 @@ C
       IF(IRAC.EQ.2) RETURN
       
       kewton = 1
-      newton = 200
+      newton = 50000
       
       
       
@@ -224,25 +224,25 @@ C
 !     DSTRAN(NTENS): Niz inkremenata deformacija
 !     u paku STRAN je DEF
       dtime=DT
-      a_kapa0 = a_kapa ! reciklirana promenljiva XT iz DP modela
+      a_kapa0 = a_kapaP ! reciklirana promenljiva XT iz DP modela
             DO  I=1,6
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
       END DO 
       if (a_kapa0.lt.tolk) a_kapa0=tolk
-      a_kapa=a_kapa0
-CE    TRIAL ELASTIC STRAINS 
+      
+CE    TRIAL ELASTIC STRAINS
+      !DSTRAN(2) = 1.0E-003
       DO I=1,6 
             DEFE(I)=DEF(I)-DEFPP(I)
+            TAU1(I)=TAU(I)
       ENDDO
 C
-CE    TRIAL ELASTIC MEAN STRAIN em''=em-emp
-      EMS=EMT-EMP
 C     
       call noviddsdde(ELAST,E,ANI,a,ntens,ndi,DEFE)
-      call stressMM(a,ntens,ndi,DEFE,TAU1)    
+      call stressMM(a,ntens,ndi,DEFE,TAU)    
       
-      call loadingf(f1,TAU1,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
+      call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
         
       f = abs(f1) - h*a_kapa0 
       a_kapa = a_kapa0
@@ -260,7 +260,7 @@ C
       
       do kewton = 1,newton
       ! compute residuals
-          call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
+          !call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
           f = abs(f1) - h*a_kapa
           
           dkapa0  =  (((f/beta)**1)/a_kxl)*dtime
@@ -283,28 +283,40 @@ C
        !write(6,*) 'a_kxl3',kewton,'=',a_kxl
           skonvergencija = abs(a_kapa - a_kapa0)
           a_kapa0 = a_kapa
+          !call stressMM(a,ntens,ndi,DEFE,TAU1)
        if ((skonvergencija.lt.tolk).and.(deplas_int.lt.tol2)) then
             
-            goto 30
+            goto 33
        
        endif
             
-        enddo  !do kewton = 1,newton  
+          enddo  !do kewton = 1,newton  
 !c------------------  end of plastic corrector ----------------------  
+          
       else
       write(*,*) 'elasticno'
+      goto 52
       endif !if (f.gt.zero) then 
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      3) save phase      ****************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CE    UPDATES FOR NEXT STEP
- 30   continue
-      DO  I=1,6
-      DEF1(I)=DEF(I)
-      DEFPP(I)=eplas(I)
-      END DO
+ 33   continue
       
+       DO I=1,6 
+            DEFE(I)=DEF(I)-eplas(I)
+      ENDDO
+C
+C     
+      call stressMM(a,ntens,ndi,DEFE,TAU)
+ 52   continue      
+      DO  I=1,6
+      DEFPP(I)=eplas(I)
+      DEF1(I)=DEF(I)
+      TAU1(I)=TAU(I)
+      END DO
+      a_kapaP = a_kapa
       
       RETURN
       END
