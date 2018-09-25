@@ -9786,7 +9786,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.0098E-15,
+         7,  3.0105E-15,
 -1,  0.0000E+00,
       6,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -9795,7 +9795,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.1145E-16,
+         7, -8.1210E-16,
 -1,  0.0000E+00,
       6,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -9804,7 +9804,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.8273E-15,
+         7, -1.8279E-15,
 -1,  0.0000E+00,
       6,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -9813,7 +9813,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.0187E-15,
+         7,  3.0194E-15,
 -1,  0.0000E+00,
       6,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -9822,7 +9822,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.7429E-15,
+         7,  3.7435E-15,
 -1,  0.0000E+00,
       6,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -9831,7 +9831,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.1177E-16,
+         7, -6.1243E-16,
 -1,  0.0000E+00,
       6,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -9840,7 +9840,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.6602E-15,
+         7, -3.6608E-15,
 -1,  0.0000E+00,
       6,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -9849,7 +9849,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.6396E-15,
+         7,  3.6402E-15,
 -1,  0.0000E+00,
       6,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -9867,7 +9867,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.6407E-16,
+         7,  3.6490E-16,
 -1,  0.0000E+00,
       6,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -9876,7 +9876,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.0396E-16,
+         7, -2.0313E-16,
 -1,  0.0000E+00,
       6,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -9885,7 +9885,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.1440E-16,
+         7,  2.1522E-16,
 -1,  0.0000E+00,
       6,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -9894,7 +9894,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.8900E-16,
+         7,  7.8983E-16,
 -1,  0.0000E+00,
       6,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -9903,7 +9903,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.0788E-15,
+         7,  1.0780E-15,
 -1,  0.0000E+00,
       6,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -9912,7 +9912,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.1906E-16,
+         7,  6.1824E-16,
 -1,  0.0000E+00,
       6,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -9921,7 +9921,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.6227E-16,
+         7, -4.6309E-16,
 -1,  0.0000E+00,
       6,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -9930,7 +9930,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.6121E-16,
+         7,  8.6038E-16,
 -1,  0.0000E+00,
       6,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -9948,7 +9948,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.4750E-15,
+         7,  3.4749E-15,
 -1,  0.0000E+00,
       6,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -9957,7 +9957,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.2277E-15,
+         7,  3.2276E-15,
 -1,  0.0000E+00,
       6,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -9966,7 +9966,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.3843E-15,
+         7, -2.3842E-15,
 -1,  0.0000E+00,
       6,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -9975,7 +9975,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.8722E-15,
+         7, -2.8721E-15,
 -1,  0.0000E+00,
       6,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -9984,7 +9984,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.1389E-16,
+         7,  8.1380E-16,
 -1,  0.0000E+00,
       6,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -9993,7 +9993,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.8204E-15,
+         7,  2.8203E-15,
 -1,  0.0000E+00,
       6,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -10002,7 +10002,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.5507E-15,
+         7, -1.5506E-15,
 -1,  0.0000E+00,
       6,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -10011,7 +10011,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.6776E-15,
+         7, -2.6775E-15,
 -1,  0.0000E+00,
       6,  60031,      1,
 SOLID EQUIV STRESS
@@ -11623,7 +11623,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.9061E-15,
+         7,  1.9055E-15,
 -1,  0.0000E+00,
       7,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -11632,7 +11632,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.7500E-16,
+         7, -5.8201E-16,
 -1,  0.0000E+00,
       7,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -11641,7 +11641,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.2846E-15,
+         7, -2.2916E-15,
 -1,  0.0000E+00,
       7,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -11650,7 +11650,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.6379E-15,
+         7,  1.6373E-15,
 -1,  0.0000E+00,
       7,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -11659,7 +11659,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.6371E-16,
+         7,  6.5911E-16,
 -1,  0.0000E+00,
       7,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -11668,7 +11668,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.4106E-15,
+         7, -2.3984E-15,
 -1,  0.0000E+00,
       7,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -11677,7 +11677,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.3975E-15,
+         7, -3.3852E-15,
 -1,  0.0000E+00,
       7,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -11686,7 +11686,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.6728E-16,
+         7,  2.6267E-16,
 -1,  0.0000E+00,
       7,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -11704,7 +11704,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.0538E-15,
+         7,  1.0647E-15,
 -1,  0.0000E+00,
       7,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -11713,7 +11713,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.6741E-16,
+         7,  1.5931E-16,
 -1,  0.0000E+00,
       7,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -11722,7 +11722,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.6815E-16,
+         7,  6.6005E-16,
 -1,  0.0000E+00,
       7,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -11731,7 +11731,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.9343E-15,
+         7,  1.9452E-15,
 -1,  0.0000E+00,
       7,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -11740,7 +11740,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.3417E-16,
+         7, -2.3451E-16,
 -1,  0.0000E+00,
       7,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -11749,7 +11749,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.2502E-16,
+         7,  3.2257E-16,
 -1,  0.0000E+00,
       7,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -11758,7 +11758,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.2179E-15,
+         7, -1.2204E-15,
 -1,  0.0000E+00,
       7,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -11767,7 +11767,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.4249E-15,
+         7, -1.4253E-15,
 -1,  0.0000E+00,
       7,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -11785,7 +11785,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.8119E-15,
+         7,  2.7959E-15,
 -1,  0.0000E+00,
       7,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -11794,7 +11794,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5126E-15,
+         7,  1.5040E-15,
 -1,  0.0000E+00,
       7,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -11803,7 +11803,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.5928E-17,
+         7,  6.0317E-17,
 -1,  0.0000E+00,
       7,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -11812,7 +11812,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.4871E-15,
+         7, -1.4998E-15,
 -1,  0.0000E+00,
       7,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -11821,7 +11821,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.1694E-15,
+         7,  1.1764E-15,
 -1,  0.0000E+00,
       7,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -11830,7 +11830,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.5963E-16,
+         7, -2.4518E-16,
 -1,  0.0000E+00,
       7,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -11839,7 +11839,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.1371E-16,
+         7, -6.9944E-16,
 -1,  0.0000E+00,
       7,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -11848,7 +11848,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.4149E-15,
+         7, -1.4277E-15,
 -1,  0.0000E+00,
       7,  60031,      1,
 SOLID EQUIV STRESS
@@ -13460,7 +13460,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.7759E-15,
+         7, -3.7803E-15,
 -1,  0.0000E+00,
       8,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -13469,7 +13469,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4425E-15,
+         7,  1.4450E-15,
 -1,  0.0000E+00,
       8,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -13478,7 +13478,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.6603E-15,
+         7,  1.6628E-15,
 -1,  0.0000E+00,
       8,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -13487,7 +13487,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.5366E-15,
+         7, -2.5410E-15,
 -1,  0.0000E+00,
       8,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -13505,7 +13505,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.3533E-15,
+         7,  2.3552E-15,
 -1,  0.0000E+00,
       8,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -13514,7 +13514,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4271E-15,
+         7,  1.4290E-15,
 -1,  0.0000E+00,
       8,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -13541,7 +13541,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.1524E-15,
+         7,  2.1566E-15,
 -1,  0.0000E+00,
       8,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -13550,7 +13550,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.2568E-15,
+         7,  2.2564E-15,
 -1,  0.0000E+00,
       8,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -13559,7 +13559,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5150E-15,
+         7,  1.5146E-15,
 -1,  0.0000E+00,
       8,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -13568,7 +13568,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.5200E-15,
+         7,  2.5243E-15,
 -1,  0.0000E+00,
       8,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -13577,7 +13577,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.8420E-15,
+         7, -4.8386E-15,
 -1,  0.0000E+00,
       8,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -13586,7 +13586,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.4903E-15,
+         7, -5.4976E-15,
 -1,  0.0000E+00,
       8,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -13595,7 +13595,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.0587E-15,
+         7, -6.0660E-15,
 -1,  0.0000E+00,
       8,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -13604,7 +13604,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.0638E-15,
+         7, -5.0603E-15,
 -1,  0.0000E+00,
       8,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -13622,7 +13622,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.3791E-15,
+         7, -2.3886E-15,
 -1,  0.0000E+00,
       8,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -13631,7 +13631,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.5542E-15,
+         7, -1.5562E-15,
 -1,  0.0000E+00,
       8,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -13640,7 +13640,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.5671E-15,
+         7,  2.5653E-15,
 -1,  0.0000E+00,
       8,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -13649,7 +13649,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.1781E-15,
+         7,  3.1761E-15,
 -1,  0.0000E+00,
       8,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -13658,7 +13658,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.1774E-15,
+         7, -4.1817E-15,
 -1,  0.0000E+00,
       8,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -13667,7 +13667,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.6554E-15,
+         7, -2.6523E-15,
 -1,  0.0000E+00,
       8,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -13676,7 +13676,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7504E-15,
+         7,  1.7588E-15,
 -1,  0.0000E+00,
       8,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -13685,7 +13685,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.3521E-15,
+         7,  2.3603E-15,
 -1,  0.0000E+00,
       8,  60031,      1,
 SOLID EQUIV STRESS
@@ -15297,7 +15297,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.3508E-15,
+         7,  2.2896E-15,
 -1,  0.0000E+00,
       9,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -15306,7 +15306,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.3780E-15,
+         7, -1.3533E-15,
 -1,  0.0000E+00,
       9,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -15315,7 +15315,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.8218E-15,
+         7, -3.7971E-15,
 -1,  0.0000E+00,
       9,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -15324,7 +15324,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4224E-15,
+         7,  1.3613E-15,
 -1,  0.0000E+00,
       9,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -15333,7 +15333,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.3212E-15,
+         7,  4.3172E-15,
 -1,  0.0000E+00,
       9,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -15342,7 +15342,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.6121E-15,
+         7, -2.5717E-15,
 -1,  0.0000E+00,
       9,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -15351,7 +15351,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.5367E-15,
+         7, -2.4962E-15,
 -1,  0.0000E+00,
       9,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -15360,7 +15360,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.0505E-15,
+         7,  5.0465E-15,
 -1,  0.0000E+00,
       9,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -15378,7 +15378,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.7988E-15,
+         7,  4.7826E-15,
 -1,  0.0000E+00,
       9,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -15387,7 +15387,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.5374E-15,
+         7,  3.5194E-15,
 -1,  0.0000E+00,
       9,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -15396,7 +15396,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.3881E-15,
+         7,  4.3701E-15,
 -1,  0.0000E+00,
       9,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -15405,7 +15405,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.6677E-15,
+         7,  5.6515E-15,
 -1,  0.0000E+00,
       9,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -15414,7 +15414,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.4732E-16,
+         7, -8.4655E-16,
 -1,  0.0000E+00,
       9,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -15423,7 +15423,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.8984E-15,
+         7, -1.8650E-15,
 -1,  0.0000E+00,
       9,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -15432,7 +15432,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.0169E-15,
+         7, -2.9835E-15,
 -1,  0.0000E+00,
       9,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -15441,7 +15441,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.5386E-15,
+         7, -1.5378E-15,
 -1,  0.0000E+00,
       9,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -15459,7 +15459,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.3515E-16,
+         7, -2.1042E-16,
 -1,  0.0000E+00,
       9,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -15468,7 +15468,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.5615E-15,
+         7, -1.5981E-15,
 -1,  0.0000E+00,
       9,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -15477,7 +15477,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.9108E-17,
+         7, -4.7490E-17,
 -1,  0.0000E+00,
       9,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -15486,7 +15486,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.2467E-15,
+         7,  1.2776E-15,
 -1,  0.0000E+00,
       9,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -15495,7 +15495,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.4299E-16,
+         7, -4.5435E-16,
 -1,  0.0000E+00,
       9,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -15504,7 +15504,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.8549E-15,
+         7, -1.9275E-15,
 -1,  0.0000E+00,
       9,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -15513,7 +15513,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.9635E-15,
+         7,  1.9805E-15,
 -1,  0.0000E+00,
       9,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -15522,7 +15522,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.0033E-16,
+         7,  7.3662E-16,
 -1,  0.0000E+00,
       9,  60031,      1,
 SOLID EQUIV STRESS
@@ -17125,7 +17125,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.7713E-15,
+         7,  2.6159E-15,
 -1,  0.0000E+00,
      10,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -17134,7 +17134,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.3711E-15,
+         7,  9.0791E-15,
 -1,  0.0000E+00,
      10,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -17143,7 +17143,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7203E-15,
+         7,  1.4730E-15,
 -1,  0.0000E+00,
      10,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -17152,7 +17152,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.9629E-15,
+         7, -8.1176E-16,
 -1,  0.0000E+00,
      10,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -17161,7 +17161,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.7352E-16,
+         7,  2.9413E-15,
 -1,  0.0000E+00,
      10,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -17170,7 +17170,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.8252E-15,
+         7,  6.4634E-15,
 -1,  0.0000E+00,
      10,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -17179,7 +17179,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.9881E-16,
+         7,  3.8354E-16,
 -1,  0.0000E+00,
      10,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -17188,7 +17188,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.4523E-15,
+         7, -5.1532E-16,
 -1,  0.0000E+00,
      10,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -17197,7 +17197,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.8108E-15,
+         7,  1.9139E-15,
 -1,  0.0000E+00,
      10,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -17206,7 +17206,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.0756E-15,
+         7,  2.1359E-15,
 -1,  0.0000E+00,
      10,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -17215,7 +17215,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.8254E-15,
+         7,  4.6549E-15,
 -1,  0.0000E+00,
      10,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -17224,7 +17224,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.6813E-15,
+         7,  4.9131E-15,
 -1,  0.0000E+00,
      10,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -17233,7 +17233,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.6325E-15,
+         7,  4.5986E-15,
 -1,  0.0000E+00,
      10,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -17242,7 +17242,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.0909E-15,
+         7,  2.6006E-15,
 -1,  0.0000E+00,
      10,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -17251,7 +17251,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.8440E-15,
+         7,  1.5008E-16,
 -1,  0.0000E+00,
      10,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -17260,7 +17260,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.9873E-15,
+         7, -6.4736E-16,
 -1,  0.0000E+00,
      10,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -17269,7 +17269,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.9167E-16,
+         7, -1.1404E-16,
 -1,  0.0000E+00,
      10,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -17278,7 +17278,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.1023E-15,
+         7,  9.3165E-16,
 -1,  0.0000E+00,
      10,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -17287,7 +17287,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  3.1003E-16,
+         7, -1.6544E-15,
 -1,  0.0000E+00,
      10,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -17296,7 +17296,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.2270E-15,
+         7, -3.0548E-15,
 -1,  0.0000E+00,
      10,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -17305,7 +17305,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.7886E-15,
+         7, -8.4361E-16,
 -1,  0.0000E+00,
      10,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -17314,7 +17314,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.1476E-15,
+         7, -7.5306E-16,
 -1,  0.0000E+00,
      10,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -17323,7 +17323,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.0846E-15,
+         7, -7.8014E-16,
 -1,  0.0000E+00,
      10,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -17332,7 +17332,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.9626E-15,
+         7, -3.7273E-15,
 -1,  0.0000E+00,
      10,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -17341,7 +17341,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -9.9508E-16,
+         7, -8.8234E-16,
 -1,  0.0000E+00,
      10,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -17350,7 +17350,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.9765E-15,
+         7, -2.4635E-15,
 -1,  0.0000E+00,
      10,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -17359,7 +17359,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.2449E-15,
+         7, -7.3049E-16,
 -1,  0.0000E+00,
      10,  60031,      1,
 SOLID EQUIV STRESS
@@ -18962,7 +18962,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.5018E-15,
+         7,  5.9331E-16,
 -1,  0.0000E+00,
      11,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -18971,7 +18971,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.9257E-15,
+         7,  5.6911E-15,
 -1,  0.0000E+00,
      11,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -18980,7 +18980,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.8137E-16,
+         7, -4.6758E-15,
 -1,  0.0000E+00,
      11,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -18989,7 +18989,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.1826E-15,
+         7, -8.5819E-15,
 -1,  0.0000E+00,
      11,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -18998,7 +18998,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.8844E-15,
+         7,  5.0467E-15,
 -1,  0.0000E+00,
      11,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -19007,7 +19007,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.0085E-15,
+         7,  8.6357E-15,
 -1,  0.0000E+00,
      11,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -19016,7 +19016,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.7724E-15,
+         7, -2.8969E-15,
 -1,  0.0000E+00,
      11,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -19025,7 +19025,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.7625E-16,
+         7, -7.1647E-15,
 -1,  0.0000E+00,
      11,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -19034,7 +19034,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.2431E-15,
+         7,  8.6922E-15,
 -1,  0.0000E+00,
      11,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -19043,7 +19043,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  8.3659E-16,
+         7,  9.1061E-16,
 -1,  0.0000E+00,
      11,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -19052,7 +19052,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.4205E-15,
+         7, -3.4188E-16,
 -1,  0.0000E+00,
      11,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -19061,7 +19061,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.0573E-15,
+         7,  1.4259E-15,
 -1,  0.0000E+00,
      11,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -19070,7 +19070,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5937E-15,
+         7,  2.1571E-15,
 -1,  0.0000E+00,
      11,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -19079,7 +19079,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.6732E-15,
+         7, -9.7920E-16,
 -1,  0.0000E+00,
      11,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -19088,7 +19088,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.2690E-15,
+         7, -3.5190E-16,
 -1,  0.0000E+00,
      11,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -19097,7 +19097,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0724E-15,
+         7,  1.6949E-15,
 -1,  0.0000E+00,
      11,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -19106,7 +19106,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.2194E-15,
+         7,  2.6571E-15,
 -1,  0.0000E+00,
      11,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -19115,7 +19115,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.9131E-16,
+         7,  1.0229E-15,
 -1,  0.0000E+00,
      11,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -19124,7 +19124,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.6646E-15,
+         7, -3.0604E-16,
 -1,  0.0000E+00,
      11,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -19133,7 +19133,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.8556E-15,
+         7, -5.4815E-16,
 -1,  0.0000E+00,
      11,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -19142,7 +19142,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.5767E-15,
+         7, -1.0551E-15,
 -1,  0.0000E+00,
      11,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -19151,7 +19151,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.3179E-15,
+         7, -4.5364E-16,
 -1,  0.0000E+00,
      11,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -19160,7 +19160,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5235E-16,
+         7, -9.5328E-16,
 -1,  0.0000E+00,
      11,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -19169,7 +19169,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.5096E-15,
+         7,  8.9999E-16,
 -1,  0.0000E+00,
      11,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -19178,7 +19178,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.3732E-15,
+         7, -2.9373E-16,
 -1,  0.0000E+00,
      11,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -19187,7 +19187,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.0515E-15,
+         7, -1.7517E-15,
 -1,  0.0000E+00,
      11,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -19196,7 +19196,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.7649E-16,
+         7,  1.7073E-15,
 -1,  0.0000E+00,
      11,  60031,      1,
 SOLID EQUIV STRESS
@@ -20799,7 +20799,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -6.0582E-16,
+         7,  6.9141E-16,
 -1,  0.0000E+00,
      12,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -20808,7 +20808,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.0295E-15,
+         7,  6.0772E-15,
 -1,  0.0000E+00,
      12,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -20817,7 +20817,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.6713E-15,
+         7, -2.7395E-15,
 -1,  0.0000E+00,
      12,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -20826,7 +20826,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.3803E-15,
+         7, -6.3134E-15,
 -1,  0.0000E+00,
      12,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -20835,7 +20835,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.2884E-15,
+         7,  7.2625E-15,
 -1,  0.0000E+00,
      12,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -20844,7 +20844,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.3070E-15,
+         7,  5.5328E-15,
 -1,  0.0000E+00,
      12,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -20853,7 +20853,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.1967E-15,
+         7, -1.6895E-15,
 -1,  0.0000E+00,
      12,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -20862,7 +20862,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.4697E-17,
+         7, -2.1116E-15,
 -1,  0.0000E+00,
      12,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -20871,7 +20871,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7321E-15,
+         7, -4.8719E-16,
 -1,  0.0000E+00,
      12,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -20880,7 +20880,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -5.3567E-16,
+         7,  8.7051E-16,
 -1,  0.0000E+00,
      12,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -20889,7 +20889,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.9830E-15,
+         7, -3.4676E-16,
 -1,  0.0000E+00,
      12,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -20898,7 +20898,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.8222E-15,
+         7,  4.1342E-16,
 -1,  0.0000E+00,
      12,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -20907,7 +20907,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.7713E-15,
+         7,  2.3686E-15,
 -1,  0.0000E+00,
      12,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -20916,7 +20916,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.5654E-15,
+         7,  2.5322E-16,
 -1,  0.0000E+00,
      12,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -20925,7 +20925,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.1174E-15,
+         7,  1.5627E-15,
 -1,  0.0000E+00,
      12,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -20934,7 +20934,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.6529E-15,
+         7,  4.7130E-16,
 -1,  0.0000E+00,
      12,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -20943,7 +20943,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.8279E-15,
+         7,  1.4123E-15,
 -1,  0.0000E+00,
      12,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -20952,7 +20952,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.8290E-15,
+         7,  8.2931E-16,
 -1,  0.0000E+00,
      12,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -20961,7 +20961,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.9352E-15,
+         7, -1.7830E-15,
 -1,  0.0000E+00,
      12,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -20970,7 +20970,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.9257E-15,
+         7,  2.0586E-15,
 -1,  0.0000E+00,
      12,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -20979,7 +20979,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.2760E-15,
+         7,  2.0068E-15,
 -1,  0.0000E+00,
      12,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -20988,7 +20988,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.1566E-15,
+         7, -3.4244E-15,
 -1,  0.0000E+00,
      12,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -20997,7 +20997,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5680E-15,
+         7, -4.3217E-15,
 -1,  0.0000E+00,
      12,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -21006,7 +21006,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -9.4455E-15,
+         7, -1.3384E-15,
 -1,  0.0000E+00,
      12,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -21015,7 +21015,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.0529E-15,
+         7, -1.2228E-15,
 -1,  0.0000E+00,
      12,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -21024,7 +21024,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.6479E-15,
+         7, -3.1130E-15,
 -1,  0.0000E+00,
      12,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -21033,7 +21033,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.5366E-16,
+         7, -4.9096E-15,
 -1,  0.0000E+00,
      12,  60031,      1,
 SOLID EQUIV STRESS
@@ -22636,7 +22636,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.7225E-15,
+         7,  2.6673E-15,
 -1,  0.0000E+00,
      13,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -22645,7 +22645,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.4744E-15,
+         7,  9.4232E-15,
 -1,  0.0000E+00,
      13,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -22654,7 +22654,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.6475E-15,
+         7, -3.4699E-15,
 -1,  0.0000E+00,
      13,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -22663,7 +22663,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.7517E-15,
+         7, -5.2598E-15,
 -1,  0.0000E+00,
      13,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -22672,7 +22672,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.8510E-15,
+         7,  1.0618E-14,
 -1,  0.0000E+00,
      13,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -22681,7 +22681,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.5281E-15,
+         7,  9.2020E-15,
 -1,  0.0000E+00,
      13,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -22690,7 +22690,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.0796E-15,
+         7, -2.6896E-15,
 -1,  0.0000E+00,
      13,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -22699,7 +22699,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.3921E-15,
+         7, -8.5461E-15,
 -1,  0.0000E+00,
      13,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -22708,7 +22708,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.7069E-15,
+         7,  1.2061E-14,
 -1,  0.0000E+00,
      13,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -22717,7 +22717,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -9.0432E-16,
+         7,  1.9389E-15,
 -1,  0.0000E+00,
      13,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -22726,7 +22726,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.2325E-15,
+         7,  1.0036E-15,
 -1,  0.0000E+00,
      13,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -22735,7 +22735,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.6078E-15,
+         7,  4.4543E-16,
 -1,  0.0000E+00,
      13,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -22744,7 +22744,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.6922E-15,
+         7,  3.2049E-16,
 -1,  0.0000E+00,
      13,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -22753,7 +22753,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.6480E-15,
+         7,  2.2816E-15,
 -1,  0.0000E+00,
      13,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -22762,7 +22762,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.9559E-15,
+         7,  3.4118E-15,
 -1,  0.0000E+00,
      13,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -22771,7 +22771,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.2166E-15,
+         7,  3.2433E-15,
 -1,  0.0000E+00,
      13,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -22780,7 +22780,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.8953E-15,
+         7,  2.4206E-15,
 -1,  0.0000E+00,
      13,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -22789,7 +22789,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.3474E-15,
+         7,  2.3845E-15,
 -1,  0.0000E+00,
      13,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -22798,7 +22798,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  3.4335E-16,
+         7,  2.7969E-15,
 -1,  0.0000E+00,
      13,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -22807,7 +22807,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.7107E-15,
+         7,  8.6288E-15,
 -1,  0.0000E+00,
      13,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -22816,7 +22816,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.7589E-15,
+         7,  7.5996E-15,
 -1,  0.0000E+00,
      13,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -22825,7 +22825,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.7541E-15,
+         7, -5.0019E-15,
 -1,  0.0000E+00,
      13,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -22834,7 +22834,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7724E-15,
+         7, -3.3653E-15,
 -1,  0.0000E+00,
      13,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -22843,7 +22843,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.9965E-15,
+         7,  1.3433E-14,
 -1,  0.0000E+00,
      13,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -22852,7 +22852,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  9.2030E-16,
+         7,  9.9052E-15,
 -1,  0.0000E+00,
      13,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -22861,7 +22861,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.4598E-15,
+         7, -4.7771E-15,
 -1,  0.0000E+00,
      13,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -22870,7 +22870,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.3063E-15,
+         7, -4.0469E-15,
 -1,  0.0000E+00,
      13,  60031,      1,
 SOLID EQUIV STRESS
@@ -24473,7 +24473,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -2.2681E-15,
+         7,  2.7817E-15,
 -1,  0.0000E+00,
      14,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -24482,7 +24482,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.3361E-15,
+         7,  7.9618E-15,
 -1,  0.0000E+00,
      14,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -24491,7 +24491,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.2820E-15,
+         7, -6.1110E-15,
 -1,  0.0000E+00,
      14,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -24500,7 +24500,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0512E-14,
+         7, -1.0391E-14,
 -1,  0.0000E+00,
      14,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -24509,7 +24509,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7211E-15,
+         7,  8.0857E-15,
 -1,  0.0000E+00,
      14,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -24518,7 +24518,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.2655E-15,
+         7,  1.2881E-14,
 -1,  0.0000E+00,
      14,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -24527,7 +24527,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.9859E-15,
+         7, -1.0850E-14,
 -1,  0.0000E+00,
      14,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -24536,7 +24536,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.9313E-15,
+         7, -2.9792E-15,
 -1,  0.0000E+00,
      14,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -24545,7 +24545,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.2434E-15,
+         7,  2.3656E-14,
 -1,  0.0000E+00,
      14,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -24554,7 +24554,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.7323E-15,
+         7,  1.1597E-16,
 -1,  0.0000E+00,
      14,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -24563,7 +24563,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.7290E-16,
+         7,  4.4057E-16,
 -1,  0.0000E+00,
      14,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -24572,7 +24572,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4484E-15,
+         7, -1.6148E-15,
 -1,  0.0000E+00,
      14,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -24581,7 +24581,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.7674E-15,
+         7,  6.5953E-16,
 -1,  0.0000E+00,
      14,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -24590,7 +24590,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.8130E-15,
+         7,  2.7351E-15,
 -1,  0.0000E+00,
      14,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -24599,7 +24599,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.3620E-15,
+         7, -1.2782E-15,
 -1,  0.0000E+00,
      14,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -24608,7 +24608,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.3406E-15,
+         7,  1.8096E-15,
 -1,  0.0000E+00,
      14,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -24617,7 +24617,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.9811E-15,
+         7,  3.9177E-16,
 -1,  0.0000E+00,
      14,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -24626,7 +24626,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.6766E-15,
+         7, -2.2158E-15,
 -1,  0.0000E+00,
      14,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -24635,7 +24635,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.1926E-15,
+         7, -1.2780E-15,
 -1,  0.0000E+00,
      14,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -24644,7 +24644,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.4819E-15,
+         7,  6.6253E-15,
 -1,  0.0000E+00,
      14,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -24653,7 +24653,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.2851E-15,
+         7,  6.4212E-15,
 -1,  0.0000E+00,
      14,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -24662,7 +24662,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.6671E-15,
+         7, -5.3771E-15,
 -1,  0.0000E+00,
      14,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -24671,7 +24671,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.2453E-16,
+         7, -1.1142E-14,
 -1,  0.0000E+00,
      14,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -24680,7 +24680,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.3723E-15,
+         7,  3.7974E-15,
 -1,  0.0000E+00,
      14,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -24689,7 +24689,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.7251E-17,
+         7,  1.3229E-15,
 -1,  0.0000E+00,
      14,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -24698,7 +24698,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.7078E-15,
+         7, -2.5996E-15,
 -1,  0.0000E+00,
      14,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -24707,7 +24707,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.1357E-15,
+         7, -9.2722E-15,
 -1,  0.0000E+00,
      14,  60031,      1,
 SOLID EQUIV STRESS
@@ -26310,7 +26310,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -3.8318E-15,
+         7, -1.0310E-15,
 -1,  0.0000E+00,
      15,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -26319,7 +26319,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.4778E-16,
+         7,  4.5955E-15,
 -1,  0.0000E+00,
      15,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -26328,7 +26328,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.6394E-15,
+         7, -3.4267E-15,
 -1,  0.0000E+00,
      15,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -26337,7 +26337,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.7685E-15,
+         7, -9.0342E-15,
 -1,  0.0000E+00,
      15,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -26346,7 +26346,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.4265E-15,
+         7,  6.2096E-15,
 -1,  0.0000E+00,
      15,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -26355,7 +26355,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.1304E-15,
+         7,  4.1280E-15,
 -1,  0.0000E+00,
      15,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -26364,7 +26364,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.1272E-16,
+         7, -3.0119E-15,
 -1,  0.0000E+00,
      15,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -26373,7 +26373,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0469E-14,
+         7, -4.1640E-15,
 -1,  0.0000E+00,
      15,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -26382,7 +26382,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.8094E-15,
+         7, -3.5446E-15,
 -1,  0.0000E+00,
      15,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -26391,7 +26391,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  5.9868E-16,
+         7,  1.4135E-15,
 -1,  0.0000E+00,
      15,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -26400,7 +26400,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.6690E-15,
+         7,  3.7455E-15,
 -1,  0.0000E+00,
      15,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -26409,7 +26409,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.6434E-15,
+         7,  3.0263E-15,
 -1,  0.0000E+00,
      15,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -26418,7 +26418,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4369E-15,
+         7,  1.3346E-16,
 -1,  0.0000E+00,
      15,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -26427,7 +26427,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.1608E-15,
+         7,  2.2171E-15,
 -1,  0.0000E+00,
      15,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -26436,7 +26436,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.1213E-15,
+         7,  9.4091E-16,
 -1,  0.0000E+00,
      15,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -26445,7 +26445,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.9872E-15,
+         7,  4.6651E-16,
 -1,  0.0000E+00,
      15,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -26454,7 +26454,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.6569E-17,
+         7,  4.9250E-16,
 -1,  0.0000E+00,
      15,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -26463,7 +26463,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0886E-15,
+         7,  2.8567E-16,
 -1,  0.0000E+00,
      15,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -26472,7 +26472,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.4106E-17,
+         7, -6.5787E-16,
 -1,  0.0000E+00,
      15,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -26481,7 +26481,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0421E-14,
+         7,  7.3407E-15,
 -1,  0.0000E+00,
      15,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -26490,7 +26490,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.4022E-15,
+         7,  3.2787E-15,
 -1,  0.0000E+00,
      15,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -26499,7 +26499,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.4400E-15,
+         7, -6.7638E-15,
 -1,  0.0000E+00,
      15,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -26508,7 +26508,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.1782E-15,
+         7, -6.5197E-15,
 -1,  0.0000E+00,
      15,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -26517,7 +26517,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5509E-15,
+         7,  2.8062E-15,
 -1,  0.0000E+00,
      15,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -26526,7 +26526,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.7938E-15,
+         7,  1.2693E-15,
 -1,  0.0000E+00,
      15,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -26535,7 +26535,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  9.6622E-16,
+         7, -3.9204E-15,
 -1,  0.0000E+00,
      15,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -26544,7 +26544,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.3686E-15,
+         7, -2.7539E-15,
 -1,  0.0000E+00,
      15,  60031,      1,
 SOLID EQUIV STRESS
@@ -28147,7 +28147,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.7429E-16,
+         7, -2.7953E-15,
 -1,  0.0000E+00,
      16,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -28156,7 +28156,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.9453E-16,
+         7,  1.4403E-14,
 -1,  0.0000E+00,
      16,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -28165,7 +28165,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.0200E-15,
+         7, -1.5302E-14,
 -1,  0.0000E+00,
      16,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -28174,7 +28174,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.0759E-15,
+         7, -1.5117E-14,
 -1,  0.0000E+00,
      16,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -28183,7 +28183,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  9.1502E-16,
+         7,  1.2950E-14,
 -1,  0.0000E+00,
      16,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -28192,7 +28192,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.2286E-16,
+         7,  1.2532E-14,
 -1,  0.0000E+00,
      16,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -28201,7 +28201,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.0998E-16,
+         7, -1.3606E-14,
 -1,  0.0000E+00,
      16,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -28210,7 +28210,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.5721E-18,
+         7, -2.3643E-14,
 -1,  0.0000E+00,
      16,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -28219,7 +28219,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.6280E-16,
+         7,  5.4209E-15,
 -1,  0.0000E+00,
      16,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -28228,7 +28228,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -3.0353E-16,
+         7,  2.6320E-15,
 -1,  0.0000E+00,
      16,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -28237,7 +28237,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.9470E-15,
+         7,  2.6674E-15,
 -1,  0.0000E+00,
      16,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -28246,7 +28246,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.6269E-15,
+         7, -1.3224E-15,
 -1,  0.0000E+00,
      16,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -28255,7 +28255,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.3312E-15,
+         7, -1.3253E-15,
 -1,  0.0000E+00,
      16,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -28264,7 +28264,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.0020E-15,
+         7,  4.0056E-15,
 -1,  0.0000E+00,
      16,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -28273,7 +28273,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.9108E-15,
+         7,  3.9355E-15,
 -1,  0.0000E+00,
      16,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -28282,7 +28282,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.1461E-15,
+         7,  3.8202E-15,
 -1,  0.0000E+00,
      16,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -28291,7 +28291,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.8408E-15,
+         7,  5.2501E-15,
 -1,  0.0000E+00,
      16,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -28300,7 +28300,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.4377E-15,
+         7,  4.0246E-15,
 -1,  0.0000E+00,
      16,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -28309,7 +28309,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.6254E-15,
+         7, -1.8236E-15,
 -1,  0.0000E+00,
      16,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -28318,7 +28318,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.6922E-14,
+         7,  1.1388E-15,
 -1,  0.0000E+00,
      16,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -28327,7 +28327,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.6480E-15,
+         7,  5.3340E-15,
 -1,  0.0000E+00,
      16,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -28336,7 +28336,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.0408E-14,
+         7, -4.9350E-15,
 -1,  0.0000E+00,
      16,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -28345,7 +28345,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.3576E-14,
+         7, -6.8988E-15,
 -1,  0.0000E+00,
      16,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -28354,7 +28354,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.9289E-15,
+         7,  5.7211E-15,
 -1,  0.0000E+00,
      16,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -28363,7 +28363,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.3467E-15,
+         7,  6.8590E-15,
 -1,  0.0000E+00,
      16,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -28372,7 +28372,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.2239E-14,
+         7, -9.4640E-15,
 -1,  0.0000E+00,
      16,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -28381,7 +28381,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.2626E-14,
+         7, -1.2344E-14,
 -1,  0.0000E+00,
      16,  60031,      1,
 SOLID EQUIV STRESS
@@ -29984,7 +29984,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -8.4633E-16,
+         7, -5.9272E-16,
 -1,  0.0000E+00,
      17,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -29993,7 +29993,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.9434E-15,
+         7,  9.0533E-15,
 -1,  0.0000E+00,
      17,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -30002,7 +30002,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.9437E-15,
+         7, -1.0940E-14,
 -1,  0.0000E+00,
      17,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -30011,7 +30011,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.9910E-15,
+         7, -1.3486E-14,
 -1,  0.0000E+00,
      17,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -30020,7 +30020,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.8894E-15,
+         7,  1.0289E-14,
 -1,  0.0000E+00,
      17,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -30029,7 +30029,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.7662E-15,
+         7,  5.3963E-15,
 -1,  0.0000E+00,
      17,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -30038,7 +30038,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.5631E-15,
+         7, -1.0568E-14,
 -1,  0.0000E+00,
      17,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -30047,7 +30047,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.0057E-16,
+         7, -2.8592E-15,
 -1,  0.0000E+00,
      17,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -30056,7 +30056,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.7383E-15,
+         7,  8.3732E-15,
 -1,  0.0000E+00,
      17,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -30065,7 +30065,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.1137E-16,
+         7, -1.9633E-16,
 -1,  0.0000E+00,
      17,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -30074,7 +30074,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.8711E-15,
+         7, -1.0280E-15,
 -1,  0.0000E+00,
      17,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -30083,7 +30083,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.4635E-15,
+         7, -1.4593E-15,
 -1,  0.0000E+00,
      17,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -30092,7 +30092,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.6683E-15,
+         7,  6.3736E-16,
 -1,  0.0000E+00,
      17,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -30101,7 +30101,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.7847E-15,
+         7, -2.3724E-16,
 -1,  0.0000E+00,
      17,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -30110,7 +30110,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.2428E-15,
+         7,  2.1254E-15,
 -1,  0.0000E+00,
      17,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -30119,7 +30119,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.3889E-15,
+         7,  3.3243E-16,
 -1,  0.0000E+00,
      17,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -30128,7 +30128,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.2859E-15,
+         7, -1.8644E-15,
 -1,  0.0000E+00,
      17,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -30137,7 +30137,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.9791E-15,
+         7, -7.6864E-17,
 -1,  0.0000E+00,
      17,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -30146,7 +30146,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  7.3013E-16,
+         7,  7.7491E-16,
 -1,  0.0000E+00,
      17,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -30155,7 +30155,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.2027E-15,
+         7,  1.2123E-14,
 -1,  0.0000E+00,
      17,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -30164,7 +30164,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.5860E-15,
+         7,  9.5523E-15,
 -1,  0.0000E+00,
      17,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -30173,7 +30173,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.2701E-15,
+         7, -6.4061E-15,
 -1,  0.0000E+00,
      17,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -30182,7 +30182,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.6937E-16,
+         7, -3.7966E-15,
 -1,  0.0000E+00,
      17,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -30191,7 +30191,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5432E-16,
+         7,  5.6018E-15,
 -1,  0.0000E+00,
      17,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -30200,7 +30200,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.4808E-15,
+         7,  7.4165E-15,
 -1,  0.0000E+00,
      17,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -30209,7 +30209,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.0605E-16,
+         7, -7.6578E-15,
 -1,  0.0000E+00,
      17,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -30218,7 +30218,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.1280E-15,
+         7, -1.0634E-14,
 -1,  0.0000E+00,
      17,  60031,      1,
 SOLID EQUIV STRESS
@@ -31821,7 +31821,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  8.6340E-17,
+         7,  3.3072E-16,
 -1,  0.0000E+00,
      18,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -31830,7 +31830,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.4793E-15,
+         7,  1.0441E-14,
 -1,  0.0000E+00,
      18,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -31839,7 +31839,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.5471E-16,
+         7, -7.4122E-15,
 -1,  0.0000E+00,
      18,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -31848,7 +31848,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.0367E-15,
+         7, -1.0092E-14,
 -1,  0.0000E+00,
      18,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -31857,7 +31857,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.4046E-15,
+         7,  1.1765E-14,
 -1,  0.0000E+00,
      18,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -31866,7 +31866,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.1164E-15,
+         7,  1.4675E-14,
 -1,  0.0000E+00,
      18,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -31875,7 +31875,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.9834E-16,
+         7, -7.8991E-15,
 -1,  0.0000E+00,
      18,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -31884,7 +31884,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.5421E-15,
+         7, -1.1541E-14,
 -1,  0.0000E+00,
      18,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -31893,7 +31893,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.1569E-16,
+         7,  2.7094E-15,
 -1,  0.0000E+00,
      18,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -31902,7 +31902,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -1.1085E-15,
+         7,  8.4037E-16,
 -1,  0.0000E+00,
      18,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -31911,7 +31911,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.8476E-15,
+         7,  4.3360E-15,
 -1,  0.0000E+00,
      18,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -31920,7 +31920,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.1408E-15,
+         7,  4.2439E-15,
 -1,  0.0000E+00,
      18,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -31929,7 +31929,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  9.3473E-15,
+         7,  5.2354E-15,
 -1,  0.0000E+00,
      18,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -31938,7 +31938,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.7924E-15,
+         7,  4.6785E-15,
 -1,  0.0000E+00,
      18,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -31947,7 +31947,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.1060E-14,
+         7, -3.3390E-15,
 -1,  0.0000E+00,
      18,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -31956,7 +31956,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0108E-14,
+         7, -1.8069E-15,
 -1,  0.0000E+00,
      18,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -31965,7 +31965,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -9.5272E-15,
+         7, -2.1409E-15,
 -1,  0.0000E+00,
      18,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -31974,7 +31974,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.1301E-14,
+         7, -4.4840E-15,
 -1,  0.0000E+00,
      18,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -31983,7 +31983,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  2.2251E-15,
+         7, -3.7960E-16,
 -1,  0.0000E+00,
      18,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -31992,7 +31992,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.8011E-15,
+         7,  1.5963E-14,
 -1,  0.0000E+00,
      18,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -32001,7 +32001,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.5410E-15,
+         7,  1.0520E-14,
 -1,  0.0000E+00,
      18,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -32010,7 +32010,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.4156E-15,
+         7, -9.0926E-15,
 -1,  0.0000E+00,
      18,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -32019,7 +32019,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.3335E-15,
+         7, -1.1643E-14,
 -1,  0.0000E+00,
      18,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -32028,7 +32028,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -9.1903E-16,
+         7,  2.4348E-16,
 -1,  0.0000E+00,
      18,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -32037,7 +32037,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.0457E-15,
+         7,  5.6007E-15,
 -1,  0.0000E+00,
      18,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -32046,7 +32046,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.9675E-15,
+         7, -6.9731E-15,
 -1,  0.0000E+00,
      18,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -32055,7 +32055,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.7886E-15,
+         7, -7.6550E-15,
 -1,  0.0000E+00,
      18,  60031,      1,
 SOLID EQUIV STRESS
@@ -33658,7 +33658,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  2.1152E-16,
+         7,  9.2619E-16,
 -1,  0.0000E+00,
      19,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -33667,7 +33667,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.3912E-16,
+         7,  8.8434E-15,
 -1,  0.0000E+00,
      19,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -33676,7 +33676,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -3.1523E-15,
+         7, -1.0058E-14,
 -1,  0.0000E+00,
      19,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -33685,7 +33685,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.8347E-15,
+         7, -1.1766E-14,
 -1,  0.0000E+00,
      19,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -33694,7 +33694,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -9.1439E-16,
+         7,  6.3263E-15,
 -1,  0.0000E+00,
      19,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -33703,7 +33703,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.0732E-16,
+         7,  1.2897E-14,
 -1,  0.0000E+00,
      19,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -33712,7 +33712,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.3797E-15,
+         7, -9.8806E-15,
 -1,  0.0000E+00,
      19,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -33721,7 +33721,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7507E-15,
+         7, -4.9192E-15,
 -1,  0.0000E+00,
      19,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -33730,7 +33730,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.9315E-15,
+         7,  1.5967E-14,
 -1,  0.0000E+00,
      19,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -33739,7 +33739,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  7.8834E-16,
+         7,  1.0301E-15,
 -1,  0.0000E+00,
      19,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -33748,7 +33748,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  9.4864E-15,
+         7, -1.7623E-17,
 -1,  0.0000E+00,
      19,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -33757,7 +33757,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.8802E-15,
+         7, -1.5173E-15,
 -1,  0.0000E+00,
      19,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -33766,7 +33766,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.8274E-15,
+         7,  7.1706E-16,
 -1,  0.0000E+00,
      19,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -33775,7 +33775,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.0472E-14,
+         7,  1.5633E-15,
 -1,  0.0000E+00,
      19,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -33784,7 +33784,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.3929E-15,
+         7,  3.7746E-15,
 -1,  0.0000E+00,
      19,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -33793,7 +33793,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.6369E-15,
+         7,  2.1261E-15,
 -1,  0.0000E+00,
      19,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -33802,7 +33802,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -7.7878E-15,
+         7, -1.2489E-15,
 -1,  0.0000E+00,
      19,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -33811,7 +33811,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.5415E-15,
+         7,  2.8433E-15,
 -1,  0.0000E+00,
      19,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -33820,7 +33820,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  1.0432E-15,
+         7, -1.5200E-15,
 -1,  0.0000E+00,
      19,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -33829,7 +33829,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.8168E-15,
+         7,  9.7779E-15,
 -1,  0.0000E+00,
      19,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -33838,7 +33838,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -6.3054E-15,
+         7,  5.5071E-15,
 -1,  0.0000E+00,
      19,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -33847,7 +33847,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.8523E-15,
+         7, -5.1244E-15,
 -1,  0.0000E+00,
      19,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -33856,7 +33856,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.7555E-15,
+         7, -6.3961E-15,
 -1,  0.0000E+00,
      19,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -33865,7 +33865,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5277E-15,
+         7,  2.2819E-16,
 -1,  0.0000E+00,
      19,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -33874,7 +33874,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.6916E-16,
+         7,  2.2149E-16,
 -1,  0.0000E+00,
      19,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -33883,7 +33883,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.1160E-15,
+         7, -8.0181E-15,
 -1,  0.0000E+00,
      19,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -33892,7 +33892,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  5.6469E-15,
+         7, -8.3563E-15,
 -1,  0.0000E+00,
      19,  60031,      1,
 SOLID EQUIV STRESS
@@ -35495,7 +35495,7 @@ SOLID XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  3.2070E-15,
+         7,  5.7474E-16,
 -1,  0.0000E+00,
      20,  70013,      1,
 SOLID NODE         1 XY SHEAR STRESS
@@ -35504,7 +35504,7 @@ SOLID NODE         1 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  8.7117E-15,
+         7,  1.3966E-15,
 -1,  0.0000E+00,
      20,  70213,      1,
 SOLID NODE         2 XY SHEAR STRESS
@@ -35513,7 +35513,7 @@ SOLID NODE         2 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -5.3750E-15,
+         7, -8.1039E-15,
 -1,  0.0000E+00,
      20,  70413,      1,
 SOLID NODE         3 XY SHEAR STRESS
@@ -35522,7 +35522,7 @@ SOLID NODE         3 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.8021E-15,
+         7, -4.8719E-15,
 -1,  0.0000E+00,
      20,  70613,      1,
 SOLID NODE         4 XY SHEAR STRESS
@@ -35531,7 +35531,7 @@ SOLID NODE         4 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.3456E-14,
+         7,  7.3328E-15,
 -1,  0.0000E+00,
      20,  70813,      1,
 SOLID NODE         5 XY SHEAR STRESS
@@ -35540,7 +35540,7 @@ SOLID NODE         5 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.5690E-14,
+         7,  5.2481E-15,
 -1,  0.0000E+00,
      20,  71013,      1,
 SOLID NODE         6 XY SHEAR STRESS
@@ -35549,7 +35549,7 @@ SOLID NODE         6 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.2814E-15,
+         7, -3.9360E-15,
 -1,  0.0000E+00,
      20,  71213,      1,
 SOLID NODE         7 XY SHEAR STRESS
@@ -35558,7 +35558,7 @@ SOLID NODE         7 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.2263E-14,
+         7, -5.4534E-15,
 -1,  0.0000E+00,
      20,  71413,      1,
 SOLID NODE         8 XY SHEAR STRESS
@@ -35567,7 +35567,7 @@ SOLID NODE         8 XY SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4519E-14,
+         7,  1.2986E-14,
 -1,  0.0000E+00,
      20,  60014,      1,
 SOLID YZ SHEAR STRESS
@@ -35576,7 +35576,7 @@ SOLID YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7,  7.1457E-16,
+         7, -7.5460E-16,
 -1,  0.0000E+00,
      20,  70014,      1,
 SOLID NODE         1 YZ SHEAR STRESS
@@ -35585,7 +35585,7 @@ SOLID NODE         1 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.4466E-16,
+         7, -1.2811E-15,
 -1,  0.0000E+00,
      20,  70214,      1,
 SOLID NODE         2 YZ SHEAR STRESS
@@ -35594,7 +35594,7 @@ SOLID NODE         2 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -4.3580E-17,
+         7,  1.5960E-15,
 -1,  0.0000E+00,
      20,  70414,      1,
 SOLID NODE         3 YZ SHEAR STRESS
@@ -35603,7 +35603,7 @@ SOLID NODE         3 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.4965E-15,
+         7, -2.3956E-16,
 -1,  0.0000E+00,
      20,  70614,      1,
 SOLID NODE         4 YZ SHEAR STRESS
@@ -35612,7 +35612,7 @@ SOLID NODE         4 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  6.6253E-16,
+         7,  7.4599E-16,
 -1,  0.0000E+00,
      20,  70814,      1,
 SOLID NODE         5 YZ SHEAR STRESS
@@ -35621,7 +35621,7 @@ SOLID NODE         5 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  3.4903E-15,
+         7,  9.9032E-16,
 -1,  0.0000E+00,
      20,  71014,      1,
 SOLID NODE         6 YZ SHEAR STRESS
@@ -35630,7 +35630,7 @@ SOLID NODE         6 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  1.7752E-15,
+         7, -2.3661E-15,
 -1,  0.0000E+00,
      20,  71214,      1,
 SOLID NODE         7 YZ SHEAR STRESS
@@ -35639,7 +35639,7 @@ SOLID NODE         7 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  4.5387E-16,
+         7, -3.5398E-15,
 -1,  0.0000E+00,
      20,  71414,      1,
 SOLID NODE         8 YZ SHEAR STRESS
@@ -35648,7 +35648,7 @@ SOLID NODE         8 YZ SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  7.3001E-16,
+         7, -1.9424E-15,
 -1,  0.0000E+00,
      20,  60015,      1,
 SOLID ZX SHEAR STRESS
@@ -35657,7 +35657,7 @@ SOLID ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      1,
-         7, -2.2197E-16,
+         7, -1.6010E-15,
 -1,  0.0000E+00,
      20,  70015,      1,
 SOLID NODE         1 ZX SHEAR STRESS
@@ -35666,7 +35666,7 @@ SOLID NODE         1 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.1808E-15,
+         7, -3.9895E-15,
 -1,  0.0000E+00,
      20,  70215,      1,
 SOLID NODE         2 ZX SHEAR STRESS
@@ -35675,7 +35675,7 @@ SOLID NODE         2 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.5561E-15,
+         7,  5.8165E-16,
 -1,  0.0000E+00,
      20,  70415,      1,
 SOLID NODE         3 ZX SHEAR STRESS
@@ -35684,7 +35684,7 @@ SOLID NODE         3 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -8.0026E-16,
+         7, -3.6291E-16,
 -1,  0.0000E+00,
      20,  70615,      1,
 SOLID NODE         4 ZX SHEAR STRESS
@@ -35693,7 +35693,7 @@ SOLID NODE         4 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -2.9511E-16,
+         7,  3.8611E-15,
 -1,  0.0000E+00,
      20,  70815,      1,
 SOLID NODE         5 ZX SHEAR STRESS
@@ -35702,7 +35702,7 @@ SOLID NODE         5 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7,  2.3287E-15,
+         7, -5.1816E-15,
 -1,  0.0000E+00,
      20,  71015,      1,
 SOLID NODE         6 ZX SHEAR STRESS
@@ -35711,7 +35711,7 @@ SOLID NODE         6 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.3681E-16,
+         7, -3.0504E-15,
 -1,  0.0000E+00,
      20,  71215,      1,
 SOLID NODE         7 ZX SHEAR STRESS
@@ -35720,7 +35720,7 @@ SOLID NODE         7 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.8742E-15,
+         7, -2.9896E-15,
 -1,  0.0000E+00,
      20,  71415,      1,
 SOLID NODE         8 ZX SHEAR STRESS
@@ -35729,7 +35729,7 @@ SOLID NODE         8 ZX SHEAR STRESS
       0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
       0,      0,      4,      8,
       0,      0,      0,
-         7, -1.3734E-15,
+         7, -1.6764E-15,
 -1,  0.0000E+00,
      20,  60031,      1,
 SOLID EQUIV STRESS

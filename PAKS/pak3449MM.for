@@ -53,13 +53,10 @@ C
      1                  TAU1,DEF1,DEFP1,EMP1,XTDT,
      1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
 C
-      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-        integer kewton,newton
-C
-CS    PODPROGRAM ZA INTEGRACIJU KONSTITUTIVNIH RELACIJA ZA 
-CS    DRUCKER-PRAGER MODEL
-CE    PROGRAM FOR STRESS INTEGRATION FOR DRUCKER-PRAGER MODEL
-C
+      !IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      IMPLICIT NONE
+      
+
       COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
       COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
       COMMON /TAUD3/ TAUD(6),DEFDPR(6),DEFDS(6),DDEFP(6),
@@ -69,21 +66,42 @@ C
       COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8 
       COMMON /ITERAC/ METOD,MAXIT,TOLE,TOLS,TOLM,KONVE,KONVS,KONVM
       COMMON /ITERBR/ ITER
-      COMMON /CONMAT/ AE,EP,DVT
-      COMMON /MATERb/ korz(100,100,3),evg(100,100,3)
       COMMON /CDEBUG/ IDEBUG
       
-C
-      DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
-     +          DEFP1(6),DEFE(6)
-      DIMENSION FUN(11,*),NTA(*)
-     1         ,stress(6),kroneker(6)!MM
-     1         ,eplas(6),eplas0(6)
-     1         ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6)
-C
+      INTEGER kewton,newton,NDI,NTENS,K1,K2,I,ITER,METOD,MAXIT,NMODM
+      INTEGER IDEBUG,IRAC,MAT,NETIP,NGE,ISKNP,IATYP,KONVE,KONVS,KONVM
       DOUBLE PRECISION s_dev(6)
       DOUBLE PRECISION a(17)
-      parameter (one=1.0d0,two=2.0d0,three=3.0d0,six=6.0d0,zero=0.0d0)!MM
+      DOUBLE PRECISION one,two,three,six,zero,kroneker
+      DOUBLE PRECISION TOL,TOLL,TOL1,TOL2,TOLK,TOLE,TOLS,TOLM
+      DOUBLE PRECISION a1,a2,a3,a4,a5,a6,a7,a8,a9,beta,gama,h
+      DOUBLE PRECISION x,a_l,alfamm,a_m,dtime,DT,a_kapa0,a_kapaP
+      DOUBLE PRECISION eplas,eplas0,DEFPP,DEF,DEFE,ELAST,TAU,TAU1,f,f1
+      DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
+      DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
+      DOUBLE PRECISION ALFMMM,AK,ANI,FUN,E,NE 
+      
+      DOUBLE PRECISION TAUT,DEFT,EMP,DEF1,EMP1,DEFP1,XTDT
+      INTEGER LDEFPP,MATE,IBTC,NTA,NCVE,NGAUSX,NGAUSY,NGAUSZ,ITERME
+      INTEGER IETYP,NDT,LDTDT,KOR,LVDT,LNKDT
+      DOUBLE PRECISION VREME,DEFDS,TAUD,DDEFP,DETAU,DDEF,XJ
+      DOUBLE PRECISION DET,TEMP0,ALFA,DEFDPR
+      INTEGER KK,NLM,LMAX8,LPLAST,LPLAS1,LSIGMA
+      
+      
+      DOUBLE PRECISION stress
+C
+      DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
+     +          DEFP1(6),DEFE(6),FUN(11,*),NTA(*)
+     1         ,stress(6),kroneker(6),eplas(6),eplas0(6)!MM
+     1         ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6)
+C
+      
+      one=1.0d0
+      two=2.0d0
+      three=3.0d0
+      six=6.0d0
+      zero=0.0d0!MM
       
       IF(IDEBUG.EQ.1) PRINT *, 'TI3449'
 C
@@ -97,7 +115,6 @@ C
 CE    BASIC KONSTANTS
       TOL =   1.D-8
       TOLL=  -1.D-5
-      MAXT=   500.D0
       ntens = 6 !MM
       ndi = 3 !MM
       tol1 = 1.d-7 !MM
@@ -281,36 +298,40 @@ C
 C  =====================================================================
 C
       subroutine loadingf(f1,stress,a,ntens,ndi,s_dev,a_j2,a_mu)
-      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+      IMPLICIT NONE
+      
 !     ulazne promenljive   
-         DOUBLE PRECISION a(17), alfa,gama       
-         integer ntens,ndi
-         DOUBLE PRECISION  stress(ntens)
-!     ulazne promenljive  
+      DOUBLE PRECISION a(17), alfa,gama       
+      integer k1,k2,ntens,ndi
+      DOUBLE PRECISION  stress(ntens),st(ntens)
+!     ulazne promenljive
 
+!     unutrasnje promenljive
+      DOUBLE PRECISION one,zero,two,three,kroneker,s_i1,s_i2,s_i3
+!     unutrasnje promenljive
+      
 !     izlazne promenljive
-         DOUBLE PRECISION  f1
-         DOUBLE PRECISION a_j2
-         DOUBLE PRECISION a_mu(ntens)
-         DOUBLE PRECISION s_dev(ntens)
+      DOUBLE PRECISION f1,a_j2,a_mu(ntens),s_dev(ntens) 
 !     izlazne promenljive     
 
-      dimension kroneker(ntens),st(ntens)
+      dimension kroneker(ntens)
       
-      parameter (one=1.0d0,two=2.0d0,three=3.0d0,six=6.0d0)
       f1 = 0
       alfa =  a(12)
       gama = a(16)
       s_i1=0
 	s_i2=0
 	s_i3=0
+      one=1.0d0
+      zero=0.0d0
+      two=2.0d0
+      three=3.0d0
       do k2=1, ndi
          kroneker(k2)     = one
          kroneker(k2+ndi) = zero
       end do
       do k2=1, 6
-	   st(k2) = stress(k2) ! unutrasnja inverzija znaka  za racunanje funkcije tecenja
-!         OVO JE JAKO BITNO DA LI JE TACNO RADI ZA SAMO PRVA 3 NA ZA 4,5,6????
+	   st(k2) = stress(k2)
       end do 
             
 !c     s_napon invarijante  i funkcija f 
@@ -348,24 +369,24 @@ C
 	    if (a_j2.gt.0) then  !5.21
               a_mu(k1) = gama*kroneker(k1)+(0.5*s_dev(k1)/(a_j2**0.5))
 		endif
-      enddo   
-            RETURN
+      enddo
+      
+      RETURN
       END
 C
 C  =====================================================================
 C   
       subroutine noviddsdde(ddsdde,a,ntens,ndi,e_elas)
-      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+      IMPLICIT NONE
+      
 !     ulazne promenljive   
-         DOUBLE PRECISION a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
-         integer ntens,ndi
-         DOUBLE PRECISION  e_elas(ntens)
+      DOUBLE PRECISION a(17),a1,a2,a3,a4,a5,a6,a7,a8,a9,e_elas(ntens)
+      integer k1,k2,ntens,ndi 
 !     ulazne promenljive  
 
 !     izlazne promenljive
-         DOUBLE PRECISION ddsdde(ntens,ntens)
+      DOUBLE PRECISION ddsdde(ntens,ntens)
 !     izlazne promenljive
-         PARAMETER (ONE=1.0D0,TWO=2.0D0,THREE=3.0D0,SIX=6.0D0)
 
       a1=a(1)
       a2=a(2)
@@ -397,7 +418,7 @@ C
 	1   e_elas(4)*a4
        ddsdde(1,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
 	1   e_elas(5)*a4
-       ddsdde(1,6)= E23*a4 + e_elas(6)*a4
+       ddsdde(1,6)= e_elas(6)*a4 + e_elas(6)*a4
  
        ddsdde(2,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(2)*a4 + 
 	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
@@ -412,7 +433,8 @@ C
        ddsdde(2,4)= e_elas(4)*a2 + e_elas(4)*a4 + e_elas(4)*a2 + 
 	1   e_elas(4)*a4
        ddsdde(2,5)= e_elas(5)*a4 + e_elas(5)*a4
-       ddsdde(2,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
+       ddsdde(2,6)= e_elas(6)*a2 + e_elas(6)*a4 
+     1  + e_elas(6)*a2 + e_elas(6)*a4
              
        ddsdde(3,1)= 4*a5 + 2*e_elas(1)*a4 + 2*e_elas(3)*a4 + 
 	1   6*a3*(2*e_elas(1) + 2*e_elas(2) + 2*e_elas(3))
@@ -427,13 +449,14 @@ C
        ddsdde(3,4)= e_elas(4)*a4 + e_elas(4)*a4
        ddsdde(3,5)= e_elas(5)*a2 + e_elas(5)*a4 + e_elas(5)*a2 + 
 	1   e_elas(5)*a4
-       ddsdde(3,6)= E23*a2 + E23*a4 + e_elas(6)*a2 + e_elas(6)*a4
+       ddsdde(3,6)= e_elas(6)*a2 + e_elas(6)*a4 
+     1  + e_elas(6)*a2 + e_elas(6)*a4
        
        ddsdde(4,1)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
        ddsdde(4,2)= 2*e_elas(4)*a2 + 2*e_elas(4)*a4
        ddsdde(4,3)= 2*e_elas(4)*a4
-       ddsdde(4,4)= a1 + a2*(e_elas(1) + e_elas(2)) + a4*(e_elas(1) + 
-	1   e_elas(2) + e_elas(3))
+       ddsdde(4,4)= a1 + a2*(e_elas(1) + e_elas(2)) 
+	1 + a4*(e_elas(1) + e_elas(2) + e_elas(3))
        ddsdde(4,5)= e_elas(6)*a2
        ddsdde(4,6)= e_elas(5)*a2
        
@@ -441,8 +464,8 @@ C
        ddsdde(5,2)= 2*e_elas(5)*a4
        ddsdde(5,3)= 2*e_elas(5)*a2 + 2*e_elas(5)*a4
        ddsdde(5,4)= e_elas(6)*a2
-       ddsdde(5,5)= a1 + a2*(e_elas(1) + e_elas(3)) + a4*(e_elas(1) + 
-	1   e_elas(2) + e_elas(3))
+       ddsdde(5,5)= a1 + a2*(e_elas(1) + e_elas(3))
+	1 + a4*(e_elas(1) + e_elas(2) + e_elas(3))
        ddsdde(5,6)= e_elas(4)*a2
        
        ddsdde(6,1)= 2*e_elas(6)*a4
@@ -450,24 +473,28 @@ C
        ddsdde(6,3)= 2*e_elas(6)*a2 + 2*e_elas(6)*a4
        ddsdde(6,4)= e_elas(5)*a2
        ddsdde(6,5)= e_elas(4)*a2
-       ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3)) + a4*(e_elas(1) +  
-	1   e_elas(2) + e_elas(3))
-             RETURN
+       ddsdde(6,6)= a1 + a2*(e_elas(2) + e_elas(3))
+	1 + a4*(e_elas(1) + e_elas(2) + e_elas(3))
+      
+      RETURN
       END
 C
 C  =====================================================================
-
 C
-      SUBROUTINE stressMM(a,ntens,ndi,e_elas,stress)     
-      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      SUBROUTINE stressMM(a,ntens,ndi,e_elas,stress)  
+      IMPLICIT NONE
+      
 !     ulazne promenljive   
-         DOUBLE PRECISION a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
-         integer ntens,ndi
-         DOUBLE PRECISION  e_elas(ntens)
-!     ulazne promenljive  
-
+      DOUBLE PRECISION a(17),a1,a2,a3,a4,a5,a6,a7,a8,a9,e_elas(ntens)
+      integer k1,ntens,ndi 
+!     ulazne promenljive
+         
+!     unutrasnje invarijante         
+      DOUBLE PRECISION e_i1n, e_i2n, e_i3n
+!     unutrasnje invarijante
+         
 !     izlazne promenljive
-         DOUBLE PRECISION stress(ntens)
+      DOUBLE PRECISION stress(ntens)
 !     izlazne promenljive
 
       a1=a(1)
@@ -480,7 +507,7 @@ C
       a8=a(8)
       a9=a(9)
       do k1=1,ntens
-	    stress(k1)=0 
+	   stress(k1)=0 
       enddo
       
 !invarijante
@@ -523,7 +550,7 @@ C
 	1 +a2*(e_elas(4)*e_elas(5)
 	1 +e_elas(2)*e_elas(6)+e_elas(6)*e_elas(3))   
       
-            RETURN
+      RETURN
       END
 C
 C  =====================================================================
