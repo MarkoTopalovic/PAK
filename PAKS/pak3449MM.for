@@ -38,7 +38,7 @@ C
       LEMP1=LDEFP1 + 6
       LXTDT=LEMP1 + 1
 C
-      CALL TI3449(PLAST(LTAU),PLAST(LDEFT),PLASTMM(LDEFPP),
+      CALL TI3449(LDEFPP,PLAST(LTAU),PLAST(LDEFT),PLASTMM(LDEFPP),
      1            PLAST(LEMP),PLASTMM(LXT),
      1            PLAS1(LTAU1),PLAS1(LDEFT1),PLAS1(LDEFP1),
      1            PLAS1(LEMP1),PLAS1(LXTDT), 
@@ -49,7 +49,7 @@ C
 C
 C  =====================================================================
 C
-      SUBROUTINE TI3449(TAUT,DEFT,DEFPP,EMP,a_kapaP,
+      SUBROUTINE TI3449(LDEFPP,TAUT,DEFT,DEFPP,EMP,a_kapaP,
      1                  TAU1,DEF1,DEFP1,EMP1,XTDT,
      1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
 C
@@ -73,23 +73,18 @@ C
       COMMON /MATERb/ korz(100,100,3),evg(100,100,3)
       COMMON /CDEBUG/ IDEBUG
       
-      common /ak/ akapa(100000,10),aw(100000,10)
-      common /comeplast/  ceplast(100000,8,6)
-      common /prolaz/ iprolaz(100000,8)
 C
       DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
      +          DEFP1(6),DEFE(6)
-      DIMENSION FUN(11,*),NTA(*),DSIG(6),DEPS(6),DFDS(6),DGDS(6),ALAM(6)
-     +         ,CP(6,6),POM(6), CEP(6,6),DDEFE(6),TAUDE(6),DSTRAN(6)
-     +         ,DFdDS(6),DFcDS(6),DGdDS(6),DGcDS(6),ALAMd(6),ALAMc(6)
-     +         ,al1p(6),al2p(6),ddefpd(6),ddefpc(6),taue(6)
-     1         ,stress(6),e_new(6),e_elas_n(6),e_elas_n1(6),kroneker(6)!MM
-     1         ,a(17),astress0(6),astress(6),eplas(6),eplas0(6)
-     1         ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6),statev(100)
+      DIMENSION FUN(11,*),NTA(*)
+     1         ,stress(6),kroneker(6)!MM
+     1         ,eplas(6),eplas0(6)
+     1         ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6)
 C
       DOUBLE PRECISION s_dev(6)
+      DOUBLE PRECISION a(17)
       parameter (one=1.0d0,two=2.0d0,three=3.0d0,six=6.0d0,zero=0.0d0)!MM
-      data newton,toler,temp0,coef,yield0/8 ,1.d-6,273.,0.0d0,25.0d0/!MM
+      
       IF(IDEBUG.EQ.1) PRINT *, 'TI3449'
 C
       IF(IRAC.EQ.2) RETURN
@@ -120,51 +115,42 @@ CE.   MATERIAL CONSTANTS
       ANI     = FUN(2,MAT) 
 C
       AK      = FUN(3,MAT)
-      ALF     = FUN(6,MAT)
-      T       = FUN(7,MAT)
-      X0      =-FUN(8,MAT)
+      ALFMMM     = FUN(6,MAT)
+      !T       = FUN(7,MAT)
+      !X0      =-FUN(8,MAT)
 C
-      W       =-FUN(9,MAT)
-      D       =-FUN(10,MAT)
+      !W       =-FUN(9,MAT)
+      !D       =-FUN(10,MAT)
 
-      
-C====================================================================
-C
-      CM      = E/(1-2.D0*ANI)
-      G       = 0.5D0*E/(1.D0+ ANI)
-      DUM     = 0.01D0
-      XTMAX   =-DLOG(DUM)/D+X0
-C
-!C -----------------------------------------------------------
+
 !c
 !c     paneerselvam phd   (page 165 tens constants)
 !c
       
       	  
-      a3 = -1.81e5
-      a4 = -0.906e5
-
-      a6 = 0.
-      a7 = 0.
-      a8 = 0.
-      a9 = 0.
-      x = 1.03e-3
+      
+      
+      x = 1.03d-3
       a_l = 2          
-      alfamm = 14.2  !17.1   
-      h = 50.
-      beta = 8.23e4     !1.34e4
+      alfamm = 14.2d0  !17.1   
+      h = 50.d0
+      beta = 8.23d4     !1.34e4
       a_m  = one
-      gama = -5.e-3 
-      alpha_t  = 4.e-5
-	  
+
 	!stari
 	!a1 = 70.3e2
 	!a2 = 0.036e5 !7.5e4
 	!a5 = -0.6046e5
 	!novi
-	a1 =  0.036e5	  
-      a2 = -0.6046e5
-	a5 = 70.3e2
+	a1 =  0.036d5	  
+      a2 = -0.6046d5
+      a3 = -1.81d5
+      a4 = -0.906d5
+	a5 = 70.3d2
+      a6 = 0.
+      a7 = 0.
+      a8 = 0.
+      a9 = 0.
 !c -----------------------------------------------------------
       a(1)=a1
       a(2)=a2
@@ -177,38 +163,16 @@ C
       a(9)=a9
       a(10)=x
       a(11)=a_l
-      a(12)=alfamm
-      a(13)=h
-      a(14)=beta
-      a(15)=m
-      a(16)=gama
-      a(17)=alpha_t
+      a(12)=14.2d0 !a(12)=alfamm
+      a(13)=50.d0 !a(13)=h
+      a(14)=8.23d4 !a(14)=beta
+      a(15)=one !a(15)=m
+      a(16)=-5.d-3 !a(16)=gama !
+      a(17)=4.d-5 !a(17)=alpha_t !alpha_t  = 4.d-5
        
 !  KONSTANTE
 !     NDI: Broj direkthih komponenti napona u datom trenutku!     NDI=3
-!     NSHR: Broj smicajnih komponenti napona u datom trenutku!      NSHR=3
-!     NTENS: velicina niza napona ili deformacija (NDI + NSHR)!     NTENS=6
-!     NOEL: Broj elementa
-!      noel=1 !zameniti sa realnom brojem elementa iz paka
-!     NPT: Broj integracione ta?ke
-!      npt=1
-!  UILAZNE VELICINE U UMAT
-!     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
-!     DSTRAN(NTENS): Niz inkremenata deformacija
-!  IZLAZNE VELICINE    
-!     STRESS(NTENS): TENZOR NAPONA OVO JE I ULAZ I IZLAZ
-!     NA POCETKU DOBIJEMO TENZOR NAPONA NA POCETKU INKREMENTA
-!     PA U UMATU TREBA DA IZRACUNAMO TENZOR NAPONA NA KRAJU INKREMENTA    
-!     DDSDDE(NTENS,NTENS)   PARCIJALNI IZVOD INKREMENTA NAPONA PO INKREMENTU DEFORMAICJE
-!     OVO JE CISTO IZLAZNA VELICINA KOJA SE RACUNA U UMATU
-!     STRESS JE MNOGO VAZNIJI OD DDSDDE
-!     DDSDDE SE KORISTI U ABAQUSU ZA PROVERU KONVERGENCIJE       
-!  OSTALE ULAZNE ILI IZLAZNE VELICINE NE KORISTIMO
-    
-!  UNUTRASNJE PROMENLJIVE
-!     STATEV NIZ UNUTRASNJIH PROMENLJIVIH
-!     NSTATV BROJ UNUTRASNJIH PROMENLJIVIH
-!     OVO VISE NE KORISTIMO SADA SVE CUVAMO U COMMON STRUKTURAMA          
+!     NTENS: velicina niza napona ili deformacija    NTENS=6
 
 !c********************************************************************
 !c
@@ -222,24 +186,21 @@ C
 !     ULAZNE VELICINE U UMAT
 !     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
 !     DSTRAN(NTENS): Niz inkremenata deformacija
-!     u paku STRAN je DEF
+!     u paku STRAN+DSTRAN je DEF
       dtime=DT
       a_kapa0 = a_kapaP ! reciklirana promenljiva XT iz DP modela
-            DO  I=1,6
+      DO  I=1,6
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
       END DO 
       if (a_kapa0.lt.tolk) a_kapa0=tolk
       
 CE    TRIAL ELASTIC STRAINS
-      !DSTRAN(2) = 1.0E-003
       DO I=1,6 
             DEFE(I)=DEF(I)-DEFPP(I)
-            TAU1(I)=TAU(I)
       ENDDO
-C
-C     
-      call noviddsdde(ELAST,E,ANI,a,ntens,ndi,DEFE)
+    
+      call noviddsdde(ELAST,a,ntens,ndi,DEFE)
       call stressMM(a,ntens,ndi,DEFE,TAU)    
       
       call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
@@ -247,20 +208,22 @@ C
       f = abs(f1) - h*a_kapa0 
       a_kapa = a_kapa0
       
-      !goto 30
+      !if (LDEFPP.eq.13) then
+      !write(*,*) 'nn', TAU(2), DEF(2)
+      !endif
+      
+      !goto 30 !preskace plasticni deo
 	if (f.gt.zero) then 
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      2) corector phase      ************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      write(*,*) 'plasticno', f , f1 
-
-      
+     
       a_kxl = x+a_kapa0**a_l
       
       do kewton = 1,newton
       ! compute residuals
-          !call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
+          call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
           f = abs(f1) - h*a_kapa
           
           dkapa0  =  (((f/beta)**1)/a_kxl)*dtime
@@ -280,40 +243,34 @@ C
      
           f  = abs(f1) - h*a_kapa
           a_kxl = x+a_kapa**a_l
-       !write(6,*) 'a_kxl3',kewton,'=',a_kxl
           skonvergencija = abs(a_kapa - a_kapa0)
           a_kapa0 = a_kapa
-          !call stressMM(a,ntens,ndi,DEFE,TAU1)
+
+          DO I=1,6 
+            DEFE(I)=DEF(I)-eplas(I)
+          ENDDO
+          call stressMM(a,ntens,ndi,DEFE,TAU)
        if ((skonvergencija.lt.tolk).and.(deplas_int.lt.tol2)) then
-            
-            goto 33
-       
+          DO I=1,6 
+            DEFE(I)=DEF(I)-eplas(I)
+          ENDDO
+          call stressMM(a,ntens,ndi,DEFE,TAU)
+          goto 52
        endif
             
-          enddo  !do kewton = 1,newton  
+      enddo  !do kewton = 1,newton  
 !c------------------  end of plastic corrector ----------------------  
           
-      else
-      write(*,*) 'elasticno'
-      goto 52
       endif !if (f.gt.zero) then 
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      3) save phase      ****************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 CE    UPDATES FOR NEXT STEP
- 33   continue
-      
-       DO I=1,6 
-            DEFE(I)=DEF(I)-eplas(I)
-      ENDDO
-C
-C     
-      call stressMM(a,ntens,ndi,DEFE,TAU)
+
  52   continue      
       DO  I=1,6
       DEFPP(I)=eplas(I)
-      DEF1(I)=DEF(I)
       TAU1(I)=TAU(I)
       END DO
       a_kapaP = a_kapa
@@ -397,7 +354,7 @@ C
 C
 C  =====================================================================
 C   
-      subroutine noviddsdde(ddsdde,E,V,a,ntens,ndi,e_elas)
+      subroutine noviddsdde(ddsdde,a,ntens,ndi,e_elas)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 !     ulazne promenljive   
          DOUBLE PRECISION a(17), a1,a2,a3,a4,a5,a6,a7,a8,a9      
@@ -425,45 +382,6 @@ C
 	  enddo
       enddo
       
-         !ddsdde(1,1)=E*(1.-V)/(1.+V)/(1.-2.*V)
-         !ddsdde(2,2)=ddsdde(1,1)
-         !ddsdde(3,3)=ddsdde(1,1)
-         !ddsdde(1,2)=ddsdde(1,1)*V/(1.-V)
-         !ddsdde(2,1)=ddsdde(1,2)
-         !ddsdde(1,3)=ddsdde(1,2)
-         !ddsdde(3,1)=ddsdde(1,2)
-         !ddsdde(2,3)=ddsdde(1,2)
-         !ddsdde(3,2)=ddsdde(1,2)
-         !ddsdde(4,4)=ddsdde(1,1)*(1.-2.*V)/(1.-V)/2.
-         !ddsdde(5,5)=ddsdde(4,4)
-         !ddsdde(6,6)=ddsdde(4,4)
-
-C     ELASTIC PROPERTIES
-C    
-      !EMOD=E
-      !ENU=V
-      !EBULK3=EMOD/(ONE-TWO*ENU)
-      !EG2=EMOD/(ONE+ENU)
-      !EG=EG2/TWO
-      !EG3=THREE*EG
-      !ELAM=(EBULK3-EG2)/THREE
-C
-C     ELASTIC STIFFNESS
-C
-C
- !     DO 40 K1=1,NDI
- !       DO 30 K2=1,NDI
- !          DDSDDE(K2,K1)=ELAM
- !30     CONTINUE
- !       DDSDDE(K1,K1)=EG2+ELAM
- !40   CONTINUE
- !     DO 50 K1=NDI+1,NTENS
- !       DDSDDE(K1,K1)=EG
- !50   CONTINUE
-!      
-      
-      
-
        ddsdde(1,1)= 2*a1 + 4*a5 + 4*e_elas(1)*a2 + 
 	1   4*e_elas(1)*a4 + 6*a3*(2*e_elas(1) + 
 	1 2*e_elas(2) + 2*e_elas(3)) + 2*a4*(e_elas(1) + 
