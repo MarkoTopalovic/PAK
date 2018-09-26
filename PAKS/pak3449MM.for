@@ -1,5 +1,5 @@
 C       Micunov materijalni model
-C      Oznacen brojem 49 za sada iskopiran Rakicev DP 41
+C      Oznacen brojem 49 nastao kopiranjem i modifikovanjem DP 41
 C=======================================================================
 CE    SUBROUTINE D3M49
 CE               TI3441
@@ -13,14 +13,13 @@ C
       include 'paka.inc'
 C
       COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
-      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
       COMMON /REPERM/ MREPER(4)
       COMMON /DUPLAP/ IDVA
       COMMON /CDEBUG/ IDEBUG
 C
       DIMENSION TAU(6),DEF(6)
 C
-      IF(IDEBUG.GT.0) PRINT *, ' D3M41'
+      IF(IDEBUG.GT.0) PRINT *, ' D3M49'
 C
       LFUN=MREPER(1)
       LNTA=MREPER(2)
@@ -30,7 +29,7 @@ C
       LDEFT=LTAU + 6
       LDEFPP=LDEFT + 6
       LEMP=LDEFPP + 6
-      LXT=LEMP + 1
+      LKAPA=LEMP + 1
 C
       LTAU1=LPOC1
       LDEFT1=LTAU1 + 6
@@ -38,63 +37,47 @@ C
       LEMP1=LDEFP1 + 6
       LXTDT=LEMP1 + 1
 C
-      CALL TI3449(LDEFPP,PLAST(LTAU),PLAST(LDEFT),PLASTMM(LDEFPP),
-     1            PLAST(LEMP),PLASTMM(LXT),
-     1            PLAS1(LTAU1),PLAS1(LDEFT1),PLAS1(LDEFP1),
-     1            PLAS1(LEMP1),PLAS1(LXTDT), 
-     1            A(LFUN),A(LNTA),MATE,TAU,DEF,IRAC,IBTC)
+      CALL TI3449(LDEFPP,PLASTMM(LDEFPP),PLASTMM(LKAPA),
+     1            PLAS1(LTAU1),TAU,DEF,IRAC)
 C
       RETURN
       END
 C
 C  =====================================================================
 C
-      SUBROUTINE TI3449(LDEFPP,TAUT,DEFT,DEFPP,EMP,a_kapaP,
-     1                  TAU1,DEF1,DEFP1,EMP1,XTDT,
-     1                  FUN,NTA,MATE,TAU,DEF,IRAC,IBTC)
-C
-      !IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      SUBROUTINE TI3449(LDEFPP,DEFPP,a_kapaP,TAU1,TAU,DEF,IRAC)
+
       IMPLICIT NONE
       
-
-      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
       COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
-      COMMON /TAUD3/ TAUD(6),DEFDPR(6),DEFDS(6),DDEFP(6),
-     1               DETAU(6),DDEF(6)
       COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
-      COMMON /PLASTI/ LPLAST,LPLAS1,LSIGMA
-      COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8 
-      COMMON /ITERAC/ METOD,MAXIT,TOLE,TOLS,TOLM,KONVE,KONVS,KONVM
       COMMON /ITERBR/ ITER
       COMMON /CDEBUG/ IDEBUG
       
-      INTEGER kewton,newton,NDI,NTENS,K1,K2,I,ITER,METOD,MAXIT,NMODM
-      INTEGER IDEBUG,IRAC,MAT,NETIP,NGE,ISKNP,IATYP,KONVE,KONVS,KONVM
-      DOUBLE PRECISION s_dev(6)
-      DOUBLE PRECISION a(17)
+      !pak
+      INTEGER LNKDT,LDTDT,LVDT,NDT,KOR
+      DOUBLE PRECISION DT,VREME
+      DOUBLE PRECISION ELAST,XJ,ALFA,TEMP0,DET
+      INTEGER NLM,KK
+      INTEGER ITER,IDEBUG,IRAC,LDEFPP
+      DOUBLE PRECISION DEFPP,DEF,DEFE,TAU,TAU1
+      !pak
+      
+      !mm
+      INTEGER kewton,newton,NDI,NTENS,K1,K2,I
+      DOUBLE PRECISION s_dev,stress
       DOUBLE PRECISION one,two,three,six,zero,kroneker
-      DOUBLE PRECISION TOL,TOLL,TOL1,TOL2,TOLK,TOLE,TOLS,TOLM
-      DOUBLE PRECISION a1,a2,a3,a4,a5,a6,a7,a8,a9,beta,gama,h
-      DOUBLE PRECISION x,a_l,alfamm,a_m,dtime,DT,a_kapa0,a_kapaP
-      DOUBLE PRECISION eplas,eplas0,DEFPP,DEF,DEFE,ELAST,TAU,TAU1,f,f1
+      DOUBLE PRECISION TOL2,TOLK
+      DOUBLE PRECISION a,a1,a2,a3,a4,a5,a6,a7,a8,a9,beta,gama,h
+      DOUBLE PRECISION x,a_l,alfamm,a_m,a_kapa0,a_kapaP
       DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
-      DOUBLE PRECISION ALFMMM,AK,ANI,FUN,E,NE 
-      
-      DOUBLE PRECISION TAUT,DEFT,EMP,DEF1,EMP1,DEFP1,XTDT
-      INTEGER LDEFPP,MATE,IBTC,NTA,NCVE,NGAUSX,NGAUSY,NGAUSZ,ITERME
-      INTEGER IETYP,NDT,LDTDT,KOR,LVDT,LNKDT
-      DOUBLE PRECISION VREME,DEFDS,TAUD,DDEFP,DETAU,DDEF,XJ
-      DOUBLE PRECISION DET,TEMP0,ALFA,DEFDPR
-      INTEGER KK,NLM,LMAX8,LPLAST,LPLAS1,LSIGMA
-      
-      
-      DOUBLE PRECISION stress
+      DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime
+      !mm
 C
-      DIMENSION TAUT(6),DEFT(6),DEFPP(6),TAU(6),DEF(6),TAU1(6),DEF1(6), 
-     +          DEFP1(6),DEFE(6),FUN(11,*),NTA(*)
-     1         ,stress(6),kroneker(6),eplas(6),eplas0(6)!MM
-     1         ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6)
+      DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
+     1 ,stress(6),s_dev(6),kroneker(6),eplas(6),eplas0(6)!MM
+     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6)
 C
       
       one=1.0d0
@@ -104,21 +87,14 @@ C
       zero=0.0d0!MM
       
       IF(IDEBUG.EQ.1) PRINT *, 'TI3449'
-C
       IF(IRAC.EQ.2) RETURN
       
       kewton = 1
       newton = 50000
-      
-      
-      
+ 
 CE    BASIC KONSTANTS
-      TOL =   1.D-8
-      TOLL=  -1.D-5
-      ntens = 6 !MM
-      ndi = 3 !MM
-      tol1 = 1.d-7 !MM
-	tol2 = 1.d-7 !MM
+      ntens = 6 !MM velicina niza napona ili deformacija
+      ndi = 3 !MM Broj direkthih komponenti napona u datom trenutku!
       tol2 = 1.0d-6!MM
 	tolk = 1.d-4 !MM
       do k2=1, ndi
@@ -128,25 +104,9 @@ CE    BASIC KONSTANTS
 C====================================================================
 C
 CE.   MATERIAL CONSTANTS 
-      E       = FUN(1,MAT) 
-      ANI     = FUN(2,MAT) 
-C
-      AK      = FUN(3,MAT)
-      ALFMMM     = FUN(6,MAT)
-      !T       = FUN(7,MAT)
-      !X0      =-FUN(8,MAT)
-C
-      !W       =-FUN(9,MAT)
-      !D       =-FUN(10,MAT)
-
-
-!c
+!      E       = FUN(1,MAT) STARO CITANJE IZ DAT-A ZA DP 
 !c     paneerselvam phd   (page 165 tens constants)
 !c
-      
-      	  
-      
-      
       x = 1.03d-3
       a_l = 2          
       alfamm = 14.2d0  !17.1   
@@ -185,32 +145,22 @@ C
       a(14)=8.23d4 !a(14)=beta
       a(15)=one !a(15)=m
       a(16)=-5.d-3 !a(16)=gama !
-      a(17)=4.d-5 !a(17)=alpha_t !alpha_t  = 4.d-5
-       
-!  KONSTANTE
-!     NDI: Broj direkthih komponenti napona u datom trenutku!     NDI=3
-!     NTENS: velicina niza napona ili deformacija    NTENS=6
-
-!c********************************************************************
-!c
-!c               predictor corector algorithm
-!c
-!c********************************************************************     
+      a(17)=4.d-5 !a(17)=alpha_t !alpha_t  = 4.d-5      
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      1) predictor phase      ***********************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-!     ULAZNE VELICINE U UMAT
-!     STRAN(NTENS): Niz koji sadrzi ukupne deformacije na pocetku inkrenenta
-!     DSTRAN(NTENS): Niz inkremenata deformacija
-!     u paku STRAN+DSTRAN je DEF
+
       dtime=DT
-      a_kapa0 = a_kapaP ! reciklirana promenljiva XT iz DP modela
+      
+      a_kapa0 = a_kapaP
+      if (a_kapa0.lt.tolk) a_kapa0=tolk
+      a_kapa = a_kapa0
+      
       DO  I=1,6
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
-      END DO 
-      if (a_kapa0.lt.tolk) a_kapa0=tolk
+      END DO   
       
 CE    TRIAL ELASTIC STRAINS
       DO I=1,6 
@@ -219,59 +169,49 @@ CE    TRIAL ELASTIC STRAINS
     
       call noviddsdde(ELAST,a,ntens,ndi,DEFE)
       call stressMM(a,ntens,ndi,DEFE,TAU)    
-      
       call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu) ! 6.21
         
       f = abs(f1) - h*a_kapa0 
-      a_kapa = a_kapa0
-      
+
       !if (LDEFPP.eq.13) then
       !write(*,*) 'nn', TAU(2), DEF(2)
       !endif
-      
-      !goto 30 !preskace plasticni deo
 	if (f.gt.zero) then 
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      2) corector phase      ************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-     
-      a_kxl = x+a_kapa0**a_l
-      
+
       do kewton = 1,newton
-      ! compute residuals
+
           call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
           f = abs(f1) - h*a_kapa
-          
+          a_kxl = x+a_kapa0**a_l
           dkapa0  =  (((f/beta)**1)/a_kxl)*dtime
           a_kapa = a_kapa0 + dkapa0
           a_kxl = x+a_kapa**a_l
           dkapa  =  (((f/beta)**1)/a_kxl)*dtime
-            
-          do k1 = 1,ntens
-            
+      ! compute residual S          
+          skonvergencija = abs(a_kapa - a_kapa0)
+          
+          do k1 = 1,ntens  
           eplasStari(k1)   = eplas(k1)
           d_eplas(k1)   =  (dkapa)*a_mu(k1)
           eplas(k1)   = eplas0(k1) + d_eplas(k1)
           Replas(k1) = eplas(k1) - eplasStari(k1)
           enddo
-              deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
+      ! compute residual R          
+          deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
      1    two*Replas(4)**2+two*Replas(5)**2+two*Replas(6)**2)**0.5
      
-          f  = abs(f1) - h*a_kapa
-          a_kxl = x+a_kapa**a_l
-          skonvergencija = abs(a_kapa - a_kapa0)
+       ! update for the next iteration kapa, epsilon, sigma   
           a_kapa0 = a_kapa
-
           DO I=1,6 
             DEFE(I)=DEF(I)-eplas(I)
           ENDDO
           call stressMM(a,ntens,ndi,DEFE,TAU)
+!      check convergence          
        if ((skonvergencija.lt.tolk).and.(deplas_int.lt.tol2)) then
-          DO I=1,6 
-            DEFE(I)=DEF(I)-eplas(I)
-          ENDDO
-          call stressMM(a,ntens,ndi,DEFE,TAU)
           goto 52
        endif
             
