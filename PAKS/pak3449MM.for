@@ -38,14 +38,14 @@ C
       LXTDT=LEMP1 + 1
 C
       CALL TI3449(LDEFPP,PLASTMM(LDEFPP),PLASTMM(LKAPA),
-     1            PLAS1(LTAU1),TAU,DEF,IRAC)
+     1            PLAS1(LTAU1),PLAS1(LDEFT1),TAU,DEF,IRAC)
 C
       RETURN
       END
 C
 C  =====================================================================
 C
-      SUBROUTINE TI3449(LDEFPP,DEFPP,a_kapaP,TAU1,TAU,DEF,IRAC)
+      SUBROUTINE TI3449(LDEFPP,DEFPP,a_kapaP,TAU1,DEF1,TAU,DEF,IRAC)
 
       IMPLICIT NONE
       
@@ -60,7 +60,7 @@ C
       DOUBLE PRECISION ELAST,XJ,ALFA,TEMP0,DET
       INTEGER NLM,KK
       INTEGER ITER,IDEBUG,IRAC,LDEFPP
-      DOUBLE PRECISION DEFPP,DEF,DEFE,TAU,TAU1
+      DOUBLE PRECISION DEFPP,DEF,DEF1,DEFE,TAU,TAU1
       !pak
       
       !mm
@@ -77,7 +77,7 @@ C
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
      1 ,stress(6),s_dev(6),kroneker(6),eplas(6),eplas0(6)!MM
-     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6)
+     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6),DEF1(6)
 C
       
       one=1.0d0
@@ -228,6 +228,7 @@ CE    UPDATES FOR NEXT STEP
  52   continue      
       DO  I=1,6
       DEFPP(I)=eplas(I)
+      DEF1(I)=DEF(I)
       TAU1(I)=TAU(I)
       END DO
       a_kapaP = a_kapa

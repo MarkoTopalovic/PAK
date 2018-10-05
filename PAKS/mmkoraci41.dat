@@ -76,7 +76,7 @@ C ((FN(I,IBR,J),I=1,2),J=1,IMAX)
 4.0000e-01 -4.000e+00
 C /15/ GENERAL DATA ABOUT LOADS (4I5,5X,5I5)
 C NCF,NPP2,NPP3, NPGR,    NPLJ,NTEMP,NZADP,INDZS,ICERNE
-    0    0    0    0         0    0    4    0    0
+    0    0    0    0         0    0   -4    0    0
 C /15-8/ DATA FOR PRESCRIBED DISPLACEMENTS (3I5,F10.0,I5)
 C   N   IP   NC       FAK KORC
     3    2    1 1.0000e+0    0
