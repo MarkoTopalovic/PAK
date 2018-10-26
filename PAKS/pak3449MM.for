@@ -108,10 +108,10 @@ CE.   MATERIAL CONSTANTS
 !c     paneerselvam phd   (page 165 tens constants)
 !c
       x = 1.03d-3
-      a_l = 2          
+      a_l = 2.2 !2          
       alfamm = 14.2d0  !17.1   
       h = 50.d0
-      beta = 8.23d4     !1.34e4
+      beta = 1.34d4     !1.34e4 !8.23d4
       a_m  = one
 
 	!stari
@@ -144,7 +144,7 @@ CE.   MATERIAL CONSTANTS
       a(13)=50.d0 !a(13)=h
       a(14)=8.23d4 !a(14)=beta
       a(15)=one !a(15)=m
-      a(16)=-5.d-3 !a(16)=gama !
+      a(16)= -5 !-5.d-3 !a(16)=gama !
       a(17)=4.d-5 !a(17)=alpha_t !alpha_t  = 4.d-5      
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
