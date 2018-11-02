@@ -72,12 +72,12 @@ C
       DOUBLE PRECISION x,a_l,alfamm,a_m,a_kapa0,a_kapaP
       DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
-      DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime
+      DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime,DEF_T
       !mm
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
      1 ,stress(6),s_dev(6),kroneker(6),eplas(6),eplas0(6)!MM
-     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6),DEF1(6)
+     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6),DEF1(6),DEF_T(6)
 C
       
       one=1.0d0
@@ -120,9 +120,9 @@ CE.   MATERIAL CONSTANTS
 	!a5 = -0.6046e5
 	!novi
 	a1 =  0.036d5	  
-      a2 = -0.6046d5
-      a3 = -1.81d5
-      a4 = -0.906d5
+      a2 = 0 !a2 = -0.6046d5 !linearizovano
+      a3 = 0 !a3 = -1.81d5 !linearizovano
+      a4 = 0 !a4 = -0.906d5 !linearizovano
 	a5 = 70.3d2
       a6 = 0.
       a7 = 0.
@@ -160,11 +160,13 @@ CE.   MATERIAL CONSTANTS
       DO  I=1,6
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
+      DEF_T(I) = 0 !OVDE TREBA DA SE IZRACUNA TERMICKA DEFORMACIJA
       END DO   
       
 CE    TRIAL ELASTIC STRAINS
       DO I=1,6 
-            DEFE(I)=DEF(I)-DEFPP(I)
+            DEFE(I)=DEF(I)-DEFPP(I)-DEF_T(I) ! NA DEFORMACIJU KOJU JE IZRACUNAO
+            ! PAK TREBA DA SE DODA I TERMICKA DEFORMACIJA
       ENDDO
     
       call noviddsdde(ELAST,a,ntens,ndi,DEFE)
@@ -451,7 +453,7 @@ C
       
 !invarijante
 	e_i1n = e_elas(1)+e_elas(2)+e_elas(3)
-		
+	! U OVU DEFORMACIJU UKLJUCENO JE I TERMICKO SIRENJE	
       e_i2n = e_elas(1)*e_elas(2)+e_elas(2)*e_elas(3)+
 	1 e_elas(3)*e_elas(1)-e_elas(4)*e_elas(4)-
 	1 e_elas(5)*e_elas(5)-e_elas(6)*e_elas(6)
@@ -462,7 +464,7 @@ C
 	1 e_elas(3)*e_elas(4)*e_elas(4)+
 	1 2*e_elas(4)*e_elas(5)*e_elas(6)
 !invarijante
-          
+      !OVDE TREBA NEKAKO UBACITI UTICAJ TEMPERATURE NA NAPONE    
                     
    	stress(1)= (2*a5*e_i1n+3*a3*e_i1n*e_i1n+a4*e_i2n)+
 	1 (a1+a4*e_i1n)*e_elas(1)+a2*(e_elas(1)*e_elas(1)
