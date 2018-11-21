@@ -73,6 +73,7 @@ C
       DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
       DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime,DEF_T
+      DOUBLE PRECISION temperatura,teta,E, E0
       !mm
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
@@ -152,6 +153,11 @@ CE.   MATERIAL CONSTANTS
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
       dtime=DT
+      temperatura = 20
+      CALL nadjiE(temperatura,E)
+      E0 = 5195
+      !a5 = a5*(E/E0)
+      !a1 = a1*(E/E0)
       
       a_kapa0 = a_kapaP
       if (a_kapa0.lt.tolk) a_kapa0=tolk
@@ -491,6 +497,41 @@ C
 	1 +a2*(e_elas(4)*e_elas(5)
 	1 +e_elas(2)*e_elas(6)+e_elas(6)*e_elas(3))   
       
+      RETURN
+      END
+C
+C  =====================================================================
+C
+      SUBROUTINE nadjiAlfaT(temperatura,AlfaT)
+      IMPLICIT NONE
+      DOUBLE PRECISION temperatura,T,AlfaT,logAlfaT
+      DOUBLE PRECISION a,b,c
+      T = temperatura
+      a = 0.0013205
+      b = -0.21531
+      c = 3.75742
+      logAlfaT = a*T*T +b*T +c
+      AlfaT = 10**logAlfaT
+      RETURN
+      END
+C
+C  =====================================================================
+C
+      SUBROUTINE nadjiE(temperatura,E)
+      IMPLICIT NONE
+      DOUBLE PRECISION temperatura,E,teta,referentnatemperatura,logE
+      DOUBLE PRECISION AlfaT, frekvencija, fr
+      DOUBLE PRECISION delta, alfa, beta, gama
+      delta = 1.66944
+      alfa = 2.683335
+      beta = -1.01996
+      gama = -0.5593
+      frekvencija = 10
+      teta = (temperatura-referentnatemperatura)/referentnatemperatura
+      CALL nadjiAlfaT(temperatura,AlfaT)
+      fr = AlfaT * frekvencija
+      logE = delta + (alfa/(1+exp(beta+gama*log10(fr))))
+      E = 10**logE
       RETURN
       END
 C
