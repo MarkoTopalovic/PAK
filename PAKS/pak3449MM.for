@@ -73,7 +73,7 @@ C
       DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
       DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime,DEF_T
-      DOUBLE PRECISION temperatura,teta,E, E0
+      DOUBLE PRECISION temperatura,teta,E, E0,Ni, a5t, a1t
       !mm
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
@@ -153,11 +153,16 @@ CE.   MATERIAL CONSTANTS
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
       dtime=DT
-      temperatura = 20
+      temperatura = 10 !24.5 !20
       CALL nadjiE(temperatura,E)
+      CALL nadjiNi(E,Ni)
       E0 = 5195
-      !a5 = a5*(E/E0)
-      !a1 = a1*(E/E0)
+
+      a1t = E/(1+Ni)
+      a5t = (E*Ni)/(2*(1-2*Ni)*(1+Ni))
+      
+      a(1) = a1t
+      a(5) = a5t
       
       a_kapa0 = a_kapaP
       if (a_kapa0.lt.tolk) a_kapa0=tolk
@@ -536,4 +541,17 @@ C
       END
 C
 C  =====================================================================
+C
+C
+      SUBROUTINE nadjiNi(E,Ni)
+      IMPLICIT NONE
+      DOUBLE PRECISION E,Ni,aNi,bNi,PsiToMpa
+      PsiToMpa = 0.006894759086775369
+      aNi = -1.63
+      bNi = 3.84d-6
+      bNi = bNi/PsiToMpa      
+      Ni = 0.15 +(0.35)/(1+exp(aNi + bNi*E))
+      
+      RETURN
+      END
 C
