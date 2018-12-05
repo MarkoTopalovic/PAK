@@ -121,9 +121,9 @@ CE.   MATERIAL CONSTANTS
 	!a5 = -0.6046e5
 	!novi
 	a1 =  0.036d5	  
-      a2 = 0 !a2 = -0.6046d5 !linearizovano
-      a3 = 0 !a3 = -1.81d5 !linearizovano
-      a4 = 0 !a4 = -0.906d5 !linearizovano
+      a2 = -0.6046d5 !linearizovano
+      a3 = -1.81d5 !linearizovano
+      a4 = -0.906d5 !linearizovano
 	a5 = 70.3d2
       a6 = 0.
       a7 = 0.
@@ -153,7 +153,7 @@ CE.   MATERIAL CONSTANTS
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
       dtime=DT
-      temperatura = 10 !24.5 !20
+      temperatura = 40 !24.5 !20
       CALL nadjiE(temperatura,E)
       CALL nadjiNi(E,Ni)
       E0 = 5195
