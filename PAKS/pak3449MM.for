@@ -143,7 +143,7 @@ CE.   MATERIAL CONSTANTS
       a(11)=a_l
       a(12)=14.2d0 !a(12)=alfamm
       a(13)=50.d0 !a(13)=h
-      a(14)=8.23d4 !a(14)=beta
+      a(14)=1.34d4 !a(14)=beta
       a(15)=one !a(15)=m
       a(16)= -5 !-5.d-3 !a(16)=gama !
       a(17)=4.d-5 !a(17)=alpha_t !alpha_t  = 4.d-5      
