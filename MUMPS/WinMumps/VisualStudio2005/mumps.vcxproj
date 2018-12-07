@@ -160,7 +160,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>true</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level2</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
