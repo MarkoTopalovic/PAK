@@ -66,25 +66,25 @@ C
       !mm
       INTEGER kewton,newton,NDI,NTENS,K1,K2,I
       DOUBLE PRECISION s_dev,stress
-      DOUBLE PRECISION one,two,three,six,zero,kroneker
+      DOUBLE PRECISION one,two,three,zero,kroneker
       DOUBLE PRECISION TOL2,TOLK
       DOUBLE PRECISION a,a1,a2,a3,a4,a5,a6,a7,a8,a9,beta,gama,h
       DOUBLE PRECISION x,a_l,alfamm,a_m,a_kapa0,a_kapaP
       DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
-      DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime,DEF_T
-      DOUBLE PRECISION temperatura,teta,E, E0,Ni, a5t, a1t
+      DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime
+      DOUBLE PRECISION temperatura,teta,E,Ni, a5t, a1t
       !mm
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
      1 ,stress(6),s_dev(6),kroneker(6),eplas(6),eplas0(6)!MM
-     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6),DEF1(6),DEF_T(6)
+     1 ,eplasStari(6),d_eplas(6),Replas(6),a_mu(6),DEF1(6)
 C
       
       one=1.0d0
       two=2.0d0
       three=3.0d0
-      six=6.0d0
+
       zero=0.0d0!MM
       
       IF(IDEBUG.EQ.1) PRINT *, 'TI3449'
@@ -153,10 +153,10 @@ CE.   MATERIAL CONSTANTS
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
       dtime=DT
-      temperatura = 40 !24.5 !20
+      temperatura = 35 !24.5 !20
       CALL nadjiE(temperatura,E)
       CALL nadjiNi(E,Ni)
-      E0 = 5195
+      !E0 = 5195 ! izracunato iz resenja sigma/strain
 
       a1t = E/(1+Ni)
       a5t = (E*Ni)/(2*(1-2*Ni)*(1+Ni))
@@ -171,13 +171,11 @@ CE.   MATERIAL CONSTANTS
       DO  I=1,6
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
-      DEF_T(I) = 0 !OVDE TREBA DA SE IZRACUNA TERMICKA DEFORMACIJA
       END DO   
       
 CE    TRIAL ELASTIC STRAINS
       DO I=1,6 
-            DEFE(I)=DEF(I)-DEFPP(I)-DEF_T(I) ! NA DEFORMACIJU KOJU JE IZRACUNAO
-            ! PAK TREBA DA SE DODA I TERMICKA DEFORMACIJA
+            DEFE(I)=DEF(I)-DEFPP(I)
       ENDDO
     
       call noviddsdde(ELAST,a,ntens,ndi,DEFE)
@@ -464,7 +462,7 @@ C
       
 !invarijante
 	e_i1n = e_elas(1)+e_elas(2)+e_elas(3)
-	! U OVU DEFORMACIJU UKLJUCENO JE I TERMICKO SIRENJE	
+
       e_i2n = e_elas(1)*e_elas(2)+e_elas(2)*e_elas(3)+
 	1 e_elas(3)*e_elas(1)-e_elas(4)*e_elas(4)-
 	1 e_elas(5)*e_elas(5)-e_elas(6)*e_elas(6)
@@ -475,8 +473,7 @@ C
 	1 e_elas(3)*e_elas(4)*e_elas(4)+
 	1 2*e_elas(4)*e_elas(5)*e_elas(6)
 !invarijante
-      !OVDE TREBA NEKAKO UBACITI UTICAJ TEMPERATURE NA NAPONE    
-                    
+
    	stress(1)= (2*a5*e_i1n+3*a3*e_i1n*e_i1n+a4*e_i2n)+
 	1 (a1+a4*e_i1n)*e_elas(1)+a2*(e_elas(1)*e_elas(1)
 	1 +e_elas(4)*e_elas(4)+e_elas(5)*e_elas(5))
