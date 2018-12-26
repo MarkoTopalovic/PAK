@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="E:\PAK\MUMPS3\libseq\mpi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\libseq\elapse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\libseq\mpif.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\eval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\params.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\protos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\space.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\PAK\MUMPS3\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\lr_common.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_omp_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\tools_common.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_orderings_wrappers_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_memory_mod.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_static_mapping.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_sol_es.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_future_niv2_mod.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_comm_ibcast.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_ooc_common.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\double_linked_list.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_asm_build_sort_index_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_asm_build_sort_index_ELT_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\omp_tps_common_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_l0_omp_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\front_data_mgt_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_maprow_data_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_descband_data_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_ibct_data_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_orderings.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_AMDMF.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\bcast_errors.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\estim_flops.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_type_size.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_type2_blocking.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_version.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_print_defined.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_set_ordering.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_c.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_common.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_size.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io_basic.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io_thread.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io_err.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_thread.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_save_restore_C.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_numa.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_pord.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_metis.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_metis64.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_metis_int.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_scotch.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_scotch64.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_scotch_int.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_aux_par.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_lr.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm_master_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm_master_ELT_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\domp_tps_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_comm_buffer.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_load.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_lr_data_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_ooc_buffer.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_ooc.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_struc_def.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dstatic_ptr_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dlr_core.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dlr_type.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dlr_stats.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_lr.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_omp_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_par_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LU_type1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LU_type2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LDLT_type1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LDLT_type2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_type2_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_save_restore_files.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_save_restore.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dini_driver.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_driver.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_driver.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_driver.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dend_driver.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_aux_ELT.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_dist_m.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_LDLT_preprocess.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_reordertree.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\darrowheads.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dbcast_int.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm_ELT.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_b.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_distrib_distentry.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_distrib_ELT.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_lastrtnelind.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_alloc_cb.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_compress_cb.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_free_block_cb.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_stack_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_stack.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_band.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_blfac_slave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_blocfacto_LDLT.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_blocfacto.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_bf.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_end_facto_slave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_contrib_type1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_contrib_type2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_contrib_type3.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_maprow.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_master2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_message.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_root2slave.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_root2son.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_rtnelind.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_root_parallel.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_scalings.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_determinant.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_scalings_simScaleAbs.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_scalings_simScale_util.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_sol_pool.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_type3_symmetrize.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dini_defaults.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_driver.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_f77.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_iXamax.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_mtrans.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dooc_panel_piv.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\drank_revealing.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_bwd_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_bwd.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_c.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_fwd_aux.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_fwd.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_matvec.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_root_parallel.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dtools.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dtype3_root.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\LIBMPISEQ_C.dir\$(Configuration)\mpic.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\LIBMPISEQ_C.dir\$(Configuration)\elapse.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\LIBMPISEQ_FORTRAN.dir\$(Configuration)\mpi.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\bucket.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\ddbisect.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\ddcreate.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\gbipart.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\gbisect.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\gelim.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\graph.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\interface.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\minpriority.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\multisector.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\nestdiss.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\sort.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\symbfac.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\tree.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{31DF9DD1-3ACE-3FCA-B471-4A68B9A021BB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{9B93CC69-9AE2-3DA3-B968-868DFBE815FE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
