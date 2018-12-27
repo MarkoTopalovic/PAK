@@ -1719,87 +1719,12 @@
  NGE,GRZAP,ITER           1   1000000.00000000               50
  kkk           1
  kkk           2
- NGE,GRZAP,ITER           1   1000000.00000000                3
-
-           ITERATION =   3        ENERGY  =  1.0250D+01
-           ENERGY (  3)  /  ENERGY ( 0 )  = -1.9188D-04
- NGE,GRZAP,ITER           1   1000000.00000000                3
-
-
-
-           LARGEST DIAGONAL ELEMENT OF STIFFNESS MATRIX ..... = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF STIFFNESS MATRIX .... = 1.23713E+05
-
-           LARGEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX  = 1.00000E+35
-           SMALLEST DIAGONAL ELEMENT OF THE FACTORIZED MATRIX = 3.37468E+04
-
-
-
-1
- COMPONENTS  OF  DISPLACEMENTS  AND  ROTATIONS
- ---------------------------------------------
-
-
- S T E P  N U M B E R =   20                      T I M E = 2.00000E-01
-
-
- NUMBER OF ITERATIONS =    3
-
-
-
- T I M E    F U N C T I O N S
- ----------------------------
-  FUNCTION         VALUE
-         1     -2.00000E+00
-
-
-
-1
-
-
-      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
-      ---------------------------------------------------------
-
-
-
-     TIME AT THE START OF READING OF INPUT DATA .....  16:56: 6.714    5/12/2018
-
-
-
-     DOTTING STARTED ................................   0: 0: 0.  0    0/ 0/   0
-
-
-
-     DOTTING FINISHED ...............................   0: 0: 0.  0    0/ 0/   0
-
-
-
-     TIME AT THE START OF FORMING THE MATRICES ......  16:56: 8.728    5/12/2018
-
-
-
-
-
-
-1
-
-
-      E X E C U T I O N    T I M I N G    I N F O R M A T I O N
-      ---------------------------------------------------------
-
-
-
-     TIME AT THE START OF READING OF INPUT DATA ..... 16:56: 6.714    5/12/2018
-
-
-     TIME AT THE START OF FORMING THE MATRICES ...... 16:56: 8.728    5/12/2018
-
-
-     TIME AT THE START OF EIGEN VALUE SOLUTION ...... 16:56: 9.695    5/12/2018
-
-
-     END OF JOB ..................................... 16:56: 9.695    5/12/2018
-
+ NGE,GRZAP,ITER           1   1000000.00000000               50
+ NGE,GRZAP,ITER           1   1000000.00000000               50
+ NGE,GRZAP,ITER           1   1000000.00000000               50
+ NGE,GRZAP,ITER           1   1000000.00000000               50
+ NGE,GRZAP,ITER           1   1000000.00000000               50
+ NGE,GRZAP,ITER           1   1000000.00000000               50
 
            ITERATION =  50
            NUMBER OF LINE SEARCH =  0
