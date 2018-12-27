@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{426BF409-94EA-31BD-8E17-8E5CDD8EFA3E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>libdmumps</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\PAK\MUMPS3\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">libdmumps.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">libdmumps</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\PAK\MUMPS3\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">libdmumps.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">libdmumps</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\PAK\MUMPS3\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">libdmumps.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">libdmumps</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\PAK\MUMPS3\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">libdmumps.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">libdmumps</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;CMAKE_INTDIR="Debug";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>FALSE.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/PAK/MUMPS3/Debug/libdmumps.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/PAK/MUMPS3/Debug/libdmumps.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>FALSE.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/PAK/MUMPS3/Release/libdmumps.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/PAK/MUMPS3/Release/libdmumps.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>FALSE.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/PAK/MUMPS3/MinSizeRel/libdmumps.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/PAK/MUMPS3/MinSizeRel/libdmumps.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";libdmumps_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\PAK\MUMPS3\PORD\include;E:\PAK\MUMPS3\libseq;E:\PAK\MUMPS3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>FALSE.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/mkl/lib/ia32/$(Configuration);C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32;C:/Program Files (x86)/Intel/Composer XE/compiler/lib/ia32/$(Configuration);C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win;C:/Program Files (x86)/IntelSWTools/compilers_and_libraries_2016/windows/compiler/lib/ia32_win/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/PAK/MUMPS3/RelWithDebInfo/libdmumps.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/PAK/MUMPS3/RelWithDebInfo/libdmumps.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\PAK\MUMPS3\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/PAK/MUMPS3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/PAK/MUMPS3 -BE:/PAK/MUMPS3 --check-stamp-file E:/PAK/MUMPS3/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/PAK/MUMPS3/CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFortranInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindOpenMP.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeFortranCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeSystem.cmake;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90_in;E:\PAK\MUMPS3\CMakeLists.txt;E:\PAK\MUMPS3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\PAK\MUMPS3\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/PAK/MUMPS3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/PAK/MUMPS3 -BE:/PAK/MUMPS3 --check-stamp-file E:/PAK/MUMPS3/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/PAK/MUMPS3/CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFortranInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindOpenMP.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeFortranCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeSystem.cmake;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90_in;E:\PAK\MUMPS3\CMakeLists.txt;E:\PAK\MUMPS3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\PAK\MUMPS3\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/PAK/MUMPS3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/PAK/MUMPS3 -BE:/PAK/MUMPS3 --check-stamp-file E:/PAK/MUMPS3/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/PAK/MUMPS3/CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFortranInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindOpenMP.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeFortranCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeSystem.cmake;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90_in;E:\PAK\MUMPS3\CMakeLists.txt;E:\PAK\MUMPS3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\PAK\MUMPS3\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/PAK/MUMPS3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/PAK/MUMPS3 -BE:/PAK/MUMPS3 --check-stamp-file E:/PAK/MUMPS3/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/PAK/MUMPS3/CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeFortranInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindOpenMP.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel-Fortran.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-Intel.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeFortranCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;E:\PAK\MUMPS3\CMakeFiles\3.13.2\CMakeSystem.cmake;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90;E:\PAK\MUMPS3\CMakeFiles\FindOpenMP\OpenMPTryFlag.f90_in;E:\PAK\MUMPS3\CMakeLists.txt;E:\PAK\MUMPS3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\PAK\MUMPS3\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\lr_common.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_omp_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\tools_common.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_orderings_wrappers_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_memory_mod.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_static_mapping.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_sol_es.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_future_niv2_mod.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_comm_ibcast.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_ooc_common.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\double_linked_list.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_asm_build_sort_index_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_asm_build_sort_index_ELT_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\omp_tps_common_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_l0_omp_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\front_data_mgt_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_maprow_data_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_descband_data_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\fac_ibct_data_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_orderings.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_AMDMF.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\bcast_errors.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\estim_flops.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_type_size.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_type2_blocking.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_version.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\mumps_print_defined.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_FORTRAN.dir\$(Configuration)\ana_set_ordering.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_c.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_common.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_size.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io_basic.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io_thread.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_io_err.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_thread.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_save_restore_C.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_numa.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_pord.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_metis.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_metis64.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_metis_int.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_scotch.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_scotch64.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.dir\$(Configuration)\mumps_scotch_int.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_aux_par.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_lr.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm_master_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm_master_ELT_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\domp_tps_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_comm_buffer.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_load.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_lr_data_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_ooc_buffer.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_ooc.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_struc_def.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dstatic_ptr_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dlr_core.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dlr_type.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dlr_stats.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_lr.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_omp_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_par_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LU_type1.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LU_type2.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LDLT_type1.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_LDLT_type2.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_front_type2_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_save_restore_files.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_save_restore.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dini_driver.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_driver.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_driver.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_driver.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dend_driver.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_aux_ELT.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_dist_m.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_LDLT_preprocess.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_reordertree.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\darrowheads.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dbcast_int.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm_ELT.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_asm.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_b.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_distrib_distentry.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_distrib_ELT.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_lastrtnelind.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_alloc_cb.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_compress_cb.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_free_block_cb.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_stack_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_mem_stack.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_band.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_blfac_slave.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_blocfacto_LDLT.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_blocfacto.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_bf.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_end_facto_slave.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_contrib_type1.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_contrib_type2.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_contrib_type3.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_maprow.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_master2.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_message.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_root2slave.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_root2son.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_process_rtnelind.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_root_parallel.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_scalings.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_determinant.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_scalings_simScaleAbs.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_scalings_simScale_util.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_sol_pool.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dfac_type3_symmetrize.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dini_defaults.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_driver.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_f77.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dmumps_iXamax.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dana_mtrans.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dooc_panel_piv.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\drank_revealing.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_bwd_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_bwd.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_c.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_fwd_aux.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_fwd.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_matvec.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dsol_root_parallel.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dtools.obj" />
+    <Object Include="E:\PAK\MUMPS3\MUMPS_SPECIFIC_OBJ_FORTRAN.dir\$(Configuration)\dtype3_root.obj" />
+    <ClInclude Include="E:\PAK\MUMPS3\libseq\mpi.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\libseq\elapse.h" />
+    <Object Include="E:\PAK\MUMPS3\LIBMPISEQ_C.dir\$(Configuration)\mpic.obj" />
+    <Object Include="E:\PAK\MUMPS3\LIBMPISEQ_C.dir\$(Configuration)\elapse.obj" />
+    <ClInclude Include="E:\PAK\MUMPS3\libseq\mpif.h" />
+    <Object Include="E:\PAK\MUMPS3\LIBMPISEQ_FORTRAN.dir\$(Configuration)\mpi.obj" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\const.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\eval.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\macros.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\params.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\protos.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\space.h" />
+    <ClInclude Include="E:\PAK\MUMPS3\PORD\include\types.h" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\bucket.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\ddbisect.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\ddcreate.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\gbipart.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\gbisect.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\gelim.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\graph.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\interface.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\minpriority.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\multisector.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\nestdiss.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\sort.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\symbfac.obj" />
+    <Object Include="E:\PAK\MUMPS3\PORD_C.dir\$(Configuration)\tree.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\PAK\MUMPS3\ZERO_CHECK.vcxproj">
+      <Project>{D70C5A6E-7C43-3DA7-B46A-2427A02B9D48}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\PAK\MUMPS3\LIBMPISEQ_C.vcxproj">
+      <Project>{FC814A0A-F0A9-3EDE-814E-DABECF09330D}</Project>
+      <Name>LIBMPISEQ_C</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\PAK\MUMPS3\MUMPS_COMMON_OBJ_C.vcxproj">
+      <Project>{2AD112A2-FD5F-3CE0-A115-442BB8A8E908}</Project>
+      <Name>MUMPS_COMMON_OBJ_C</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\PAK\MUMPS3\PORD_C.vcxproj">
+      <Project>{596BABBD-5228-39C9-9076-1D6A5575E86D}</Project>
+      <Name>PORD_C</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
