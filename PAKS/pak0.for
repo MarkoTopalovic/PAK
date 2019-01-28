@@ -416,7 +416,7 @@ C
                     ENDIF
                 ENDIF
 
-                IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.5) THEN     
+                IF(KOJPAK.EQ.4.OR.KOJPAK.EQ.5) THEN     
                       IHELP = IVTKCOUNTER
                       IVTKCOUNTER = IHELP+1
                       CALL VTKPRINT(A(LPAKS))
