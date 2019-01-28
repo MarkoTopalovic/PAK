@@ -291,6 +291,7 @@ C-----------------------------------------------------------------------
       END
 C=======================================================================
       SUBROUTINE UEL4A(AU)
+      use mcm_database
 C
 CS     UPRAVLJACKI PROGRAM ZA UCITAVANJE ULAZNIH PODATAKA U AU
 CE     MENAGEMENT ROUTINE FOR INPUT DATA IN    AU
@@ -392,7 +393,10 @@ C
       ISUMEL=ISUME
       IF(NBLGR.GE.0) then
       CALL TGRAU8(AU(LNEL),AU(LCEL),ICVEL,AU(LNMAT),AU(LTHID),49)
+      KOJPAK = mcm_kojpak
+      IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.5) THEN
       CALL PAKSVTKELEM(AU(LNEL),AU(LCEL),ICVEL,AU(LNMAT),AU(LTHID),49)
+      ENDIF
 ! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu  
       end if
 C
