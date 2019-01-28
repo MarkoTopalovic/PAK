@@ -249,12 +249,9 @@ C       ZASTO JE UVEDEN NDOD
         ENDIF
         IF(NBLGR.GE.0.AND.NP.GT.0) THEN
            CALL TGRAUK(A(LCORD),A(LCVEL),ICVEL,NP,49)
-           KOJPAK = mcm_kojpak
-           ! Topalovic ovo ne radi sa if uslovom 
-        !IF((KOJPAK.EQ.4).OR.(KOJPAK.EQ.5)) THEN
+           
            CALL PAKSVTK(A(LCORD),A(LCVEL),ICVEL,NP,49)
-! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu  
-        !ENDIF   
+   
            CALL TGRAUB(A(LID),A(LCVEL),ICVEL,NP,49)
         ENDIF
         IF(ITEST.GT.0) THEN
