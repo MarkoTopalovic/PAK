@@ -48,17 +48,12 @@ IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       COMMON /NIDEAS/ IDEAS
       DIMENSION CORD(NPP,*),NCVEL(*)
       DIMENSION IDD(6)
-!      ALLOCATE (VTKCVOROVI(NP,3))
+
       IF (ALLOCIRANICVOROVI.EQ.(.FALSE.)) THEN
       ALLOCATE (VTKCVOROVI(NP,3))
       ALLOCIRANICVOROVI = .TRUE.
       END IF
-      KOJPAK = mcm_kojpak
-           ! Topalovic ovo ne radi sa if uslovom 
-        IF((KOJPAK.LT.4)) THEN
-      goto 900
-      ! TODO TOPLAOVIC premestiti poziv za vtk u period subrutinu  
-        ENDIF
+
       NULA=0
 	 JEDAN=1
 
@@ -146,7 +141,7 @@ END IF
   84 FORMAT ("DATASET UNSTRUCTURED_GRID")
 
  882 FORMAT (F15.8,F15.8,F15.8)
- 900 RETURN
+
 end subroutine PAKSVTK
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 SUBROUTINE PAKSVTKELEM(NEL,MCVEL,ICVEL,NMAT,THID,IGRAF)
