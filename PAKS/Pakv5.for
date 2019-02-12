@@ -2090,7 +2090,8 @@ C=======================================================================
       COMMON /RADNIV/ MAXVEC
       COMMON /ULAZNI/ IULAZ,IIZLAZ,IPAKT
 
-!       WRITE(*,*) 'trenutna duzina radno vekora je:',MEMNEW
+       WRITE(*,*) 'trenutna duzina radno vekora je:',MEMNEW
+      WRITE(*,*) MAXVEC
       IF (MEMNEW.GT.MAXVEC) THEN
        WRITE(*,*) 'NEMA DOVOLJNO MEMORIJE ZA RESAVANJE PROBLEMA!!!'
        WRITE(IIZLAZ,*)'NEMA DOVOLJNO MEMORIJE ZA RADNI VEKTOR',MAXVEC,

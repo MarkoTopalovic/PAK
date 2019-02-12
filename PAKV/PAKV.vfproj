@@ -51,6 +51,7 @@
 		<File RelativePath=".\mod.f90"/>
 		<File RelativePath=".\pak065.for"/>
 		<File RelativePath=".\Pakv1.for"/>
+		<File RelativePath="..\PAKS\Pakv1.for"/>
 		<File RelativePath=".\Pakv2.for"/>
 		<File RelativePath=".\Pakv3.for"/>
 		<File RelativePath=".\Pakv3d.for"/>

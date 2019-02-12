@@ -32,8 +32,8 @@
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Release|x64" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include;..\MCM\Release" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" FloatingPointSpeculation="fpSpeculationSafe" NullPointerCheck="true" UninitializedVariablesCheck="true" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
-				<Tool Name="VFLibrarianTool" AdditionalOptions="/FORCE:MULTIPLE" LinkLibraryDependencies="true" AdditionalDependencies="C:\mumps\MUMPS_5.1.2\$(Platform)\$(Configuration)\libdmumps.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\lapack.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\blas.lib"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" NullPointerCheck="true" UninitializedVariablesCheck="true" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" AdditionalOptions="/FORCE:MULTIPLE" AdditionalDependencies="C:\mumps\MUMPS_5.1.2\$(Platform)\$(Configuration)\libdmumps.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\lapack.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\blas.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -46,7 +46,6 @@
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\mod.f90"/>
 		<File RelativePath=".\pak065.for"/>
-		<File RelativePath=".\Pakv1.for"/>
 		<File RelativePath=".\Pakv2.for"/>
 		<File RelativePath=".\Pakv3.for"/>
 		<File RelativePath=".\Pakv3d.for"/>
