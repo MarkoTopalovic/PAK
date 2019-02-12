@@ -288,7 +288,7 @@ C 500 IF(DABS(A(JD)).GT.1.D-40) B(J) = B(J)/A(JD)
       GO TO 500
       END                 
 C======================================================================
-      FUNCTION DOT(A,B,N)
+      FUNCTION VDOT(A,B,N)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C...  SCALAR PRODUCT      
       DIMENSION A(*),B(*)
@@ -2592,7 +2592,7 @@ C
       
       END
 C=======================================================================
-      FUNCTION DELTA(I,J)
+      FUNCTION VDELTA(I,J)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................

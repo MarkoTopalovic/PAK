@@ -1,4 +1,4 @@
-      subroutine dmumps1(irn,jcn,a,rhs,nz,n,kkk)
+      subroutine Vdmumps1(irn,jcn,a,rhs,nz,n,kkk)
       USE MUMPSM
       IMPLICIT NONE
       INCLUDE 'mpif.h'

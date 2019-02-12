@@ -254,7 +254,7 @@ C        CALL VICCGMA(B,V,MAXA,NWK,NN,KKK,IIZLAZ,TOLG,ALFAG)
          ELSE
 c            if(imumps.eq.1) then
 c                 if(kkk.eq.2) then
-               CALL dmumps1(rows,columns,stiff,V,nonzeros,stiff_n,kkk)
+               CALL Vdmumps1(rows,columns,stiff,V,nonzeros,stiff_n,kkk)
 c                    IF (myid.ne.0) goto 20
 c                endif
 c            endif
@@ -1133,7 +1133,7 @@ C
       RETURN
       END
 C=======================================================================
-      FUNCTION CONDOF(U,CMPC,MPC,II)
+      FUNCTION VCONDOF(U,CMPC,MPC,II)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CE      TO CALCULATE CONSTRAIND DOF
