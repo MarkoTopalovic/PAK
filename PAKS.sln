@@ -17,6 +17,8 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "PAKV", "PAKV\PAKV.vfproj", 
 		{DA8FDDC9-4FDE-4AE3-AE7F-79C8B700E9A6} = {DA8FDDC9-4FDE-4AE3-AE7F-79C8B700E9A6}
 	EndProjectSection
 EndProject
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "PAKP", "PAKP\PAKP.vfproj", "{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -73,6 +75,18 @@ Global
 		{C8084260-8971-458B-B080-3A86DE4BDA37}.Release|Win32.Build.0 = Release|Win32
 		{C8084260-8971-458B-B080-3A86DE4BDA37}.Release|x64.ActiveCfg = Release|x64
 		{C8084260-8971-458B-B080-3A86DE4BDA37}.Release|x64.Build.0 = Release|x64
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Debug|Win32.Build.0 = Debug|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Debug|x64.ActiveCfg = Debug|x64
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Debug|x64.Build.0 = Debug|x64
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Profile|Win32.ActiveCfg = Release|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Profile|Win32.Build.0 = Release|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Profile|x64.ActiveCfg = Release|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Profile|x64.Build.0 = Release|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Release|Win32.ActiveCfg = Release|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Release|Win32.Build.0 = Release|Win32
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Release|x64.ActiveCfg = Release|x64
+		{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

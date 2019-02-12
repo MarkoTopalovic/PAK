@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="11.0" ProjectIdGuid="{9676A0B6-8A39-4EE1-9EA1-3DAE4F0ACB9E}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" Traceback="true" NullPointerCheck="true" UninitializedVariablesCheck="true" RuntimeLibrary="rtMultiThreadedDebug" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" AdditionalOptions="/FORCE:MULTIPLE " AdditionalDependencies="C:\mumps\MUMPS_5.1.2\$(Platform)\$(Configuration)\libdmumps.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\lapack.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\blas.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|Win32" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include;..\MCM\Release" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" FloatingPointSpeculation="fpSpeculationSafe" NullPointerCheck="true" UninitializedVariablesCheck="true" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" AdditionalOptions="/FORCE:MULTIPLE" LinkLibraryDependencies="true" AdditionalDependencies="C:\mumps\MUMPS_5.1.2\$(Platform)\$(Configuration)\libdmumps.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\lapack.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\blas.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Debug|x64" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" Traceback="true" NullPointerCheck="true" UninitializedVariablesCheck="true" RuntimeLibrary="rtMultiThreadedDebug" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" AdditionalOptions="/FORCE:MULTIPLE " AdditionalDependencies="C:\mumps\MUMPS_5.1.2\$(Platform)\$(Configuration)\libdmumps.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\lapack.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\blas.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration>
+		<Configuration Name="Release|x64" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include;..\MCM\Release" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" FloatingPointSpeculation="fpSpeculationSafe" NullPointerCheck="true" UninitializedVariablesCheck="true" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLibrarianTool" AdditionalOptions="/FORCE:MULTIPLE" LinkLibraryDependencies="true" AdditionalDependencies="C:\mumps\MUMPS_5.1.2\$(Platform)\$(Configuration)\libdmumps.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\lapack.lib C:\mumps\lapack-3.6.1\lib\$(Configuration)\blas.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath=".\mod.f90"/>
+		<File RelativePath=".\pak065.for"/>
+		<File RelativePath=".\Pakv1.for"/>
+		<File RelativePath=".\Pakv2.for"/>
+		<File RelativePath=".\Pakv3.for"/>
+		<File RelativePath=".\Pakv3d.for"/>
+		<File RelativePath=".\Pakv4.for"/>
+		<File RelativePath=".\Pakv5.for"/>
+		<File RelativePath=".\Pakv6.for"/>
+		<File RelativePath=".\pakvi.for"/>
+		<File RelativePath=".\Pakvn.for"/></Filter></Files>
+	<Globals/></VisualStudioProject>

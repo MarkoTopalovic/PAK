@@ -15,22 +15,6 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "PAKV", "src\PAKV.vfproj", "
 		{DA8FDDC9-4FDE-4AE3-AE7F-79C8B700E9A6} = {DA8FDDC9-4FDE-4AE3-AE7F-79C8B700E9A6}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "blacs_mpi", "MUMPS\WinMumps\VisualStudio2005\blacs_mpi.vfproj", "{1557CD89-9E68-4AD7-9763-A1E865AA408B}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blacs_mpi_CallFromC", "MUMPS\WinMumps\VisualStudio2005\blacs_mpi_CallFromC.vcxproj", "{C90FA457-18AF-4563-9E9B-284304B62E74}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blacs_mpi_CallFromF", "MUMPS\WinMumps\VisualStudio2005\blacs_mpi_CallFromF.vcxproj", "{933FEE1C-FEEC-4146-80E1-453E5EB39FDE}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mumps", "MUMPS\WinMumps\VisualStudio2005\mumps.vcxproj", "{1A0B0B4C-6E8B-4999-8118-171609CF1CEF}"
-EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "mumps_core_mp", "MUMPS\WinMumps\VisualStudio2005\mumps_core_mp.vfproj", "{3D52DB52-ED7C-4158-B16A-DE6567AD60E1}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scalapack", "MUMPS\WinMumps\VisualStudio2005\scalapack.vcxproj", "{21B9A470-85FC-4BC2-A8EC-E18420955274}"
-EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scalapack_core", "MUMPS\WinMumps\VisualStudio2005\scalapack_core.vfproj", "{9FE212C3-F32E-4975-9EF1-2347FB6DA0FD}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cplusplus", "src\cplusplus.vcxproj", "{DA8FDDC9-4FDE-4AE3-AE7F-79C8B700E9A6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
