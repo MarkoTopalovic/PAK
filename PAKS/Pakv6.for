@@ -1146,10 +1146,10 @@ C
 C
       IIP=-II
       ICM=MPC(1,IIP)
-      CONDOF=0.D0
+      VCONDOF=0.D0
       DO 20 L=1,NEZAV
       II=MPC(L+1,IIP)
-   20 IF(II.GT.0) CONDOF=CONDOF+U(II)*CMPC(ICM,L)
+   20 IF(II.GT.0) VCONDOF=VCONDOF+U(II)*CMPC(ICM,L)
       RETURN
       END
 C=======================================================================

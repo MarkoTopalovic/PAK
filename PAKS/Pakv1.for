@@ -14,6 +14,7 @@ C$DEBUG
       USE MESURMENTPOINTS
       USE KONTURE
       USE PRESEK
+      USE TEMPCVOROVI
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       include 'paka.inc'
       INCLUDE 'mpif.h'
@@ -97,7 +98,7 @@ C      DIMENSION IBFK(5,3),FAKP(5,3),TOPM(5),TMNM(5)
       integer*8 LM2,INDWATER
       integer Dtime(8),ISNUMER
       INTEGER*4 IBRANA
-
+      ALLOCIRANEtemperature = .FALSE.
       CALL MPI_INIT(ierr)
       CALL MPI_COMM_RANK(MPI_COMM_WORLD,myid,ierr)
       !return
@@ -1618,11 +1619,16 @@ C=======================================================================
 !       SUBROUTINE VRESTEL(VREME,TEMP,NP,IDJSTAMP1,NP3D1,ISNUMER,KKORAK)
       SUBROUTINE VRESTEL(VREME,TEMP,NP,ISNUMER,KKORAK)
       USE NODES
+      USE TEMPCVOROVI
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       COMMON /DJERDAP/ IDJERDAP,ISPRESEK
       COMMON /ICITANJE/ INPT
       DIMENSION TEMP(*)
 !       ,IDJSTAMP1(1,*),NP3D1(5)
+      IF (ALLOCIRANEtemperature.EQ.(.FALSE.)) THEN
+      ALLOCATE (TEMPuCVORU(NP))
+      ALLOCIRANEtemperature = .TRUE.
+      ENDIF
 C
 !            IF(IDJERDAP.EQ.1) THEN
 !  kad je IDJERDAP > 0 zapisuje temperature za cvorove iz fajla DJ1 ...
@@ -1638,6 +1644,8 @@ C
 !                IF(IDJSTAMP1(IK,NN).EQ.IK) THEN
 !                   IF(INPT.EQ.1) THEN
                 IF(ISNUMER.EQ.0)THEN
+                    ! TOPALOVIC OVDE ZAPISUJE TEMPERATURE!!!!!
+                  TEMPuCVORU(NN)= TEMP(NN) 
                  WRITE(IFILE,5017) NN,TEMP(NN)
                 ELSE
                  WRITE(IFILE,5017) NCVEL(NN),TEMP(NN)

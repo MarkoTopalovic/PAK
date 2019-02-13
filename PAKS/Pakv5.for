@@ -1073,6 +1073,7 @@ c          IME=IME // ik3 // '.T'
           INQUIRE(FILE=IMET,EXIST=OLDNEW)
           IF(OLDNEW) STAT='OLD'
           IF(STAT.EQ.'NEW') THEN
+              ! TOPALOVIC OVDE PRAVI .T FAJL OVDE CU DA UBACIM I MODUL
        OPEN (IFILE,FILE=IMET,STATUS='NEW',FORM='FORMATTED',
      1 ACCESS='SEQUENTIAL')
                          ELSE
@@ -1080,6 +1081,7 @@ c          IME=IME // ik3 // '.T'
      1 ACCESS='SEQUENTIAL')
                          ENDIF
          IND=0
+         ! TOPALOVIC MOZDA OVDE ZAPISUJE VREDNOSTI??
          IF(STAT.EQ.'OLD') CALL VBRISZST (IMET,IFILE,IND)
          IF(IND.EQ.1)GO TO 21
          IF(IND.EQ.2)GO TO 16

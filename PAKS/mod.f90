@@ -152,4 +152,9 @@
       end module zapresil
       module Crtanje
         double precision,dimension(:),allocatable :: TTemp
-      end module Crtanje
+    end module Crtanje
+    
+    module TEMPCVOROVI
+        LOGICAL ALLOCIRANEtemperature
+        double precision,dimension(:),allocatable :: TEMPuCVORU
+    end module TEMPCVOROVI
