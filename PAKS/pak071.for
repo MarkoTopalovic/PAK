@@ -341,12 +341,19 @@ C
 C
 CE    FORM VECTOR OF NODAL TEMPERATURES AT TIME T+DT
 CS    FORMIRANJE VEKTORA CVORNIH TEMPERATURA U TRENUTKU T+DT
-C
+C     
       IF(NTEMP.GT.0) THEN 
          LMAX13=NPODS(JPBR,62)-1
          CALL FORMCT
       ENDIF
-      IF(NTEMP.LT.0) CALL DISKCT(A(LTECV))
+      ! TOPALOVIC OVDE SE POZIVA CITANJE TEMPERATURA IZ FAJLA
+      IF(NTEMP.LT.0) THEN
+          IF(NTEMP.EQ.-7)THEN
+                 CALL DISKCTMOD(A(LTECV)) ! UCITAVANJE TEMPERATURA IZ MODULA
+              ELSE
+                 CALL DISKCT(A(LTECV)) ! STARO UCITAVANJE IZ ZITEMP
+              ENDIF
+      ENDIF
       IF(NBLGR.GE.0.AND.NTEMP.NE.0.AND.ISTEM.NE.-1)
      1 CALL STAGTE(A(LTECV),A(LCVEL),ICVEL,NP,IGRAF,A(LNCVP),NCVPR)
       IF(NBLGR.GE.0.AND.NTEMP.NE.0.AND.ISTEM.NE.-1)
@@ -806,6 +813,38 @@ C-----------------------------------------------------------------------
      1VREMENSKOM TRENUTKU VREME =',1PD12.5)
  6100 FORMAT(//' ON UNIT =',I5,' READ ERROR AT TIME =',1PD12.5)
 C-----------------------------------------------------------------------
+      END
+C=======================================================================
+C
+      SUBROUTINE DISKCTMOD(TEMP)
+      USE TEMPCVOROVI
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.   P R O G R A M
+CE.      TO READING VECTORS OF NODAL TEMPERATURE AT TIME T+DT
+CS.   P R O G R A M
+CS.      ZA UCITAVANJE VEKTORA CVORNIH TEMPERATURA U TRENUTKU T+DT
+C .
+C ......................................................................
+C ! OVAJ POTPROGRAM JE KOPIJA GORNJEG POTPROGRAMA (OOP FTW), S TOM RAZLIKOM STO SE UMESTO IZ ZITEMP FAJLA TEMPERATURE CITAJU IZ MODULA
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
+      COMMON /TEMPCV/ LTECV,ITEMP
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /CDEBUG/ IDEBUG
+      COMMON /SRPSKI/ ISRPS
+      DIMENSION TEMP(*)     
+C
+      IF(IDEBUG.GT.0) PRINT *, ' DISKCTMOD'
+      DO J=1,NP
+          TEMP(J) = TEMPuCVORU(J)
+      ENDDO
+C
+
       END
 C=======================================================================
 C
