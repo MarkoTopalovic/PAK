@@ -52,8 +52,8 @@ C
           PRINT *, ' '
         ENDIF
 C
-CE      ANALYSIS TYPE (=1-PAKS, =2-PAKF, =3-PAKS+PAKF, =4-MCM, =5-PAKS+MCM =6-PAKP)
-CS      KOJI SE PROGRAM KORISTI (=1-PAKS, =2-PAKF, =3-ZAJEDNO, 4-MCM, 5-PAKS+MCM, =6-PAKP )
+CE      ANALYSIS TYPE (=1-PAKS, =2-PAKF, =3-PAKS+PAKF, =4-MCM, =5-PAKS+MCM, =6-PAKP, =7-PAKPS)
+CS      KOJI SE PROGRAM KORISTI (=1-PAKS, =2-PAKF, =3-ZAJEDNO, 4-MCM, 5-PAKS+MCM, =6-PAKP, =7-PAKPS )
 C       WRITE(*,*)'Finite element program for fluid-structure interaction'
 C       WRITE(*,*) 'Options: '
 C       WRITE(*,*) '1 - Structure analysis only'
@@ -62,8 +62,9 @@ C       WRITE(*,*) '3 - Interaction fluid-structure analysis'
 C       WRITE(*,*) '4 - Meshless Continuum Mechanics MCM sph'
 C       WRITE(*,*) '5 - PAKS + MCM'
 C       WRITE(*,*) '6 - PAKP'
+C       WRITE(*,*) '7 - PAKP + PAKS'
 C       READ(*,*) KOJPAK
-        KOJPAK=1
+        KOJPAK=7
         mcm_kojpak = KOJPAK
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
@@ -144,16 +145,24 @@ CS    POCETNI REPER ZA PAKS
 ! read restart file
 !call mcm_restart
             endif         
-            ENDIF 
+        ENDIF 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO MCM BEZ PAKA!!!!!!!!!!!!!!!!!!!!!!!!!!!!        
 
             
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO PAKP!!!!!!!!!!!!!!!!!!!!!!!!!!!!               
         IF(KOJPAK.EQ.6) THEN 
-            write(*,*)"pakp ne radi"
             call VPAKV         
         ENDIF 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO PAKP!!!!!!!!!!!!!!!!!!!!!!!!!!!!       
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SAMO PAKP!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+!!!!!!!!!!!!!!!!!PAKP + PAKS!!!!!!!!!!!PRVO PAKV!!!!!!!!!!!!!!!!!               
+        IF(KOJPAK.EQ.7) THEN 
+            write(*,*)"prvo se poziva pakV"
+            call VPAKV 
+            write(*,*)"sad kad je pakV zavrsio preuzima pakS"
+            KOJPAK=1
+        ENDIF 
+!!!!!!!!!!!!!!!!!PAKP + PAKS!!!!!!!!!!!PRVO PAKV!!!!!!!!!!!!!!!!!  
         
  9999   IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5) THEN
            IF (myid.ne.0) goto 10

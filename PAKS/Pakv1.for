@@ -100,14 +100,10 @@ C      DIMENSION IBFK(5,3),FAKP(5,3),TOPM(5),TMNM(5)
 
       CALL MPI_INIT(ierr)
       CALL MPI_COMM_RANK(MPI_COMM_WORLD,myid,ierr)
-      write (*,*)"zasto neces da radis glupi paku"
       !return
       IF (myid.ne.0) goto 1234
-      write (*,*) "ntotal =", ntotal
-      write (*,*) "NTOTAL =", NTOTAL
        MTOT=NTOTAL
        MAXVEC=NTOTAL
-       write (*,*) "MAXVEC =", MAXVEC
 C
 C IDVA - INDIKATOR ZA NUMERICKU TACNOST
 C IDVA=1 JEDNOSTRUKA TACNOST
