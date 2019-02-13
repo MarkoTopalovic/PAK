@@ -63,7 +63,7 @@ C       WRITE(*,*) '4 - Meshless Continuum Mechanics MCM sph'
 C       WRITE(*,*) '5 - PAKS + MCM'
 C       WRITE(*,*) '6 - PAKP'
 C       READ(*,*) KOJPAK
-        KOJPAK=6
+        KOJPAK=1
         mcm_kojpak = KOJPAK
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)

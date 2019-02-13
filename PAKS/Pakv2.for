@@ -292,9 +292,9 @@ C======================================================================
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C...  SCALAR PRODUCT      
       DIMENSION A(*),B(*)
-      DOT=0.D0
+      VDOT=0.D0
       DO 100 I=1,N
-      DOT = DOT + A(I)*B(I)
+      VDOT = VDOT + A(I)*B(I)
   100 CONTINUE
       RETURN
       END
@@ -2604,8 +2604,8 @@ CS.      ZA KRONEKER DELTA
 C .
 C ......................................................................
 C
-      DELTA=0.D0
-      IF(I.EQ.J) DELTA=1.D0
+      VDELTA=0.D0
+      IF(I.EQ.J) VDELTA=1.D0
       RETURN
       END
 C=======================================================================
