@@ -6,6 +6,7 @@ C$DEBUG
       RETURN
       END
       SUBROUTINE VPAKV
+      use mcm_database
       USE NODES
       USE ELEMENTS
       USE MATRIXINIT
@@ -1490,7 +1491,7 @@ C     1,LVG,LGG,LKOJK
      1A(LPOVSI),POMER,A(LITFMA),A(LKONST),NASLOV,
      1A(LICUR),VG,GG,INDPT,ISNUMER)
       ENDIF
-      IF (myid.ne.0) goto 1345
+      IF ((myid.ne.0).or.(mcm_kojpak.eq.7)) goto 1345
 !          WRITE(*,*) "isave",isave
         write(*,*) "posle RACN3D"
 !  stampa za pakt temperature u tab fajlove

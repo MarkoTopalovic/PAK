@@ -30,6 +30,7 @@ C
       COMMON/VERSION/ IVER
       COMMON /VTKVALUES/ VTKIME,IVTKCOUNTER
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /DUZINA/ LMAX,MTOT,LMAXM,LRAD,NRAD
       CHARACTER*6    FIPAKS,FIPAKF
       DIMENSION IA(1)
       EQUIVALENCE(A(1),IA(1))
@@ -160,13 +161,19 @@ CS    POCETNI REPER ZA PAKS
             write(*,*)"prvo se poziva pakV"
             call VPAKV 
             write(*,*)"sad kad je pakV zavrsio preuzima pakS"
-            KOJPAK=1
+            KOJPAK=1 !iz nekog razloga nece da radi za kojpak=7 pa moram da vratim na 1
         ENDIF 
 !!!!!!!!!!!!!!!!!PAKP + PAKS!!!!!!!!!!!PRVO PAKV!!!!!!!!!!!!!!!!!  
         
- 9999   IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5) THEN
+ 9999  IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5.OR.KOJPAK.EQ.7) THEN
            IF (myid.ne.0) goto 10
+           !IF(KOJPAK.NE.7)THEN ! ZA PAKP+PAKS CUVA VEKTOR I OD P PA NASTAVLJA DALJE
+           !LMAX=LMAXF
+           !LPAKS=LMAX
+           !ENDIF
+           IF(mcm_kojpak.ne.7)THEN ! ZA PAKP+PAKS CUVA VEKTOR I OD P PA NASTAVLJA DALJE
            LMAX=LMAXF
+           ENDIF
            LPAKS=LMAX
 C
 CE       INPUT DATA AND MEMORY ALLOCATION
@@ -233,7 +240,7 @@ CS    PAKS - RACUNANJE SOPSTVENIH VREDNOSTI
 C
 20    CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
       CALL MPI_BCAST(KOJPAK,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
-      IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5) THEN
+      IF(KOJPAK.EQ.1.OR.KOJPAK.EQ.3.OR.KOJPAK.EQ.5.OR.KOJPAK.EQ.7) THEN
          IF (myid.ne.0) goto 30
             IF((KOJPAK.EQ.3.OR.KOJPAK.EQ.5)
      1        .AND.NEMADE.EQ.1.AND.KOLKO.GT.0) THEN
