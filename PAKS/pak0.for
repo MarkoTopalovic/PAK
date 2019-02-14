@@ -279,6 +279,9 @@ C=======================================================================
       USE ELEMENTI
       USE CVOROVI
       USE WSTAZK
+      
+      USE RESULTS
+      
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -403,7 +406,17 @@ C          END OF ANALYSIS (KRAJP.EQ.1)
 	      IF(KRAJP.EQ.1) RETURN
             IF (myid.ne.0) goto 20
             VREM0 = VREM0 + DT
-            
+            IF(mcm_kojpak.eq.7)then
+            !CALL VPAKV
+                WRITE(*,*)"POZIVA SE PAKV"
+                READ (*,*)IPAKVPOZIV
+                CALL VRACN3DT(TT1,SILE,
+     1A(LNZAD),A(LZADVR),A(LNGPSI),MAXA,SKEF,
+     1SKEFN,DEFOR,A(LVREME),A(LVRFUN),TT10,
+     1UBRZ,UBRZ0,AK,VECTJ,IVECT,
+     1A(LPOVSI),POMER,A(LITFMA),A(LKONST),NASLOV,
+     1A(LICUR),VG,GG,INDPT,ISNUMER)
+            endif
 C
 C          PAKF - PROGRAM
 C
