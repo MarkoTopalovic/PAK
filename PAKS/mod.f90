@@ -80,6 +80,7 @@
         integer*8,dimension(:),allocatable :: IFLUXR
         double precision :: RKOREKCIJA
         double precision :: PREKIDNAFR
+        double precision :: VVVREME
       end module PREDISCRIBED
       
       module MESURMENTPOINTS

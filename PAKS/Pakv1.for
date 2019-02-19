@@ -136,6 +136,7 @@ C
       IPROTK=21
       IZSILE=25
 C
+      VVVREME=0.D0
 C=======================================================================
       CALL VOTVORI
       CALL DATE_AND_TIME(VALUES=Dtime)

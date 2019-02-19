@@ -3331,7 +3331,7 @@ C===========================================================================
 C
       INULTO=0
       KKORAK=1
-      VVREME=0.D0
+      
 C indikator LINTE=0 - linearan proracun
       LINTE=0
 C=========================================================================
@@ -3341,11 +3341,15 @@ c petlja po periodima
       DO 600 NNPER=1,NPER
       
       KORAK=0
-      IF(mcm_kojpak.eq.7)then
-      KORAK=PAKSkorBR 
-      ENDIF
+      VVREME=0.D0
 c petlja po koracima
-35    KORAK=KORAK+1
+35    CONTINUE
+      IF((mcm_kojpak.eq.7).AND.(pakV_pisiNEU.EQ.FALSE))then
+      KORAK=PAKSkorBR 
+      ELSE
+      KORAK=KORAK+1    
+      ENDIF
+      
       
       
       
@@ -3365,7 +3369,9 @@ cz uslov da prvi korak radi stacionarno
 C
 cz      IF (KKORAK.GT.0) THEN
       TIME=VREME(NNPER,KORAK)
+      !VVREME=VVVREME
       VVREME=VVREME+TIME
+      !VVVREME=VVREME
 cz      ELSE
 cz       TIME=1.D7
 cz       KORAK=KORAK-1
@@ -5105,7 +5111,7 @@ c uslova da sledeci korak u tom periodu ne postoji i da ide na sledeci period
         GOTO 600
       ELSE
 cz ide na sledeci korak   
-          IF(mcm_kojpak.eq.7)then
+          IF((mcm_kojpak.eq.7).AND.( pakV_pisiNEU.EQ.FALSE))then
             GOTO 600
              ENDIF
         GOTO 35
