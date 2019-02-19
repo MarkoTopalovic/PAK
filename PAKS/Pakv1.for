@@ -16,6 +16,7 @@ C$DEBUG
       USE KONTURE
       USE PRESEK
       USE TEMPCVOROVI
+      USE PAKVREPOVI
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       include 'paka.inc'
       INCLUDE 'mpif.h'
@@ -1475,7 +1476,9 @@ C     1,LVG,LGG,LKOJK
 !      1A(LPOVSI),POMER,A(LITFMA),A(LKONST),NASLOV,
 !      1A(LICUR),VG,GG,A(LKOJK))
 !       ELSE
-        write(*,*) "pre RACN3D"
+!            IF (mcm_kojpak.eq.7) goto 1345
+!        write(*,*) "pre RACN3D"
+        
       IF(IPAKT.EQ.0) THEN
       CALL VRACN3D(TT1,SILE,
      1A(LNZAD),A(LZADVR),A(LNGPSI),MAXA,SKEF,
@@ -1491,9 +1494,7 @@ C     1,LVG,LGG,LKOJK
      1A(LPOVSI),POMER,A(LITFMA),A(LKONST),NASLOV,
      1A(LICUR),VG,GG,INDPT,ISNUMER)
       ENDIF
-      IF ((myid.ne.0).or.(mcm_kojpak.eq.7)) goto 1345
-!          WRITE(*,*) "isave",isave
-        write(*,*) "posle RACN3D"
+ 
 !  stampa za pakt temperature u tab fajlove
       IF(IPAKT.EQ.1)THEN
       DO IMP=1,MAX_MPOINTS

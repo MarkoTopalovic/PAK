@@ -158,3 +158,15 @@
         LOGICAL ALLOCIRANEtemperature
         double precision,dimension(:),allocatable :: TEMPuCVORU
     end module TEMPCVOROVI
+    
+    module PAKVREPOVI
+        integer :: LNZAD
+        integer :: LZADVR
+        integer :: LNGPSI
+        integer :: LVREME
+        integer :: LVRFUN
+        integer :: LPOVSI
+        integer :: LITFMA
+        integer :: LKONST
+        integer :: LICUR        
+    end module PAKVREPOVI

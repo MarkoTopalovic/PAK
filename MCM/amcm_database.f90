@@ -15,6 +15,7 @@ integer, parameter :: d=real_acc
 !---------------------------------------------------------------------------
 ! Global variables
 !
+integer :: PAKSkorBR ! ZA PAK PVT
 logical :: mcm_ctrlc
 logical :: pak_initialized
 !
@@ -337,6 +338,7 @@ contains
  
  end subroutine mcm_allocate_memory
  !
+
 end module mcm_database
 
 MODULE CVOROVI

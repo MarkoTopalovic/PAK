@@ -231,7 +231,7 @@ c petlja po periodima
       CALL MPI_BCAST(NPER,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
       DO 600 NNPER=1,NPER
       KORAK=0
-c petlja po koracima
+c petlja po koracima !topalovic ovde pocinje 
    35 KORAK=KORAK+1
       if(myid.ne.0) goto 3456
 C
@@ -3100,6 +3100,7 @@ C=========================================================================
      2FZAPR,VREME,TABF,TT10,UBRZ,UBRZ0,AK,
      3VECTJ,IVECT,POVSIL,GRADJN,
      4ITFMAX,AKONST,NASLOV,ICUR,VG,GG,INDPT,ISNUMER)
+      USE mcm_database
       USE PPR
       USE STIFFNESS
       USE NODES
@@ -3340,8 +3341,14 @@ c petlja po periodima
       DO 600 NNPER=1,NPER
       
       KORAK=0
+      IF(mcm_kojpak.eq.7)then
+      KORAK=PAKSkorBR 
+      ENDIF
 c petlja po koracima
-   35 KORAK=KORAK+1
+35    KORAK=KORAK+1
+      
+      
+      
       if(myid.ne.0) goto 3456
 C
 C=========================================================================   
@@ -5096,16 +5103,19 @@ c uslova da sledeci korak u tom periodu ne postoji i da ide na sledeci period
       IF (VRNPKOR.LT.1.D-10) THEN
         GOTO 600
       ELSE
-cz ide na sledeci korak      
+cz ide na sledeci korak   
+          IF(mcm_kojpak.eq.7)then
+            GOTO 600
+             ENDIF
         GOTO 35
       ENDIF
- 
+! topalovic ovde ide kraj prtlje po koracima 
   600 CONTINUE
          CALL DATE_AND_TIME(VALUES=Dtime)
       WRITE(*,*) 'vreme posle stampanja', (Dtime(i),i=5,7)
       WRITE(3,*) 'vreme posle stampanja', (Dtime(i),i=5,7)
       if (myid.eq.0) then
-        IF(NSTAC.EQ.1.AND.KKORAK.EQ.2) 
+        IF((NSTAC.EQ.1.AND.KKORAK.EQ.2).AND.(mcm_kojpak.NE.7)) 
      1    CALL VIZBACIT(TT1,CORD,ID,NPT,NEL,NET,NDIM,IIZLAZ)
       endif
       CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)

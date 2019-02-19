@@ -281,6 +281,7 @@ C=======================================================================
       USE WSTAZK
       
       USE RESULTS
+      USE PAKVREPOVI
       
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
@@ -408,8 +409,9 @@ C          END OF ANALYSIS (KRAJP.EQ.1)
             VREM0 = VREM0 + DT
             IF(mcm_kojpak.eq.7)then
             !CALL VPAKV
+             PAKSkorBR = KORBR   
                 WRITE(*,*)"POZIVA SE PAKV"
-                READ (*,*)IPAKVPOZIV
+                
                 CALL VRACN3DT(TT1,SILE,
      1A(LNZAD),A(LZADVR),A(LNGPSI),MAXA,SKEF,
      1SKEFN,DEFOR,A(LVREME),A(LVRFUN),TT10,
