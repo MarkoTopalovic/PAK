@@ -3346,6 +3346,7 @@ c petlja po koracima
 35    CONTINUE
       IF((mcm_kojpak.eq.7).AND.(pakV_pisiNEU.EQ.FALSE))then
       KORAK=PAKSkorBR 
+      VVREME=VVVREME
       ELSE
       KORAK=KORAK+1    
       ENDIF
@@ -3369,9 +3370,8 @@ cz uslov da prvi korak radi stacionarno
 C
 cz      IF (KKORAK.GT.0) THEN
       TIME=VREME(NNPER,KORAK)
-      !VVREME=VVVREME
       VVREME=VVREME+TIME
-      !VVVREME=VVREME
+      VVVREME=VVREME
 cz      ELSE
 cz       TIME=1.D7
 cz       KORAK=KORAK-1
@@ -4994,6 +4994,7 @@ C=======================================================================
  500    CONTINUE
 C
 C
+        CALL VRESTEL(VVREME,TT1,NPT,ISNUMER,KKORAK)
         IF(pakV_pisiNEU.EQ.FALSE) GOTO 2344
         CALL DATE_AND_TIME(VALUES=Dtime)
       WRITE(*,*) 'vreme pre stampanja', (Dtime(i),i=5,7)
@@ -5023,7 +5024,7 @@ C stampanje potencijala
            ELSE
             CALL VOTVTEMP(KKORAK)
             write(*,*)'RESTEL,NPRINT,KORAK',NPRINT,KKORAK
-            CALL VRESTEL(VVREME,TT1,NPT,ISNUMER,KKORAK)
+            !CALL VRESTEL(VVREME,TT1,NPT,ISNUMER,KKORAK)
           ENDIF
          CALL VSTAU09c(TT1,NPT,47,1,1,KKORAK,NZAD,NUMZAD,KONT,TT1,
      1               ISNUMER)
