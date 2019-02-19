@@ -482,7 +482,7 @@ C
              ENDIF
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
-              GOTO 666
+              !GOTO 666 privremeni nasilni kraj posle 1 koraka
   500   CONTINUE 
 C
   100 CONTINUE
@@ -497,7 +497,7 @@ C
 !      DEALLOCATE (NODEBROJ)
         CALL mcm_shutdown(1)
       ENDIF
-666   CONTINUE ! PRIVREMENI NASILNI KRAJ DA BI URADIO SAMO PRVI KORAK      
+!666   CONTINUE ! PRIVREMENI NASILNI KRAJ DA BI URADIO SAMO PRVI KORAK      
       RETURN
       
       END
