@@ -67,6 +67,7 @@ C       WRITE(*,*) '7 - PAKP + PAKS'
 C       READ(*,*) KOJPAK
         KOJPAK=7
         mcm_kojpak = KOJPAK
+        pakV_pisiNEU = .TRUE.
         IF(KOJPAK.EQ.0) KOJPAK=3
 CE      MEMORY INDICATOR (=0-ENOUGH, =1-NOT ENOUGH)
 CS      DA LI IMA PROSTORA ZA SVE U MEMORIJI (=0-IMA, =1-NEMA)
@@ -160,6 +161,7 @@ CS    POCETNI REPER ZA PAKS
         IF(KOJPAK.EQ.7) THEN 
             write(*,*)"prvo se poziva pakV"
             call VPAKV 
+            pakV_pisiNEU = .FALSE.
             write(*,*)"sad kad je pakV zavrsio preuzima pakS"
             KOJPAK=1 !iz nekog razloga nece da radi za kojpak=7 pa moram da vratim na 1
         ENDIF 
@@ -480,6 +482,7 @@ C
              ENDIF
 !!!!!!!!!!!!!!!!!!!!!!!!!! MCM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
+              GOTO 666
   500   CONTINUE 
 C
   100 CONTINUE
@@ -494,6 +497,7 @@ C
 !      DEALLOCATE (NODEBROJ)
         CALL mcm_shutdown(1)
       ENDIF
+666   CONTINUE ! PRIVREMENI NASILNI KRAJ DA BI URADIO SAMO PRVI KORAK      
       RETURN
       
       END

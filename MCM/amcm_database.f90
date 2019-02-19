@@ -18,6 +18,7 @@ integer, parameter :: d=real_acc
 integer :: PAKSkorBR ! ZA PAK PVT
 logical :: mcm_ctrlc
 logical :: pak_initialized
+logical :: pakV_pisiNEU
 !
 integer :: mcm_np, mcm_nummat, mcm_ndim, mcm_nstressp, mcm_nvelocp, mcm_max_np
 integer :: mcm_max_ngp, mcm_ngp

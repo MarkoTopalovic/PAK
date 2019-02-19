@@ -4985,9 +4985,10 @@ C GRADIJENT Temperature U CVOROVIMA
           ENDIF
 	ENDDO
 C======================================================================= 
- 500  CONTINUE
+ 500    CONTINUE
 C
 C
+        IF(pakV_pisiNEU.EQ.FALSE) GOTO 2344
         CALL DATE_AND_TIME(VALUES=Dtime)
       WRITE(*,*) 'vreme pre stampanja', (Dtime(i),i=5,7)
       WRITE(3,*) 'vreme pre stampanja', (Dtime(i),i=5,7)
@@ -5095,7 +5096,7 @@ C
 ! 
       IF(NXNASTRAN.EQ.1) RETURN
 C
-      KKORAK=KKORAK+1
+2344      KKORAK=KKORAK+1
 c uslova da sledeci korak u tom periodu ne postoji i da ide na sledeci period
  2345 CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
       VRNPKOR=DABS(VREME(NNPER,KORAK+1))
