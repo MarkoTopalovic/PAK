@@ -1477,8 +1477,8 @@ C     1,LVG,LGG,LKOJK
 !      1A(LPOVSI),POMER,A(LITFMA),A(LKONST),NASLOV,
 !      1A(LICUR),VG,GG,A(LKOJK))
 !       ELSE
-!            IF (mcm_kojpak.eq.7) goto 1345
-!        write(*,*) "pre RACN3D"
+            IF (mcm_kojpak.eq.7) goto 1345
+        write(*,*) "pre RACN3D"
         
       IF(IPAKT.EQ.0) THEN
       CALL VRACN3D(TT1,SILE,
