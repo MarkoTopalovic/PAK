@@ -4,7 +4,7 @@ C=======================================================================
 CE    SUBROUTINE D3M49
 CE               TI3441
 C
-      SUBROUTINE D3M49(TAU,DEF,IRAC,LPOCG,LPOC1,IBTC)
+      SUBROUTINE D3M49(TAU,DEF,IRAC,LPOCG,LPOC1,IBTC,TGT)
       USE PLAST3D
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 C
@@ -38,14 +38,14 @@ C
       LXTDT=LEMP1 + 1
 C
       CALL TI3449(LDEFPP,PLASTMM(LDEFPP),PLASTMM(LKAPA),
-     1            PLAS1(LTAU1),PLAS1(LDEFT1),TAU,DEF,IRAC)
+     1            PLAS1(LTAU1),PLAS1(LDEFT1),TAU,DEF,IRAC,TGT)
 C
       RETURN
       END
 C
 C  =====================================================================
 C
-      SUBROUTINE TI3449(LDEFPP,DEFPP,a_kapaP,TAU1,DEF1,TAU,DEF,IRAC)
+      SUBROUTINE TI3449(LDEFPP,DEFPP,a_kapaP,TAU1,DEF1,TAU,DEF,IRAC,TGT)
 
       IMPLICIT NONE
       
@@ -73,7 +73,7 @@ C
       DOUBLE PRECISION a_kxl,a_kapa,a_j2,eplasstari,skonvergencija
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
       DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime
-      DOUBLE PRECISION temperatura,teta,E,Ni, a5t, a1t
+      DOUBLE PRECISION temperatura,TGT,teta,E,Ni, a5t, a1t
       !mm
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
@@ -153,7 +153,8 @@ CE.   MATERIAL CONSTANTS
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
       dtime=DT
-      temperatura = 35 !24.5 !20
+      temperatura=TGT
+      !temperatura = 35 !24.5 !20
       CALL nadjiE(temperatura,E)
       CALL nadjiNi(E,Ni)
       !E0 = 5195 ! izracunato iz resenja sigma/strain

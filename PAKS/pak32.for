@@ -3208,7 +3208,7 @@ C     Maksimovic (rakic)
    45 CALL D3M45(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC)
       RETURN
 C     Micunov model privremeno iskopiran Rakicev DP 41      
-   49 CALL D3M49(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC)
+   49 CALL D3M49(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC,TGT)
       RETURN
 C     Crystal
    52 CALL D3M52(TAU,DEF,IRAC,LPLAS,LPLA1)
