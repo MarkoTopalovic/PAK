@@ -8318,10 +8318,8 @@ C
       COMMON /SRPSKI/ ISRPS
       DIMENSION FUNMAT(11,*),AMAT(30)
       COMMON /CDEBUG/ IDEBUG
-      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
-C     TOPALOVIC OVO VEROVATNO NIJE DOBRO OVAJ COMMON VEROVATNO CUVA OSOBINE ZA TRENUTNI ELEMENT NE ZA SVE
-C     POGOTOVU STO NIJE REGULISANO ZA VISE MATERIJALA ALI ZA SADA DA PROBAM DA GA UBACIM OVDE      
-      IF(IDEBUG.GT.0) PRINT *, ' UMOD41'
+    
+      IF(IDEBUG.GT.0) PRINT *, ' UMOD49'
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
      1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,4)
@@ -8342,12 +8340,8 @@ C
          CALL CLEAR(AMAT,30)
          AMAT(1)=FUNMAT(1,MAT)
          AMAT(7)=FUNMAT(2,MAT)
-         AMAT(8)=FUNMAT(3,MAT) ! OVO BI TREBALO DA BUDE AFLA KOEFICIJENT SIRENJA
-         DO I=1,6
-            ALFA(I)= FUNMAT(3,MAT)
-         ENDDO
-         AMAT(9)=FUNMAT(4,MAT) ! OVO BI TREBALO DA BUDE POCETNA TEMPERATURA
-         TEMP0=FUNMAT(4,MAT)
+         AMAT(8)=FUNMAT(3,MAT)
+         AMAT(9)=FUNMAT(4,MAT)
          AMAT(13)=GUST
          ISUMGR=MAT
          IF(IDEAS.EQ.8) THEN
@@ -8355,8 +8349,6 @@ C
          ELSEIF(IDEAS.EQ.7) THEN
             CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
          ENDIF
-C            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
-C            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
             CALL TGRMAT(AMAT,MAT,49)
       ENDIF
 C
@@ -8384,7 +8376,7 @@ C
  1010 FORMAT(6F10.0,I5)
 C-----------------------------------------------------------------------
  2000 FORMAT(6X,
-     1'MODEL MATERIJALA BROJ =     41 (TLO PLASTICNOST - DRUCKER-PRAGER)
+     1'MODEL MATERIJALA BROJ =     49 (MICUN - ASFALT)
      2'///11X,'MATERIJAL BROJ =',I5)
  2010 FORMAT(//
      16X,'M  A  T  E  R  I  J  A  L  N  E     K  O  N  S  T  A  N  T  E'
@@ -8399,7 +8391,7 @@ C-----------------------------------------------------------------------
      120X,'W ',13X,'D '/16X,2(1PD12.5,2X))
 C-----------------------------------------------------------------------
  6000 FORMAT(6X,
-     1'MATERIAL MODEL NUMBER =    41 (SOIL PLASTICITY - DRUCKER-PRAGER)'
+     1'MATERIAL MODEL NUMBER =    49 (MICUN - ASPFALT)'
      2///11X,'MATERIAL NUMBER =',I5)
  6010 FORMAT(//
      16X,'M  A  T  E  R  I  A  L      C  O  N  S  T  A  N  T  S'//
