@@ -1,274 +1,64 @@
 
 
- S T E P  N U M B E R =    1                      T I M E = 1.00000E+01
+ S T E P  N U M B E R =    1                      T I M E = 1.00000E+00
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  4.0633E-01
+ S T E P  N U M B E R =    2                      T I M E = 2.00000E+00
 
 
+ S T E P  N U M B E R =    3                      T I M E = 3.00000E+00
 
 
- S T E P  N U M B E R =    2                      T I M E = 2.00000E+01
+ S T E P  N U M B E R =    4                      T I M E = 4.00000E+00
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  8.1267E-01
+ S T E P  N U M B E R =    5                      T I M E = 5.00000E+00
 
 
+ S T E P  N U M B E R =    6                      T I M E = 6.00000E+00
 
 
- S T E P  N U M B E R =    3                      T I M E = 3.00000E+01
+ S T E P  N U M B E R =    7                      T I M E = 7.00000E+00
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.2190E+00
+ S T E P  N U M B E R =    8                      T I M E = 8.00000E+00
 
 
+ S T E P  N U M B E R =    9                      T I M E = 9.00000E+00
 
 
- S T E P  N U M B E R =    4                      T I M E = 4.00000E+01
+ S T E P  N U M B E R =   10                      T I M E = 1.00000E+01
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.6253E+00
+ S T E P  N U M B E R =   11                      T I M E = 1.10000E+01
 
 
+ S T E P  N U M B E R =   12                      T I M E = 1.20000E+01
 
 
- S T E P  N U M B E R =    5                      T I M E = 5.00000E+01
+ S T E P  N U M B E R =   13                      T I M E = 1.30000E+01
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  2.0317E+00
+ S T E P  N U M B E R =   14                      T I M E = 1.40000E+01
 
 
+ S T E P  N U M B E R =   15                      T I M E = 1.50000E+01
 
 
- S T E P  N U M B E R =    6                      T I M E = 6.00000E+01
+ S T E P  N U M B E R =   16                      T I M E = 1.60000E+01
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  2.4380E+00
+ S T E P  N U M B E R =   17                      T I M E = 1.70000E+01
 
 
+ S T E P  N U M B E R =   18                      T I M E = 1.80000E+01
 
 
- S T E P  N U M B E R =    7                      T I M E = 7.00000E+01
+ S T E P  N U M B E R =   19                      T I M E = 1.90000E+01
 
 
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  2.8443E+00
-
-
-
-
- S T E P  N U M B E R =    8                      T I M E = 8.00000E+01
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  3.2507E+00
-
-
-
-
- S T E P  N U M B E R =    9                      T I M E = 9.00000E+01
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  3.6570E+00
-
-
-
-
- S T E P  N U M B E R =   10                      T I M E = 1.00000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  4.0633E+00
-
-
-
-
- S T E P  N U M B E R =   11                      T I M E = 1.10000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  4.4697E+00
-
-
-
-
- S T E P  N U M B E R =   12                      T I M E = 1.20000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  4.8760E+00
-
-
-
-
- S T E P  N U M B E R =   13                      T I M E = 1.30000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  5.2823E+00
-
-
-
-
- S T E P  N U M B E R =   14                      T I M E = 1.40000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  5.6887E+00
-
-
-
-
- S T E P  N U M B E R =   15                      T I M E = 1.50000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  6.0950E+00
-
-
-
-
- S T E P  N U M B E R =   16                      T I M E = 1.60000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  6.5013E+00
-
-
-
-
- S T E P  N U M B E R =   17                      T I M E = 1.70000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  6.9077E+00
-
-
-
-
- S T E P  N U M B E R =   18                      T I M E = 1.80000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  7.3140E+00
-
-
-
-
- S T E P  N U M B E R =   19                      T I M E = 1.90000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  7.7203E+00
-
-
-
-
- S T E P  N U M B E R =   20                      T I M E = 2.00000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  8.1267E+00
-
-
-
-
- S T E P  N U M B E R =   21                      T I M E = 2.10000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  8.5330E+00
-
-
-
-
- S T E P  N U M B E R =   22                      T I M E = 2.20000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  8.9393E+00
-
-
-
-
- S T E P  N U M B E R =   23                      T I M E = 2.30000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  9.3457E+00
-
-
-
-
- S T E P  N U M B E R =   24                      T I M E = 2.40000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  9.7520E+00
-
-
-
-
- S T E P  N U M B E R =   25                      T I M E = 2.50000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.0158E+01
-
-
-
-
- S T E P  N U M B E R =   26                      T I M E = 2.60000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.0565E+01
-
-
-
-
- S T E P  N U M B E R =   27                      T I M E = 2.70000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.0971E+01
-
-
-
-
- S T E P  N U M B E R =   28                      T I M E = 2.80000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.1377E+01
-
-
-
-
- S T E P  N U M B E R =   29                      T I M E = 2.90000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.1784E+01
-
-
-
-
- S T E P  N U M B E R =   30                      T I M E = 3.00000E+02
-
-
- MAXIMUM DISPLACEMENT:
- NODE =   646   MAX DISPL  =  1.2190E+01
-
-
-     END OF JOB ..................................... 13:59:59.722   14/ 3/2019
+ S T E P  N U M B E R =   20                      T I M E = 2.00000E+01
+     END OF JOB ..................................... 12:32:10.796   20/ 3/2019
 
 
 

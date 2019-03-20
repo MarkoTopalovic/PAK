@@ -96,8 +96,12 @@ C
 CE    BASIC KONSTANTS
       ntens = 6 !MM velicina niza napona ili deformacija
       ndi = 3 !MM Broj direkthih komponenti napona u datom trenutku!
+      !tol2 = 1.0d-6!MM original
+	!tolk = 1.d-4 !MM original
+      
       tol2 = 1.0d-6!MM
 	tolk = 1.d-4 !MM
+      
       do k2=1, ndi
          kroneker(k2)     = one
          kroneker(k2+ndi) = zero
@@ -152,18 +156,20 @@ CE.   MATERIAL CONSTANTS
 !c***************      1) predictor phase      ***********************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+      !dtime=DT original
       dtime=DT
       temperatura=TGT
+      temperatura = 20
       !temperatura = 35 !24.5 !20
       CALL nadjiE(temperatura,E)
       CALL nadjiNi(E,Ni)
       !E0 = 5195 ! izracunato iz resenja sigma/strain
 
-      a1t = E/(1+Ni)
-      a5t = (E*Ni)/(2*(1-2*Ni)*(1+Ni))
+      !a1t = E/(1+Ni)
+      !a5t = (E*Ni)/(2*(1-2*Ni)*(1+Ni))
       
-      a(1) = a1t
-      a(5) = a5t
+      !a(1) = a1t
+      !a(5) = a5t
       
       a_kapa0 = a_kapaP
       if (a_kapa0.lt.tolk) a_kapa0=tolk
@@ -172,7 +178,8 @@ CE.   MATERIAL CONSTANTS
       DO  I=1,6
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
-      END DO   
+      END DO  
+      WRITE(3,*) 'DEFPP(2)->',DEFPP(2)
       
 CE    TRIAL ELASTIC STRAINS
       DO I=1,6 
@@ -189,6 +196,7 @@ CE    TRIAL ELASTIC STRAINS
       !write(*,*) 'nn', TAU(2), DEF(2)
       !endif
 	if (f.gt.zero) then 
+          WRITE(3,*) 'plastic'
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      2) corector phase      ************************  
@@ -530,7 +538,8 @@ C
       beta = -1.01996
       gama = -0.5593
       frekvencija = 10
-      teta = (temperatura-referentnatemperatura)/referentnatemperatura
+      !teta = (temperatura-referentnatemperatura)/referentnatemperatura
+      !ovo teta se nigde ne koristi
       CALL nadjiAlfaT(temperatura,AlfaT)
       fr = AlfaT * frekvencija
       logE = delta + (alfa/(1+exp(beta+gama*log10(fr))))
