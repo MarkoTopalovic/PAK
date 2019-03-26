@@ -47,6 +47,7 @@ C  =====================================================================
 C
       SUBROUTINE TI3449(LDEFPP,DEFPP,a_kapaP,TAU1,DEF1,TAU,DEF,IRAC,TGT)
 
+      use PLAST3D
       IMPLICIT NONE
       
       COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
@@ -58,7 +59,7 @@ C
       INTEGER LNKDT,LDTDT,LVDT,NDT,KOR
       DOUBLE PRECISION DT,VREME
       DOUBLE PRECISION ELAST,XJ,ALFA,TEMP0,DET
-      INTEGER NLM,KK
+      INTEGER NLM,KK, ibrisi
       INTEGER ITER,IDEBUG,IRAC,LDEFPP
       DOUBLE PRECISION DEFPP,DEF,DEF1,DEFE,TAU,TAU1
       !pak
@@ -195,8 +196,10 @@ CE    TRIAL ELASTIC STRAINS
       !if (LDEFPP.eq.13) then
       !write(*,*) 'nn', TAU(2), DEF(2)
       !endif
-	if (f.gt.zero) then 
-          WRITE(3,*) 'plastic'
+	if (f.gt.zero) then
+          iBrisiBrojac = iBrisiBrojac + 1
+          ibrisi = iBrisiBrojac
+          WRITE(3,*) 'plastic',iBrisiBrojac
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      2) corector phase      ************************  
@@ -237,7 +240,10 @@ CE    TRIAL ELASTIC STRAINS
             
       enddo  !do kewton = 1,newton  
 !c------------------  end of plastic corrector ----------------------  
-          
+      else
+          WRITE(3,*) 'elastic'
+          !a_kapa = a_kapa0/10
+          !a_kapa = sqrt(a_kapa0)
       endif !if (f.gt.zero) then 
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
