@@ -75,6 +75,7 @@ C
       DOUBLE PRECISION deplas_int,Replas,d_eplas,dkapa0,dkapa,a_mu
       DOUBLE PRECISION eplas,eplas0,f,f1,ALFMMM,dtime
       DOUBLE PRECISION temperatura,TGT,teta,E,Ni, a5t, a1t
+      DOUBLE PRECISION a_kapaK,a_kapaKminus1,FiKminus1,FiKminus1Prim
       !mm
 C
       DIMENSION DEF(6),DEFE(6),DEFPP(6),TAU(6),TAU1(6),a(17) 
@@ -180,7 +181,7 @@ CE.   MATERIAL CONSTANTS
       eplas(I)   = DEFPP(I)
       eplas0(I)   = DEFPP(I)
       END DO  
-      WRITE(3,*) 'DEFPP(2)->',DEFPP(2)
+      !WRITE(3,*) 'DEFPP(2)->',DEFPP(2)
       
 CE    TRIAL ELASTIC STRAINS
       DO I=1,6 
@@ -197,53 +198,59 @@ CE    TRIAL ELASTIC STRAINS
       !write(*,*) 'nn', TAU(2), DEF(2)
       !endif
 	if (f.gt.zero) then
-          iBrisiBrojac = iBrisiBrojac + 1
-          ibrisi = iBrisiBrojac
-          WRITE(3,*) 'plastic',iBrisiBrojac
+          !iBrisiBrojac = iBrisiBrojac + 1
+          !ibrisi = iBrisiBrojac
+          !WRITE(3,*) 'plastic',iBrisiBrojac
 !c------------------  end of elastic predictor ----------------------
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !c***************      2) corector phase      ************************  
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
+      a_kapaKminus1 = a_kapa0
       do kewton = 1,newton
+          
+      FiKminus1 = -a_kapaKminus1 + a_kapa0
+     1 + ((f/beta)**1)/( x+a_kapaKminus1**a_l)
+      
+      FiKminus1Prim= -1 + ((f/beta)**1)*(-a_l)*(a_kapaKminus1**(a_l-1))/
+     1 (( x+a_kapaKminus1**a_l)**2) 
 
-          call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
-          f = abs(f1) - h*a_kapa
-          a_kxl = x+a_kapa0**a_l
-          dkapa0  =  (((f/beta)**1)/a_kxl)*dtime
-          a_kapa = a_kapa0 + dkapa0
-          a_kxl = x+a_kapa**a_l
-          dkapa  =  (((f/beta)**1)/a_kxl)*dtime
-      ! compute residual S          
-          skonvergencija = abs(a_kapa - a_kapa0)
+          a_kapaK = a_kapaKminus1 - FiKminus1/FiKminus1Prim
+          
+          dkapa  =  (((f/beta)**1)/(x+a_kapaK**a_l))*tolk
           
           do k1 = 1,ntens  
-          eplasStari(k1)   = eplas(k1)
           d_eplas(k1)   =  (dkapa)*a_mu(k1)
-          eplas(k1)   = eplas0(k1) + d_eplas(k1)
-          Replas(k1) = eplas(k1) - eplasStari(k1)
+
+          Replas(k1) = d_eplas(k1)
           enddo
-      ! compute residual R          
+          !      ! compute residual R 
           deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
      1    two*Replas(4)**2+two*Replas(5)**2+two*Replas(6)**2)**0.5
-     
-       ! update for the next iteration kapa, epsilon, sigma   
-          a_kapa0 = a_kapa
-          DO I=1,6 
+          
+          if ((abs(a_kapaK - a_kapaKminus1).lt.tol2).and.
+     1     ((deplas_int.lt.tolk))) then
+              a_kapa = a_kapaK
+              call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
+              do k1 = 1,ntens 
+
+          eplas(k1)   = eplas(k1) + d_eplas(k1)
+
+              enddo
+              DO I=1,6 
             DEFE(I)=DEF(I)-eplas(I)
           ENDDO
           call stressMM(a,ntens,ndi,DEFE,TAU)
-!      check convergence          
-       if ((skonvergencija.lt.tolk).and.(deplas_int.lt.tol2)) then
+              
           goto 52
-       endif
-            
+          else
+              a_kapaKminus1 = a_kapaK
+          endif
+                      
       enddo  !do kewton = 1,newton  
 !c------------------  end of plastic corrector ----------------------  
-      else
-          WRITE(3,*) 'elastic'
-          !a_kapa = a_kapa0/10
-          !a_kapa = sqrt(a_kapa0)
+      !else
+      !    WRITE(3,*) 'elastic'
+
       endif !if (f.gt.zero) then 
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
