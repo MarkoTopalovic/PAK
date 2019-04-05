@@ -114,11 +114,20 @@ CE.   MATERIAL CONSTANTS
 !      E       = FUN(1,MAT) STARO CITANJE IZ DAT-A ZA DP 
 !c     paneerselvam phd   (page 165 tens constants)
 !c
-      x = 1.03d-3
+      !x = 1.03d-3
+      
+      
+      x = 1.03
+      
+      
       a_l = 2.2 !2          
       alfamm = 14.2d0  !17.1   
       h = 50.d0
-      beta = 1.34d4     !1.34e4 !8.23d4
+      !beta = 1.34d4     !1.34e4 !8.23d4
+      
+      beta = 1.34d9
+      
+      
       a_m  = one
 
 	!stari
@@ -151,7 +160,12 @@ CE.   MATERIAL CONSTANTS
       a(13)=50.d0 !a(13)=h
       a(14)=1.34d4 !a(14)=beta
       a(15)=one !a(15)=m
-      a(16)= -5 !-5.d-3 !a(16)=gama !
+      !a(16)= -5 !-5.d-3 !a(16)=gama !
+      
+      
+      a(16)= -0.05
+      
+      
       a(17)=4.d-5 !a(17)=alpha_t !alpha_t  = 4.d-5      
 
 !cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -160,18 +174,19 @@ CE.   MATERIAL CONSTANTS
 
       !dtime=DT original
       dtime=DT
-      temperatura=TGT
-      temperatura = 20
+      !temperatura=TGT
       !temperatura = 35 !24.5 !20
+      temperatura = 20
       CALL nadjiE(temperatura,E)
+      
       CALL nadjiNi(E,Ni)
       !E0 = 5195 ! izracunato iz resenja sigma/strain
 
-      !a1t = E/(1+Ni)
-      !a5t = (E*Ni)/(2*(1-2*Ni)*(1+Ni))
+      a1t = E/(1+Ni)
+      a5t = (E*Ni)/(2*(1-2*Ni)*(1+Ni))
       
-      !a(1) = a1t
-      !a(5) = a5t
+      a(1) = a1t
+      a(5) = a5t
       
       a_kapa0 = a_kapaP
       if (a_kapa0.lt.tolk) a_kapa0=tolk
@@ -216,7 +231,7 @@ CE    TRIAL ELASTIC STRAINS
 
           a_kapaK = a_kapaKminus1 - FiKminus1/FiKminus1Prim
           
-          dkapa  =  (((f/beta)**1)/(x+a_kapaK**a_l))*tolk
+          dkapa  =  (((f/beta)**1)/(x+a_kapaK**a_l))*dtime*tolk
           
           do k1 = 1,ntens  
           d_eplas(k1)   =  (dkapa)*a_mu(k1)
@@ -227,8 +242,9 @@ CE    TRIAL ELASTIC STRAINS
           deplas_int = (Replas(1)**2+Replas(2)**2+Replas(3)**2+
      1    two*Replas(4)**2+two*Replas(5)**2+two*Replas(6)**2)**0.5
           
-          if ((abs(a_kapaK - a_kapaKminus1).lt.tol2).and.
-     1     ((deplas_int.lt.tolk))) then
+          if (((abs(a_kapaK - a_kapaKminus1).lt.tol2).and.
+     1     ((deplas_int.lt.tolk))).or.
+     1     (abs(a_kapaK - a_kapaKminus1).lt.(tol2*tol2))    ) then
               a_kapa = a_kapaK
               call loadingf(f1,TAU,a,ntens,ndi,s_dev,a_j2,a_mu)
               do k1 = 1,ntens 
