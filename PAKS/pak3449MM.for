@@ -174,9 +174,9 @@ CE.   MATERIAL CONSTANTS
 
       !dtime=DT original
       dtime=DT
-      !temperatura=TGT
+      temperatura=TGT
       !temperatura = 35 !24.5 !20
-      temperatura = 20
+      !temperatura = 20
       CALL nadjiE(temperatura,E)
       
       CALL nadjiNi(E,Ni)

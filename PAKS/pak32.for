@@ -2632,7 +2632,7 @@ C     MATRICA ELAST
 C======================================================================
       SUBROUTINE MEL349(FUN,NTA,TEM,MATE,TGT)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
-C
+C     MICUN
 CS    UCITAVANJE KOEFICIJENTA TERMICKOG SIRENJA ALFA I POCETNE TEMPERATURE
 C     IZ TABELE IZ ULAZNOG FAJLA U COMMON 
       COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
@@ -2640,8 +2640,7 @@ C     IZ TABELE IZ ULAZNOG FAJLA U COMMON
       COMMON /SRPSKI/ ISRPS
       COMMON /CDEBUG/ IDEBUG
       !DIMENSION FUN(2,MATE*3,*)
-      DIMENSION FUN(11,*)
-      
+      DIMENSION FUN(11,*)    
 C
       IF(IDEBUG.GT.0) PRINT *, ' MEL349 '
 C
@@ -2650,7 +2649,14 @@ C
          ALFA(I+3)=0
       ENDDO
       TEMP0=FUN(4,MAT)
-
+      x=TEMP0 ! sada sledi racunanje alfa po kirjuhinu
+      alfar = -2e-13*x**5 + 1e-12*x**4 + 6e-10*x**3 - 1.2e-08*x**2 
+     1  -5.5e-07*x + 2.7e-05
+      DO  I=1,3
+         ALFA(I)=alfar
+         ALFA(I+3)=0
+      ENDDO
+      
       RETURN     
       STOP
       END
