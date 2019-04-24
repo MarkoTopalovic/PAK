@@ -1100,10 +1100,9 @@ C==========================================================================
        OPEN(51,FILE='BDIR', RECL=48,FORM='UNFORMATTED', ACCESS='DIRECT')
       ENDIF
       DO I=1,NPT
-       WRITE(51,REC=I+NPT*(KKORAK-1)) 
-C       WRITE(51) 
-     &CCORD(1,I)-CORD(1,I),CCORD(2,I)-CORD(2,I),GNODE(2,1,I),
-     &GNODE(2,2,I),GNODE(2,4,I),GNODE(2,5,I)
+         WRITE(51,REC=I+NPT*(KKORAK-1)) 
+     &         CCORD(1,I)-CORD(1,I),CCORD(2,I)-CORD(2,I),GNODE(2,1,I),
+     &         GNODE(2,2,I),GNODE(2,4,I),GNODE(2,5,I)
       ENDDO
       
       END
