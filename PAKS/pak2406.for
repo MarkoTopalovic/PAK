@@ -24,6 +24,7 @@ C
       LDQPT =LTEQT  + 1*IDVA
       LIPL  =LDQPT  + 1*IDVA
       LTHI  =LIPL   + 1*IDVA
+      LRPL =LTHI   + 2*IDVA
 C
       LTAU1 =LPOC1
       LDEFT1=LTAU1  + 4*IDVA
@@ -33,18 +34,19 @@ C
       LDQPT1=LTEQT1 + 1*IDVA
       LIPL1 =LDQPT1 + 1*IDVA
       LTHI1 =LIPL1  + 1*IDVA
+      LRPL1=LTHI1  + 2*IDVA
 C
       CALL TAUI26(A(LIPL),A(LDEFPT),A(LALFAT),A(LTEQT),A(LDQPT),
      1            A(LIPL1),A(LTAU1),A(LDEFT1),A(LDEFP1),A(LALFA1),
      1            A(LTEQT1),A(LDQPT1),A(LTHI1),
-     1            A(LFUN),MATE,TAU,DEF,IRAC,A(LDEFT))
+     1            A(LFUN),MATE,TAU,DEF,IRAC,A(LDEFT),A(LRPL),A(LRPL1))
 C
       RETURN
       END
 C=======================================================================
       SUBROUTINE TAUI26( PL ,DEFPT,ALFAT,TEQT,DEFQPT,
      1                   PL1,TAU1,DEF1,DEFP, ALFA1, TEQ, DEFQP,THI1,
-     1                   FUN,MATE,TAU,DEF,IRAC,DEFT)
+     1                   FUN,MATE,TAU,DEF,IRAC,DEFT,RPL,RPL1)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 C
 CE   ELASTOPLASTIC MATERIAL , MIXED HARDENING
@@ -362,6 +364,8 @@ C
   165    TAUD(I)=ALFATL(I)+DUM*SHET(I)
       ENDIF
 C
+
+C
 CE   4)  DETERMINE SOLUTION 
 C
 C
@@ -550,6 +554,10 @@ C
             TAU1(I)=TAU(I)
          ENDIF
   290 CONTINUE
+C     ELASTOPLASTICNI RAD
+      RPL1=RPL+TAU1(1)*(DEF1(1)-DEFT(1))+TAU1(2)*(DEF1(2)-DEFT(2))+
+     1         TAU1(3)*(DEF1(3)-DEFT(3))
+C      
       IF(IST.EQ.1) call wrr(def1,4,'def1')
       IF(IST.EQ.1) call wrr(tau1,4,'tau1')
       IF(IATYP.GE.4.AND.(IETYP.EQ.0.OR.IETYP.EQ.3)) THEN
