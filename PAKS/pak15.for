@@ -165,7 +165,7 @@ C
 C
       DIMENSION SKE(*),LM(*),NEL(NE,*),NMAT(*),APRS(*),
      1    CORD(NP,*),LMEL(NCVE3,*)
-      DIMENSION D(3),GUSM(50,*)
+      DIMENSION D(3),GUSM(99,*)
 C
 C      SQRT(X)=DSQRT(X)
 C

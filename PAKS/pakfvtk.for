@@ -26,7 +26,7 @@ CE OPEN FILE FOR VTK GRAPHIC
       LOGICAL OLDNEW
       CHARACTER*24 PAKVTK
       CHARACTER*3  STAT
-      CHARACTER*20 IME
+      character*50 IME
 
 CS IZLAZ ZA GRAFIKU
 CE OUTPUT FOR GRAPHIC
@@ -68,7 +68,7 @@ C=======================================================================
       CHARACTER*250 NASLOV
       CHARACTER*24 PAKVTK
       CHARACTER*3  STAT
-      CHARACTER*20 IMEF,IME     
+      character*50 IMEF,IME     
       CHARACTER*4 SKORAK
 C
 C Subroutine to write header for the *.vtk file

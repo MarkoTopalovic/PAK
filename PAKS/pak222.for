@@ -443,7 +443,7 @@ C
      1          SKS(*),SKES(NDS,*),HS(KK,*),QS(*),PS(NDS,*),
      1          ELAS(KK,*),NSLOJ(*),MATSL(MSLOJ,*),BBET(MSLOJ,*),
      1          DSLOJ(MSLOJ,*),BET0(*),ESILA(ND,*),
-     1          ZAPS(*),NPRZ(*),GUSM(50,*),AMASC(9),tdth(*),
+     1          ZAPS(*),NPRZ(*),GUSM(99,*),AMASC(9),tdth(*),
      1          ALFE(LA,*),HAEM(LA,*),HINV(LA,LA,*),GEEK(LA,NCVE2,*)
       DIMENSION STRAIN(6),STRESS(8),TA(6),nlmm(700),hve(2,9)
       DIMENSION XG(55),WGT(55),NREF(11),XNC(15),WNC(15)

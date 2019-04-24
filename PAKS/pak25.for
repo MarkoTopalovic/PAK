@@ -242,7 +242,7 @@ C
 C
       DIMENSION SKE(*),LM(*),NEL(NE,*),NMAT(*),                         
      1THID(*),CORD(NP,*),HE(NCVE,*),BET(NCVE2,*),IPGC(*),
-     1LMEL(NCVEN,*),GUSM(50,*),SKP(NCVEN,*),SKP1(NCVEN,*)
+     1LMEL(NCVEN,*),GUSM(99,*),SKP(NCVEN,*),SKP1(NCVEN,*)
       DIMENSION XG(55),WGT(55),NREF(11),XGG(15)                          
       DIMENSION TTE(2,3),CORDL(2,9),A12(3),A13(3),EN(3),Y(3)
       DATA NREF/0,1,3,6,10,15,21,28,36,45,55/
@@ -481,7 +481,7 @@ C
       COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
       COMMON /CDEBUG/ IDEBUG
       DIMENSION CMC(9),SK(*),MAXA(*),LM(*),NEL(NE,*),NMAT(*),
-     1THID(*),CORD(NP,*),HE(NCVE,*),GUSM(50,*),LMEL(NCVE2,*),CORDL(2,9)
+     1THID(*),CORD(NP,*),HE(NCVE,*),GUSM(99,*),LMEL(NCVE2,*),CORDL(2,9)
       DIMENSION XG(15),WGT(15),NREF(6)
       DATA NREF/0,1,3,6,10,15/                                          
       DATA WGT/            2.D0,               1.D0,               1.D0,

@@ -228,7 +228,7 @@ C
       REAL AU
 C
       DIMENSION ID(NP,*),CORD(NP,*),LJUS(*),
-     1          DRG0(NP,*),DRG(NP,*),DRV1(NP,*),TR0(*),GUSM(50,*)
+     1          DRG0(NP,*),DRG(NP,*),DRV1(NP,*),TR0(*),GUSM(99,*)
       DIMENSION SK(*),SKE(*),DEB(*),NOP(NE,*),IMAT(*),NSLOJ(*),
      1          MATSL(MSLOJ,*),DSLOJ(MSLOJ,*)
       DIMENSION XG(55),WGT(55),NREF(11),VN(3,9),
@@ -561,7 +561,7 @@ C
       REAL AU
 C
       DIMENSION ID(NP,*),CORD(NP,*),MAXA(*),LJUS(*),
-     1          DRG0(NP,*),DRG(NP,*),DRV1(NP,*),TR0(*),GUSM(50,*)
+     1          DRG0(NP,*),DRG(NP,*),DRV1(NP,*),TR0(*),GUSM(99,*)
       DIMENSION CMC(9),SK(*),SKE(*),DEB(*),NOP(NE,*),IMAT(*),NSLOJ(*),
      1          MATSL(MSLOJ,*),DSLOJ(MSLOJ,*)
       DIMENSION XG(15),WGT(15),NREF(6),VN(3,9),

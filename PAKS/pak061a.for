@@ -43,7 +43,7 @@ c     PCG-iterations.
 C PRESCRIBED VALUES:
 C      CALL PRESCR(X,NZAD,ZADVRE,ID,ITER)
       tol=DSQRT(gamma)/gamma0
-      write(*,'(1x,a,i8,6x,a,d20.14)') 'iter=',niter,'tol=',tol
+      write(*,'(1x,a5,i8,6x,a4,d20.13)') 'iter=',niter,'tol=',tol
       if (tol.le.epsilon) goto 2000
       niter=niter+1
       call PREC(neq,nM,z,M,MaxM,ColM,r)

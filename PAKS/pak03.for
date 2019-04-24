@@ -494,7 +494,7 @@ C
       COMMON /MATER9/ SCMS(3,100),S1S3(2,100,10),KRIT(100)
       common /kadamb/ kadmb(100)
       COMMON /MATERb/ korz(100,100,3),evg(100,100,3)
-      DIMENSION MODEL(4,*),GUSM(50,*)
+      DIMENSION MODEL(4,*),GUSM(99,*)
       COMMON /CDEBUG/ IDEBUG
 C
       IF(IDEBUG.GT.0) PRINT *, ' MATERI'

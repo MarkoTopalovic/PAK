@@ -528,7 +528,7 @@ C
      1          SKS(*),SKES(NDS,*),HS(KK,*),QS(*),PS(NDS,*),
      1          ELAS(KK,*),NSLOJ(*),MATSL(MSLOJ,*),BBET(MSLOJ,*),
      1          DSLOJ(MSLOJ,*),BET0(*),ESILA(ND,*),
-     1          ZAPS(*),NPRZ(*),GUSM(50,*),AMASC(9),ID(NP,*),
+     1          ZAPS(*),NPRZ(*),GUSM(99,*),AMASC(9),ID(NP,*),
      1          ALFE(LA,*),HAEM(LA,*),HINV(LA,LA,*),GEEK(LA,NCVE2,*),
      1          DEF(N45,NGS12,NE,*),NNOD(*),ngg(*),TBTH(*)
       DIMENSION STRAIN(6),STRESS(8),TA(6)

@@ -207,7 +207,7 @@ C
 C
       DIMENSION SKE(*),LM(*),NEL(NE,*),NMAT(*),
      1CORD(NP,*),HE(NCVE,*),BET(3,*),IPGC(*),
-     1LMEL(NCVE3,*),GUSM(50,*),CMC(21)
+     1LMEL(NCVE3,*),GUSM(99,*),CMC(21)
 C
       DIMENSION XG(55),WGT(55),NREF(11),XGG(15)
 C

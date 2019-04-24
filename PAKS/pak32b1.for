@@ -77,7 +77,7 @@ C
      1          CORD(NP,*),HE(NCVE,*),IPGC(*),TSGE(6,6,*),UPRI(*),
      1          LMEL(ND,*),RTDT(*),FTDT(*),TAU(NLD,NGS12,*),
      1          TEMGT(NGS12,*),CORGT(3,NGS12,*),ZAPS(*),NPRZ(*),
-     1          GUSM(50,*),AMASC(21),TSS(6,6),TBETA(6,6),ESILA(ND,*),
+     1          GUSM(99,*),AMASC(21),TSS(6,6),TBETA(6,6),ESILA(ND,*),
      1          ALFE(LA,*),HAEM(LA,*),HINV(LA,LA,*),GEEK(LA,24,*)
       DIMENSION STRAIN(6),STRESS(6),TA(6)
       DIMENSION XG(55),WGT(55),NREF(11),XNC(15),WNC(15)

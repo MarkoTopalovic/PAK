@@ -120,7 +120,7 @@ C
      1(NE,*),DST(NUD,*),CTR(NE,6,*)
       DIMENSION XG(55),WGT(55),
      1LM(NT6,*),NREF(11)
-      DIMENSION CORD(NP,*),MATIG(*),GUSM(50,*)
+      DIMENSION CORD(NP,*),MATIG(*),GUSM(99,*)
       DIMENSION H(NTE,*),SKE(*),SK(*)
 C
       DATA NREF/0,1,3,6,10,15,21,28,36,45,55/

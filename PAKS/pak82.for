@@ -405,7 +405,7 @@ C
      1          SK(*),TEMGT(NGS12,*),CORGT(3,NGS12,*)
       DIMENSION SKE(*),DEB(NE,*),NOP(NE,*),IMAT(*),NSLOJ(*),ISNA(*),
      1          MATSL(MSLOJ,*),BBET(MSLOJ,*),DSLOJ(MSLOJ,*),BET0(*),
-     1          ZAPS(*),NPRZ(*),GUSM(50,*),AMASC(9),IPGC(*),ESILA(ND,*),
+     1          ZAPS(*),NPRZ(*),GUSM(99,*),AMASC(9),IPGC(*),ESILA(ND,*),
      1          ALFE(LA,*),HAEM(LA,*),HINV(LA,LA,*),GEEK(LA,ND,*),
      1          TBTH(*),TDTH(*),IPRC(*)
       DIMENSION XG(55),WGT(55),NREF(11),VN(3,9),TBETA(6,6),
