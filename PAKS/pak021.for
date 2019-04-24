@@ -153,6 +153,8 @@ CZxxx
 CZxxx
       NP6=NP*6
       IF(MIXED.EQ.1) NP6=NP6*2
+      IF(MIXED.EQ.2) NP6=NP*7
+      IF(MIXED.EQ.3) NP6=NP*10
       NP3=NP*3
       LNCVP=LMAX
       IF(NCVPR.GT.0) LMAX=LNCVP+NP
@@ -749,6 +751,8 @@ CZxxx
 C
       N6=6
       IF(MIXED.EQ.1) N6=12
+      IF(MIXED.EQ.2) N6=7
+      IF(MIXED.EQ.3) N6=10
       I = 0
       NAUT=0
     5 I=I+1
@@ -850,6 +854,7 @@ C      DO 60 J=1,N6
       ID(N,J)=JEDN
    60 CONTINUE
 C
+      IF(MIXED.EQ.1) THEN
       DO 160 N=1,NP
       DO 160 J=7,N6
          IF(J.GT.6) THEN
@@ -871,6 +876,56 @@ C
   166 JEDN=JEDN+1
       ID(N,J)=JEDN
   160 CONTINUE
+      ENDIF
+C
+      IF(MIXED.EQ.2.OR.MIXED.EQ.3) THEN
+      J=7
+      DO 260 N=1,NP
+C      DO 260 J=7,N6
+         IF(J.GT.6) THEN
+            IF(IOPGS(J-6).EQ.1) THEN
+            ID(N,J)=0
+            GO TO 260
+            ENDIF
+         ELSE
+            IF(IOPGL(J).EQ.1) THEN
+            ID(N,J)=0
+            GO TO 260
+            ENDIF
+         ENDIF
+      IF(ID(N,J)) 264,266,265
+  264 NMPC=NMPC+1
+      GO TO 260
+  265 ID(N,J)=0
+      GO TO 260
+  266 JEDN=JEDN+1
+      ID(N,J)=JEDN
+  260 CONTINUE
+      ENDIF
+C
+      IF(MIXED.EQ.3) THEN
+      DO 360 N=1,NP
+      DO 360 J=8,N6
+         IF(J.GT.6) THEN
+            IF(IOPGS(J-6).EQ.1) THEN
+            ID(N,J)=0
+            GO TO 360
+            ENDIF
+         ELSE
+            IF(IOPGL(J).EQ.1) THEN
+            ID(N,J)=0
+            GO TO 360
+            ENDIF
+         ENDIF
+      IF(ID(N,J)) 364,366,365
+  364 NMPC=NMPC+1
+      GO TO 360
+  365 ID(N,J)=0
+      GO TO 360
+  366 JEDN=JEDN+1
+      ID(N,J)=JEDN
+  360 CONTINUE
+      ENDIF
 C
 CE    PRINT GENERATED DATA FOR NODAL POINTS
 CS    STAMPANJE GENERISANIH PODATAKA O CVOROVIMA
@@ -1014,6 +1069,8 @@ CZxxx
 CZxxx
       N6=6
       IF(MIXED.EQ.1) N6=12
+      IF(MIXED.EQ.2) N6=7
+      IF(MIXED.EQ.3) N6=10
 C
       IF(NULAZ.EQ.1.OR.NULAZ.EQ.3) THEN
          IF(JPS.EQ.1) THEN
