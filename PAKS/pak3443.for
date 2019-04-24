@@ -261,11 +261,11 @@ c
         jp=2
         af=2.d0
         I=0
-        write(3,*)'dlam, Fphe, Fphm',dlam,Fphe,Fphm
+c        write(3,*)'dlam, Fphe, Fphm',dlam,Fphe,Fphm
 C=================================================
 CD      BISECTION LOOP                            
-        write(3,*)' I,      dlam,      dlamp,      dlamm,  
-     &      Fph,       Fphp,       Fphm,kor'
+c        write(3,*)' I,      dlam,      dlamp,      dlamm,  
+c     &      Fph,       Fphp,       Fphm,kor'
   110   I = I + 1
 c-------------------------------------------------          
 c-------------------------------------------------          
@@ -300,7 +300,7 @@ c           Pan-Hudson yield curve
             Fph =ai1*em/3.d0+atriq/2.d0*em*aj2dq-es*smc+3.d0/smc*aj2d
 c
 c           write(3,*)'dlam, Fphe, Fph',dlam,Fphe, Fph
-            write(3,1001) I,dlam,dlamp,dlamm,Fph,Fphe,Fphm,kor
+c            write(3,1001) I,dlam,dlamp,dlamm,Fph,Fphe,Fphm,kor
 c
             if(I.gt.maxt) then
                 stop 'Max. num. of bisection in Hoek-Brown (PH) model!'
@@ -319,6 +319,19 @@ C==========================================================================
 CE    UPDATES FOR NEXT STEP
   400 CONTINUE
 C
+C========================================================================
+c     Strength factor calculation (Racunanje rastojanja od loma)
+      ass=aj2dq
+      asm1=-sqrt(3.)*em/2.
+      asm2= sqrt(3.d0/4*em*em-12/smc*(1.d0/3*em*ai1-es*smc))
+      asm=(asm1+asm2)*smc/6.
+      sfactor=(1.d0-ass/asm)*100
+      if(sfactor.gt.100.d0) sfactor=100.d0
+      if(sfactor.lt.0.d0) sfactor=0.d0
+c      write(3,*)'ass=',ass
+c      write(3,*)'asm=',asm
+c      write(3,*)'sfactor=',sfactor
+      xtdt=sfactor
 c========================================================================
 c     Corection of values from previous step when convergence is reatched
       CALL ZBIR2B(DEFP1,DEFPP,DDEFP,6)

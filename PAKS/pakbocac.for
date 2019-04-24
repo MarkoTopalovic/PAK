@@ -1,6 +1,234 @@
 C=======================================================================
 C
 C=======================================================================
+      SUBROUTINE sloba1(RTH,ID,NCVEL,ICVEL,NP,KOR,VREME,IND,NCVP,NCVPR,
+     1                 CORD,NELCV)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CS.   PROGRAM
+CS.      ZA STAMPANJE rezultata merenja za slobu
+C .
+C ......................................................................
+C
+      include 'paka.inc'
+
+      CHARACTER*50    IME
+      
+      COMMON /GRUPEE/ NGEL,NGENL,LGEOM,NGEOM,ITERM
+      COMMON /ITERBR/ ITER
+      COMMON /ECLANM/ AMAXK,AMINK,AMAXF,AMINF
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /OPSTIP/ JPS,JPBR,NPG,JIDG,JCORG,JCVEL,JELCV,NGA,NGI,NPK,
+     1                NPUP,LIPODS,IPODS,LMAX13,MAX13,JEDNG,JMAXA,JEDNP,
+     1                NWP,NWG,IDF,JPS1
+      COMMON /ITERAC/ METOD,MAXIT,TOLE,TOLS,TOLM,KONVE,KONVS,KONVM
+      COMMON /SRPSKI/ ISRPS
+      COMMON /MPOINC/ MMP,NMPC,NEZAV,LCMPC,LMPC,NEZA1
+      COMMON /MAXREZ/ PMALL,BMALL,AMALL,SMKOR,SMALL,
+     +                NPMALL,NBMALL,NAMALL,KPMALL,KBMALL,KAMALL,
+     +                NSMKOR,NSMALL,NGRKOR,NGRALL,KSMALL
+      COMMON /AUTSTP/ DTUK,ALFG,DELS,IAUTO,ITEOPT,KPNOD,KPDIR,KEQ
+      COMMON /AUTST2/ PARAM(5)
+      COMMON /AUTSTK/ DELUM,DELFM,KRAJP
+      COMMON /GEORGE/ TOLG,ALFAG,ICCGG
+      COMMON /MESLESS/ IGBM,ndif,idif(50),NKI,IKI(10)
+      COMMON /MATIZO/ E,V
+      COMMON /POSTPR/ LNDTPR,LNDTGR,NBLPR,NBLGR,INDPR,INDGR
+      COMMON /CDEBUG/ IDEBUG
+      COMMON /BOCACP1/ DP(19)
+      COMMON /OPITSL/ VPOMER,SNAPON,OPOVRS,ICVOR(4),IOPITS
+      COMMON /SLOBAR/ IOPIT
+      COMMON /SLOBAP/ NSLOB(3,1000),NPSLOB
+      DIMENSION RTH(*),ID(NP,*),NCVEL(*),NCVP(*),FSP(6),CORD(NP,*),
+     1          NELCV(*),DL(19),PA(3),PB(3),PC(3),PD(3),V1(3),V2(3),
+     1          P1(3),P2(3),P3(3)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' sloba1'
+C
+      I90=90
+      IF(KOR.EQ.1) THEN
+         IF(IOPIT.EQ.1) IME='TS_SSG1_1PAK.csv'
+         IF(IOPIT.EQ.2) IME='TS_SSG1_2PAK.csv'
+         IF(IOPIT.EQ.3) IME='TS_SSG1_3PAK.csv'
+         IF(IOPIT.EQ.4) IME='TS_SSG1_4PAK.csv'
+         IF(IOPIT.EQ.5) IME='TS_BSG1_1PAK.csv'
+         IF(IOPIT.EQ.6) IME='TS_BSG1_2PAK.csv'
+         IF(IOPIT.EQ.7) IME='TS_BSG1_3PAK.csv'
+         IF(IOPIT.EQ.8) IME='TS_BSG1_4PAK.csv'
+         IF(IOPIT.EQ.9) IME='TP_HJG1_1PAK.csv'
+         IF(IOPIT.EQ.10) IME='TP_VJG1_1PAK.csv'
+         IF(IOPIT.EQ.11) IME='TS_SSG2_1PAK.csv'
+         IF(IOPIT.EQ.12) IME='TS_SSG2_2PAK.csv'
+         IF(IOPIT.EQ.13) IME='TS_SSG2_3PAK.csv'
+         IF(IOPIT.EQ.14) IME='TS_SSG2_4PAK.csv'
+         IF(IOPIT.EQ.15) IME='TS_SSG2_5PAK.csv'
+         IF(IOPIT.EQ.16) IME='TP_VJG2_1PAK.csv'
+         IF(IOPIT.EQ.17) IME='TS_BSG3_1PAK.csv'
+         IF(IOPIT.EQ.18) IME='TS_BSG3_2PAK.csv'
+         IF(IOPIT.EQ.19) IME='TS_BSG3_3PAK.csv'
+         IF(IOPIT.EQ.20) IME='TS_BSG3_4PAK.csv'
+         IF(IOPIT.EQ.21) IME='TP_VJG3_1PAK.csv'
+         IF(IOPIT.EQ.22) IME='TS_SSG4_1PAK.csv'
+         IF(IOPIT.EQ.23) IME='TS_SSG4_2PAK.csv'
+         IF(IOPIT.EQ.24) IME='TS_SSG4_3PAK.csv'
+         IF(IOPIT.EQ.25) IME='TS_BSG4_1PAK.csv'
+         IF(IOPIT.EQ.26) IME='TS_BSG4_2PAK.csv'
+         IF(IOPIT.EQ.27) IME='TS_BSG4_3PAK.csv'
+         IF(IOPIT.EQ.28) IME='TP_VJG4_1PAK.csv'
+         IF(IOPIT.EQ.29) IME='TS_BSG5_1PAK.csv'
+         IF(IOPIT.EQ.30) IME='TS_BSG5_2PAK.csv'
+         IF(IOPIT.EQ.31) IME='TS_BSG5_3PAK.csv'
+         IF(IOPIT.EQ.32) IME='TS_BSG5_4PAK.csv'
+         IF(IOPIT.EQ.33) IME='TP_VJG5_1PAK.csv'
+         IF(IOPIT.EQ.34) IME='TS_SSG6_1PAK.csv'
+         IF(IOPIT.EQ.35) IME='TS_SSG6_2PAK.csv'
+         IF(IOPIT.EQ.36) IME='TS_SSG6_3PAK.csv'
+         IF(IOPIT.EQ.37) IME='TP_VJG6_1PAK.csv'
+         OPEN (I90,FILE=IME,STATUS='UNKNOWN',
+     1         FORM='FORMATTED',ACCESS='SEQUENTIAL')
+      IF(IOPIT.EQ.10.OR.IOPIT.EQ.16.OR.IOPIT.EQ.21.OR.
+     1   IOPIT.EQ.28.OR.IOPIT.EQ.33.OR.IOPIT.EQ.37) THEN
+         WRITE(I90,*) '  Koraci,     dV(mm),       dVo(mm)'
+      ELSE
+         WRITE(I90,*) '  Koraci,     dV(mm),       Tzy(MN)'
+      ENDIF
+      ENDIF
+      
+C     SS
+      IF((IOPIT.GE.1.AND.IOPIT.LE.4).OR.(IOPIT.GE.11.AND.IOPIT.LE.15).OR
+     1  .(IOPIT.GE.22.AND.IOPIT.LE.24).OR.(IOPIT.GE.34.AND.IOPIT.LE.36))
+     2                                                              THEN
+         WRITE(*,*) 'IOPIT=',IOPIT
+         ICVOR(1)=2101
+         ICVOR(2)=3328
+      ENDIF
+C     BS
+      IF((IOPIT.GE.5.AND.IOPIT.LE.8).OR.(IOPIT.GE.17.AND.IOPIT.LE.20).OR
+     1  .(IOPIT.GE.25.AND.IOPIT.LE.27).OR.(IOPIT.GE.29.AND.IOPIT.LE.32))
+     2                                                              THEN
+         WRITE(*,*) 'IOPIT=',IOPIT
+         ICVOR(1)=2131
+         ICVOR(2)=3790
+      ENDIF
+C     HJ
+      IF(IOPIT.EQ.9) THEN
+         WRITE(*,*) 'IOPIT=',IOPIT
+         ICVOR(1)=3575
+         ICVOR(2)=3575
+      ENDIF
+C     VJ
+      IF(IOPIT.EQ.10.OR.IOPIT.EQ.16.OR.IOPIT.EQ.21.OR.
+     1   IOPIT.EQ.28.OR.IOPIT.EQ.33.OR.IOPIT.EQ.37) THEN
+         WRITE(*,*) 'IOPIT=',IOPIT
+         ICVOR(1)=2023
+         ICVOR(2)=3570
+         UPOV=0.
+         UZAP=0.
+         DO II=1,NPSLOB
+            IF(ICVEL.EQ.0) THEN
+               N1=NSLOB(1,II)
+               N2=NSLOB(2,II)
+               N3=NSLOB(3,II)
+            ELSE
+               N1=NELCV(NSLOB(1,II))
+               N2=NELCV(NSLOB(2,II))
+               N3=NELCV(NSLOB(3,II))
+            ENDIF
+         DO 11 J=1,3
+            P1(J) = 0.D0
+            KA=ID(N1,J)
+            IF(KA.EQ.0) GO TO 11
+            IF(KA.GT.0)THEN
+               P1(J)=RTH(KA)
+            ELSE
+               P1(J)=CONDOF(RTH,A(LCMPC),A(LMPC),KA)
+            ENDIF
+   11    CONTINUE
+         DO 12 J=1,3
+            P2(J) = 0.D0
+            KA=ID(N2,J)
+            IF(KA.EQ.0) GO TO 12
+            IF(KA.GT.0)THEN
+               P2(J)=RTH(KA)
+            ELSE
+               P2(J)=CONDOF(RTH,A(LCMPC),A(LMPC),KA)
+            ENDIF
+   12    CONTINUE
+         DO 13 J=1,3
+            P3(J) = 0.D0
+            KA=ID(N3,J)
+            IF(KA.EQ.0) GO TO 13
+            IF(KA.GT.0)THEN
+               P3(J)=RTH(KA)
+            ELSE
+               P3(J)=CONDOF(RTH,A(LCMPC),A(LMPC),KA)
+            ENDIF
+   13    CONTINUE
+            DO JJ=1,3
+               V1(JJ)=CORD(N2,JJ)-CORD(N1,JJ)
+               V2(JJ)=CORD(N3,JJ)-CORD(N1,JJ)
+            ENDDO
+            CALL AXBVI(V1,V2,D)
+            UPOV=UPOV+D
+            UZAP=UZAP+D*(P1(1)+P2(1)+P3(1))/3.
+         ENDDO
+         VPOMER=-1000.*UZAP/UPOV
+      ENDIF
+C      
+            IF(ICVEL.EQ.0) THEN
+               NA=ICVOR(1)
+               NB=ICVOR(2)
+            ELSE
+               NA=NELCV(ICVOR(1))
+               NB=NELCV(ICVOR(2))
+            ENDIF
+         DO 10 J=1,3
+            PA(J) = 0.D0
+            KA=ID(NA,J)
+            IF(KA.EQ.0) GO TO 10
+            IF(KA.GT.0)THEN
+               PA(J)=RTH(KA)
+            ELSE
+               PA(J)=CONDOF(RTH,A(LCMPC),A(LMPC),KA)
+            ENDIF
+   10    CONTINUE
+         DO 20 J=1,3
+            PB(J) = 0.D0
+            KB=ID(NB,J)
+            IF(KB.EQ.0) GO TO 20
+            IF(KB.GT.0)THEN
+               PB(J)=RTH(KB)
+            ELSE
+               PB(J)=CONDOF(RTH,A(LCMPC),A(LMPC),KB)
+            ENDIF
+   20    CONTINUE
+
+      IF(IOPIT.EQ.10.OR.IOPIT.EQ.16.OR.IOPIT.EQ.21.OR.
+     1   IOPIT.EQ.28.OR.IOPIT.EQ.33.OR.IOPIT.EQ.37) THEN
+         PAQ=DSQRT(PA(2)*PA(2)+PA(3)*PA(3))
+         PBQ=DSQRT(PB(2)*PB(2)+PB(3)*PB(3))
+         SNAPON=1000.*(PAQ+PBQ)/2.
+      ELSE
+         VPOMER=-1000.*(PA(3)+PB(3))/2.
+      ENDIF
+C
+      IF(IOPIT.EQ.9) THEN
+         WRITE(I90,5000) KOR,VPOMER
+      ELSE
+         WRITE(I90,5000) KOR,VPOMER,SNAPON
+      ENDIF
+C
+      RETURN
+C
+ 5000 FORMAT(' ',I5,2F15.6)
+C-----------------------------------------------------------------------
+      END
+C=======================================================================
+C
+C=======================================================================
       SUBROUTINE BOCAC1(RTH,ID,NCVEL,ICVEL,NP,KOR,VREME,IND,NCVP,NCVPR,
      1                 CORD,NELCV)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)

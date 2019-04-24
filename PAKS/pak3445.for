@@ -4,8 +4,8 @@ CS                      MAKSIMOVICEV MATERIJALNI MODEL
 CE                      MAKSIMOVIC MATERIAL MODEL 
 C==========================================================================
 C==========================================================================
-C     Poslednja izmena: 
-C     Opis: 
+C     Poslednja izmena: 15.06.2016.
+C     Opis: Udaljenje od uslova loma
 C           
 C==========================================================================
 CE    SUBROUTINE D3M45
@@ -393,6 +393,22 @@ c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 C
       CALL ZBIR2B(DEFP1,DEFPP,DDEFP,6)
 C
+C========================================================================
+c     Remaining payload (Racunanje rastojanja od loma)
+      ass=aj2dq
+      atriq=  dsqrt(3.d0) 
+      asm=-ai1*dsin(phi)/3./
+     &     (dcos(theta)-dsin(theta)*dsin(phi)
+     &    /atriq)
+c
+      sfactor=(1.d0-ass/asm)*100
+      if(sfactor.gt.100.d0) sfactor=100.d0
+      if(sfactor.lt.0.d0) sfactor=0.d0
+c
+      xtdt=sfactor
+c      if(kor.eq.80) then
+c          write(*) 'osamdeseti korak'
+c      endif
 c========================================================================
 c     Corection of values from previous step when convergence is reatched
       call jedna1(def1,def,6)

@@ -89,6 +89,12 @@ C     1READ(IULAZ,*) NGAUSX,NGAUSY,NGAUSZ,BETA,IALFA
       IF(INDFOR.EQ.2)
 C     1READ(ACOZ,1000) NGAUSX,NGAUSY,NGAUSZ,BETA,IALFA
      1READ(ACOZ,1000) NGAUSX,NGAUSY,NGAUSZ,MSET,BETA,MSLOJ,IORT,IALFA
+      IF(IPODT.EQ.3) THEN
+C          NGAUSX=4
+C          NGAUSY=1
+C          NGAUSZ=1
+          IALFA=-1
+          ENDIF
 C      MSET=0
 C      MSLOJ=0
       IF(IALFA.EQ.0) IALFA=2
@@ -429,6 +435,7 @@ C
      1                ,MAXNOD,LXL,LYL,LZL,LSIF1,LXGG,LYGG,LZGG,LNNOD
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
      1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /DJERDAP/ IDJERDAP,ISPRESEK,IRPRIT
       DIMENSION AU(*)
       REAL AU
       COMMON /CDEBUG/ IDEBUG
@@ -444,7 +451,7 @@ C
      1INCOTX,INCOTY,INCOTZ,LBET0,((CPP(J,I),J=1,3),I=1,3),
      1((TSG(J,I),J=1,6),I=1,6),BETA,IBB0,LALFE,LHAEM,LHINV,LGEEK,IALFA,
      1INDBTH,INDDTH,LTBTH,LTDTH,INDKOV,INDCEP,ILEDE,NLD,ICPM1,
-     1COEF(3),ICOEF
+     1COEF(3),ICOEF,LINDBEL,LBIRTHC
         CALL READDD(AU,MXAU/IDVA,IELEM,LMAX8,LDUZI)
         LMAX8=LMA8
       ENDIF
@@ -489,6 +496,9 @@ C       TO CONECT NUMBERS NODES AND ELEMENTS FOR CRACKS IN FREE NUMERATION
 C       OVO BI MOGLO DA SE PREMESTI KOD UCITAVANJA PRSLINA JER SE ELEMENTI NE KORISTE
         IF(NCRACK.GT.0.AND.NGE.EQ.1) CALL VEZACC(A(LELCV),AU(LELC),3)
       ENDIF
+! Stampanje rezultata u presecima
+!  prvo se ucitavaju preseci pa stampaju rezultati za svaki presek
+      IF(ISPRESEK.GT.0) CALL READPRESEK(AU(LELC),NMA,NMI,ICVEL)
 CE    NUMBER OF D.O.F PER 3D ELEMENT 
       ND=3*NCVE
 CE    VECTORS WITH NUMBERS OF EQUATIONS FOR ALL 3D ELEMENTS
@@ -547,6 +557,9 @@ CE    LENGTH OF VECTOR AU(*)
       CALL DELJIV(MXAU,2,INDL)
       IF(INDL.EQ.1) MXAU=MXAU+1
       LMAX=LAU+MXAU
+         memau=(4*MXAU)/1000000
+            write(*,*) ' AU matrix memory MB=',memau 
+            write(3,*) ' AU matrix memory MB=',memau 
     4 IF(LMAX.GT.MTOT) THEN
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2005) LMAX,MTOT
@@ -564,6 +577,7 @@ C
       CALL LM3MHT(A(LID),AU(LNEL),AU(LLMEL),ND)
 C
       NGS12=NGAUSX*NGAUSY*NGAUSZ
+      IF(IPODT.EQ.3) NGS12=4
       IF(MODORT(NMODM).EQ.1) THEN
 CS       FORMIRANJE VEZE IZMEDJU ELEMENTA I GLOBALNIH OSA
          IF((IBB0.EQ.1.AND.IATYP.GT.1).OR.
@@ -612,10 +626,12 @@ CE    TOTAL SPACE USED FOR ALL INTEGRATION POINTS
 CE    POINTERS FOR INTEGRATION POINT DATA FOR TIME (T) AND (T+DT)
 !      LPLAS1=LPLAST+NPROS
 !      LMAX=LPLAS1+NPROS
+            mempl=(8*NPROS)/1000000
+            write(3,*) ' 2*PLAST memory MB=',mempl 
+            write(*,*) ' 2*PLAST memory MB=',mempl 
       ALLOCATE (PLAST(NPROS/IDVA), STAT = iAllocateStatus)
       IF (iAllocateStatus /= 0) write(3,*)'PLAST* Not enough memory ***'
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
-      
       ALLOCATE (PLAS1(NPROS/IDVA), STAT = iAllocateStatus)
       IF (iAllocateStatus /= 0) write(3,*)'PLAS1* Not enough memory ***'
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
@@ -624,6 +640,9 @@ CE    POINTERS FOR INTEGRATION POINT DATA FOR TIME (T) AND (T+DT)
          idum=3
 !         LPLAS0=LMAX
 !         LMAX=LPLAS0+NPROS
+            mempl0=(8*NPROS)/1000000
+            write(3,*) ' PLAST0 memory MB=',mempl0 
+            write(*,*) ' PLAST0 memory MB=',mempl0 
          ALLOCATE (PLAS0(NPROS/IDVA), STAT = iAllocateStatus)
          IF (iAllocateStatus /= 0) write(3,*)'PLAS0* Not enough memory*'
          IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
@@ -1187,6 +1206,9 @@ C
             ENDIF
   180    CONTINUE
       ENDIF
+C TETREIN ZA PREPIS U DEGENERISANI
+      ITETRA=1
+      IF(ITETRA.EQ.0) THEN
       IF(IPODT.EQ.3) THEN
          NCVZ=10
          IF(NCVE.EQ.4) NCVZ=4
@@ -1225,6 +1247,8 @@ C     SVI ELEMENTI SU PROSIRENI NA KLASICAN 3D
          IF(IJ.GT.0.AND.J.GT.NCVE) NCVE=J
          IF(IJ.GT.0.AND.J.GT.NNOD(I)) NNOD(I)=J
    66 CONTINUE
+      ENDIF
+C TETREOUT
       RETURN
 C
   150 CONTINUE
@@ -1442,12 +1466,14 @@ C
       COMMON /SUMELE/ ISUMEL,ISUMGR
       COMMON /SRPSKI/ ISRPS
       COMMON /NIDEAS/ IDEAS
+      COMMON /PODTIP/ IPODT
       DIMENSION NEL(NE,*),MCVEL(*),NMAT(*)
       DIMENSION FIZ(14)         
       COMMON /CDEBUG/ IDEBUG
 C
       IF(IDEBUG.GT.0) PRINT *, ' TGRAF3'
       IF(ideas.eq.-1) return
+      if(IPODT.EQ.3) RETURN
       ISUMGR=ISUMGR+1
 C
 C     FIZICKE OSOBINE

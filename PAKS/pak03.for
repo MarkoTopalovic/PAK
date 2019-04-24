@@ -133,7 +133,9 @@ CE.                        =32; STRESS-STRETCH MODEL FOR PASSIVE STATE
 CE.                        =33; STRESS-STRETCH CREEP MODEL
 CE.                        =34; STRESS-STRETCH MODEL FOR ACTIVE STATE
 CE.                        =40; GURSON
+CS.                        =56; CONCRETE DAMAGE MODEL
 CE.                        =61; Isotropic Damage Model (Oliver 1996)
+CE.                        =66; PHASE-FIELD DAMAGE MODEL (AMBATI)
 C .
 CS.           MODEL(1,I) - VRSTA MATERIJALNOG MODELA
 CS.                        =1; ELASTICAN IZOTROPAN
@@ -172,7 +174,9 @@ CS.                        =32; NAPON-STREC MODEL ZA PASIVNO STANJE
 CS.                        =33; NAPON-STREC MODEL PUZANJA
 CS.                        =34; NAPON-STREC MODEL ZA AKTIVNO STANJE
 CS.                        =40; GURSON
+CS.                        =56; MODEL OSTECENJA BETONA
 CS.                        =61; Izotropni Model Ostecenja (Oliver 1996)
+CS.                        =66; PROMENA FAZE POLJA USLED OSTECENJA (AMBATI)
 C .
 CE.           MODEL(2,I) - NUMBER OF DIFFERENT MATERIAL SETS OF MATERIAL
 CE.                        MODEL TYPE (=MODEL(1,I))
@@ -207,8 +211,8 @@ c     klasican restart =0, sa brisanjem =1
 c      IRUSI=1
       IRUSI=0
 C INDIKATOR ZA NASILNI IZLAZAK IZ MODELA - RADI SAMO ELASTICNO RASTOJANJE OD LOMA      
-c      NASILU=0
       NASILU=0
+c      NASILU=1
       if(nasilu.eq.1) write(*,*) ' NASILNO RACUNANJE SAMO ELASTICNO!!!!'
       IF(IDEBUG.GT.0) PRINT *, ' UCMODE'
       DO 10 K=1,NMATM
@@ -300,8 +304,8 @@ C
      2          21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
      3          31, 32, 33, 34,999,999,999,999,999, 40,
      4          41, 42, 43, 44, 45,999,999,999, 49,999,
-     5          51, 52, 53, 54,999,999,999,999,999,999,
-     6          61,999,999,999,999,999,999,999,999,999,
+     5          51, 52, 53, 54,999, 56,999,999,999,999,
+     6          61,999,999,999,999, 66,999,999,999,999,
      7         999,999,999,999,999,999,999,999,999,999,
      8         999,999,999,999,999,999,999,999,999,999,
      9         999,999,999,999,999,999,999,999,999,999),MOD
@@ -435,8 +439,13 @@ C       SMA
 C       SMA VLADA
    54   LMAX=LREP+MAT*17*IDVA
         GO TO 100
+C       CONCRETE DAMAGE
+   56   LMAX=LREP+MAT*20*IDVA
+        GO TO 100         
 C       Isotropic Damage Model (Oliver 1996)
    61   LMAX=LREP+MAT*5*IDVA
+        GO TO 100 
+   66   LMAX=LREP+MAT*(1+(2*MAX+10)*IDVA)
         GO TO 100 
 C
   999   STOP 'MATREP - 999'
@@ -544,8 +553,8 @@ C
      2          21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
      3          31, 32, 33, 34,999,999,999,999,999, 40,
      4          41, 42, 43, 44, 45,999,999,999, 49,999,
-     5          51, 52, 53, 54,999,999,999,999,999,999,
-     6          61,999,999,999,999,999,999,999,999,999,
+     5          51, 52, 53, 54,999, 56,999,999,999,999,
+     6          61,999,999,999,999, 66,999,999,999,999,
      7         999,999,999,999,999,999,999,999,999,999,
      8         999,999,999,999,999,999,999,999,999,999,
      9         999,999,999,999,999,999,999,999,999,999),MOD
@@ -800,10 +809,26 @@ C     SMA VLADA
       CALL UMOD54(A(LREP),MAT,KARTI,
      +            GUST,NBLGR,IDEAS,I)
       GO TO 120      
+C     CONCRETE DAMAGE
+   56 LREP=MODEL(4,J)
+      MATE=MODEL(2,J)
+      MAXT=MODEL(3,J)
+      LTEM=LREP+MATE*20*MAXT*IDVA
+      CALL UMOD56(A(LREP),MAT,KARTI,
+     +            GUST,NBLGR,IDEAS,I)
+      GO TO 120        
 C     Isotropic Damage Model (Oliver 1996)
    61 LREP=MODEL(4,J)
       MATE=MODEL(2,J)
       CALL UMOD61(A(LREP),MAT,KARTI,
+     +            GUST,NBLGR,IDEAS,I)
+      GO TO 120
+C
+   66 LREP=MODEL(4,J)
+      MATE=MODEL(2,J)
+      MAXT=MODEL(3,J)
+      LNTA=LREP+MATE*(2*MAXT+11)*IDVA
+      CALL UMOD66(A(LREP),A(LNTA),MATE,MAXT,MOD,MAT,KARTI,
      +            GUST,NBLGR,IDEAS,I)
       GO TO 120
 C
@@ -1638,6 +1663,16 @@ CE.   FUNMAT(1,MAT,2) - YIELD STRESS - TAUY
 CE.   FUNMAT(2,MAT,2) - TANGENTIAL MODULUS - ET
 CS.   FUNMAT(1,MAT,2) - NAPON TECENJA - TAUY
 CS.   FUNMAT(2,MAT,2) - TANGENTNI MODUL - ET
+C .
+CE.   FUNMAT(1,MAT,3) - EXPONENT - n
+CE.   FUNMAT(2,MAT,3) - MIXED HARDENING PARAMETER - M
+CS.   FUNMAT(1,MAT,3) - EKSPONENT - n
+CS.   FUNMAT(2,MAT,3) - PARAMETAR MESOVITOG OJACANJA - M
+C .
+CE.   FUNMAT(1,MAT,4) - SIMO PARAMETER - H
+CE.   FUNMAT(2,MAT,4) -  - 
+CS.   FUNMAT(1,MAT,4) - SIMOV PARAMETAR - H
+CS.   FUNMAT(2,MAT,4) -  - 
 C .
 CE. B) NTMAX>1 (NTMAX - NUMBER OF POINTS FOR CURVE TAU(DEF))
 CS. B) NTMAX>1 (NTMAX - BROJ TACAKA ZA KRIVU TAU(DEF))
@@ -5934,16 +5969,23 @@ C
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /SRPSKI/ ISRPS
-      DIMENSION FUNMAT(6,*),ZERO3(3),AMAT(30)
       COMMON /CDEBUG/ IDEBUG
+      COMMON /MODELT/ TEMPC0,ALFAC,INDTEM      
+      DIMENSION FUNMAT(6,*),ZERO3(3),AMAT(30)
       DATA ZERO3/0.D0,0.D0,0.D0/
 C
       IF(IDEBUG.GT.0) PRINT *, ' UMOD27'
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
-     1READ(IULAZ,*) FUNMAT(1,MAT),FACTOR
+     1READ(IULAZ,*) FUNMAT(1,MAT),FACTOR,INDTE,TEMPC,ALFA
       IF(INDFOR.EQ.2)
-     1READ(ACOZ,1000) FUNMAT(1,MAT),FACTOR
+     1READ(ACOZ,1000) FUNMAT(1,MAT),FACTOR,INDTE,TEMPC,ALFA
+      IF(MAT.EQ.1) THEN
+         INDTEM=INDTE
+         TEMPC0=TEMPC
+         ALFAC=ALFA
+      ENDIF
+      IF(DABS(FACTOR).LT.1.D-10) FACTOR=1.D0
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
      1READ(IULAZ,*) FUNMAT(2,MAT)
@@ -5981,9 +6023,15 @@ C
      1WRITE(IZLAZ,2010) (FUNMAT(J,MAT),J=1,2),E0,ANI0,FACTOR
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6010) (FUNMAT(J,MAT),J=1,2),E0,ANI0,FACTOR
+      IF(INDTEM.EQ.1) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2020) INDTEM,TEMPC0,ALFAC
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6020) INDTEM,TEMPC0,ALFAC
+      ENDIF
       RETURN
 C
- 1000 FORMAT(7F10.0)
+ 1000 FORMAT(2F10.0,I5,2F10.0)
 C-----------------------------------------------------------------------
  2000 FORMAT(6X,
      1'MODEL MATERIJALA BROJ =    27   (BETON) '///
@@ -5994,6 +6042,12 @@ C-----------------------------------------------------------------------
      116X,'M O D U L    E L A S T I C N O S T I .. E0 =',1PD12.5//
      216X,'P O I S S O N O V    B R O J .......... V0 =',1PD12.5//
      216X,'FAKTOR MERNIH JEDINICA ............ FACTOR =',1PD12.5)
+ 2020 FORMAT(//
+     116X,'INDIKATOR MODELA BETONA ........... INDTEM =',I5/
+     121X,'EQ.0; ELASTO-PLASTICAN'/
+     121X,'EQ.1; TERMO-ELASTO-PLASTICAN'//
+     116X,'POCETNA TEMPERATURA ............... TEMPC0 =',1PD12.5//
+     116X,'KOEFICIJENT TERMICKOG SIRENJA ...... ALFAC =',1PD12.5)
 C-----------------------------------------------------------------------
  6000 FORMAT(6X,
      1'MATERIAL MODEL NUMBER =    27  (CONCRETE)'///
@@ -6003,7 +6057,13 @@ C-----------------------------------------------------------------------
      116X,'SHEAR RETENTION FACTOR ............... SRF =',1PD12.5//
      116X,'Y O U N G S    M O D U L U S .......... E0 =',1PD12.5//
      216X,'P O I S S O N S    R A T I O .......... V0 =',1PD12.5//
-     216X,'FAKCTOR OF MEASURED UNIT........... FACTOR =',1PD12.5)
+     216X,'FACTOR OF MEASURED UNIT ........... FACTOR =',1PD12.5)
+ 6020 FORMAT(//
+     116X,'INDICATOR FOR CONCRETE MODEL ...... INDTEM =',I5/
+     121X,'EQ.0; ELASTO-PLASTIC'/
+     121X,'EQ.1; THERMO-ELASTO-PLASTIC'//
+     116X,'INITIAL TEMPERATURE ............... TEMPC0 =',1PD12.5//
+     116X,'COEFFICIENT OF THERMAL EXPANSION ... ALFAC =',1PD12.5)
 C-----------------------------------------------------------------------
       END
 C=======================================================================
@@ -7491,7 +7551,7 @@ C============================================================================
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
       CHARACTER*250 USTR,IZRAZ
-      CHARACTER*20 BROJ
+      CHARACTER*50 BROJ
       CHARACTER*11 CIFRE
       CHARACTER*6  KCIF,OPER
       DIMENSION ACR(20)
@@ -7584,7 +7644,7 @@ C============================================================================
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
       CHARACTER*250 IZRAZ,RP,PRP
-      CHARACTER*20 STACK,POM
+      CHARACTER*50 STACK,POM
       CHARACTER*8 OPER
       CHARACTER*1 B
       DIMENSION IPR(20),IOPER(7)
@@ -7887,9 +7947,9 @@ C
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6010) (FUNMAT(J,MAT),J=1,2)
       IF(ISRPS.EQ.0)
-     1WRITE(IZLAZ,2045) FUNMAT(3,MAT),(FUNMAT(J,MAT),J=4,6)
+     1WRITE(IZLAZ,2045) FUNMAT(3,MAT),(FUNMAT(J,MAT),J=3,5)
       IF(ISRPS.EQ.1)
-     1WRITE(IZLAZ,6045) FUNMAT(3,MAT),(FUNMAT(J,MAT),J=4,6)
+     1WRITE(IZLAZ,6045) FUNMAT(3,MAT),(FUNMAT(J,MAT),J=3,5)
 c      IF(ISRPS.EQ.0)
 c     1WRITE(IZLAZ,2065) (FUNMAT(J,MAT),J=9,10)
 c      IF(ISRPS.EQ.1)
@@ -7965,15 +8025,21 @@ C
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /SRPSKI/ ISRPS
+      COMMON /MODELT/ TEMPC0,ALFAC,INDTEM
       DIMENSION FUNMAT(11,*),AMAT(30)
       COMMON /CDEBUG/ IDEBUG
 C
       IF(IDEBUG.GT.0) PRINT *, ' UMOD43'
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
-     1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,2)
+     1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,2),INDTE,TEMPC,ALFA
       IF(INDFOR.EQ.2)
-     1READ(ACOZ,1010) (FUNMAT(I,MAT),I=1,2)
+     1READ(ACOZ,1011) (FUNMAT(I,MAT),I=1,2),INDTE,TEMPC,ALFA
+      IF(MAT.EQ.1) THEN
+         INDTEM=INDTE
+         TEMPC0=TEMPC
+         ALFAC=ALFA
+      ENDIF
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
      1READ(IULAZ,*) (FUNMAT(I,MAT),I=3,6)
@@ -8013,6 +8079,10 @@ C
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6010) (FUNMAT(J,MAT),J=1,2)
       IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2020) INDTEM,TEMPC0,ALFAC
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6020) INDTEM,TEMPC0,ALFAC
+      IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2045) (FUNMAT(J,MAT),J=3,6)
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6045) (FUNMAT(J,MAT),J=3,6)
@@ -8024,6 +8094,7 @@ c     1WRITE(IZLAZ,6065) (FUNMAT(J,MAT),J=9,10)
 C
  1000 FORMAT(7F10.0)
  1010 FORMAT(6F10.0,I5)
+ 1011 FORMAT(2F10.0,I5,2F10.0)
 C-----------------------------------------------------------------------
  2000 FORMAT(6X,
      1'MODEL MATERIJALA BROJ =     43 (TLO PLASTICNOST - Hoek-Brown)
@@ -8032,6 +8103,12 @@ C-----------------------------------------------------------------------
      16X,'M  A  T  E  R  I  J  A  L  N  E     K  O  N  S  T  A  N  T  E'
      1//16X,'M O D U L    E L A S T I C N O S T I  .  E =',1PD12.5//
      216X,'P O I S S O N O V    B R O J  .........  V =',1PD12.5//)
+ 2020 FORMAT(//
+     116X,'INDIKATOR MODELA BETONA ........... INDTEM =',I5/
+     121X,'EQ.0; ELASTO-PLASTICAN'/
+     121X,'EQ.1; TERMO-ELASTO-PLASTICAN'//
+     116X,'POCETNA TEMPERATURA ............... TEMPC0 =',1PD12.5//
+     116X,'KOEFICIJENT TERMICKOG SIRENJA ...... ALFAC =',1PD12.5)
  2045 FORMAT(//
      116X,'K O E F I C I J E N T I  K R I V E F=0 '/
      121X,'smc',11X,'em',12X,'emd',12X,'es'/
@@ -8047,6 +8124,12 @@ C-----------------------------------------------------------------------
      16X,'M  A  T  E  R  I  A  L      C  O  N  S  T  A  N  T  S'//
      116X,'Y O U N G S       M O D U L U S  ......  E =',1PD12.5//
      216X,'P O I S S O N S      R A T I O  .......  V =',1PD12.5//)
+ 6020 FORMAT(//
+     116X,'INDICATOR FOR CONCRETE MODEL ...... INDTEM =',I5/
+     121X,'EQ.0; ELASTO-PLASTIC'/
+     121X,'EQ.1; THERMO-ELASTO-PLASTIC'//
+     116X,'INITIAL TEMPERATURE ............... TEMPC0 =',1PD12.5//
+     116X,'COEFFICIENT OF THERMAL EXPANSION ... ALFAC =',1PD12.5)
  6045 FORMAT(//
      112X,'C O E F F I C I J E N T S  F O R  C U R V E  F=0 '/
      121X,'smc',11X,'em',12X,'emd',12X,'es'/
@@ -8092,15 +8175,22 @@ C
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /SRPSKI/ ISRPS
+      COMMON /TPROME/ ITE
+      COMMON /MODELT/ TEMPC0,ALFAC,INDTEM
       DIMENSION FUNMAT(11,*),AMAT(30)
       COMMON /CDEBUG/ IDEBUG
 C
       IF(IDEBUG.GT.0) PRINT *, ' UMOD44'
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
-     1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,2)
+     1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,2),INDTE,TEMPC,ALFA
       IF(INDFOR.EQ.2)
-     1READ(ACOZ,1010) (FUNMAT(I,MAT),I=1,2)
+     1READ(ACOZ,1010) (FUNMAT(I,MAT),I=1,2),INDTE,TEMPC,ALFA
+      IF(MAT.EQ.1) THEN
+         INDTEM=INDTE
+         TEMPC0=TEMPC
+         ALFAC=ALFA
+      ENDIF
       CALL ISPITA(ACOZ)
       IF(INDFOR.EQ.1)
      1READ(IULAZ,*) (FUNMAT(I,MAT),I=3,7)
@@ -8141,7 +8231,7 @@ c
       RETURN
 C
  1000 FORMAT(7F10.0)
- 1010 FORMAT(6F10.0,I5)
+ 1010 FORMAT(2F10.0,I5,2F10.0)
 C-----------------------------------------------------------------------
  2000 FORMAT(6X,
      1'MODEL MATERIJALA BROJ =     44 (TLO PLASTICNOST - Gen.Hoek-Brown)
@@ -8290,8 +8380,9 @@ C-----------------------------------------------------------------------
      120X,'W ',13X,'D '/16X,2(1PD12.5,2X))
 C-----------------------------------------------------------------------
       END
-
+C=======================================================================
       
+            
 C     Micunov materijalni model za pocetak iskopiran Rakicev DP 
       SUBROUTINE UMOD49(FUNMAT,MAT,KARTI,
      +                  GUST,NBLGR,IDEAS,MATG)
@@ -8407,8 +8498,10 @@ C-----------------------------------------------------------------------
      120X,'W ',13X,'D '/16X,2(1PD12.5,2X))
 C-----------------------------------------------------------------------
       END
+
       
-C=======================================================================
+C======================================================================= 
+      
       SUBROUTINE UMOD52(FUNMAT,MAT,KARTI,
      +                  GUST,NBLGR,IDEAS,MATG)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -8576,8 +8669,8 @@ C         AMAT(13)=GUST
          ELSEIF(IDEAS.EQ.7) THEN
             CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
          ENDIF
-            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
-            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
             CALL TGRMAT(AMAT,MAT,49)
       ENDIF
 
@@ -8844,8 +8937,8 @@ C
          ELSEIF(IDEAS.EQ.7) THEN
             CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
          ENDIF
-            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
-            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
             CALL TGRMAT(AMAT,MAT,49)
       ENDIF
 
@@ -8955,8 +9048,8 @@ C
          ELSEIF(IDEAS.EQ.7) THEN
             CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
          ENDIF
-            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
-            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
             CALL TGRMAT(AMAT,MAT,49)
       ENDIF
 
@@ -9004,3 +9097,456 @@ C
 C-----------------------------------------------------------------------
       END
 C=======================================================================     
+C=======================================================================
+      SUBROUTINE UMOD56(FUNMAT,MAT,KARTI,
+     +                  GUST,NBLGR,IDEAS,MATG)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.        TO READ DATA FOR MATERIAL MODEL NUMBER 56
+CS.    P R O G R A M
+CS.        ZA UCITAVANJE PODATAKA O MATERIJALNOM MODELU BROJ 56
+C .
+CE.             MAT - MATERIAL NUMBER
+CS.             MAT - MATERIJAL BROJ
+C .
+C .
+C ......................................................................
+C
+      CHARACTER*250 ACOZ
+      COMMON /BROJUK/ KARTIC,INDFOR,NULAZ
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SRPSKI/ ISRPS
+      DIMENSION FUNMAT(20,*),AMAT(30)
+      COMMON /CDEBUG/ IDEBUG
+      COMMON /MODELT/ TEMPC0,ALFAC,INDTEM
+      COMMON /VRTEMP/ AVRTEMP      
+C
+      IF(IDEBUG.GT.0) PRINT *, ' UMOD56'
+      CALL ISPITA(ACOZ)
+      IF(INDFOR.EQ.1)
+     1READ(IULAZ,*) (FUNMAT(I,MAT),I=1,16)
+      IF(INDFOR.EQ.2) THEN
+      READ(ACOZ,1000) (FUNMAT(I,MAT),I=1,8)
+      CALL ISPITA(ACOZ)
+      READ(ACOZ,1000) (FUNMAT(I,MAT),I=9,16)
+      CALL ISPITA(ACOZ)
+      READ(ACOZ,1001) (FUNMAT(I,MAT),I=17,20)
+      END IF
+C VAZNO - TEMPC0 SE UZIMA OD PRVOG MATERIJALA POSLEDNJEG UCITANOG MODELA
+      IF(MAT.EQ.1) THEN
+         INDTEM=FUNMAT(9,MAT)
+         TEMPC0=FUNMAT(10,MAT)
+         ALFAC=FUNMAT(11,MAT)
+         AVRTEMP=FUNMAT(15,MAT)
+      ENDIF      
+C    
+      IF(NBLGR.GE.0) THEN
+         CALL CLEAR(AMAT,30)
+         AMAT(1)=FUNMAT(1,MAT)
+         AMAT(7)=FUNMAT(2,MAT)
+         AMAT(13)=GUST
+         ISUMGR=MAT
+         IF(IDEAS.EQ.8) THEN
+            CALL MIDEAS(AMAT,ISUMGR,MAT,IGRAF) 
+         ELSEIF(IDEAS.EQ.7) THEN
+            CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
+         ENDIF
+C            CALL TGRMAT9(AMAT,MATG,MAT,IEL,49)
+C            CALL TGRMAT9(AMAT,MAT,MAT,IEL,49)
+            CALL TGRMAT(AMAT,MAT,49)
+      ENDIF
+
+      IF(NULAZ.NE.1.AND.NULAZ.NE.3) RETURN
+      CALL WBROJK(KARTI,0)
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,6000) MAT
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6000) MAT
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,6040) (FUNMAT(J,MAT),J=1,20)
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6040) (FUNMAT(J,MAT),J=1,20)
+      RETURN
+  
+      RETURN
+C
+ 1000 FORMAT(8F10.0)
+ 1001 FORMAT(4F10.0)
+C-----------------------------------------------------------------------   
+C-----------------------------------------------------------------------
+ 6000 FORMAT(6X,
+     1'MATERIAL MODEL NUMBER =    56 (CONCRETE DAMAGE MODEL)'///
+     111X,'MATERIAL NUMBER =',I5)
+ 6040 FORMAT(//
+     16X,'M  A  T  E  R  I  A  L      C  O  N  S  T  A  N  T  S'
+     1//16X,'Young modulus = ',1PD12.5// 
+     116X,'Poissont coefficient = ',1PD12.5//
+     116X,'Maximal compressive stress (fc)= ',1PD12.5//  
+     116X,'Maximal tensile stress (ft=10%*fc) = ',1PD12.5//
+     116X,'Ac(5.0)= ',1PD12.5//
+     116X,'Dc(0.4)= ',1PD12.5//
+     116X,'At(0.5)= ',1PD12.5//
+     116X,'Dt(0.51)= ',1PD12.5//
+     116X,'INDTEM = ',1PD12.5//     
+     116X,'TEMPC0 = ',1PD12.5//
+     116X,'ALFAC = ',1PD12.5//
+     116X,'Gc = ',1PD12.5//
+     116X,'Gt = ',1PD12.5//
+     116X,'Characteristics length Lch = ',1PD12.5//
+     116X,'Vreme za temperature = ',1PD12.5//
+     116X,'S0 = ',1PD12.5//
+     116X,'AALFFP(0.23)= ',1PD12.5//
+     116X,'AALFF(0.12)= ',1PD12.5//
+     116X,'GAMMA(3.0)= ',1PD12.5//
+     116X,'ADCR(1.0)= ',1PD12.5//)
+C     
+C-----------------------------------------------------------------------
+      END
+C=======================================================================
+C
+C=======================================================================
+      SUBROUTINE UMOD66(FUNMAT,NTFUN,MATE,MAXT,MOD,MAT,KARTI,
+     +                  GUST,NBLGR,IDEAS,MATG)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.        TO READ DATA FOR MATERIAL MODEL NUMBER 66
+CS.    P R O G R A M
+CS.        ZA UCITAVANJE PODATAKA O MATERIJALNOM MODELU BROJ 66
+C .
+CE.               MAT - MATERIAL NUMBER
+CE.   J=2,(NTMAX - NUMBER OF POINTS FOR CURVE) + 1
+CS.               MAT - MATERIJAL BROJ
+CS.   J=2,(NTMAX - BROJ TACAKA ZA KRIVU) + 1
+C .
+CE.   FUNMAT(1,MAT,1) - YOUNG*S MODULUS - E
+CE.   FUNMAT(2,MAT,1) - POISSON*S NUMBER - V
+CS.   FUNMAT(1,MAT,1) - MODUL ELASTICNOSTI - E
+CS.   FUNMAT(2,MAT,1) - POISSONOV BROJ - V
+C .
+CE. A) NTMAX=1 (NTMAX - NUMBER OF POINTS FOR CURVE TAU(DEF))
+CS. A) NTMAX=1 (NTMAX - BROJ TACAKA ZA KRIVU TAU(DEF))
+C .
+CE.   FUNMAT(1,MAT,2) - YIELD STRESS - TAUY
+CE.   FUNMAT(2,MAT,2) - TANGENTIAL MODULUS - ET
+CS.   FUNMAT(1,MAT,2) - NAPON TECENJA - TAUY
+CS.   FUNMAT(2,MAT,2) - TANGENTNI MODUL - ET
+C .
+CE.   FUNMAT(1,MAT,3) - EXPONENT - n
+CE.   FUNMAT(2,MAT,3) - MIXED HARDENING PARAMETER - M
+CS.   FUNMAT(1,MAT,3) - EKSPONENT - n
+CS.   FUNMAT(2,MAT,3) - PARAMETAR MESOVITOG OJACANJA - M
+C .
+CE.   FUNMAT(1,MAT,4) - SIMO PARAMETER - H
+CE.   FUNMAT(2,MAT,4) -  - 
+CS.   FUNMAT(1,MAT,4) - SIMOV PARAMETAR - H
+CS.   FUNMAT(2,MAT,4) -  - 
+C .
+CE.   FUNMAT(1,MAT,5) - LENGTH SCALE PARAMETER - l
+CE.   FUNMAT(2,MAT,5) - MAKSIMAL DIMENSION OF STRUCTURE - L 
+CS.   FUNMAT(1,MAT,5) - PARAMETAR DUZINSKE SKALE - l
+CS.   FUNMAT(2,MAT,5) - MAKSIMALNA DIMENZIJA KONSTRUKCIJE - L
+C .
+CE.   FUNMAT(1,MAT,6) - FRACTURE TOUGHNESS - Gc
+CE.   FUNMAT(2,MAT,6) - ARTIFICIAL RESIDUAL STIFFNESS - ETA 
+CS.   FUNMAT(1,MAT,6) - ZILAVOST LOMA - Gc
+CS.   FUNMAT(2,MAT,6) - VESTACKA PREOSTALA KRUTOST - ETA
+C .
+CE. B) NTMAX>1 (NTMAX - NUMBER OF POINTS FOR CURVE TAU(DEF))
+CS. B) NTMAX>1 (NTMAX - BROJ TACAKA ZA KRIVU TAU(DEF))
+C .
+CE.   FUNMAT(1,MAT,J) - ARGUMENT - STRAIN - DEF
+CE.   FUNMAT(2,MAT,J) - STRESS - TAU
+CS.   FUNMAT(1,MAT,J) - ARGUMENT - DEFORMACIJA - DEF
+CS.   FUNMAT(2,MAT,J) - NAPON - TAU
+C .
+CE.        NTFUN(MAT) - NUMBER OF POINTS FOR CURVE - TAU(DEF)
+CE.                     =1; BILINEAR CURVE
+CE.                     >1; MULTILINEAR CURVE
+CS.        NTFUN(MAT) - BROJ TACAKA ZA KRIVU - TAU(DEF)
+CS.                     =1; BILINEARNA KRIVA
+CS.                     >1; MULTILINEARNA KRIVA
+C .
+C ......................................................................
+C
+      CHARACTER*250 ACOZ
+      COMMON /BROJUK/ KARTIC,INDFOR,NULAZ
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      DIMENSION FUNMAT(2,MATE,*),NTFUN(*),AMAT(30)
+      COMMON /SRPSKI/ ISRPS
+      COMMON /CDEBUG/ IDEBUG
+C
+      IF(IDEBUG.GT.0) PRINT *, ' UMOD66'
+      ISIMO=0
+      CALL ISPITA(ACOZ)
+      IF(INDFOR.EQ.1)
+     1READ(IULAZ,*) NTFUN(MAT),INDEP
+      IF(INDFOR.EQ.2)
+     1READ(ACOZ,1000) NTFUN(MAT),INDEP
+        IF(NTFUN(MAT).GT.MAXT.OR.NTFUN(MAT).LE.0) STOP 'UMOD66'
+      NBRT=NTFUN(MAT)
+      IF (NBRT.GT.1 .AND. INDEP.EQ.0 ) STOP 'INDEP - PAK03'
+      IF (NBRT.GT.MAXT) STOP 'MAXT - PAK03'
+      IPROM=2
+      IF (NBRT.GT.1) IPROM=2+NBRT
+      FUNMAT(1,MAT,4)=0.
+      DO 20 J=1,IPROM
+        CALL ISPITA(ACOZ)
+        IF(INDFOR.EQ.1)
+     1  READ(IULAZ,*) (FUNMAT(I,MAT,J),I=1,2),DUM
+        IF(INDFOR.EQ.2)
+     1  READ(ACOZ,1010) (FUNMAT(I,MAT,J),I=1,2),DUM
+        IF(MOD.EQ.66.AND.DABS(DUM).GT.1.D-10.AND.IPROM.EQ.2)THEN
+          FUNMAT(1,MAT,4)=DUM
+          ISIMO=1
+        ENDIF
+   20 CONTINUE
+      IF((MOD.EQ.66.OR.MOD.EQ.20).AND.NTFUN(MAT).EQ.1)THEN
+        CALL ISPITA(ACOZ)
+        IF(INDFOR.EQ.1)
+     1  READ(IULAZ,*) (FUNMAT(I,MAT,3),I=1,2)
+        IF(INDFOR.EQ.2)
+     1  READ(ACOZ,1010) (FUNMAT(I,MAT,3),I=1,2)
+        IF(DABS(FUNMAT(1,MAT,3)).LT.1.D-6) FUNMAT(1,MAT,3)=1.D0
+      ENDIF
+      IF((MOD.EQ.66.OR.MOD.EQ.20).AND.NTFUN(MAT).EQ.1)THEN
+        CALL ISPITA(ACOZ)
+        IF(INDFOR.EQ.1)
+     1  READ(IULAZ,*) (FUNMAT(I,MAT,5),I=1,2)
+        IF(INDFOR.EQ.2)
+     1  READ(ACOZ,1010) (FUNMAT(I,MAT,5),I=1,2)
+      ENDIF    
+      IF((MOD.EQ.66.OR.MOD.EQ.20).AND.NTFUN(MAT).EQ.1)THEN
+        CALL ISPITA(ACOZ)         
+        IF(INDFOR.EQ.1)
+     1  READ(IULAZ,*) (FUNMAT(I,MAT,6),I=1,2)
+        IF(INDFOR.EQ.2)      
+     1  READ(ACOZ,1010) (FUNMAT(I,MAT,6),I=1,2)
+      ENDIF      
+      IF((MOD.EQ.66.OR.MOD.EQ.20).AND.NTFUN(MAT).EQ.1)THEN
+        CALL ISPITA(ACOZ)         
+        IF(INDFOR.EQ.1)
+     1  READ(IULAZ,*) FUNMAT(1,MAT,7)
+        IF(INDFOR.EQ.2)      
+     1  READ(ACOZ,1010) FUNMAT(1,MAT,7)
+      ENDIF       
+      IF(MOD.EQ.66.AND.NBRT.GT.1) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2030) NTFUN(MAT),INDEP
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6030) NTFUN(MAT),INDEP
+      WRITE(IZLAZ,5020) ((FUNMAT(I,MAT,J),I=1,2),J=3,IPROM)
+      CALL FICA(FUNMAT,MAT,MATE,IPROM,INDEP)
+      NTFUN(MAT)=1
+      ENDIF
+      IF(MOD.EQ.66.AND.FUNMAT(2,MAT,2).LT.1.D-8) FUNMAT(2,MAT,2)=1.D-8
+C
+      IF(NULAZ.NE.1.AND.NULAZ.NE.3) GO TO 90
+      CALL WBROJK(KARTI,0)
+      IF(MOD.EQ.5) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2000) MAT
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6000) MAT
+      ENDIF
+      IF(MOD.EQ.66) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2005) MAT
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6005) MAT
+      ENDIF
+      IF(MOD.EQ.20) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2006) MAT
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6006) MAT
+      ENDIF
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2010) (FUNMAT(I,MAT,1),I=1,2)
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6010) (FUNMAT(I,MAT,1),I=1,2)
+C
+      IF(NTFUN(MAT).EQ.1.AND.MOD.EQ.5) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2040) (FUNMAT(I,MAT,2),I=1,2)
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6040) (FUNMAT(I,MAT,2),I=1,2)
+      ENDIF
+C
+      IF(NTFUN(MAT).EQ.1.AND.(MOD.EQ.66.OR.MOD.EQ.20)) THEN
+      IF(ISIMO.EQ.0) THEN
+        IF(ISRPS.EQ.0)
+     1  WRITE(IZLAZ,2045) ((FUNMAT(I,MAT,J),I=1,2),J=2,3)
+        IF(ISRPS.EQ.1)
+     1  WRITE(IZLAZ,6045) ((FUNMAT(I,MAT,J),I=1,2),J=2,3)
+C
+      ELSEIF(ISIMO.EQ.1) THEN
+        IF(ISRPS.EQ.0)THEN
+          WRITE(IZLAZ,2075) (FUNMAT(I,MAT,2),I=1,2),FUNMAT(1,MAT,4),
+     1                      (FUNMAT(I,MAT,3),I=1,2)
+        ELSEIF(ISRPS.EQ.1)THEN
+          WRITE(IZLAZ,6075) (FUNMAT(I,MAT,2),I=1,2),FUNMAT(1,MAT,4),
+     1                      (FUNMAT(I,MAT,3),I=1,2)
+        ENDIF
+        FUNMAT(2,MAT,2)=FUNMAT(2,MAT,2)-FUNMAT(1,MAT,2)
+      ENDIF
+C	  
+        IF(ISRPS.EQ.0)
+     1  WRITE(IZLAZ,2085) ((FUNMAT(I,MAT,J),I=1,2),J=5,6),
+     1                      FUNMAT(1,MAT,7)
+        IF(ISRPS.EQ.1)
+     1  WRITE(IZLAZ,6085) ((FUNMAT(I,MAT,J),I=1,2),J=5,6),
+     1                      FUNMAT(1,MAT,7)
+C
+       IF(MOD.EQ.20) THEN
+        IF(ISRPS.EQ.0)
+     1  WRITE(IZLAZ,2060) FUNMAT(1,MAT,4)
+        IF(ISRPS.EQ.1)
+     1  WRITE(IZLAZ,6060) FUNMAT(1,MAT,4)
+       ENDIF
+      ENDIF
+C
+   90 IF(NBLGR.GE.0) THEN
+         CALL CLEAR(AMAT,30)
+         AMAT(1)=FUNMAT(1,MAT,1)
+         AMAT(7)=FUNMAT(2,MAT,1)
+         AMAT(13)=GUST
+         AMAT(15)=FUNMAT(1,MAT,2)
+         AMAT(16)=FUNMAT(2,MAT,2)
+         AMAT(17)=FUNMAT(2,MAT,3)
+         AMAT(19)=3.
+         ISUMGR=MAT
+         IF(IDEAS.EQ.8) THEN
+            CALL MIDEAS(AMAT,ISUMGR,MAT,IGRAF) 
+         ELSEIF(IDEAS.EQ.7) THEN
+            CALL MIDEA7(AMAT,ISUMGR,MAT,IGRAF) 
+         ENDIF
+C            CALL TGRMAT(AMAT,MATG,49)
+            CALL TGRMAT(AMAT,MAT,49)
+      ENDIF
+C
+      IF(NTFUN(MAT).EQ.1) RETURN
+      IF(ISRPS.EQ.0) THEN
+	     WRITE(3,*) 'NIJE TRENUTNO UGRADJENO DA RADI SA VISE TAČAKA'
+	     WRITE(*,*) 'NIJE TRENUTNO UGRADJENO DA RADI SA VISE TAČAKA'
+	  ELSE
+	     WRITE(3,*) 'DOES NOT WORK FOR MORE POINTS'
+	     WRITE(*,*) 'DOES NOT WORK FOR MORE POINTS'
+	  ENDIF
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2030) NTFUN(MAT),INDEP
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6030) NTFUN(MAT),INDEP
+      WRITE(IZLAZ,5020) ((FUNMAT(I,MAT,J),I=1,2),J=4,IPROM)
+C
+CE    TRANSFORMATION OF CURVE ON FORM STRESS-PLASTIC STRAIN
+CS    PREVODJENJE KRIVE NA OBLIK NAPON-PLASTICNA DEFORMACIJA
+C
+      IF(INDEP.EQ.1) CALL NAPPLD(FUNMAT,NTFUN,MATE,MAT)
+      RETURN
+C
+ 1000 FORMAT(14I5)
+ 1010 FORMAT(7F10.0)
+ 5020 FORMAT(19X,1PD12.5,10X,1PD12.5)
+C-----------------------------------------------------------------------
+ 2000 FORMAT(6X,
+     1'MODEL MATERIJALA BROJ =     5'/6X,'(MIZESOV ELASTO-PLASTICAN',
+     2' SA IZOTROPNIM OJACANJEM)'///11X,'MATERIJAL BROJ =',I5)
+ 2005 FORMAT(6X,
+     1'MODEL MATERIJALA BROJ =    66'/6X,'(PROMENA FAZE POLJA USLED',
+     2' OSTECENJA - AMBATI)'///11X,'MATERIJAL BROJ =',I5)
+ 2006 FORMAT(6X,
+     1'MODEL MATERIJALA BROJ =    20'/6X,'(MIZESOV VISKO-PLASTICAN',
+     2' SA MESOVITIM OJACANJEM)'///11X,'MATERIJAL BROJ =',I5)
+ 2010 FORMAT(//
+     116X,'M O D U L    E L A S T I C N O S T I  .  E =',1PD12.5//
+     216X,'P O I S S O N O V    B R O J  .........  V =',1PD12.5)
+ 2040 FORMAT(//
+     116X,'N A P O N    T E C E N J A  ........  TAUY =',1PD12.5//
+     216X,'T A N G E N T N I    M O D U L  ......  ET =',1PD12.5)
+ 2045 FORMAT(//6X,
+     1'   RAMBERG-OSGOOD FORMULA -  MATERIJALNE KONSTANTE'//
+     116X,'N A P O N    T E C E N J A  ........  TAUY =',1PD12.5//
+     216X,'M N O Z I O C  .....................    CY =',1PD12.5//
+     316X,'E K S P O N E N T  .................    AN =',1PD12.5//
+     416X,'KOEFICIJENT MESOVITOG OJACANJA  ....    EM =',1PD12.5)
+ 2060 FORMAT(//
+     116X,'K O E F   V I S K O Z N O S T I  ...   ETA =',1PD12.5)
+ 2030 FORMAT(//
+     116X,'K R I V A    N A P O N  -  D E F O R M A C I J A'//
+     121X,'BROJ TACAKA ZA KRIVU =',I5//
+     121X,'VRSTA DEFORMACIJE , INDEP=',I5/
+     126X,'.EQ.1; UKUPNA'/
+     126X,'.EQ.2; PLASTICNA'//
+     121X,'ARGUMENT             FUNKCIJA'/
+     120X,'DEFORMACIJA             NAPON')
+ 2075 FORMAT(//6X,
+     1'   J.C.SIMO FORMULA -  MATERIJALNE KONSTANTE'//
+     116X,'NAPON TECENJA .....................   TAUY =',1PD12.5//
+     216X,'ASIMPTOTSKI NAPON ................. TAUINF =',1PD12.5//
+     216X,'KOEFICIJENT LINEARNOG OJACANJA ....      H =',1PD12.5//
+     316X,'EKSPONENT .........................  DELTA =',1PD12.5//
+     416X,'KOEFICIJENT MESOVITOG OJACANJA  ...     EM =',1PD12.5)
+ 2085 FORMAT(//6X,
+     1'   MATERIJALNE KONSTANTE ZA OSTECENJE'//
+     116X,'PARAMETAR DUZINSKE SKALE ...........     l =',1PD12.5//
+     216X,'MAKSIMALNA DIMENZIJA KONSTRUKCIJE ..     L =',1PD12.5//
+     316X,'ZILAVOST LOMA ......................    Gc =',1PD12.5//
+     416X,'VESTACKA PREOSTALA KRUTOST .........   ETA =',1PD12.5//
+     516X,'KRITICNA PLASTICNA DEFORMACIJA......   ep_c=',1PD12.5)
+C-----------------------------------------------------------------------
+ 6000 FORMAT(6X,
+     1'MATERIAL MODEL NUMBER  =    5'/6X,'(VON MISES ELASTIC-PLASTIC',
+     2' WITH ISOTROPIC HARDENING)'///11X,'MATERIAL NUMBER =',I5)
+ 6005 FORMAT(6X,
+     1'MATERIAL MODEL NUMBER  =   66'/6X,'(PHASE-FIELD DAMAGE MODEL',
+     2' - AMBATI)'///11X,'MATERIAL NUMBER =',I5)
+ 6006 FORMAT(6X,
+     1'MATERIAL MODEL NUMBER  =   20'/6X,'(VON MISES VISCO-PLASTIC',
+     2' WITH MIXED HARDENING)'///11X,'MATERIAL NUMBER =',I5)
+ 6010 FORMAT(//
+     116X,'Y O U N G S       M O D U L U S  ......  E =',1PD12.5//
+     216X,'P O I S S O N S      R A T I O  .......  V =',1PD12.5)
+ 6040 FORMAT(//
+     116X,'Y I E L D    S T R E S S  ..........  TAUY =',1PD12.5//
+     216X,'T A N G E N T    M O D U L U S  ......  ET =',1PD12.5)
+ 6045 FORMAT(//6X,
+     1'   RAMBERG-OSGOOD FORMULAS MATERIAL CONSTANTS'//
+     116X,'Y I E L D    S T R E S S  ..........  TAUY =',1PD12.5//
+     216X,'M U L T I P L A Y E R  .............    CY =',1PD12.5//
+     316X,'E X P O N E N T  ...................    AN =',1PD12.5//
+     416X,'MIXED HARDENING COEFFICIENT  .......    EM =',1PD12.5)
+ 6060 FORMAT(//
+     116X,'V I S C O S I T Y   C O E F F  .....   ETA =',1PD12.5)
+ 6030 FORMAT(//
+     116X,'S T R E S S - S T R A I N    C U R V E'//
+     121X,'NUMBER OF POINTS ON CURVE =',I5//
+     121X,'DEFORMATION SHAPE , INDEP=',I5/
+     126X,'.EQ.1; TOTAL STRAIN'/
+     126X,'.EQ.2; PLASTIC STRAIN'//
+     121X,'ARGUMENT             FUNCTION'/
+     120X,'STRAIN                 STRESS')
+ 6075 FORMAT(//6X,
+     1'   J.C.SIMO FORMULA MATERIAL CONSTANTS'//
+     116X,'YIELD STRESS  .....................   TAUY =',1PD12.5//
+     216X,'ASYMPTOTIC STRESS ................. TAUINF =',1PD12.5//
+     216X,'LINEAR HARDENING COEFFICIENT ......      H =',1PD12.5//
+     316X,'EXPONENT ..........................  DELTA =',1PD12.5//
+     416X,'MIXED HARDENING COEFFICIENT  ......     EM =',1PD12.5)
+ 6085 FORMAT(//6X,
+     1'   MATERIAL CONSTANTS FOR DAMAGE'//
+     116X,'LENGTH SCALE PARAMETER .............     l =',1PD12.5//
+     216X,'MAKSIMAL DIMENSION OF STRUCTURE ....     L =',1PD12.5//
+     316X,'FRACTURE TOUGHNESS .................    Gc =',1PD12.5//
+     416X,'ARTIFICIAL RESIDUAL STIFFNESS ......   ETA =',1PD12.5//
+     516X,'CRITICAL PLASTIC STRAIN.............   ep_c=',1PD12.5)
+C-----------------------------------------------------------------------
+      END
+C=======================================================================          

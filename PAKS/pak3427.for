@@ -4,7 +4,7 @@ CE   CONCRETE FOR 3/D ELEMENTS
 CS   BETON 3/D ELEMENT     (22.12.1994)
 C
 C=======================================================================
-      SUBROUTINE D3M27(TAU,DEF,IRAC,LPOCG,LPOC1)
+      SUBROUTINE D3M27(TAU,DEF,TGT,IRAC,LPOCG,LPOC1)
       USE PLAST3D
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 C
@@ -32,6 +32,7 @@ C
       LEANIT=LVT    + 9
       LTEQT =LEANIT + 4
       LIPLT =LTEQT  + 1
+      LTRELP=LIPLT  + 1
 C
       LTAU1 =LPOC1
       LDEF1 =LTAU1  + 6
@@ -43,25 +44,26 @@ C
       LEANI1=LV1    + 9
       LTEQ1 =LEANI1 + 4
       LIPL1 =LTEQ1  + 1
+      LTREL1=LIPL1  + 1
 C
-      IF(FACTOR.GT.1.D-12) THEN
-         CALL JEDNAK(PLAS1(LTAU1),PLAS1(LTAU1),1.D0/FACTOR,6)
-         CALL JEDNAK(TAU,TAU,1.D0/FACTOR,6)
-         CALL JEDNAK(ELAST,ELAST,1.D0/FACTOR,36)
-	ENDIF
+c      IF(FACTOR.GT.1.D-12) THEN
+c         CALL JEDNAK(PLAS1(LTAU1),PLAS1(LTAU1),1.D0/FACTOR,6)
+c         CALL JEDNAK(TAU,TAU,1.D0/FACTOR,6)
+c         CALL JEDNAK(ELAST,ELAST,1.D0/FACTOR,36)
+c	ENDIF
       CALL TUI327(PLAST(LIPLT),PLAST(LTAUT),PLAST(LDEFT),
      1            PLAST(LDEFPT),PLAST(LSIGOT),PLAST(LEPSCT),
      1            PLAST(LPRINT),PLAST(LVT),PLAST(LEANIT),PLAST(LTEQT),
      1            PLAS1(LIPL1),PLAS1(LTAU1),PLAS1(LDEF1),
      1            PLAS1(LDEFP1),PLAS1(LSIGO1),PLAS1(LEPSC1),
      1            PLAS1(LPRIN1),PLAS1(LV1),PLAS1(LEANI1),PLAS1(LTEQ1),
-     1            A(LFUN),TAU,DEF,IRAC)
+     1            A(LFUN),TAU,DEF,TGT,IRAC,PLAS1(LTREL1))
 C
-      IF(FACTOR.GT.1.D-12) THEN
-         CALL JEDNAK(A(LTAU1),A(LTAU1),FACTOR,6)
-         CALL JEDNAK(TAU,TAU,FACTOR,6)
-         CALL JEDNAK(ELAST,ELAST,FACTOR,36)
-	ENDIF
+c      IF(FACTOR.GT.1.D-12) THEN
+c         CALL JEDNAK(A(LTAU1),A(LTAU1),FACTOR,6)
+c         CALL JEDNAK(TAU,TAU,FACTOR,6)
+c         CALL JEDNAK(ELAST,ELAST,FACTOR,36)
+c	ENDIF
 C
       RETURN
       END
@@ -70,7 +72,7 @@ C=======================================================================
      1                   EPSCT,PRINT,VT,EANIT,TEQT,
      1                   PL1,TAU1,DEF1,DEFP1,SIGO1,
      1                   EPSC1,PRIN1,V1,EANI1,TEQ,
-     1                   FUN,TAU,DEF,IRAC)
+     1                   FUN,TAU,DEF,TGT,IRAC,TRELP)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 C
 CS    INTEGRACIJA KONSTITUTIVNIH RELACIJA ZA BETON
@@ -78,14 +80,14 @@ CE    INTEGRATION OF CONSTITUTIVE RELATION FOR CONCRETE
 C
       COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8
       COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
-      COMMON /TAUD3/ TAUD(6),DEFDPR(6),DEFDS(6),DDEFP(6),
+      COMMON /TAUD3/  TAUD(6),DEFDPR(6),DEFDS(6),DDEFP(6),
      1                DETAU(6),DDEF(6)
       COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
       COMMON /PLASTI/ LPLAST,LPLAS1,LSIGMA
       COMMON /ITERBR/ ITER
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
-      COMMON /CRACKC/ CBTC(10,2),NBTC(10,3),KBTC,ICRACK,NBRCR
+      COMMON /CRACKC/ CBTC(1000,2),NBTC(1000,3),KBTC,ICRACK,NBRCR
       COMMON /PRINCI/ PRINC(3)
       COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
       COMMON /CDEBUG/ IDEBUG
@@ -99,8 +101,8 @@ C
       IF(IDEBUG.GT.0) PRINT *, ' TAUI327'
       IF(IRAC.EQ.2)RETURN
 C
-CC     ALF=-0.5D0
-      ALF=0.D0
+      ALF=-0.5D0
+C      ALF=0.D0
 C
 CE    INITIAL DATA
 C
@@ -144,7 +146,7 @@ C      WRITE(3,*)'PL1,IEXTC',PL1,IEXTC
       SRF =FUN(2,MAT)
       E0  =FUN(3,MAT)
       ANI0=FUN(4,MAT)
-      G0  =E0/2./(1.+ANI0)
+      G0  =E0/2.D0/(1.D0+ANI0)
 C-----------------------------------------------------------------------
 C.............................................
 C.    A)   UNCRACKED, NONLINEAR CONCRETE
@@ -159,8 +161,9 @@ C
         CALL ODUZ2B(DDEF,DEF,DEFPT,6)
         CALL CLEAR(TAU,6)
         CALL MNOZI1(TAU,ELAST,DDEF,6,6)
+        if(iter.eq.0) go to 900
 C
-CE      CHECK FOR YIELDING
+CE      CHECK FOR YIELDING 
 C
         TEQ=CONYLD(TAU,ALF)
         IF(TEQY.GT.1.D-20)THEN
@@ -213,6 +216,7 @@ C
            IF(TNORM0.LT.1.D-15) TNORM0=1.D0
         ENDIF
         TN(IT)=TNORMI/TNORM0
+        WRITE(3,*) 'IT,TNORM0,TNORMI',IT,TNORM0,TNORMI
         IF (TN(IT).GT.EPSIL) GO TO 100
 C
  2000   FORMAT(' ','MAXIMUM NUMBER OF ITERATION EXIDED IN : TUI327'
@@ -233,11 +237,11 @@ C
 CE      DETERMINE IF CRACKING
 C
         CALL GLAVN(TAU)
-        IF(ICRACK.GE.0) CALL CRCCHK(FC,SIGO1,ICRK)
+        IF(ICRACK.GE.0) CALL CRCCHK(FC,SIGO1,ICRK,TRELP)
 C
 CE      UPDATE FROM PREVIOUS STEP
 C
-        CALL JEDNA1(DEF1,DEF,6)
+  900   CALL JEDNA1(DEF1,DEF,6)
         CALL JEDNA1(TAU1,TAU,6)
 C
       ENDIF
@@ -291,7 +295,7 @@ CA           CALL MNOZI1(TAU,ELAST,DEF,6,6)
             CALL ZBIR2B(TAU,TAU1,DETAU,6)
 CA
             CALL OKTAS(TAU,SIGO1)
-            IF(PLT.LE.PL1.AND.ICLOSE.EQ.0) CALL CRCCHK(FC,SIGO1,ICRK)
+         IF(PLT.LE.PL1.AND.ICLOSE.EQ.0) CALL CRCCHK(FC,SIGO1,ICRK,TRELP)
 CE          UPDATE FROM PREVIOUS STEP
             CALL JEDNA1(DEF1,DEF,6)
             CALL JEDNA1(TAU1,TAU,6)
@@ -462,7 +466,18 @@ C
 10    DEV(I)=TAU(I)+SIGO(1)
       AI3=DEV(1)*DEV(2)*DEV(3)+TAU(4)*TAU(5)*TAU(6)*2.
      1   -DEV(1)*TAU(5)*TAU(5)-DEV(2)*TAU(6)*TAU(6)-DEV(3)*TAU(4)*TAU(4)
-      SIGO(2)=DSQRT(2.*SIGO(1)*SIGO(1)-2.*AI2/3.)
+      DUM=2.*SIGO(1)*SIGO(1)-2.*AI2/3.
+      IF(DUM.GE.-1.D-15) THEN
+         IF (DABS(DUM).LT.1.D-15) THEN
+            SIGO(2)=0.D0
+         ELSE
+            SIGO(2)=DSQRT(DUM)
+         ENDIF
+      ELSE
+         WRITE(3,*) 'DSQRT(',DUM,') STOP SIGO(2)'
+         WRITE(*,*) 'DSQRT(',DUM,') STOP SIGO(2)'
+         STOP
+      ENDIF   
       IF(DABS(SIGO(2)).LT.1.D-15)THEN
         SIGO(3)=one
 c        SIGO(3)=0.D0
@@ -486,10 +501,10 @@ C
       COMMON /CDEBUG/ IDEBUG
       IF(IDEBUG.GT.0) PRINT *, ' OKTAE'
 C
-      EPSO(1)=SIGO(1)/AKS/3.
-      EPSO(2)=SIGO(2)/GS/2.
+      EPSO(1)=SIGO(1)/AKS/3.D0
+      EPSO(2)=SIGO(2)/GS/2.D0
 C NIJE DEFINISANO (A.7c)
-      EPSO(3)=0.
+      EPSO(3)=0.D0
       RETURN
       END
 C=======================================================================
@@ -503,96 +518,116 @@ C--------------------------------------------------------------------
 C
       DIMENSION SIGO(*)
       COMMON /CDEBUG/ IDEBUG
+      COMMON /CONFAC/ FACTOR
       IF(IDEBUG.GT.0) PRINT *, ' CONCON'
       RSO=SIGO(1)/FC
       RTO=SIGO(2)/FC
+      RSO=RSO/FACTOR
+      RTO=RTO/FACTOR
 C
 CE       COMPUTE K0 AND G0
 C
-         AK0=11000.+3.2*FC*FC
-         G0 =9224.+136.*FC+3296.D-15*FC**8.273
+         AK0=11000.D0+3.2D0*FC*FC
+         G0 =9224.D0+136.D0*FC+3296.D-15*FC**8.273D0
+         AK0=AK0*FACTOR
+         G0=G0*FACTOR
 C
 CE       COMPUTE PARAMETERS A,B,C,D
 C
          IF(FC.LE.31.7D0) THEN
             A=.516D0
-            B=2.+1.81D-8*FC**4.461
+            B=2.D0+1.81D-8*FC**4.461D0
             C=3.573D0
-            D=2.12+.0183*FC
+            D=2.12D0+.0183D0*FC
          ELSE
-            FCC=FC-31.7
-            A=.516/(1.+.0027*FCC**2.397)
-            B=2.+1.81D-8*FC**4.461
-            C=3.573/(1.+.0134*FCC**1.414)
+            FCC=FC-31.7D0
+            A=.516D0/(1.D0+.0027D0*FCC**2.397D0)
+            B=2.D0+1.81D-8*FC**4.461D0
+            C=3.573D0/(1.D0+.0134D0*FCC**1.414D0)
             D=2.7D0
          ENDIF
 C
 CE    COMPUTE TANGENT MODULI AND SECANT MODULI
 C
       ARSO=DABS(RSO)
-      B1=B-1.
-      D1=D-1.
+      B1=B-1.D0
+      D1=D-1.D0
       IF(ARSO.LT.2.D0) THEN
-         AK=AK0/(1.+A*B*ARSO**B1)
+         AK=AK0/(1.D0+A*B*ARSO**B1)
       ELSE
-         AK=AK0/(1.+(2.D0**B1)*A*B)
+         AK=AK0/(1.D0+(2.D0**B1)*A*B)
       ENDIF
-      G=G0/(1.+D*C*RTO**D1)
+      G=G0/(1.D0+D*C*RTO**D1)
       IF(ARSO.LT.2.D0) THEN
-         AKS=AK0/(1.+A*ARSO**B1)
+         AKS=AK0/(1.D0+A*ARSO**B1)
       ELSE
-         AKS=AK0/(1.+(2.**B1)*A*B-(2.**B)*A*B1*(1./ARSO))
+         AKS=AK0/(1.D0+(2.D0**B1)*A*B-(2.D0**B)*A*B1*(1.D0/ARSO))
       ENDIF
-      GS=G0/(1.+C*RTO**D1)
+      GS=G0/(1.D0+C*RTO**D1)
 C
 CE    YOUNG'S AND POISSON'S RATIO
 C
-      E=(9.*AK*G)/(3.*AK+G)
-      ANI=(3.*AK-2.*G)/(6.*AK+2.*G)
-      ES=(9.*AKS*GS)/(3.*AKS+GS)
-      ANIS=(3.*AKS-2.*GS)/(6.*AKS+2.*GS)
+      E=(9.D0*AK*G)/(3.D0*AK+G)
+      ANI=(3.D0*AK-2.D0*G)/(6.D0*AK+2.D0*G)
+      ES=(9.D0*AKS*GS)/(3.D0*AKS+GS)
+      ANIS=(3.D0*AKS-2.D0*GS)/(6.D0*AKS+2.D0*GS)
 C
       RETURN
       END
 C=======================================================================
-      SUBROUTINE CRCCHK(FC,SIGO,ICRK)
+      SUBROUTINE CRCCHK(FC,SIGO,ICRK,TRELP)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CE    STRENGTH ENVELOPE: CHECK FOR CRACKING
 C
-      COMMON /CRACKC/ CBTC(10,2),NBTC(10,3),KBTC,ICRACK,NBRCR
+      COMMON /CRACKC/ CBTC(1000,2),NBTC(1000,3),KBTC,ICRACK,NBRCR
       COMMON /PRINCI/ PRINC(3)
       DIMENSION SIGO(*)
       COMMON /CDEBUG/ IDEBUG
+      COMMON /CONFAC/ FACTOR
       IF(IDEBUG.GT.0) PRINT *, ' CRCCHK'
 C
       RSO=SIGO(1)/FC
       CT =SIGO(3)
+      RSO=RSO/FACTOR
       RSO5=RSO+0.05
       ICRK=0            
       IF(RSO5.LT.0.D0)THEN
         ICRK=-1
         TREL=1.D20
-      ELSEIF(PRINC(3).LE.-FC.AND.
+      ELSEIF(PRINC(3).LE.-FACTOR*FC.AND.
      1       PRINC(1).LE.0.D0.AND.PRINC(2).LE.0.D0)THEN
         ICRK=1
         TREL=2.D20
       ENDIF
 C
+      TRELP=0.
       IF(ICRK.EQ.0)THEN
-        TOC=FC*.944*RSO5**.724
-        TOE=FC*.633*RSO5**.857
-        T2M=2.*(TOC*TOC-TOE*TOE)*CT
-        TE2=2.*TOE-TOC
-        DUM1=2.*T2M*CT
-        DUM2=TOC*(T2M+TE2*DSQRT(DUM1+5*TOE*TOE-4.*TOC*TOE))
+        TOC=FC*.944D0*RSO5**.724D0
+        TOE=FC*.633D0*RSO5**.857D0
+        T2M=2.D0*(TOC*TOC-TOE*TOE)*CT
+        TE2=2.D0*TOE-TOC
+        DUM1=2.D0*T2M*CT
+        DUM=DUM1+5.D0*TOE*TOE-4.D0*TOC*TOE
+        IF(DUM.GE.0.D0) THEN
+           DUM2=TOC*(T2M+TE2*DSQRT(DUM))
+        ELSE
+           WRITE(3,*) 'DSQRT(',DUM,') STOP DUM2'
+           WRITE(*,*) 'DSQRT(',DUM,') STOP DUM2'
+           STOP
+        ENDIF
         DUM3=DUM1+TE2*TE2
         TOU=DUM2/DUM3 
-        IF(TOU-SIGO(2).LT.0.D0) ICRK=-1
-        TREL=SIGO(2)/TOU      
+        IF(TOU-SIGO(2)/FACTOR.LT.0.D0) ICRK=-1
+        TREL=SIGO(2)/TOU/FACTOR
+        write(3,*) 'trel=',TREL
+        if (trel.gt.1d0) stop 'probio povrs tecenja!'
+c        TRELP=1.D0/TREL      
+        TRELP=(1.D0-TREL)*100.d0      
       ENDIF
 C
       IF(ICRK.NE.0)THEN
+        TRELP=0.
         IF(NBRCR.GT.0)THEN
            IF(ICRK.EQ.1)  WRITE(*,*)'* MARKED CRUSH'
            IF(ICRK.EQ.-1) WRITE(*,*)'* MARKED TENSILE CRACK'
@@ -630,7 +665,7 @@ C--------------------------------------------------------------------
 CE    ARANGE CRACKING POINTS
 C--------------------------------------------------------------------
 C
-      COMMON /CRACKC/ CBTC(10,2),NBTC(10,3),KBTC,ICRACK,NBRCR
+      COMMON /CRACKC/ CBTC(1000,2),NBTC(1000,3),KBTC,ICRACK,NBRCR
       COMMON /CDEBUG/ IDEBUG
       IF(IDEBUG.GT.0) PRINT *, ' CRACON'
 C
@@ -660,12 +695,18 @@ C
       DIMENSION TAU(*)
 C
       SM3=TAU(1)+TAU(2)+TAU(3)
-      SM =SM3/3.
+      SM =SM3/3.D0
       CONYLD=0.D0
       DO 10 I=1,3
       DUM=TAU(I)-SM
 10    CONYLD=CONYLD+DUM*DUM
-      CONYLD=CONYLD + 2.*(TAU(4)*TAU(4)+TAU(5)*TAU(5)+TAU(6)*TAU(6))
-      CONYLD=DSQRT(CONYLD)+ALF*SM3
+      CONYLD=CONYLD + 2.D0*(TAU(4)*TAU(4)+TAU(5)*TAU(5)+TAU(6)*TAU(6))
+      IF(CONYLD.GE.0D0) THEN
+         CONYLD=DSQRT(CONYLD)+ALF*SM3
+      ELSE
+         WRITE(3,*) 'DSQRT(',CONYLD,') STOP CONYLD'
+         WRITE(*,*) 'DSQRT(',CONYLD,') STOP CONYLD'
+         STOP
+      ENDIF
       RETURN
       END
