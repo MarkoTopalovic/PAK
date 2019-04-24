@@ -39,7 +39,7 @@ C        R-je poluprecnik kruznice-integracione putanje;
 C        NCR - TEKUCI BROJ PRSLINE
 C        NCS - TEKUCI BROJ SEGMENTA PO DUBINI PRSLINE (U 2D NCS=1)
 C        NSEG-MAX. BROJ SEGMENTATA (u 2D NSEG=1)
-C        N100-MAX. BROJ ELEMENATA U SEGMENTU (N100=100)
+C        N100-MAX. BROJ ELEMENATA U SEGMENTU (N100=1000)
 C        IRNIG-BROJ PRSTENOVA PO KOJIMA SE VRSI INTEGRACIJA
 C     =======================================================
 C     =======================================================
