@@ -447,7 +447,7 @@ C
             if (myid.eq.0) CALL RSOPVR(1)
          ENDIF
       ENDIF
-      write(*,*)'pre barijere iz pak00 iz procesa',myid
+c      write(*,*)'pre barijere iz pak00 iz procesa',myid
       CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
 C           -----------
       IF (myid.eq.0) THEN
@@ -1015,8 +1015,8 @@ C
 CE    IZOPARAMETRIC 3/D
 CS    IZOPARAMETARSKI PROSTORNI ELEMENT  K21
 C
-C 630 CALL K21DMP
-  630 CONTINUE
+  630 CALL K21DMP
+C  630 CONTINUE
       RETURN
 C
 CE    IZOPARAMETRIC BEAM

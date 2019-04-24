@@ -36,7 +36,7 @@
       END MODULE
 !
 !     podaci o preseku za koji se crtaju rezultati za djerdap
-      module PRESEK
+      module PRESEKS
         integer*4 :: IPRES
         integer*4,dimension(:),allocatable :: NPRESEK
         integer*4,dimension(:,:),allocatable :: NP_ELEMENT
