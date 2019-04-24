@@ -1335,14 +1335,14 @@ C=======================================================================
       SUBROUTINE IMENA(IME)
       COMMON /IMEULZ/ PAKLST,PAKUNV,PAKNEU
       COMMON /IMEDUZ/ IDUZIN
-      COMMON /CERSIL/ ZSILE
+      COMMON /CERSIL/ ZSILE,ZTEMP
       CHARACTER *20 IME
       CHARACTER *3 VLST,MLST
       CHARACTER *3 VUNV,MUNV
       CHARACTER *3 VNEU,MNEU
       CHARACTER *3 LST,UNV,NEU
       CHARACTER *24 PAKLST,PAKUNV,PAKNEU
-      CHARACTER *24 ZSILE
+      CHARACTER *24 ZSILE,ZTEMP
       VLST='LST'
       VUNV='UNV'
       VNEU='NEU'
@@ -1368,12 +1368,14 @@ C=======================================================================
          PAKUNV=IME(1:IA)//'.'//UNV
          PAKNEU=IME(1:IA)//'.'//NEU
          ZSILE =IME(1:IA)//'.zs'
+         ZTEMP =IME(1:IA)//'.T'
          IDUZIN=IA+4
       ELSE
          PAKLST=IME(1:IB-1)//'.'//LST
          PAKUNV=IME(1:IB-1)//'.'//UNV
          PAKNEU=IME(1:IB-1)//'.'//NEU
          ZSILE =IME(1:IB-1)//'.zs'
+         ZTEMP =IME(1:IB-1)//'.T'
          IDUZIN=IB+3
       ENDIF
       END
