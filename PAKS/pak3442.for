@@ -4,7 +4,7 @@ CS                      MOHR-COULOMB MATERIJALNI MODEL
 CE                      MOHR-COULOMB MATERIAL MODEL
 C==========================================================================
 C==========================================================================
-C     Poslednja izmena: 12.11.2012.
+C     Poslednja izmena: 16.12.2013.
 C     Opis: u model ugradjena metoda sekante
 C           rade lokalne iteracije, rade test primeri
 C==========================================================================
@@ -24,7 +24,7 @@ C
       COMMON /REPERM/ MREPER(4)
       COMMON /DUPLAP/ IDVA
       COMMON /CDEBUG/ IDEBUG 
-C
+C 
       DIMENSION TAU(6),DEF(6) 
 C
       IF(IDEBUG.GT.0) PRINT *, ' D3M42'
@@ -93,6 +93,7 @@ c==========================================================================
 CE    BASIC KONSTANTS
       TOLL = 1.D-6                ! tolerance 
       tnull= 1.d-8
+      toldl=  1.d-10
       MAXT = 500                  ! max. no. of iterations
       pi   = 4.d0*atan(1.d0)
       atriq=dsqrt(3.d0)
@@ -151,7 +152,7 @@ c
 c     J2D  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       call ainvJ2d(aj2d,tau)
 !      if(aj2d.le.tnull) then
-!        write(*,*)'aj2d=',aj2d
+!        write(*,*)'aj2d=',aj2d 
 !        write(*,*)'tau=',tau
 !        stop 'aj2d < 0'
 !      endif
@@ -172,8 +173,8 @@ c
 c     Lode's angle argument 
       alode=3.d0*atriq*aj2d3d/2.
 c
-      if(alode.gt. 1.d0) alode= 1.d0
-      if(alode.lt.-1.d0) alode=-1.d0
+      if(alode.gt. 0.98d0) alode= 0.98d0
+      if(alode.lt.-0.98d0) alode=-0.98d0
 c
 c     Lode's angle (Theta)
       theta=1.d0/3.*dasin(-alode)
@@ -301,6 +302,7 @@ c         lambda
           fcg=dot(alam,dgds,6)    ! {dFmc/dSigma}T*[Ce]*{dGmc/dSigma}
           fce=dot(alam,deps,6)    ! {dFmc/dSigma}T*[Ce]*{de}
           dlam=fce/fcg
+          if(dabs(dlam).lt.toldl) dlam=toldl
 c
 C==========================================================================
 c         Inicijalizacija za bisekcije
@@ -319,13 +321,13 @@ c         Inicijalizacija za bisekcije
           aj2dq=dsqrt(aj2d)
           call funMC(Fmc2,ai1,aj2dq,theta,phi,ce)
           call clear(ddefp,6)
-          write(3,*)'dlam,dlam1,dlam2,Fmc,Fmc1,Fmc2',
-     &               dlam,dlam1,dlam2,Fmc,Fmc1,Fmc2
+c          write(3,*)'dlam,dlam1,dlam2,Fmc,Fmc1,Fmc2',
+c     &               dlam,dlam1,dlam2,Fmc,Fmc1,Fmc2
 c            
 C==========================================================================
 CD        LOCAL LOOP
-          write(3,*)' I,      dlam,      dlam1,      dlam2,  
-     &      Fmc,       Fmc1,       Fmc2,'
+c          write(3,*)' I,      dlam,      dlam1,      dlam2,  
+c     &      Fmc,       Fmc1,       Fmc2,'
   110     I = I + 1
 c--------------------------------------------------------------------------          
             Fp=(Fmc2-Fmc1)/(dlam2-dlam1)
@@ -341,7 +343,7 @@ c           {Sigma_t+dt}={Sigma_t}+{dSigma}
             call zbir2b(tau,taut,dsig,6)
 c
 c           I1
-            call ainvI1(ai1,tau)
+            call ainvI1(ai1,tau) 
 c
 c           J2D
             call ainvJ2d(aj2d,tau)
@@ -354,7 +356,7 @@ c           Mohr-Coulomb yield curve
             Fmc1=Fmc2
             Fmc2=Fmc
 c
-            write(3,1001) I,dlam,dlam1,dlam2,Fmc,Fmc1,Fmc2
+c            write(3,1001) I,dlam,dlam1,dlam2,Fmc,Fmc1,Fmc2
 c
             if(I.gt.maxt) then
                 stop 'Max. num. of bisection in Mohr-Coulomb model!'
