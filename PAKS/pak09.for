@@ -14,6 +14,7 @@ C
 C=======================================================================
       SUBROUTINE STAMPA(NPODS)
       USE FSIDENT
+      USE PRESEKS
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -70,10 +71,17 @@ C
       COMMON /ODUZPOM/ KODUZ
       COMMON /ISTRES/ ISTRESS
       COMMON /INTERA/ IINTER,NPTI
+      COMMON /OPITSL/ VPOMER,SNAPON,OPOVRS,ICVOR(4),IOPITS
+      COMMON /SLOBAR/ IOPIT
+      COMMON /DJERDAP/ IDJERDAP,ISPRESEK,IRPRIT
+      COMMON /RESTAR/ TSTART,IREST
+      COMMON /ODUZMI/ INDOD
 C
       DIMENSION NPODS(JPS1,*)
 C
       IF(IDEBUG.GT.0) PRINT *, ' STAMPA'
+      SNAPON=0.
+C
       LMAX=LRAD
       IF(NBLPR.LE.0) INDPR=NBLPR
       IF(NBLGR.LE.0) INDGR=NBLGR
@@ -101,7 +109,8 @@ CR
 CR    UBACENO ISPRED ZBOG ODUZIMANJA 
       CALL CLEAR(A(LUPRI),JEDN)
 C
-      IF(NZADP.NE.0.AND.(INDPR.GE.0.OR.INDGR.GE.0)) THEN
+c      IF(NZADP.NE.0.AND.(INDPR.GE.0.OR.INDGR.GE.0)) THEN
+      IF(NZADP.NE.0) THEN
 C           LFTDT=NPODS(JPBR,44)
 C           LMAX13=NPODS(JPBR,45)-1
 C           CALL READDD(A(LFTDT),JEDN,IPODS,LMAX13,LDUZI)
@@ -119,10 +128,10 @@ C            CALL CLEAR(A(LUPRI),JEDN)
             CALL REACTP(A(LFTDT),A(LNZADJ),NZADP,IZLAZ,ISRPS,
      +                  A(LRTDT),A(LUPRI),INDPR)
             IF(INDGR.GE.0.AND.IDEAS.GE.0) then
-           CALL STAGP1MT(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
+            CALL STAGP1MT(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
      +                  A(LNCVP),NCVPR)
 !           ovo gore je prepravljena funkcija koja ne stampa nista nego cuva pomeranja za vtk faj      
-           CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
+            CALL STAGP1(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,IGRAF,4,
      +                  A(LNCVP),NCVPR)
             endif
             IF(INDGR.GE.0)
@@ -153,9 +162,10 @@ C            CALL READDD(A(LUPRI),JEDN,IPODS,LMAX13,LDUZI)
       endif
 C
 CZ      
-CZ    STAMPANJE TABELE ZA BOCAC
+CZ    STAMPANJE TABELE ZA KONVERGENCIJU ZA TUNEL BOCAC
 CZ      
-      IF(NP.GT.400000) THEN
+      ibocac=0
+      if(ibocac.eq.1) then
          CALL BOCAC1(A(LRTDT),A(LID),A(LCVEL),ICVEL,NP,KOR,VREME,0,
      +               A(LNCVP),NCVPR,A(kord),A(LELCV))
          CALL BOCAC2(A(LRTDT),A(LID),A(LCVEL),ICVEL,NP,KOR,VREME,0,
@@ -164,7 +174,15 @@ CZ
      +               A(LNCVP),NCVPR,A(kord),A(LELCV))
          CALL BOCAC4(A(LRTDT),A(LID),A(LCVEL),ICVEL,NP,KOR,VREME,0,
      +               A(LNCVP),NCVPR,A(kord),A(LELCV))
-      ENDIF      
+      endif
+CZ      
+CZ    STAMPANJE TABELA ZA OPITE ZA SLOBU
+CZ      
+      if(IOPIT.GT.0) then
+         CALL sloba1(A(LRTDT),A(LID),A(LCVEL),ICVEL,NP,KOR,VREME,0,
+     +               A(LNCVP),NCVPR,A(kord),A(LELCV))
+      endif
+CZ    STAMPANJE TABELE ZA KONVERGENCIJU ZA TUNEL BOCAC
 CR      
 CR    ZAPISIVANJE POMERANJA ZA ODUZIMANJE (treba uraditi za dinamiku!)
 CR      write(*,*)'kor, koduz',kor, koduz
@@ -206,14 +224,17 @@ CE    PRINT DISPLACEMENTS TO THE GRAPHIC FILE (*.UNV)
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.NCXFEM.GT.0)
      1CALL STAU09(A(LUPRI),A(LID),A(LCVEL),ICVEL,NP,49,1,
      +            A(LNCVP),NCVPR)
-      
-      
+      IF(ISPRESEK.GT.0) THEN
+         I2=1
+         IF(INDOD.EQ.1.AND.IREST.EQ.1) I2=2
+         if (.not.allocated(UPRIS)) 
+     1             allocate(UPRIS(JEDN*I2),STAT=istat)
+         CALL JEDNA1(UPRIS,A(LUPRI),JEDN)
+      ENDIF
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.METOD.GT.5)
      1 CALL STAUAL(A(LCVEL),ICVEL,NP,49,32)
       IF((INDGR.EQ.0.OR.INDGR.EQ.1).AND.METOD.GT.5)
      1 CALL STAUAL(A(LCVEL),ICVEL,NP,49,33)
-      
-      
 C     OVO NIJE REGULARNO PO UPUTSTVU ZA IDEAS (TREBA SAMO VN 748)     
 C      IF(IDIREK.LE.0) THEN
       IF(IDIREK.LE.0.AND.NCVPR.EQ.0) THEN
@@ -390,7 +411,7 @@ C
      1WRITE(IZLAZ,2020) KOR,VREME
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6020) KOR,VREME
-      WRITE(78,6020) KOR,VREME
+!      WRITE(78,6020) KOR,VREME
       ELSE
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2025) KOR,VREME
@@ -520,7 +541,7 @@ C        ----------------------------------------------------
      1WRITE(IZLAZ,2040) NNI,PMAX
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6040) NNI,PMAX
-      WRITE(78,6040) NNI,PMAX
+!      WRITE(78,6040) NNI,PMAX
          IF(PMALL.LT.PMAX) THEN
             PMALL=PMAX
             NPMALL=NNI
@@ -688,9 +709,9 @@ C
 C
     2 CONTINUE
       IF(ISRPS.EQ.0)
-     1WRITE(IZLAZ,2000) LMAX,MTOT
+     1WRITE(IZLAZ,2000) LRAD,MTOT
       IF(ISRPS.EQ.1)
-     1WRITE(IZLAZ,6000) LMAX,MTOT
+     1WRITE(IZLAZ,6000) LRAD,MTOT
       STOP
 C
     3 CONTINUE
@@ -847,7 +868,6 @@ CSTOS
       DIMENSION RTH(*),ID(NP,*),NCVEL(*),NCVP(*),FSP(6)
       COMMON /CDEBUG/ IDEBUG
 C
-      
       IF(IDEBUG.GT.0) PRINT *, ' STAGP1'
       IF(ideas.eq.-1) return
       JEDAN=1
@@ -1030,12 +1050,12 @@ C
             IF(DABS(FSP(J)).GT.1.D-10) IMA=1
    20    CONTINUE
          IF(IMA.EQ.0.AND.(IND.EQ.4.OR.IND.EQ.32.OR.IND.EQ.44)) GO TO 10
-                    IF(ICVEL.EQ.0) THEN
-                    WRITE(II,5000) I
-                    ELSE
-                    WRITE(II,5000) NCVEL(I)
-                    ENDIF
-                    WRITE(II,5200) (FSP(J),J=1,6)
+         IF(ICVEL.EQ.0) THEN
+            WRITE(II,5000) I
+         ELSE
+            WRITE(II,5000) NCVEL(I)
+         ENDIF
+         WRITE(II,5200) (FSP(J),J=1,6)
    10 CONTINUE
       WRITE(II,5100) IND1
       RETURN
@@ -1067,7 +1087,6 @@ C-----------------------------------------------------------------------
 C-----------------------------------------------------------------------
       END
 C=======================================================================
-C
 C
 C=======================================================================
       SUBROUTINE STAGP1MT(RTH,ID,NCVEL,ICVEL,NODOVI,II,IND,NCVP,NCVPR)
@@ -1442,7 +1461,10 @@ CE.      TO PRINT LOADS CORESPONDING TO PRESCRIBED DISPLACEMENTS
 C
       DIMENSION FTDT(*),NZADJ(*),RTDT(*),UPRI(*)
 CSTOS
+      COMMON /SLOBAR/ IOPIT
+      COMMON /OPITSL/ VPOMER,SNAPON,OPOVRS,ICVOR(4),IOPITS
       COMMON /STOSZP/ STOSZ
+      OPOVRS=0.32
       STOSZ=0.D0
 C PRIVREMENO ZA SIMETRICNE PROFILE KOD BRAZIEROVOG PROBLEMA
 C      BRAZS=2.D0
@@ -1471,6 +1493,13 @@ CSTOS
    10    CONTINUE
 CSTOS
       STOSZ=UREAK
+      IF (IOPIT.GT.0) THEN
+          IF(DABS(OPOVRS).GT.1.E-12) THEN
+             SNAPON=2.*UREAK/1000.
+          ELSE
+             STOP 'OPOVRS=0, PAK09.FOR'
+          ENDIF
+      ENDIF
 CKD    STOSZ=DREAK
 CK    WRITE(*,*) UREAK,DREAK
 C      IF(INDPR.GE.0) WRITE(IZLAZ,5001) UREAK,DREAK
