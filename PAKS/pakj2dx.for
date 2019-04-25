@@ -82,11 +82,13 @@ C      ENDIF
                VEDI2(NCR,NCS,KR)=0.0   !J-INTEGRAL U KR-tom PRSTENU
                NEKR=NERING(NCR,NCS,KR) !BROJ ELEM. U KR-tom PRSTENU
                if(isrps.eq.0) then
-                  WRITE(6,*) ' PRSTEN',KR,' BROJ CVOROVA',NEKR
-                  WRITE(3,*) ' PRSTEN',KR,' BROJ CVOROVA',NEKR
+                  WRITE(6,*) ' PRSTEN',KR,' BROJ ELEMENATA',NEKR
+                  WRITE(3,*) ' PRSTEN',KR,' BROJ ELEMENATA',NEKR
+                  IF(NEKR.GT.1000) STOP ' BROJ ELEMENATA > 1000 STOP'
                else
-                  WRITE(6,*) ' RING',KR,' NUMBER OF NODES',NEKR
-                  WRITE(3,*) ' RING',KR,' NUMBER OF NODES',NEKR
+                  WRITE(6,*) ' RING',KR,' NUMBER OF ELEMENTS',NEKR
+                  WRITE(3,*) ' RING',KR,' NUMBER OF ELEMENTS',NEKR
+                  IF(NEKR.GT.1000) STOP ' NUMBER OF ELEMENTS>1000 STOP'
                endif
 C      WRITE(6,*) KR,NEKR
 C      WRITE(3,*) 'J-INTEGRAL i BROJ ELEM. U KR-tom PRSTENU', KR,NEKR
@@ -251,7 +253,7 @@ C     ********************************************************
       DIMENSION DER(NCVE,3),DSHAP(NCVE,2),DQRST(100,2),QF(100),NNOD(NE)
 C     ,THID(*)
 
-      DIMENSION TERMEDI1(100,2),TERMEDI2(100,2),WEDI(4),
+      DIMENSION TERMEDI1(100,2),TERMEDI2(100,2),WEDI(100),
      1          SIGMA(2,2),DQX(100,2),DUX1(100,2),DUX2(100,2),
      1          DISP(NCVE,2),STRS(3),STRN(3),
      1          TAU(N45,NGS12,NE,*),DEF(N45,NGS12,NE,*),PLAST(*),
@@ -384,7 +386,6 @@ C         ENDDO
 C      ENDDO
 
 
-
       NLM=JGE
 C      THI=THID(NLM)
 C     GLAVNA PETLJA PO GAUSOVIM TACKAMA
@@ -411,8 +412,9 @@ C
             CALL JEDNA1(STRS,PLAST(LL),3)
             CALL JEDNA1(STRN,PLAST(LL+4),3)
          ELSE
+           !(JGE-GLOBALNI ELEM,LI-GAUS.TAC U TOM ELEM.)
             DO I=1,3
-               STRS(I)=TAU(I,LI,JGE,1) !(JGE-GLOBALNI ELEM,LI-GAUS.TAC U TOM ELEM.)
+               STRS(I)=TAU(I,LI,JGE,1)
                STRN(I)=DEF(I,LI,JGE,1)
             ENDDO
          ENDIF

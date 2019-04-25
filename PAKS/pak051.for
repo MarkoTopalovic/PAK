@@ -434,9 +434,8 @@ C  ZA INSTITUT CERNE!!
 C
       ICERNM=0
       IF(ICERNE.LT.0) THEN
-         ICERNE=-ICERNE
-C         ICERNM=1
-         ICERNM=ICERNE
+         ICERNM=-ICERNE
+         ICERNE=1
       ENDIF
       LCERNE=LMAX
       IF(ICERNE.GT.0) THEN
@@ -449,7 +448,7 @@ C
          DO 333 I=1,ICERNE
            CALL VOLFOR(A(LID),A(LCERNE),A(LELCV),NPI,NPA,ICVEL,IZLAZ,
      1                 ISRPS)
-  333      CALL WRITED(A(LCERNE),JEDN,ISILE)     
+  333      CALL WRITED(A(LCERNE),JEDN,ISILE)
          REWIND (ISILE)
          CLOSE(35)
       ENDIF
@@ -547,10 +546,12 @@ C    216X,'EQ.0; NEMA PRITISAKA KOD IZOPARAMETARSKIH GREDA'///
      116X,'EQ.0; TEMPERATURE SE NE KORISTE U ANALIZI'///
      111X,'BROJ ZADATIH POMERANJA ......................... NZADP =',I9/
      116X,'EQ.0; NEMA ZADATIH POMERANJA'///
-     111X,'INDIKATOR ZAPREMINSKIH SILA .................... INDZS =',I9/
+     111X,'BROJ ZAPREMINSKIH SILA ......................... INDZS =',I9/
      116X,'EQ.0; NEMA ZAPREMINSKIH SILA'///
-     111X,'BROJ KORAKA SA FILTRACIONIM SILAMA SA DISKA ... ICERNE =',I9/
-     116X,'EQ.0; NEMA FILTRACIONIH SILA')
+     111X,'INDIKATOR FILTRACIONIH SILA SA DISKA .......... ICERNE =',I9/
+     116X,'EQ.0; NEMA FILTRACIONIH SILA'/
+     116X,'GT.0; BROJ POSLEDNJIH KORAKA SA SETOVIMA SILA SA DISKA'/
+     116X,'LT.0; BROJ FUNKCIJE KOJOM SE MNOZI SET SILA SA DISKA')
  2170 FORMAT(//////6X,
      1'K  O  N  T  U  R  N  A      O  P  T  E  R  E  C  E  N  J  A'/
      16X,59('-'))
@@ -561,9 +562,7 @@ C    216X,'EQ.0; NEMA PRITISAKA KOD IZOPARAMETARSKIH GREDA'///
      116X,'LT.0; TEMPERATURE SE UCITAVAJU SA JEDINICE 56'/
      116X,'EQ.0; TEMPERATURE SE NE KORISTE U ANALIZI'///
      111X,'BROJ ZADATIH POMERANJA ......................... NZADP =',I9/
-     116X,'EQ.0; NEMA ZADATIH POMERANJA'///
-     111X,'INDIKATOR ZAPREMINSKIH SILA .................... INDZS =',I9/
-     116X,'EQ.0; NEMA ZAPREMINSKIH SILA')
+     116X,'EQ.0; NEMA ZADATIH POMERANJA')
  2200 FORMAT(6X,
      1'P O D A C I   O   Z A P R E M I N S K I M   S I L A M A'/
      16X,55('-')//
@@ -592,10 +591,12 @@ C-----------------------------------------------------------------------
      116X,'EQ.0; TEMPERATURES ARE NOT USED IN ANALYSIS'///
      111X,'NUMBER OF PRESCRIBED DISPLACEMENTS ............. NZADP =',I9/
      116X,'EQ.0; NO PRESCRIBED DISPLACEMENTS'///
-     111X,'INDICATOR FOR BODY FORCES ...................... INDZS =',I9/
+     111X,'NUMBER OF BODY FORCES .......................... INDZS =',I9/
      116X,'EQ.0; NO BODY FORCES'///
-     111X,'NUMBER OF STEPS FOR FILTRATION FORCES ......... ICERNE =',I9/
-     116X,'EQ.0; NO FILTRATION FORCES')
+     111X,'INDICATOR FOR FILTRATION FORCES ............... ICERNE =',I9/
+     116X,'EQ.0; NO FILTRATION FORCES'/
+     116X,'GT.0; NUMBER OF LAST STEPS WITH SETS OF FILTRATION FORCES'/
+     116X,'LT.0; NUMBER OF FUNCTION FOR SET OF FILTRATION FORCES')
  6170 FORMAT(//////6X,
      1'C  O  N  T  O  U  R  A  L      L  O  A  D  S'/6X,44('-'))
  6100 FORMAT(
@@ -2034,6 +2035,8 @@ C
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /SRPSKI/ ISRPS
+      COMMON /SLOBAR/ IOPIT
+      COMMON /SLOBAP/ NSLOB(3,1000),NPSLOB
       DIMENSION NFUN(*),IPRAV(*),FAKP(NPP,*),NODPR(NPP,*),
      1          ID(NP,*),NELCV(*)
       COMMON /CDEBUG/ IDEBUG
@@ -2089,7 +2092,8 @@ C
       ENDIF
       DO 10 J=1,9
          NN=NODPR(I,J)
-         IF(J.GT.4.AND.NN.EQ.0) GO TO 10
+         IF(J.GT.3.AND.NN.EQ.0) GO TO 10
+C         IF(J.GT.4.AND.NN.EQ.0) GO TO 10
          IF(ICVEL.EQ.0) THEN
             NI=NN
             IF(NN.LE.0.OR.NN.GT.NP) THEN
@@ -2233,7 +2237,17 @@ C
 CE    PRINT READING AND GENERATED DATA ABOUT NODES IN BOUNDARY
 CS    STAMPANJE UCITANIH I GENERISANIH PODATAKA O CVOROVIMA NA GRANICI
 C
-   50 IF(NULAZ.NE.1.AND.NULAZ.NE.3) RETURN
+   50 IF(IOPIT.GT.0) THEN
+         NPSLOB=NPP
+         DO 80 I=1,NPP
+            NSLOB(1,I)=NODPR(I,1)
+            NSLOB(2,I)=NODPR(I,2)
+            NSLOB(3,I)=NODPR(I,3)
+   80    CONTINUE
+C      IF(IOPIT.GT.0.AND.ICVEL.EQ.1) CALL VEZACE(NSLOB,NELCV,3,NPP)
+      ENDIF
+C
+      IF(NULAZ.NE.1.AND.NULAZ.NE.3) RETURN
       CALL WBROJK(KARTI,0)
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2040)
@@ -2325,44 +2339,76 @@ C
       
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
      1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /DJERDAP/ IDJERDAP,ISPRESEK,IRPRIT
 C
       DIMENSION VOL(3),ZAP(*),ID(NP,*),NELCV(*)
 C
-	KK=0
-	DO 10 II=1,NP
-           READ(35,1010) NN,(VOL(K),K=1,3)
-               IF(ICVEL.EQ.0) THEN
-                  NI=NN
-                  IF(NN.LE.0.OR.NN.GT.NP) THEN
+	   KK=0
+	   NP3D1=NP
+         FMAX=-1.
+         FMIN=1.E+20
+         NPMIN=0
+         NPMAX=0
+         IF(IDJERDAP.GT.0) THEN
+	       READ(35,1011) NP3D1
+	   ENDIF
+	   DO 10 II=1,NP3D1
+	      READ(35,1011) NN,(VOL(K),K=1,3)
+            QVOL=DSQRT(VOL(1)*VOL(1)+VOL(2)*VOL(2)+VOL(3)*VOL(3))
+            IF(QVOL.GT.FMAX) THEN
+               FMAX=QVOL
+               NPMAX=NN
+            ENDIF
+            IF(QVOL.LT.FMIN) THEN
+               FMIN=QVOL
+               NPMIN=NN
+            ENDIF
+            IF(ICVEL.EQ.0) THEN
+               NI=NN
+               IF(NN.LE.0.OR.NN.GT.NP) THEN
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2100) NN
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6100) NN
-                     STOP ' PROGRAM STOP - PAK051 - VOLFOR'
-                  ENDIF
-               ELSE
-                  N=NN-NPI+1
-                  NI=NELCV(N)
-                  IF(NI.EQ.0.OR.NN.LT.NPI.OR.NN.GT.NPA) THEN
       IF(ISRPS.EQ.0)
-     1WRITE(IZLAZ,2100) NN
+     1WRITE(*,2100) NN
       IF(ISRPS.EQ.1)
-     1WRITE(IZLAZ,6100) NN
-                     STOP ' PROGRAM STOP - PAK051 - VOLFOR'
-                  ENDIF
+     1WRITE(*,6100) NN
+                  STOP ' PROGRAM STOP - PAK051 - VOLFOR'
                ENDIF
-           DO 20 J=1,3
+            ELSE
+               N=NN-NPI+1
+               NI=NELCV(N)
+               IF(NI.EQ.0.OR.NN.LT.NPI.OR.NN.GT.NPA) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2100) NN
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6100) NN
+      IF(ISRPS.EQ.0)
+     1WRITE(*,2100) NN
+      IF(ISRPS.EQ.1)
+     1WRITE(*,6100) NN
+                  STOP ' PROGRAM STOP - PAK051 - VOLFOR'
+               ENDIF
+            ENDIF
+            DO 20 J=1,3
                IF (ID(NI,J).LE.0) GO TO 20
                KK=ID(NI,J)
 C
                IF(KK.GT.0.AND.J.LE.3) ZAP(KK)=VOL(J)
 C
-  20       CONTINUE
-  10    CONTINUE
+   20       CONTINUE
+   10    CONTINUE
 C
-	RETURN
+         WRITE(*,*) ' FILTRACIONE SILE',
+     1     ' FMAX=',FMAX,' NPMAX=',NPMAX,' FMIN=',FMIN,' NPMIN=',NPMIN
+         WRITE(IZLAZ,*) ' FILTRACIONE SILE',
+     1     ' FMAX=',FMAX,' NPMAX=',NPMAX,' FMIN=',FMIN,' NPMIN=',NPMIN
 C
- 1010   FORMAT(I5,3E13.5)
+      RETURN
+C
+ 1010 FORMAT(I5,3E13.5)
+ 1011 FORMAT(I10,3E13.5)
 C-----------------------------------------------------------------------
  2100 FORMAT(//' GRESKA U UCITAVANJU ULAZNIH PODATAKA O SILAMA'/
      1' CVOR',I10,' NE POSTOJI'//' PROGRAM STOP - PAK051 - VOLFOR'//)
@@ -2387,11 +2433,11 @@ CS.       (ZA CERNE)
 C .
 C .......................................................................
 C
-      CHARACTER *24 ZSILE
+      CHARACTER *24 ZSILE,ZTEMP
       LOGICAL POST
       include 'paka.inc'
       
-      COMMON /CERSIL/ ZSILE
+      COMMON /CERSIL/ ZSILE,ZTEMP
 C
 C
 	INQUIRE(FILE=ZSILE,EXIST=POST)

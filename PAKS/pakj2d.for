@@ -251,8 +251,9 @@ C	,THID(*)
 
       DIMENSION TERMEDI1(4,2),TERMEDI2(4,2),WEDI(4),
      1          SIGMA(2,2),DQX(4,2),DUX1(4,2),DUX2(4,2),
-     1          DISP(NCVE,2),STRS(3),STRN(3),
-     1          TAU(N45,NGS12,NE,*),DEF(N45,NGS12,NE,*),PLAST(*)
+     1          DISP(NCVE,2),STRS(3),STRN(3),STRSG(3,4),STRNG(3,4),
+     1          TAU(N45,NGS12,NE,*),DEF(N45,NGS12,NE,*),PLAST(*),
+     1          ELM1(4,4),DEX(3,2),F(4),STRS0(3)
       DIMENSION XG(55),WGT(55),NREF(11)
 C
       DATA NREF/0,1,3,6,10,15,21,28,36,45,55/
@@ -356,7 +357,10 @@ C        !UCITATI STRS(3),STRN(3) ZA DATU GAUSOVU TACKU-LI
             IBTC=LI
             LL=1+(NPROS+IBTC)*NPR56
             CALL JEDNA1(STRS,PLAST(LL),3)
+            CALL JEDNA1(STRSG(1,LI),STRS,3)
             CALL JEDNA1(STRN,PLAST(LL+4),3)
+            CALL JEDNA1(STRNG(1,LI),STRN,3)
+            CALL JEDNA1(RPL1,PLAST(LL+21),1)
          ELSE
             DO I=1,3
                STRS(I)=TAU(I,LI,JGE,1) !(JGE-GLOBALNI ELEM,LI-GAUS.TAC U TOM ELEM.)
@@ -411,7 +415,11 @@ C        PRVI SABIRAK EDI-INTEGRALA ZA DATU GAUSOVU TACKU
 
 
 C        DEFINISANJE SPECIFICNOG RADA U DATOJ GAUSOVOJ TACKI
-         WEDI(LI)=.5*STRS(1)*STRN(1)+.5*STRS(2)*STRN(2)+STRS(3)*STRN(3) 
+         IF(NMODM.LE.4) THEN
+         WEDI(LI)=.5*STRS(1)*STRN(1)+.5*STRS(2)*STRN(2)+STRS(3)*STRN(3)
+         ELSE
+         WEDI(LI)=RPL1
+         ENDIF 
  
 C  	 PRORACUN DRUGOG SABIRKA EDI-INTEGRALA
          TERMEDI1(LI,2)=WEDI(LI)*DQX(LI,1)
@@ -444,7 +452,105 @@ C        PRORACUN EDI INTEGRALA LOC ,GL
 C     *THI
 
  1199 CONTINUE	 !ZAVRSENA PETLJA PO GAUSOVIM TACKAMA
+C 
+      IF(NMODM.LE.4) RETURN
+C     DRUGI CLAN J INTEGRALA
+      TRI=3.
+      A=1.-DSQRT(TRI)/2.
+      B=1.+DSQRT(TRI)/2.
+      C=-1./2.
+      ELM1(1,1)=A
+      ELM1(1,2)=C
+      ELM1(1,3)=C
+      ELM1(1,4)=B
+      ELM1(2,1)=C
+      ELM1(2,2)=B
+      ELM1(2,3)=A
+      ELM1(2,4)=C
+      ELM1(3,1)=B
+      ELM1(3,2)=C
+      ELM1(3,3)=C
+      ELM1(3,4)=A
+      ELM1(4,1)=C
+      ELM1(4,2)=A
+      ELM1(4,3)=B
+      ELM1(4,4)=C
+C        INTERPOLACIJSKE FUNKCIJE I JAKOBIJAN U TACKI R, S, T
+         R=0.
+         S=0.
+         CALL JACTEL(NUM,COORDG,DER,R,S,0)
+         IF(IETYP.EQ.1)
+     1   CALL JACGAX(NUM,COORDG,DER,X1)
+  
+         DO I=1,NNOD(JGE)
+            DSHAP(I,1)=XJ(1,1)*DER(I,2)+XJ(1,2)*DER(I,3)
+            DSHAP(I,2)=XJ(2,1)*DER(I,2)+XJ(2,2)*DER(I,3)
+         ENDDO
+         RPLX=DERFX(DSHAP,ELM1,WEDI,1)
+         RPLY=DERFX(DSHAP,ELM1,WEDI,2)
+         DO J=1,3
+           CALL JEDNAT(F,STRNG,J,3,4)
+           DEX(J,1)=DERFX(DSHAP,ELM1,F,1)
+           DEX(J,2)=DERFX(DSHAP,ELM1,F,2)
+         ENDDO
+         Q=0.
+         DO I=1,NNOD(JGE)
+            Q=Q+DER(I,1)*SQ(I)
+         ENDDO
+         WR=2.
+         WS=2.
+         WT=WR*WS*DET
+         IF(IETYP.EQ.1) WT=X1*WT
+         DO J=1,3
+           STRS0(J)=(STRSG(J,1)+STRSG(J,2)+STRSG(J,3)+STRSG(J,4))/4.
+         ENDDO
+         SDEX=DOT(STRS0,DEX(1,1),3)
+         EDI1GL=(SDEX-RPLX)*Q*WT
+         SDEY=DOT(STRS0,DEX(1,2),3)
+         EDI2GL=(SDEY-RPLY)*Q*WT
 
+         EDI1LOC=CONTE*EDI1GL+SINTE*EDI2GL
+         EDI2LOC=-1.D0*SINTE*EDI1GL+CONTE*EDI2GL  
+
+C        PRORACUN EDI INTEGRALA LOC ,GL
+         EDI1(NCR,NCS,KR,KE)=EDI1(NCR,NCS,KR,KE)+EDI1LOC
+         EDI2(NCR,NCS,KR,KE)=EDI2(NCR,NCS,KR,KE)+EDI2LOC
+         
+      RETURN
+      END
+C=======================================================================
+C
+C======================================================================
+      DOUBLE PRECISION FUNCTION DERFX(ELX,ELM1,F,IND)
+C....  IZVOD F PO X
+      DOUBLE PRECISION ELX,ELM1,F
+      DIMENSION ELX(4,2),ELM1(4,4),F(4),DUM(4)
+      CALL CLEAR(DUM,4)
+      CALL MNOZI1(DUM,ELM1,F,4,4)
+      DERFX=DOT(ELX(1,IND),DUM,4)
+      RETURN
+      END
+C=======================================================================
+      SUBROUTINE JEDNAT(A,B,J,M,N)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.    P R O G R A M
+CE.       TO EQUALIZING 2 REAL VECTORS IN ACCORDANCE WITH TERM :
+CS.    P R O G R A M
+CS        ZA IZJEDNACAVANJE 2 REALNA VEKTORA U SAGLASNOSTI SA IZRAZOM :
+C .
+C .         A(I)=B(J,I)
+C .
+C ......................................................................
+C
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION A(*),B(M,*)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' JEDNAT'
+      DO 10 I=1,N
+   10 A(I)=B(J,I)
       RETURN
       END
 C======================================================================
