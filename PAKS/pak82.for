@@ -216,6 +216,7 @@ C      WRITE(3,*) 'LSTAZRS',LMAX8+1
       END
 C======================================================================
       SUBROUTINE SISTEL(AE,AU)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     GLAVNI UPRAVLJACKI PROGRAM  ZA MATRICE ELEMENATA I SISTEMA
@@ -287,7 +288,7 @@ C
       KORD=LCORD
       IF(IATYP.GE.3.AND.IDIREK.EQ.-1) KORD=LCORUL
       CALL INT4B(A(LID),A(KORD),AU(LTHID),AU(LNEL),AU(LNMAT),A(LDRV0),
-     1 A(LDRV),A(LSK),A(LFTDT),AE(LSKE),A(LLJUS),A(LRTDT),A(LDRV1),
+     1 A(LDRV),ALSK,A(LFTDT),AE(LSKE),A(LLJUS),A(LRTDT),A(LDRV1),
      1 AU(LNSLOJ),AU(LMATSL),AU(LBBET),AU(LDSLOJ),AU(LBET0),AU(LISNA),
      1 AU(LTR0),AU(LALFE),AU(LHAEM),AU(LHINV),AU(LGEEK),NCVE3,IALFA,LA,
      1 A(LUPRI),A(LCOR0),A(LGM0),A(LTEMGT),A(LCORGT),A(LAU),N45,
@@ -618,7 +619,7 @@ C                  WRITE(3,*) 'IG,5',IG
                         IF(ICVEL.EQ.1) NMM=MCVEL(NLM)
                         WRITE(*,5000) NMM,NBR,SKALAR
                         WRITE(IZLAZ,5000) NMM,NBR,SKALAR
- 5000 FORMAT(/' ELEMENT=',I5,' REDNI BROJ CVORA=',I5,' SKALAR=',1PD12.5/
+ 5000 FORMAT(/' ELEMENT=',I9,' REDNI BROJ CVORA=',I9,' SKALAR=',1PD12.5/
      +' CVOR            VEKTOR NORMALE',15X,'ZAJEDNICKI VEKTOR NORMALE')       
                         DO 422 NBRR=1,NCVE
                            IGG=NOP(NLM,NBRR)
@@ -629,7 +630,7 @@ C                  WRITE(3,*) 'IG,5',IG
      +                                      (DRG(IGG,J),J=1,3)
                            WRITE(IZLAZ,5001) NI,(VN(J,NBRR),J=1,3),
      +                                          (DRG(IGG,J),J=1,3)
- 5001 FORMAT(I5,6(1PD12.4))
+ 5001 FORMAT(I9,6(1PD12.4))
   422                   CONTINUE
 C               STOP 'PROVERI ORIJENTACIJU ELEMENTA, SCAL<0. - PAK82'
 C
@@ -691,7 +692,7 @@ C            WRITE(3,*) 'BB0',BB0
                   ENDIF
                ENDIF
             ENDIF
- 1010 FORMAT(5I5,F10.3,I5,2F10.3,3F5.2)
+ 1010 FORMAT(5I8,F10.3,I5,2F10.3,3F5.2)
    40    CONTINUE
          RETURN
       ENDIF

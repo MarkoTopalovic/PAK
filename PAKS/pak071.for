@@ -58,6 +58,8 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE LEVSTR(NPODS)
+      USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -112,10 +114,12 @@ C
       COMMON /DRAKCE/ IDRAKCE,NELUK,NZERO,NEED1,NEED2,NEED3,NNZERO
      1                ,IROWS,LAILU,LUCG,LVCG,LWCG,LPCG,LRCG
       COMMON /GEORGE/ TOLG,ALFAG,ICCGG
+      COMMON /NEWMARK/ ALFAM,BETAK,DAMPC,NEWACC
       INCLUDE 'mpif.h'
       integer myid, ierr
       DIMENSION NPODS(JPS1,*)
 C
+      if(jedn.le.30) CALL WRR6(ALSK,NWK,'SKul')
       CALL MPI_COMM_RANK(MPI_COMM_WORLD,myid,ierr)
       IF (myid.ne.0) goto 30
       IF(IDEBUG.GT.0) PRINT *, ' LEVSTR'
@@ -130,7 +134,7 @@ C    5 IF(NGEL.EQ.0) GO TO 10
       IF(KOR.GT.1) THEN
          NUL=NWK
          IF(NBLOCK.GT.1) NUL=KC
-         CALL CLEARB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC)
+         CALL CLEARB(ALSK,A(LMAXA),A(LMNQ),A(LLREC)
      1                  ,NBLOCK,LR,IBLK,NUL)
          OPEN (ISCRC,FILE='ZSKLIN',FORM='UNFORMATTED',
      1            STATUS='UNKNOWN')
@@ -139,25 +143,28 @@ C    5 IF(NGEL.EQ.0) GO TO 10
          LSKE=LLM+100
          if (IABS(ICCGG).EQ.1) then
            if (iccgg.eq.1) then
-             CALL ISPAK(A(LSK),A(IROWS),A(LMAXA),A(LSKE),A(LLM),ND,1,
+             CALL ISPAK(ALSK,AIROWS,A(LMAXA),A(LSKE),A(LLM),ND,1,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
            else
-             CALL ISPAKG(A(LSK),A(IROWS),A(LMAXA),A(LSKE),A(LLM),ND,1,
+             CALL ISPAKG(ALSK,AIROWS,A(LMAXA),A(LSKE),A(LLM),ND,1,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
            endif
          else
-           CALL SPAKUA(A(LSK),A(LMAXA),A(LSKE),A(LLM),ND,1,
+           CALL SPAKUA(ALSK,A(LMAXA),A(LSKE),A(LLM),ND,1,
      &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
          endif
 c         CALL SPAKUA(A(LSK),A(LMAXA),A(LSKE),A(LLM),ND,1,
 c     &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
          CLOSE (ISCRC,STATUS='KEEP')
       ENDIF
-
+cc      CALL RSTAZK(NPODS,LSK,35)
+      if(jedn.le.30) CALL WRR6(ALSK,NWK,'K07U')
+C        CALL RSTAZK(NPODS,LSK,35)
+      if(jedn.le.30) CALL WRR6(ALSK,NWK,'K07R')
       GO TO 10
     9 NUL=NWK
       IF(NBLOCK.GT.1) NUL=KC
-      CALL CLEARB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC)
+      CALL CLEARB(ALSK,A(LMAXA),A(LMNQ),A(LLREC)
      1                  ,NBLOCK,LR,IBLK,NUL)
 C
 CE    READ LINEAR MATRIX M FROM DISK
@@ -165,30 +172,52 @@ CS    UCITAVANJE LINEARNE MATRICE M SA DISKA
 C
    10 IF(NDIN.EQ.0) GO TO 30
       NWM=NWK
+      NWD=NWK
       IF(IMASS.EQ.2) NWM=JEDN
+      IF(IDAMP.EQ.2) NWD=JEDN
       LSKP=LSK+NWK*IDVA
 CZILE      IF(IREST.EQ.1.AND.METOD.EQ.-1) RETURN
-      IF(IMASS.NE.2) CALL RSTAZK(NPODS,LSKP,54)
-      IF(IMASS.EQ.2) CALL RSTAZ(NPODS,LSKP,54)
-C        CALL WRR6(A(LSK),NWK,'SK  ')
-C        CALL WRR6(A(LSKP),NWM,'MASA')
-      IF(IMASS.NE.2) CALL ZBIRM(A(LSK),A(LSKP),A0,NWK)
-      IF(IMASS.EQ.2) CALL ZBIRKM(A(LSK),A(LSKP),A0,NWM,A(LMAXA))
+      write(3,*) 'iskdsk,alfam,betak', iskdsk,alfam,betak
+C      IF(IMASS.EQ.1) CALL RSTAZK(NPODS,LSKP,54)
+C      IF(IMASS.EQ.2) CALL RSTAZ(NPODS,LSKP,54)
+        if(jedn.le.30) CALL WRR6(ALSK,NWK,'SKLS')
+        if(jedn.le.30) CALL WRR6(ALSM,NWM,'MASA')
+      IF(IDAMP.EQ.3) THEN
+         A0M=A0+A1*ALFAM
+         A0K=1.D0+A1*BETAK
+         IF(IMASS.EQ.1) CALL ZBIRAB(ALSK,ALSM,A0K,A0M,NWK)
+         IF(IMASS.EQ.2) CALL ZBIRKD(ALSK,ALSM,A0K,A0M,NWM,A(LMAXA))
+      ELSE
+         IF(IMASS.EQ.1) CALL ZBIRM(ALSK,ALSM,A0,NWK)
+         IF(IMASS.EQ.2) CALL ZBIRKM(ALSK,ALSM,A0,NWM,A(LMAXA))
+      ENDIF
 C
 CE    READ LINEAR MATRIX C FROM DISK
 CS    UCITAVANJE LINEARNE MATRICE C SA DISKA
 C
       IF(IDAMP.EQ.0) GO TO 20
-      IF(IDAMP.NE.2) CALL RSTAZK(NPODS,LSKP,56)
-      IF(IDAMP.EQ.2) CALL RSTAZ(NPODS,LSKP,56)
-      IF(IDAMP.NE.2) CALL ZBIRM(A(LSK),A(LSKP),A1,NWM)
-      IF(IDAMP.EQ.2) CALL ZBIRKM(A(LSK),A(LSKP),A1,NWM,A(LMAXA))
+C      IF(IDAMP.EQ.1) CALL RSTAZK(NPODS,LSKP,56)
+C      IF(IDAMP.EQ.2) CALL RSTAZ(NPODS,LSKP,56)
+C      if(idamp.ne.3.and.jedn.le.30) CALL WRR6(A(LSKP),NWD,'D07R')
+      IF(IDAMP.EQ.1) CALL ZBIRM(ALSK,ALSM,A1,NWD)
+      IF(IDAMP.EQ.2) CALL ZBIRKM(ALSK,ALSM,A1,NWD,A(LMAXA))
 C
 CE    STORE LINEAR EFFECTIVE MTRIX ON UNIT 7: KE = K + A0*M + A1*C
 CS    ZAPISIVANJE LINEARNE EFEKTIVNE MATRICE : KE = K + A0*M + A1*C
 C
-   20 CALL WSTAZK(NPODS,LSK,58)
-
+   20 CONTINUE
+      !OVO JE SADA VEC U MODULU
+C      CALL WSTAZK(NPODS,LSK,58)
+      write(3,*) 'a0,a1',a0,a1
+      if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBIR')
+c za proveru
+c	LDUM=1000001
+c      IF(IMASS.NE.2) CALL RSTAZK(NPODS,LDUM,54)
+c      CALL RSTAZK(NPODS,LDUM,54)
+c      CALL WRR6(A(LDUM),NWK,'M   ')
+c      IF(IMASS.NE.2) CALL RSTAZK(NPODS,LDUM,58)
+c      CALL RSTAZK(NPODS,LDUM,58)
+c      CALL WRR6(A(LDUM),NWK,'ME  ')
 
 CSKDISK      LMAX=LSKP
    30 CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
@@ -203,7 +232,7 @@ CE    TRIANGULAR FORM: KE = L*D*LT
 CS    FAKTORIZACIJA LINEARNE EFEKTIVNE MATRICE: KE = K + A0*M + A1*C
 CS    SVODJENJE NA TROUGAONI OBLIK: KE = L*D*LT
 C
-      CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,1)
+      CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
       IF (myid.eq.0) THEN
 C
 CE       STORE TRIANGULARIZE MATRIX ON UNIT 10 : KE = L*D*LT
@@ -212,7 +241,7 @@ C
 C        IF(METOD.EQ.-1) ISKDSK=1
          CALL WSTAZK(NPODS,LSK,60)
 C        ISKDSK=0
-         IF(METOD.EQ.-1.AND.NBLOCK.EQ.1) CALL WRITED(A(LSK),NWK,ILDLT)
+C         IF(METOD.EQ.-1.AND.NBLOCK.EQ.1) CALL WRITED(A(LSK),NWK,ILDLT)!todo topalovic proveriti da li treba komentar
       ENDIF
       CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
       RETURN
@@ -276,12 +305,17 @@ CS    UCITAVANJE VEKTORA KONCENTRISANIH ZAPREMINSKIH SILA U TRENUTKU T+DT
 C  ZA INSTITUT CERNE!!
 C
       IF(ICERNE.GT.0.AND.ICERNM.EQ.0) THEN
+C slucaj za broj zadnjih koraka, ali bi morale da postoje sile za sve korake ucitane
          NDTC=NDT-ICERNE
-         IF(KOR.GT.NDTC) CALL READD(A(LRTDT),JEDN,ISILE)     
+         IF(KOR.GT.NDTC) CALL READD(A(LRTDT),JEDN,ISILE) 
       ENDIF
       IF(ICERNE.GT.0.AND.ICERNM.GT.0) THEN
+C slucaj kada se cita jedan set sila ali premnozava sa funkcijom u ulazu se zadaje -broj funkcije
          CALL TABF(A(LTABFT),A(LNTFT),ICERNM,NTABFT,VREME,FT,NTMX,IND)
-        WRITE(*,*) 'FT',FT
+         WRITE(*,*) ' KORAK=',KOR,' VREME=',VREME,
+     1              ' FAKTOR MNOZENJA FILTRACIONIH SILA FT=',FT
+         WRITE(IZLAZ,*)  ' KORAK=',KOR,' VREME=',VREME,
+     1                   ' FAKTOR MNOZENJA FILTRACIONIH SILA FT=',FT
          IF(IND.GT.0) THEN
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2000) ICERNM,VREME
@@ -341,17 +375,17 @@ C
 C
 CE    FORM VECTOR OF NODAL TEMPERATURES AT TIME T+DT
 CS    FORMIRANJE VEKTORA CVORNIH TEMPERATURA U TRENUTKU T+DT
-C     
+C
       IF(NTEMP.GT.0) THEN 
          LMAX13=NPODS(JPBR,62)-1
          CALL FORMCT
       ENDIF
-      ! TOPALOVIC OVDE SE POZIVA CITANJE TEMPERATURA IZ FAJLA
+            ! TOPALOVIC OVDE SE POZIVA CITANJE TEMPERATURA IZ FAJLA
       IF(NTEMP.LT.0) THEN
           IF(NTEMP.EQ.-7)THEN
                  CALL DISKCTMOD(A(LTECV)) ! UCITAVANJE TEMPERATURA IZ MODULA
               ELSE
-                 CALL DISKCT(A(LTECV)) ! STARO UCITAVANJE IZ ZITEMP
+                 CALL DISKCT(A(LTECV),A(LELCV),NPI,NPA,ICVEL) ! STARO UCITAVANJE IZ fajlova
               ENDIF
       ENDIF
       IF(NBLGR.GE.0.AND.NTEMP.NE.0.AND.ISTEM.NE.-1)
@@ -754,7 +788,7 @@ C
 C=======================================================================
 C
 C=======================================================================
-      SUBROUTINE DISKCT(TEMP)
+      SUBROUTINE DISKCT(TEMP,NELCV,NPI,NPA,ICVEL)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -766,6 +800,8 @@ CS.      ZA UCITAVANJE VEKTORA CVORNIH TEMPERATURA U TRENUTKU T+DT
 C .
 C ......................................................................
 C
+      CHARACTER *24 ZSILE,ZTEMP
+      COMMON /CERSIL/ ZSILE,ZTEMP
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
      1                IOPGL(6),KOSI,NDIN,ITEST
       COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
@@ -774,21 +810,79 @@ C
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /CDEBUG/ IDEBUG
       COMMON /SRPSKI/ ISRPS
-      DIMENSION TEMP(*)     
+      COMMON /DJERDAP/ IDJERDAP,ISPRESEK,IRPRIT
+      COMMON /MODELT/ TEMPC0,ALFAC,INDTEM
+      DIMENSION TEMP(*),NELCV(*)     
 C
       IF(IDEBUG.GT.0) PRINT *, ' DISKCT'
-      OPEN(ITEMP,FILE='ZITEMP',STATUS='UNKNOWN',FORM='UNFORMATTED',
-     1 ACCESS='SEQUENTIAL')
-      REWIND ITEMP
-      READ(ITEMP) NZAP
-      DO 10 I=1,NZAP
-         READ(ITEMP,END=100,ERR=200) VREM,(TEMP(J),J=1,NP)
-         VRE=VREM-VREME
-         IF(DABS(VRE).LT.1.0D-05) THEN 
-            CLOSE(ITEMP,STATUS='KEEP')
-            RETURN
-         ENDIF
-   10 CONTINUE
+C
+      IF (IDJERDAP.EQ.0) THEN
+         OPEN(ITEMP,FILE=ZTEMP,STATUS='UNKNOWN',FORM='UNFORMATTED',
+     1                         ACCESS='SEQUENTIAL')
+         REWIND ITEMP
+         READ(ITEMP) NZAP
+         DO 10 I=1,NZAP
+            READ(ITEMP,END=100,ERR=200) VREM,(TEMP(J),J=1,NP)
+            VRE=VREM-VREME
+            IF(DABS(VRE).LT.1.0D-05) THEN 
+               CLOSE(ITEMP,STATUS='KEEP')
+               RETURN
+            ENDIF
+   10    CONTINUE
+      ELSE
+C VAZNO - TEMPC0 SE UZIMA OD PRVOG MATERIJALA POSLEDNJEG UCITANOG MODELA
+C         DO I=1,NP
+C            TEMP(I)=TEMPC0
+C         ENDDO
+C         IF(KOR.EQ.NDT) THEN
+         IF(KOR.EQ.1)
+     1   OPEN(ITEMP,FILE=ZTEMP,STATUS='UNKNOWN',FORM='FORMATTED',
+     1                         ACCESS='SEQUENTIAL')
+         READ(ITEMP,1011,END=100,ERR=200) NPT3D1
+         TMAX=-100.
+         TMIN=100.
+         NPMIN=0
+         NPMAX=0
+         DO 20 II=1,NPT3D1
+            READ(ITEMP,1011,END=100,ERR=200) NN,TEMP1
+            IF(TEMP1.GT.TMAX) THEN
+               TMAX=TEMP1
+               NPMAX=NN
+            ENDIF
+            IF(TEMP1.LT.TMIN) THEN
+               TMIN=TEMP1
+               NPMIN=NN
+            ENDIF
+            IF(ICVEL.EQ.0) THEN
+               NI=NN
+               IF(NN.LE.0.OR.NN.GT.NP) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2200) NN
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6200) NN
+                  STOP ' PROGRAM STOP - PAK071 - DISKCT'
+               ENDIF
+            ELSE
+               N=NN-NPI+1
+               NI=NELCV(N)
+               IF(NI.EQ.0.OR.NN.LT.NPI.OR.NN.GT.NPA) THEN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2200) NN
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6200) NN
+                  STOP ' PROGRAM STOP - PAK071 - DISKCT'
+               ENDIF
+            ENDIF
+C
+            TEMP(NI)=TEMP1
+   20    CONTINUE
+C
+         WRITE(*,*) ' TEMPERATURE KORAK',KOR,' VREME=',VREME,
+     1     ' TMAX=',TMAX,' NPMAX=',NPMAX,' TMIN=',TMIN,' NPMIN=',NPMIN
+         WRITE(IZLAZ,*) ' TEMPERATURE KORAK',KOR,' VREME=',VREME,
+     1     ' TMAX=',TMAX,' NPMAX=',NPMAX,' TMIN=',TMIN,' NPMIN=',NPMIN
+      ENDIF     
+      RETURN
 C
   100 CONTINUE
       IF(ISRPS.EQ.0)
@@ -803,17 +897,25 @@ C
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6100) ITEMP,VREME
       STOP
+C
+ 1010 FORMAT(I5,3E13.5)
+ 1011 FORMAT(I10,3E13.5)
 C-----------------------------------------------------------------------
  2000 FORMAT(//' NA JEDINICI ITEMP =',I5,' NEMA ZAPISANIH TEMPERATURA U
      1VREMENSKOM TRENUTKU VREME =',1PD12.5)
  2100 FORMAT(//' NA JEDINICI ITEMP =',I5,' DOSLO JE DO GRESKE PRI CITANJ
      1U U VREMENSKOM TRENUTKU VREME =',1PD12.5)
+ 2200 FORMAT(//' GRESKA U UCITAVANJU ULAZNIH PODATAKA O TEMPERATURAMA'/
+     1' CVOR',I10,' NE POSTOJI'//' PROGRAM STOP - PAK071 - DISKCT'//)
 C-----------------------------------------------------------------------
- 6000 FORMAT(//' NA JEDINICI ITEMP =',I5,' NEMA ZAPISANIH TEMPERATURA U
-     1VREMENSKOM TRENUTKU VREME =',1PD12.5)
- 6100 FORMAT(//' ON UNIT =',I5,' READ ERROR AT TIME =',1PD12.5)
+ 6000 FORMAT(//' ON UNIT ITEMP =',I5,' THERE ARE NOT WRITTED TEMPERATURE
+     1 AT TIME VREME =',1PD12.5)
+ 6100 FORMAT(//' ON UNIT ITEMP =',I5,' READ ERROR AT TIME =',1PD12.5)
+ 6200 FORMAT(//' ERROR IN INPUT DATA ABOUT TEMPERATURE'/
+     1' NODE',I10,' NOT EXIST'//' PROGRAM STOP - PAK071 - DISKCT'//)
 C-----------------------------------------------------------------------
       END
+C=======================================================================
 C=======================================================================
 C
       SUBROUTINE DISKCTMOD(TEMP)
@@ -1011,6 +1113,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTNMK(IGRUP,NPODS)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1078,7 +1181,12 @@ C
       IF(METOD.LT.0.AND.KOR.GT.1.AND.NZADP.EQ.0) GO TO 5
 C     CALL WRR6(A(LSK),NWK,'SLEU')
       IF(NGEL.EQ.0.AND.NDIN.EQ.0) GO TO 10
-
+CSKDISK      LMA=58
+CSKDISK      IF(NDIN.EQ.0) LMA=35
+CSKDISK      IF(NGENL.EQ.0.AND.NZADP.EQ.0) LMA=60
+CSKDISK      GO TO 6
+CSKDISK    5 LMA=60
+CSKDISK    6 CALL RSTAZK(NPODS,LSK,LMA)
 5     CONTINUE
 C
       IF(NGENL.EQ.0.AND.NZADP.EQ.0) RETURN
@@ -1090,7 +1198,7 @@ CZILESK
 CZILESK
       GO TO 20
    10 if (myid.ne.0) goto 30
-      CALL CLEARB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
+      CALL CLEARB(ALSK,A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
 C      CALL WRR6(A(LSK),NWK,'SLEI')
    20 CALL CLEAR(A(LFTDT),JEDN)
 CZILESK
@@ -1153,7 +1261,7 @@ C        CALL WRR6(A(LSK),NWK,'SLEV')
        IF(NBLOCK.GT.1.AND.(KOR.EQ.1.OR.METOD.NE.-1))THEN
             LLM =LRAD
             LSKE=LLM+100
-            CALL SPAKUA(A(LSK),A(LMAXA),A(LSKE),A(LLM),ND,0,
+            CALL SPAKUA(ALSK,A(LMAXA),A(LSKE),A(LLM),ND,0,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
             CLOSE (ISCRC,STATUS='KEEP')
        ENDIF
@@ -1180,13 +1288,14 @@ C
 40    CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
       CALL MPI_BCAST(IPROL,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
       IF(IPROL.EQ.0) THEN
-         CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,1)
+         CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
          IF (myid.eq.0) THEN
 C           IF(KOR.EQ.1.AND.ITER.EQ.0.AND.METOD.EQ.-1) ISKDSK=1
-            CALL WSTAZKMT(NPODS,LSK,60)
+C            CALL WSTAZK(NPODS,LSK,60)
+            CALL WSTAZKMT(NPODS,LSK,60)!TODO TOPALOVIC PROVERITI
 C           ISKDSK=0
-            IF(KOR.EQ.1.AND.ITER.EQ.0.AND.METOD.EQ.-1.AND.NBLOCK.EQ.1) 
-     +      CALL WRITED(A(LSK),NWK,ILDLT)
+C            IF(KOR.EQ.1.AND.ITER.EQ.0.AND.METOD.EQ.-1.AND.NBLOCK.EQ.1) 
+C     +      CALL WRITED(A(LSK),NWK,ILDLT)!TODO TOPALOVIC PROVERITI
          ENDIF
       ENDIF
 C
@@ -1198,7 +1307,7 @@ CS    NELINEARNA MATRICA KRUTOSTI U TRENUTKU VREME = TSTART + DT = T
 C
       IF (myid.eq.0) THEN
          IF(IPROL.EQ.1) THEN
-            CALL WSTAZKMT(NPODS,LSK,35)
+            CALL WSTAZKMT(NPODS,LSK,35)!TODO TOPALOVIC PROVERITI
          ENDIF
 C
 CE       NONLINEAR STIFFNESS MATRIX IN TIME = TSTART = T - DT
@@ -1206,7 +1315,7 @@ CS       NELINEARNA MATRICA KRUTOSTI U TRENUTKU VREME = TSTART = T - DT
 C
 C         IF(NDIN.EQ.0.AND.ISOPS.GT.0.AND.ITER.EQ.0.AND.KOR.EQ.NDT) THEN
          IF(IPROL.EQ.2) THEN
-            CALL WSTAZKMT(NPODS,LSK,54)
+            CALL WSTAZKMT(NPODS,LSK,54)!TODO TOPALOVIC PROVERITI
          ENDIF
       ENDIF
 CZILESK
@@ -1936,7 +2045,7 @@ C
       KORD=LCORD
       IF(IATYP.GE.3) KORD=LCORUL
       CALL FTDTR3(A(LRTDT),A(LNFUN),A(LIPRAV),A(LFAKP),
-     1A(LNODPR),A(KORD),A(LID),NPP3,VREME)
+     1A(LNODPR),A(KORD),A(LID),NPP3)
       IF(ISOPS.GT.0.AND.ITER.EQ.0) GO TO 15
       IF(NDIN.EQ.0) RETURN
       IF(MDVI.NE.1) RETURN
@@ -1948,14 +2057,14 @@ C
       IF(LMAX.GT.MTOT) CALL ERROR(1)
       CALL RSTAZ(A(LIPODS),LPOMS,53)
       CALL FTDTR3(A(LPOMS),A(LNFUN),A(LIPRAV),A(LFAKP),
-     1A(LNODPR),A(KORD),A(LID),NPP3,VREM)
+     1A(LNODPR),A(KORD),A(LID),NPP3)
       CALL WSTAZ(A(LIPODS),LPOMS,53)
       RETURN
       END
 C=======================================================================
 C
 C=======================================================================
-      SUBROUTINE FTDTR3(RTDT,NFUN,IPRAV,FAKP,NODPR,CORD,ID,NPP,VREME)
+      SUBROUTINE FTDTR3(RTDT,NFUN,IPRAV,FAKP,NODPR,CORD,ID,NPP)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C     INTEGRALJENJE PRITISAKA NA POVRSINI
@@ -1969,6 +2078,9 @@ C
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /SRPSKI/ ISRPS
+      COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
+      COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
+      COMMON /DJERDAP/ IDJERDAP,ISPRESEK,IRPRIT
       COMMON /CDEBUG/ IDEBUG
 C
       DIMENSION NFUN(*),IPRAV(*),FAKP(NPP,*),
@@ -1989,45 +2101,288 @@ C
      3       .861136311594053D0,-.906179845938664D0,-.538469310105683D0,
      4                     0.D0, .538469310105683D0, .906179845938664D0/
 C
-      IF(IDEBUG.GT.0) PRINT *, ' FTDTR3'
+      IF(IDEBUG.GT.0) PRINT *, ' FTDTR3' 
+      ZERO=0.
       ONE=1.D0
       ENE=0.95D0
 C
-      DO 10 II=1,NPP
-         NF = NFUN(II)
-         IPR = IPRAV(II)
-         P1 = FAKP(II,1)
-         P2 = FAKP(II,2)
-         P3 = FAKP(II,3)
-         P4 = FAKP(II,4)
+      P1MAX=0.
+      P2MAX=0.
+      P3MAX=0.
+      N1MAX=0
+      N2MAX=0
+      N3MAX=0
+      NCNP=0
+      RMAX=-1.e+20
+      RMIN=1.e+33
+      NJMIN=0
+      NJMAX=0
+C     PROVERA DA LI SE RADI SEIZMIKA ZA DJERDAP I
+      IZANGAR=0
+      IF(IRPRIT.EQ.1.AND.IDJERDAP.NE.0) THEN
+C        KOTA GORNJE VODE
+         NF=3
          CALL TABF(A(LTABFT),A(LNTFT),NF,NTABFT,VREME,FT,NTMX,IND)
          IF(IND.GT.0) GO TO 20
+         HKGV=FT
+C        KOTA DONJE VODE
+         NF=4
+         CALL TABF(A(LTABFT),A(LNTFT),NF,NTABFT,VREME,FT,NTMX,IND)
+         IF(IND.GT.0) GO TO 20
+         HKDV=FT
+C        SEIZMICKO UBRZANJE U Y PRAVCU
+         NF=5
+         CALL TABF(A(LTABFT),A(LNTFT),NF,NTABFT,VREME,FT,NTMX,IND)
+         IF(IND.GT.0) GO TO 20
+         SUY=FT
+         IF(DABS(SUY).GT.1.E-9) IZANGAR=1
+      ENDIF
+      DO 10 II=1,NPP
+       IF(NODPR(II,8).EQ.0.AND.NODPR(II,4).EQ.0) NCNP=3
+       IF(NODPR(II,8).EQ.0.AND.NODPR(II,7).NE.0) NCNP=6
+C      PRITISCI NA TROUGAONE POVRSINE BEZ I SA MEDJU CVOROVIMA
+       IF(NCNP.EQ.3.OR.NCNP.EQ.6)THEN
+         NF = NFUN(II)
+         IPR = IPRAV(II)
+         CALL TABF(A(LTABFT),A(LNTFT),NF,NTABFT,VREME,FT,NTMX,IND)
+         IF(IND.GT.0) GO TO 20
+C        PRERACUNAVANJE PRITISAKA ZA BRANE
+         IF(IRPRIT.EQ.1) THEN
+C         PRITISCI ZA BRANU DJERDAP I
+          IF(IDJERDAP.NE.0) THEN
+C          HIDRODINAMICKI PRITISAK (ZANGAR)
+           PH1=0.
+           PH2=0.
+           PH3=0.
+           IF(IZANGAR.EQ.1.AND.((NF.EQ.5).OR.(NF.GE.102.AND.NF.LE.119)
+     1                     .OR.(NF.GE.125.AND.NF.LE.144)))THEN
+              CM=0.73
+              HTLA=27.5 ! NIVO TLA UZVODNO
+              Y1=HKGV-CORD(NODPR(II,1),3)
+              Y2=HKGV-CORD(NODPR(II,2),3)
+              Y3=HKGV-CORD(NODPR(II,3),3)
+              AH=HKGV-HTLA
+              OMEGA = 1. ! GUSTINA VODE
+              C1=CM/2*(Y1/AH*(2.-Y1/AH)+DSQRT(Y1/AH*(2.-Y1/AH)))
+              C2=CM/2*(Y2/AH*(2.-Y2/AH)+DSQRT(Y2/AH*(2.-Y2/AH)))
+              C3=CM/2*(Y3/AH*(2.-Y3/AH)+DSQRT(Y3/AH*(2.-Y3/AH)))
+              PH1=C1*SUY*9.81*OMEGA*AH 
+              PH2=C2*SUY*9.81*OMEGA*AH         
+              PH3=C3*SUY*9.81*OMEGA*AH
+           ENDIF
+           ODNOS=1.
+           IF(NF.GE.102.AND.NF.LE.113) ODNOS=7.111
+           IF(NF.GE.114.AND.NF.LE.119) ODNOS=4.125
+           IF(NF.GE.125.AND.NF.LE.130) ODNOS=9.04
+           IF(NF.GE.131.AND.NF.LE.137) ODNOS=6.25
+           IF(NF.GE.138.AND.NF.LE.144) ODNOS=11.364
+C          NGV i NDV
+           IF((NF.EQ.3)) THEN
+            P1=0.
+            P2=0.
+            P3=0.
+C           RACUNANJE PRITISKA NA OKVASENE POVRSINE ZA DJERDAP ISPOD KGV
+            IF(HKGV.GT.CORD(NODPR(II,1),3)) 
+     1         P1=(HKGV-CORD(NODPR(II,1),3))*10
+            IF(HKGV.GT.CORD(NODPR(II,2),3))
+     1         P2=(HKGV-CORD(NODPR(II,2),3))*10
+            IF(HKGV.GT.CORD(NODPR(II,3),3)) 
+     1         P3=(HKGV-CORD(NODPR(II,3),3))*10
+           ELSE IF(NF.EQ.4) THEN
+            P1=0.
+            P2=0.
+            P3=0.
+C           RACUNANJE PRITISKA NA OKVASENE POVRSINE ZA DJERDAP ISPOD KDV
+            IF(HKDV.GT.CORD(NODPR(II,1),3)) 
+     1         P1=(HKDV-CORD(NODPR(II,1),3))*10
+            IF(HKDV.GT.CORD(NODPR(II,2),3))
+     1         P2=(HKDV-CORD(NODPR(II,2),3))*10
+            IF(HKDV.GT.CORD(NODPR(II,3),3)) 
+     1         P3=(HKDV-CORD(NODPR(II,3),3))*10
+           ELSE IF(NF.EQ.5) THEN
+            P1=0.
+            P2=0.
+            P3=0.
+C           RACUNANJE PRITISKA NA OKVASENE POVRSINE ZA DJERDAP OD ZANGAR
+            IF(HKGV.GT.CORD(NODPR(II,1),3)) 
+     1         P1=PH1
+            IF(HKGV.GT.CORD(NODPR(II,2),3))
+     1         P2=PH2
+            IF(HKGV.GT.CORD(NODPR(II,3),3)) 
+     1         P3=PH3
+           ELSE IF((NF.GE.114.AND.NF.LE.119)) THEN
+            P1=0.
+            P2=0.
+            P3=0.
+C           RACUNANJE PRITISKA NA OKVASENE POVRSINE ZA DJERDAP + ZANGAR
+            IF(HKGV.GT.CORD(NODPR(II,1),3)) 
+     1         P1=((HKGV-CORD(NODPR(II,1),3))*10+PH1)*ODNOS
+            IF(HKGV.GT.CORD(NODPR(II,2),3))
+     1         P2=((HKGV-CORD(NODPR(II,2),3))*10+PH2)*ODNOS
+            IF(HKGV.GT.CORD(NODPR(II,3),3)) 
+     1         P3=((HKGV-CORD(NODPR(II,3),3))*10+PH3)*ODNOS
+C           RACUNANJE PRITISKA NA OKVASENE POVRSINE ZA DJERDAP ISPOD KDV
+            IF(HKDV.GT.CORD(NODPR(II,1),3)) 
+     1         P1=P1-(HKDV-CORD(NODPR(II,1),3))*10*ODNOS
+            IF(HKDV.GT.CORD(NODPR(II,2),3))
+     1         P2=P2-(HKDV-CORD(NODPR(II,2),3))*10*ODNOS
+            IF(HKDV.GT.CORD(NODPR(II,3),3)) 
+     1         P3=P3-(HKDV-CORD(NODPR(II,3),3))*10*ODNOS
+           ELSE IF((NF.GE.102.AND.NF.LE.113).OR.
+     1             (NF.GE.125.AND.NF.LE.144)) THEN
+            P1=0.
+            P2=0.
+            P3=0.
+C           RACUNANJE PRITISKA NA OKVASENE POVRSINE ZA DJERDAP + ZANGAR
+            IF(HKGV.GT.CORD(NODPR(II,1),3)) 
+     1         P1=((HKGV-CORD(NODPR(II,1),3))*10+PH1)*ODNOS
+            IF(HKGV.GT.CORD(NODPR(II,2),3))
+     1         P2=((HKGV-CORD(NODPR(II,2),3))*10+PH2)*ODNOS
+            IF(HKGV.GT.CORD(NODPR(II,3),3)) 
+     1         P3=((HKGV-CORD(NODPR(II,3),3))*10+PH3)*ODNOS
+           ELSE
+            P1 = FAKP(II,1)*FT
+            P2 = FAKP(II,2)*FT
+            P3 = FAKP(II,3)*FT
+           ENDIF
+          ENDIF
+         ELSE
+            P1 = FAKP(II,1)*FT
+            P2 = FAKP(II,2)*FT
+            P3 = FAKP(II,3)*FT
+         ENDIF
+         IF(P1.GT.P1MAX) THEN
+            P1MAX=P1
+            N1MAX=II
+         ENDIF
+         IF(P2.GT.P2MAX) THEN
+            P2MAX=P2
+            N2MAX=II
+         ENDIF
+         IF(P3.GT.P3MAX) THEN
+            P3MAX=P3
+            N3MAX=II
+         ENDIF
+C        RACUNA SAMO KOSINUSE UGLOVA U PRVOM CVORU
+         CALL JACTP33(ZERO,ZERO,H,CORD,NODPR,P1,P2,P3,
+     1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,
+     1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
+         P1U =-P1*CINA
+         P1V = P1*CINB
+         P1W =-P1*CING
+C        RACUNA SAMO KOSINUSE UGLOVA U DRUGOM CVORU
+         CALL JACTP33(ONE,ZERO,H,CORD,NODPR,P1,P2,P3,
+     1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,
+     1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
+         P2U =-P2*CINA
+         P2V = P2*CINB
+         P2W =-P2*CING
+C        RACUNA SAMO KOSINUSE UGLOVA U TRECEM CVORU
+         CALL JACTP33(ZERO,ONE,H,CORD,NODPR,P1,P2,P3,
+     1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,
+     1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
+         P3U =-P3*CINA
+         P3V = P3*CINB
+         P3W =-P3*CING
+         DO 101 NGXT = 1,3
+            IF(NGXT.EQ.1) THEN
+                R=1./6
+                S=1./6
+                WT=1./3
+            ENDIF
+            IF(NGXT.EQ.2) THEN
+                R=2./3
+                S=1./6
+                WT=1./3
+            ENDIF
+            IF(NGXT.EQ.3) THEN
+                R=1./6
+                S=2./3
+                WT=1./3
+            ENDIF
+C           INTERPOLIRA PRITISKE IZ CVOROVA U INTEGRACIONU TACKU POVRSINE
+            CALL JACTP33(R,S,H,CORD,NODPR,P1,P2,P3,
+     1                  P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,
+     1                  PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,1)
+            WDT = WT*DET/2
+            IF(IPR.EQ.1.OR.IPR.EQ.0) THEN
+               DO 51 I=1,7
+                  NC = NODPR(II,I)
+                  IF(NC.EQ.0) GO TO  51
+                  NJ = ID(NC,1)
+                  IF(NJ.EQ.0) GO TO  51
+                  IF(IPR.EQ.0) RTDT(NJ) = RTDT(NJ) + H(I,1)*PU*WDT
+c                 Ukupan pritisak u X pravcu
+                  IF(IPR.EQ.1) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*WDT
+c                 Projekcija pritska u X pravcu
+C                  IF(IPR.EQ.1) RTDT(NJ) = RTDT(NJ) + H(I,1)*PU*WDT
+   51          CONTINUE
+            ENDIF
+            IF(IPR.EQ.2.OR.IPR.EQ.0) THEN
+               DO 61 I=1,7
+                  NC = NODPR(II,I)
+                  IF(NC.EQ.0) GO TO 61
+                  NJ = ID(NC,2)
+                  IF(NJ.EQ.0) GO TO  61
+                  IF(IPR.EQ.0) RTDT(NJ) = RTDT(NJ) + H(I,1)*PV*WDT
+c                 Ukupan pritisak u Y pravcu
+                  IF(IPR.EQ.2) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*WDT
+C                  IF(IPR.EQ.2) RTDT(NJ) = RTDT(NJ) + H(I,1)*PV*WDT
+   61          CONTINUE
+            ENDIF
+            IF(IPR.EQ.3.OR.IPR.EQ.0) THEN
+               DO 71 I=1,7
+                  NC = NODPR(II,I)
+                  IF(NC.EQ.0) GO TO 71
+                  NJ = ID(NC,3)
+                  IF(NJ.EQ.0) GO TO  71
+                  IF(IPR.EQ.0) RTDT(NJ) = RTDT(NJ) + H(I,1)*PW*WDT
+c                 Ukupan pritisak u Z pravcu
+                  IF(IPR.EQ.3) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*WDT
+C                  IF(IPR.EQ.3) RTDT(NJ) = RTDT(NJ) + H(I,1)*PW*WDT
+   71          CONTINUE
+            ENDIF
+  101    CONTINUE
+C
+       ELSE
+         NF = NFUN(II)
+         IPR = IPRAV(II)
+         CALL TABF(A(LTABFT),A(LNTFT),NF,NTABFT,VREME,FT,NTMX,IND)
+         IF(IND.GT.0) GO TO 20
+         P1 = FAKP(II,1)*FT
+         P2 = FAKP(II,2)*FT
+         P3 = FAKP(II,3)*FT
+         P4 = FAKP(II,4)*FT
+C        RACUNA SAMO KOSINUSE UGLOVA U PRVOM CVORU
          CALL JACTP3(ONE,ONE,H,CORD,NODPR,P1,P2,P3,P4,
      1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,P4U,P4V,P4W,
      1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
-         P1U =-P1*FT*CINA
-         P1V = P1*FT*CINB
-         P1W =-P1*FT*CING
+         P1U =-P1*CINA
+         P1V = P1*CINB
+         P1W =-P1*CING
+C        RACUNA SAMO KOSINUSE UGLOVA U DRUGOM CVORU
          CALL JACTP3(-ONE,ONE,H,CORD,NODPR,P1,P2,P3,P4,
      1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,P4U,P4V,P4W,
      1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
-         P2U =-P2*FT*CINA
-         P2V = P2*FT*CINB
-         P2W =-P2*FT*CING
+         P2U =-P2*CINA
+         P2V = P2*CINB
+         P2W =-P2*CING
          DUM = ONE
          IF(NODPR(II,3).EQ.NODPR(II,4)) DUM=ENE
+C        RACUNA SAMO KOSINUSE UGLOVA U TRECEM CVORU
          CALL JACTP3(-DUM,-DUM,H,CORD,NODPR,P1,P2,P3,P4,
      1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,P4U,P4V,P4W,
      1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
-         P3U =-P3*FT*CINA
-         P3V = P3*FT*CINB
-         P3W =-P3*FT*CING
+         P3U =-P3*CINA
+         P3V = P3*CINB
+         P3W =-P3*CING
+C        RACUNA SAMO KOSINUSE UGLOVA U CETVRTOM CVORU
          CALL JACTP3(DUM,-DUM,H,CORD,NODPR,P1,P2,P3,P4,
      1               P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,P4U,P4V,P4W,
      1               PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,0)
-         P4U =-P4*FT*CINA
-         P4V = P4*FT*CINB
-         P4W =-P4*FT*CING
+         P4U =-P4*CINA
+         P4V = P4*CINB
+         P4W =-P4*CING
          DO 100 NGX = 1,2
             JR = NREF(2)+NGX
             R = XG(JR)
@@ -2035,6 +2390,7 @@ C
             JS = NREF(2)+NGY
             S = XG(JS)
             WT = WGT(JR)*WGT(JS)
+C           INTERPOLIRA PRITISKE IZ CVOROVA U INTEGRACIONU TACKU POVRSINE
             CALL JACTP3(R,S,H,CORD,NODPR,P1,P2,P3,P4,
      1                  P1U,P1V,P1W,P2U,P2V,P2W,P3U,P3V,P3W,P4U,P4V,P4W,
      1                  PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,1)
@@ -2046,7 +2402,10 @@ C
                   NJ = ID(NC,1)
                   IF(NJ.EQ.0) GO TO  50
                   IF(IPR.EQ.0) RTDT(NJ) = RTDT(NJ) + H(I,1)*PU*WDT
-                  IF(IPR.EQ.1) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*FT*WDT
+c                 Ukupan pritisak u X pravcu
+                  IF(IPR.EQ.1) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*WDT
+c                 Projekcija pritska u X pravcu
+c                  IF(IPR.EQ.1) RTDT(NJ) = RTDT(NJ) + H(I,1)*PU*WDT
    50          CONTINUE
             ENDIF
             IF(IPR.EQ.2.OR.IPR.EQ.0) THEN
@@ -2056,7 +2415,9 @@ C
                   NJ = ID(NC,2)
                   IF(NJ.EQ.0) GO TO  60
                   IF(IPR.EQ.0) RTDT(NJ) = RTDT(NJ) + H(I,1)*PV*WDT
-                  IF(IPR.EQ.2) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*FT*WDT
+c                 Ukupan pritisak u Y pravcu
+                  IF(IPR.EQ.2) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*WDT
+c                  IF(IPR.EQ.2) RTDT(NJ) = RTDT(NJ) + H(I,1)*PV*WDT
    60          CONTINUE
             ENDIF
             IF(IPR.EQ.3.OR.IPR.EQ.0) THEN
@@ -2066,11 +2427,38 @@ C
                   NJ = ID(NC,3)
                   IF(NJ.EQ.0) GO TO  70
                   IF(IPR.EQ.0) RTDT(NJ) = RTDT(NJ) + H(I,1)*PW*WDT
-                  IF(IPR.EQ.3) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*FT*WDT
+c                 Ukupan pritisak u Z pravcu
+                  IF(IPR.EQ.3) RTDT(NJ) = RTDT(NJ) + H(I,1)*PQ*WDT
+c                  IF(IPR.EQ.3) RTDT(NJ) = RTDT(NJ) + H(I,1)*PW*WDT
    70          CONTINUE
             ENDIF
   100    CONTINUE
+       ENDIF
    10 CONTINUE
+C
+      IF(NCNP.EQ.3.OR.NCNP.EQ.6) THEN
+         DO 120 NJ=1,JEDN
+            IF(RTDT(NJ).GT.RMAX) THEN
+               RMAX=RTDT(NJ)
+               NJMAX=NJ
+            ENDIF
+            IF(RTDT(NJ).LT.RMIN) THEN
+               RMIN=RTDT(NJ)
+               NJMIN=NJ
+            ENDIF
+  120    CONTINUE
+C
+         WRITE(*,*) ' PRITISCI KORAK',KOR,' VREME=',VREME,
+     1 ' P1MAX=',P1MAX,' N1MAX=',N1MAX,' P2MAX=',P2MAX,' N2MAX=',N2MAX,
+     2 ' P3MAX=',P3MAX,' N3MAX=',N3MAX
+         WRITE(IZLAZ,*) ' PRITISCI KORAK',KOR,' VREME=',VREME,
+     1 ' P1MAX=',P1MAX,' N1MAX=',N1MAX,' P2MAX=',P2MAX,' N2MAX=',N2MAX,
+     2 ' P3MAX=',P3MAX,' N3MAX=',N3MAX
+         WRITE(*,*) ' UKUPNE SILE KORAK',KOR,' VREME=',VREME,
+     1     ' RMAX=',RMAX,' NJMAX=',NJMAX,' RMIN=',RMIN,' NJMIN=',NJMIN
+         WRITE(IZLAZ,*) ' UKUPNE SILE KORAK',KOR,' VREME=',VREME,
+     1     ' RMAX=',RMAX,' NJMAX=',NJMAX,' RMIN=',RMIN,' NJMIN=',NJMIN
+      ENDIF
       RETURN
 C
    20 CONTINUE
@@ -2084,8 +2472,8 @@ C-----------------------------------------------------------------------
      1' VREMENSKA FUNKCIJA BROJ =',I5/
      2' ARGUMENT VREME =',1PD12.4)
  6000 FORMAT(///' ARGUMENT IS OUT OF RANGE'/
-     1' TEMPERATURE FUNCTION  =',I5/
-     2' ARGUMENT TEMPERATURE  =',D12.4)
+     1' NUMBER OF FUNCTION  =',I5/
+     2' ARGUMENT TIME  =',D12.4)
 C-----------------------------------------------------------------------
       END
 C======================================================================
@@ -2246,6 +2634,127 @@ C-----------------------------------------------------------------------
      1' ','3-D PRESSURE NUMBER =',I10/' ','DETERMINANT =',1PD12.5)
 C-----------------------------------------------------------------------
       END
+C======================================================================
+      SUBROUTINE JACTP33(R,S,H,CORD,NODPR,P1,P2,P3,P1U,P1V,P1W,
+     1                  P2U,P2V,P2W,P3U,P3V,P3W,
+     1                  PU,PV,PW,PQ,II,NPP,CINA,CINB,CING,IND)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C     POVRSINSKI JAKOBIJAN NA GRANICI 3/D TETRA ELEMENTA
+C
+C
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SRPSKI/ ISRPS
+      DIMENSION NODPR(NPP,*),CORD(NP,*),H(9,*)
+      COMMON /CDEBUG/ IDEBUG
+C
+      IF(IDEBUG.GT.0) PRINT *, ' JACTP33'
+      
+      CALL CLEAR(H,27)
+      H(1,1)=1.-R-S
+      H(2,1)=R
+      H(3,1)=S
+      H(1,2)=-1.
+      H(2,2)=1.
+      H(3,2)=0.
+      H(1,3)=-1.
+      H(2,3)=0.
+      H(3,3)=1.
+      IF(IND.EQ.0) GO TO 26
+      PU=H(1,1)*P1U+H(2,1)*P2U+H(3,1)*P3U
+      PV=H(1,1)*P1V+H(2,1)*P2V+H(3,1)*P3V
+      PW=H(1,1)*P1W+H(2,1)*P2W+H(3,1)*P3W
+      PQ=H(1,1)*P1 +H(2,1)*P2 +H(3,1)*P3 
+C
+C     KOREKCIJA FUNKCIJA KADA JE BROJ CVOROVA VECI OD 3
+C
+C     CETVRTI CVOR
+   26 N5=NODPR(II,5)
+      IF(N5.EQ.0) GO TO 10
+      H(5,1)=4.*R*(1.-R-S)
+      H(5,2)=4.*(1.-R-S)-4.*R
+      H(5,3)=-4.*R
+C     PETI CVOR
+   10 N6=NODPR(II,6)
+      IF(N6.EQ.0) GO TO 20
+      H(6,1)=4.*R*S
+      H(6,2)=4.*S
+      H(6,3)=4.*R
+C     SESTI CVOR
+   20 N7=NODPR(II,7)
+      IF(N7.EQ.0) GO TO 45
+      H(7,1)=4.*S*(1.-R-S)
+      H(7,2)=-4.*S
+      H(7,3)=4.*(1.-R-S)-4.*S
+C
+C     KOREKCIJA PRVA TRI CVORA
+C
+   45 N5=NODPR(II,5)
+      IF(N5.EQ.0) GO TO 100
+      H(1,1)=H(1,1)-.5*H(5,1)
+      H(2,1)=H(2,1)-.5*H(5,1)
+      H(1,2)=H(1,2)-.5*H(5,2)
+      H(2,2)=H(2,2)-.5*H(5,2)
+      H(1,3)=H(1,3)-.5*H(5,3)
+      H(2,3)=H(2,3)-.5*H(5,3)
+  100 N6=NODPR(II,6)
+      IF(N6.EQ.0) GO TO 200
+      H(2,1)=H(2,1)-.5*H(6,1)
+      H(3,1)=H(3,1)-.5*H(6,1)
+      H(2,2)=H(2,2)-.5*H(6,2)
+      H(3,2)=H(3,2)-.5*H(6,2)
+      H(2,3)=H(2,3)-.5*H(6,3)
+      H(3,3)=H(3,3)-.5*H(6,3)
+  200 N7=NODPR(II,7)
+      IF(N7.EQ.0) GO TO 400
+      H(3,1)=H(3,1)-.5*H(7,1)
+      H(1,1)=H(1,1)-.5*H(7,1)
+      H(3,2)=H(3,2)-.5*H(7,2)
+      H(1,2)=H(1,2)-.5*H(7,2)
+      H(3,3)=H(3,3)-.5*H(7,3)
+      H(1,3)=H(1,3)-.5*H(7,3)
+C
+C     JAKOBIJAN
+C
+  400 DO 60 I=1,3
+         XJ(1,I)=0.D0
+         XJ(2,I)=0.D0
+      DO 60 J=1,9
+         NJ=NODPR(II,J)
+         IF(NJ.EQ.0) GO TO 60
+         XJ(1,I)=XJ(1,I)+H(J,2)*CORD(NJ,I)
+         XJ(2,I)=XJ(2,I)+H(J,3)*CORD(NJ,I)
+   60 CONTINUE
+C
+C     DETERMINANTA JAKOBIJANA
+C
+      DETX=XJ(1,2)*XJ(2,3)-XJ(1,3)*XJ(2,2)
+      DETY=XJ(1,1)*XJ(2,3)-XJ(1,3)*XJ(2,1)
+      DETZ=XJ(1,1)*XJ(2,2)-XJ(1,2)*XJ(2,1)
+      DET=DSQRT(DETX*DETX+DETY*DETY+DETZ*DETZ)
+      IF(DET.GT.1.0D-10) GO TO 70
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2000) II,DET
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6000) II,DET
+      STOP ' PROGRAM STOP - PAK071 - JACTP33'
+   70 IF(IND.EQ.1) RETURN
+      CINA=DETX/DET
+      CINB=DETY/DET
+      CING=DETZ/DET
+      RETURN
+C-----------------------------------------------------------------------
+ 2000 FORMAT(/' ','DETERMINANTA JAKOBIJANA MANJA OD NULE'/
+     1' ','3-D PRITISAK BROJ =',I10/' ','DETERMINANTA =',1PD12.5)
+ 6000 FORMAT(/' ','ZERO OR NEGATIVE DETERMINANTE'/
+     1' ','3-D PRESSURE NUMBER =',I10/' ','DETERMINANT =',1PD12.5)
+C-----------------------------------------------------------------------
+      END
+C=======================================================================
 C=======================================================================
       SUBROUTINE SABZAP(RTDT,ZAPS,NPRZ,JEDN)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -2368,10 +2877,10 @@ CS.       ZA FORMIRANJE KONCENTRISANIH SILA OD INTERAKCIJE FLUID-STRUKTURA
 C .
 C .......................................................................
 C
-      CHARACTER *24 ZSILE,ZSILB
+      CHARACTER *24 ZSILE,ZSILB,ZTEMP
       include 'paka.inc'
       
-      COMMON /CERSIL/ ZSILE
+      COMMON /CERSIL/ ZSILE,ZTEMP
       COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
      1                IOPGL(6),KOSI,NDIN,ITEST
 C
@@ -2393,7 +2902,7 @@ CZILE PROVERI         IF(ICVEL.NE.0) KPNN=NELCV(NOD-NPI+1)
             IF(I.GT.0) RTDT(I)=RTDT(I)+VOL(K)
    20    CONTINUE
    10 CONTINUE
-      CLOSE(35)      
+      CLOSE(35)
       RETURN
 C-----------------------------------------------------------------------
 C 1010 FORMAT(I5,3E13.5)

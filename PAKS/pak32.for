@@ -62,6 +62,8 @@ C
       COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8
 C
       LAU=LMAX
+c            WRITE(*,*) 'k21egl'
+c            WRITE(3,*) 'k21egl'
 CE    READING DATA FROM RECORDS OF THE FILE (ZIELEM) WRITTEN IN ROUTINE
 CE    (UL3EK)
       CALL READE3(A(LAU))
@@ -150,6 +152,8 @@ C
       DIMENSION AU(*)
       REAL AU
 C
+c            WRITE(*,*) 'reade3'
+c            WRITE(3,*) 'reade3'
 C     POZIVANJE PROGRAMA ZA ULAZNE PODATKE .
       LSTAZA(1)=LMAX8
       READ(IELEM,REC=LMAX8)
@@ -187,7 +191,7 @@ CE    TOTAL SPACE USED FOR ALL INTEGRATION POINTS
       IF (iAllocateStatus /= 0) write(3,*)'PLAST* Not enough memory ***'
      1                                    ,ITER     
       IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
-      
+            
       
       IF (ALLOCIRANMM.EQ.(.FALSE.)) THEN
      
@@ -328,6 +332,8 @@ C
       DIMENSION AE(*),AU(*)
       REAL AE,AU
 C
+c            WRITE(*,*) 'siste3'
+c            WRITE(3,*) 'siste3'
 CE    NUMBER OF INCOMPATIBLE DISPLACEMENTS
       LA=1
       IF(IALFA.EQ.1) LA=9
@@ -430,6 +436,7 @@ C=======================================================================
      1                COR0,TEMGT,CORGT,AU,ZAPS,NPRZ,INDZS,GUSM,LA,CEGE,
      1                ESILA,ID,DEF,NNOD,ALFT,INDBEL,BIRTHC,TBTH,MCVEL)
       USE PLAST3D
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -484,7 +491,7 @@ C
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /UGAOV6/ TE(6,6)
       COMMON /SRPSKI/ ISRPS
-      COMMON /CRACKC/ CBTC(10,2),NBTC(10,3),KBTC,ICRACK,NBRCR
+      COMMON /CRACKC/ CBTC(1000,2),NBTC(1000,3),KBTC,ICRACK,NBRCR
       COMMON /ZADATA/ LNZADJ,LNZADF,LZADFM,NZADP
       COMMON /VELIKD/ DETG,QP(3,3),IGLPR
       COMMON /PRINCI/ PRINC(3)
@@ -501,6 +508,10 @@ C
      1                ,MAXNOD,LXL,LYL,LZL,LSIF1,LXGG,LYGG,LZGG,LNNOD
       COMMON /CVOREL/ ICVEL,LCVEL,LELCV,NPA,NPI,LCEL,LELC,NMA,NMI
       common /crklie/ icrkli(100000)
+      COMMON /PODTIP/ IPODT      
+      COMMON /MODELT/ TEMPC0,ALFAC,INDTEM
+      COMMON /VRTEMP/ AVRTEMP 
+      COMMON /ZAPREM/ ZAPREL
 C
       DIMENSION AU(*)
       REAL AU
@@ -591,6 +602,8 @@ C
      1                          -.774596669241483D0, .774596669241483D0/
 CE    DIMENSION OF ELEMENT STIFFNESS MATRIX - SKE(NWE)
       NWE=ND*(ND+1)/2
+c            WRITE(*,*) 'elte3'
+c            WRITE(3,*) 'elte3'
 C      IF(IALFA.GE.0.AND.ITER.EQ.0.AND.IILS.NE.-1)
 C     1   CALL JEDNA1(ALFT,ALFE,NE*LA)
 C
@@ -665,7 +678,10 @@ CE	THIS LOOP COVERS THE WHOLE SUBROUTINE
 C
       NNCVE=NCVE
       DO 10 NLM=1,NE
-C         WRITE(3,*) 'NLM',NLM
+c         if(nlm.lt.10) then
+c            WRITE(*,*) 'NLM',NLM
+c            WRITE(3,*) 'NLM',NLM
+c         endif
 C        PROMENLJIV BROJ CVOVORA ZA MEHANIKU LOMA
          NCVE=NNOD(NLM)
          ND=NCVE*3
@@ -923,7 +939,11 @@ CE	  IATYP = indicator for type of analysis (card /13/ in user manual)
 C
 CE       SHAPE FUNCTIONS AND THEIR DERIVATIVES HE(NCVE,4), 
 CE       JACOBIAN MATRIX XJJ(3,3) AND INVERSE JACOBIAN XJ(3,3)
+         IF(IPODT.EQ.3) THEN
+         CALL JACTE33A(NOP,CORD,HE,R,S,T,0)
+             ELSE
          CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         ENDIF
 C
 CE       JACOBIAN DETERMINANT AT THE ELEMENT CENTER Jo
          DET0=DET
@@ -998,7 +1018,11 @@ CE       XJJ(3,3): JACOBIAN MATRIX
 C        (Cg=QeT*Cl*Qe)
          IF(IBB0.EQ.1) THEN
             IF(IATYP.GT.1) THEN
-               CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         IF(IPODT.EQ.3) THEN
+         CALL JACTE33A(NOP,CORD,HE,R,S,T,0)
+             ELSE
+         CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         ENDIF
                CALL TRANAL(XJJ,TSS,0)
                CALL MNOZM1(TSG,TSGE(1,1,NLM),TSS,6,6,6)
             ENDIF
@@ -1006,7 +1030,11 @@ C        (Cg=QeT*Cl*Qe)
             IF(IATYP.LE.1) THEN
                CALL JEDNA1(TSG,TSGE(1,1,NLM),36)
             ELSE
-               CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         IF(IPODT.EQ.3) THEN
+         CALL JACTE33A(NOP,CORD,HE,R,S,T,0)
+             ELSE
+         CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         ENDIF
                CALL TRANAL(XJJ,TSS,0)
                CALL MNOZM1(TSG,TBETA,TSS,6,6,6)
             ENDIF
@@ -1019,7 +1047,11 @@ C
 CE       TSG(6,6): CONSTITUTIVE TRANSFORMATION MATRIX FOR (NMODM)=4
    40    IF(IBB0.EQ.1) THEN
             IF(IATYP.GT.1) THEN
-               CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         IF(IPODT.EQ.3) THEN
+         CALL JACTE33A(NOP,CORD,HE,R,S,T,0)
+             ELSE
+         CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         ENDIF
                CALL TRANAL(XJJ,TSS,0)
                CALL MNOZM1(TSG,TSGE(1,1,NLM),TSS,6,6,6)
             ENDIF
@@ -1027,7 +1059,11 @@ CE       TSG(6,6): CONSTITUTIVE TRANSFORMATION MATRIX FOR (NMODM)=4
             IF(IATYP.LE.1) THEN
                CALL JEDNA1(TSG,TSGE(1,1,NLM),36)
             ELSE
-               CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         IF(IPODT.EQ.3) THEN
+         CALL JACTE33A(NOP,CORD,HE,R,S,T,0)
+             ELSE
+         CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         ENDIF
                CALL TRANAL(XJJ,TSS,0)
                CALL MNOZM1(TSG,TBETA,TSS,6,6,6)
             ENDIF
@@ -1052,6 +1088,11 @@ CE       NGAUSX: NUMBER OF INTEGRATION POINTS IN R-DIRECTIONS
 CE       INCOTX: INDICATOR FOR NEWTON-COTES INTEGRATION (=0-NO,>0-YES)
 CE       WR,WS,WT: INTEGRATING COEFFICIENTS
 CE       R,S,T: NATURAL COORDINATES
+c         if(nlm.lt.10) then
+c            WRITE(*,*) 'pre integracione petlje'
+c            WRITE(3,*) 'pre integracione petlje'
+c         endif
+         PET=5.
          DO 20 NGR=1,NGAUSX
             JGR=NREF(NGAUSX)+NGR
             IF(INCOTX.EQ.0)THEN
@@ -1102,6 +1143,79 @@ CE       INCOTZ: INDICATOR FOR NEWTON-COTES INTEGRATION (=0-NO,>0-YES)
                WT=WNC(JGR)
             ENDIF
 C
+            NGIP=NGAUSX
+            IF(IPODT.EQ.3) THEN
+              IF(NGIP.EQ.1) THEN
+                   R = 0.25
+                   S = 0.25
+                   T = 0.25 
+                   WR= 1./6.
+                   WS= 1.
+                   WT= 1.
+               ENDIF
+              IF(NGIP.EQ.4) THEN
+                   AA=(5.+3.*DSQRT(PET))/20.
+                   BB=(5.-   DSQRT(PET))/20.
+               IF(NGR.EQ.1) THEN
+                   R=BB
+                   S=BB
+                   T=BB
+               ENDIF
+               IF(NGR.EQ.2) THEN
+                   R=AA
+                   S=BB
+                   T=BB
+               ENDIF
+               IF(NGR.EQ.3) THEN
+                   R=BB
+                   S=AA
+                   T=BB
+               ENDIF
+               IF(NGR.EQ.4) THEN
+                   R=BB
+                   S=BB
+                   T=AA
+               ENDIF
+               WR=1./24.
+               WS=1.
+               WT=1.
+               ENDIF
+              IF(NGIP.EQ.5) THEN
+               IF(NGR.EQ.1) THEN
+                   R= 1./4
+                   S= 1./4
+                   T= 1./4
+                  WR=-4./30
+               ENDIF
+               IF(NGR.EQ.2) THEN
+                   R= 1./6
+                   S= 1./6
+                   T= 1./6
+                  WR= 9./120
+               ENDIF
+               IF(NGR.EQ.3) THEN
+                   R= 1./2
+                   S= 1./6
+                   T= 1./6
+                  WR= 9./120
+               ENDIF
+               IF(NGR.EQ.4) THEN
+                   R= 1./6
+                   S= 1./2
+                   T= 1./6
+                  WR= 9./120
+               ENDIF
+               IF(NGR.EQ.5) THEN
+                   R= 1./6
+                   S= 1./6
+                   T= 1./2
+                  WR= 9./120
+               ENDIF
+               WS= 1.
+               WT= 1.
+               ENDIF
+            ENDIF
+C
 CE          START OF COMPUTATION IN GAUSS-POINT LOOP BLOCK
             JG=JG+1
 C       WRITE(3,*) 'NLM,NGR,NGS,NGT,R,S,T',NLM,NGR,NGS,NGT,R,S,T
@@ -1110,7 +1224,11 @@ CE          SHAPE FUNCTIONS AND THEIR DERIVATIVES HE(NCVE,4),
 CE          JACOBIAN MATRIX XJJ(3,3) AND INVERSE JACOBIAN XJ(3,3)
 CS          INTERPOLACIJSKE FUNKCIJE I JAKOBIJAN U TACKI R, S, T
 C
-            CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         IF(IPODT.EQ.3) THEN
+         CALL JACTE33A(NOP,CORD,HE,R,S,T,0)
+             ELSE
+         CALL JACTE3(NOP,CORD,HE,R,S,T,0)
+         ENDIF
 C            CALL WRR3(XJJ,9,'XJJ ')
 C
 CS          TEMPERATURA, GLOBALNE KOORDINATE GAUSOVE TACKE
@@ -1390,7 +1508,8 @@ C
 CELYK       CONTROL MODULE FOR NONLINEAR STRESS INTEGRATION
 CELYK       TO CALL PROGRAMS FOR STRESS INTEGRATION FOR MATERIAL MODELS
 CE    NOTE: THIS CALL IS NOT NECESSARY, IT WILL BE REPEATED BELOW (IRAC=1)
-      CALL MDMAT3(STRAIN,TA,NMODM,IRAC,LPLAS,LPLA1,IBTC,TGT,INTGL,lpla0)
+      CALL MDMAT3(STRAIN,TA,NMODM,IRAC,LPLAS,LPLA1,IBTC,TGT,INTGL,lpla0,
+     1            AU)
 C
 CELYK       TRANSFORM THE LOCAL MATRIX TO GLOBAL MATRIX
 CELYK       ELAST:	INPUT(LOCAL)/OUTPUT(GLOBAL) TANGENT STIFFNESS
@@ -1422,6 +1541,8 @@ CE          AMASC(NCVE): NODAL MASSES OF ELEMENT
             ELSE
                ZAPRE=ZAPRE+WTU
             ENDIF
+C
+            IF(ITER.EQ.0)ZAPREL=ZAPRE
 C
 CS          FORMIRANJE MATRICE BL LINEARNO
 CE          FORM LINEAR STRAIN-DISPLACEMENT MATRIX - B
@@ -1857,9 +1978,20 @@ CS       TERMICKE DEFORMACIJE   ETH=ALFA*(T-T0)
 CE       THERMAL STRAINS FOR THERMO-ELASTIC MATERIAL MODELS
 C        Eth=A*(T-To);  E=E+Eth
 C
-         IF (NMODM.EQ.3.OR.NMODM.EQ.4.OR.NMODM.EQ.49)THEN
-             CALL MAMOD3(STRAIN,TGT) ! ovde ulazi kad racuna deformacije za micunov model
+         IF((NMODM.EQ.27.OR.NMODM.EQ.43.OR.NMODM.EQ.44.
+     1   OR.NMODM.EQ.56).AND.INDTEM.EQ.1.AND.MAT.EQ.1) THEN
+            TEMP0=TEMPC0
+            ALFA(1)=ALFAC
+            ALFA(2)=ALFAC
+            ALFA(3)=ALFAC
          ENDIF
+C        opasno, proveriti mat.eq.1!
+         IF(NMODM.EQ.3.OR.NMODM.EQ.4.OR.NMODM.EQ.49.OR.
+     1     (NMODM.EQ.27.AND.INDTEM.EQ.1.AND.MAT.EQ.1).OR.
+     1     (NMODM.EQ.43.AND.INDTEM.EQ.1.AND.MAT.EQ.1).OR.
+     1     (NMODM.EQ.44.AND.INDTEM.EQ.1.AND.MAT.EQ.1).OR.
+     1(NMODM.EQ.56.AND.INDTEM.EQ.1.AND.MAT.EQ.1.AND.VREME.GE.AVRTEMP))
+     1      CALL MAMOD3(STRAIN,TGT)
 C
 C
 CS       RACUNANJE NAPONA
@@ -1929,9 +2061,12 @@ C            CALL WRR6(STRAIN,6,'STRU')
             IRAC=1
 CELYK       CONTROL MODULE FOR NONLINEAR STRESS INTEGRATION
 CELYK       TO CALL PROGRAMS FOR STRESS INTEGRATION FOR MATERIAL MODELS
-      CALL MDMAT3(STRAIN,TA,NMODM,IRAC,LPLAS,LPLA1,IBTC,TGT,INTGL,lpla0)
+      CALL MDMAT3(STRAIN,TA,NMODM,IRAC,LPLAS,LPLA1,IBTC,TGT,INTGL,lpla0,
+     1            AU)
 C stampanje napona na mernim mestima za BOCAC
       IF(NAPON.EQ.1) then
+       ibocac=0
+       if(ibocac.eq.1) then
          CALL BOCACN1(TA,TED,JG,NLM,AU(LCEL),ICVEL,KOR,VREME)
          CALL BOCACN2(TA,TED,JG,NLM,AU(LCEL),ICVEL,KOR,VREME)
          CALL BOCACN3(TA,TED,JG,NLM,AU(LCEL),ICVEL,KOR,VREME)
@@ -1939,6 +2074,7 @@ C stampanje napona na mernim mestima za BOCAC
          CALL BOCACN21(TA,TED,JG,NLM,AU(LCEL),ICVEL,KOR,VREME)
          CALL BOCACN31(TA,TED,JG,NLM,AU(LCEL),ICVEL,KOR,VREME)
          CALL BOCACN4(TA,TED,JG,NLM,AU(LCEL),ICVEL,KOR,VREME)
+       endif  
       ENDIF
 c
          if(icrkli(nlm).eq.1) go to 10
@@ -2199,6 +2335,10 @@ C
 CS-------------------------- KRAJ PETLJE PO GAUSOVIM TACKAMA --------
 CE-------------------------- END OF LOOP-BLOCK FOR INTEGRATING POINTS  --------
 C
+c         if(nlm.lt.10) then
+c            WRITE(*,*) 'posle integracione petlje'
+c            WRITE(3,*) 'posle integracione petlje'
+c         endif
 C KOSOVO
 c         IF(NAPON.EQ.1.AND.INDDTH.EQ.1.AND.IPG.GT.0) 
 c         maksimalni napon (sada aktivno gore)
@@ -2256,7 +2396,11 @@ C
 CS       RASPOREDJIVANJE MATRICE KRUTOSTI (SKE)
 CE       ASSEMBLE STIFFNESS MATRIX 
 C
-         IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM,ND)
+c         if(nlm.lt.10) then
+c            WRITE(*,*) 'pre spakuj'
+c            WRITE(3,*) 'pre spakuj'
+c         endif
+         IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
 C
 CS       RAZMESTANJE UNUTRASNJIH SILA FE U GLOBALNI VEKTOR FTDT
 CE       ASSEMBLE INTERNAL FORCE VECTOR
@@ -2294,6 +2438,10 @@ CE       GRMAS: MASS OF ELEMENT GROUP (NGE)
 C
 CELYK    END OF ASSEMBLING IF-BLOCK
 C
+c         if(nlm.lt.10) then
+c            WRITE(*,*) 'kraj petlje po elementima'
+c            WRITE(3,*) 'kraj petlje po elementima'
+c         endif
    10 CONTINUE
 C
 CELYK END OF LOOP FOR ELEMENTS
@@ -2630,6 +2778,7 @@ C     MATRICA ELAST
       RETURN
       END
 C======================================================================
+C======================================================================
       SUBROUTINE MEL349(FUN,NTA,TEM,MATE,TGT)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C     MICUN
@@ -2722,7 +2871,7 @@ C
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /SRPSKI/ ISRPS
       COMMON /CDEBUG/ IDEBUG
-      DIMENSION NOP(NE,*),CORD(NP,*),H(NCVE,*),IPERM(8),NCVOR(8)
+      DIMENSION NOP(NE,*),CORD(NP,*),H(NCVE,*),IPERM(8),NCVOR(21)
       DATA IPERM/2,3,4,1,6,7,8,5/
 C
       IF(IDEBUG.GT.0) PRINT *, ' JACTE3'
@@ -2736,7 +2885,7 @@ C
       SS=1.0-S*S
       TT=1.0-T*T
 C
-C     INTERPOLACIJSKE FINKCIJE I NJIHOVI IZVODI
+C     INTERPOLACIJSKE FUNKCIJE I NJIHOVI IZVODI
 C
 C
 C     PRVIH 8 CVOROVA
@@ -3157,7 +3306,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE MDMAT3(DEF,TAU,NMODM,IRAC,LPLAS,LPLA1,IBTC,TGT,INTGL,
-     1                  lpla0)
+     1                  lpla0,AU)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DIMENSION TAU(6),DEF(6)
 C
@@ -3171,13 +3320,16 @@ CS.       RELACIJA
 C .
 C ......................................................................
 C
+      DIMENSION AU(*)
+      REAL AU
+C
       GO TO (   999,999,999,999,  5,  6,  7,  8,  9, 10,
      1          999,999, 13, 14, 15, 16, 17, 18, 19, 20,
      2           21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
      3           31,999,999,999,999,999,999,999,999,999,
      4           41, 42, 43, 44, 45,999,999,999, 49,999,
-     5          999, 52, 53, 54,999,999,999,999,999,999,
-     6           61,999,999,999,999,999,999,999,999,999,
+     5          999, 52, 53, 54,999, 56,999,999,999,999,
+     6           61,999,999,999,999, 66,999,999,999,999,
      7          999,999,999,999,999,999,999,999,999,999,
      8          999,999,999,999,999,999,999,999,999,999,
      9          999,999,999,999,999,999,999,999,999,999),NMODM
@@ -3224,7 +3376,7 @@ CE    STRESS INTEGRATION FOR MATERIAL MODEL 6, SEE /11/ USER MANUAL
       RETURN
    26 CALL D3M26(TAU,DEF,IRAC,LPLAS,LPLA1)
       RETURN
-   27 CALL D3M27(TAU,DEF,IRAC,LPLAS,LPLA1)
+   27 CALL D3M27(TAU,DEF,TGT,IRAC,LPLAS,LPLA1)
       RETURN
    28 CALL D3M28(TAU,DEF,IRAC,LPLAS,LPLA1)
       RETURN
@@ -3261,8 +3413,15 @@ C     SMA
 C     SMA VLADA
    54 CALL D3M54(TAU,DEF,IRAC,LPLAS,LPLA1)
       RETURN
+C     CONCRETE DAMAGE
+   56 CALL D3M56(TAU,DEF,IRAC,LPLAS,LPLA1,AU)
+      RETURN         
 C     Isotropic Damage Model (Oliver 1996)
    61 CALL D3M61(TAU,DEF,IRAC,LPLAS,LPLA1)
+      RETURN
+CE    PHASE-FIELD DAMAGE MODEL 66, SEE /11/ USER MANUAL
+   66 IF(INTGL.EQ.0) CALL D3M66 (TAU,DEF,IRAC,LPLAS,LPLA1)
+      IF(INTGL.EQ.1) CALL D3M66D (TAU,DEF,IRAC,LPLAS,LPLA1)
   999 RETURN
       END
 C=======================================================================
@@ -3553,5 +3712,347 @@ C PREVODJENJE U VEKTOR
    	
       RETURN
       END
+C======================================================================
+      SUBROUTINE JACTE33(NOP,CORD,H,R,S,T,KFIX)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.   P R O G R A M
+CE.       FOR INTERPOLATION FUNCTIONS AND JACOBIAN MATRIX IN CURRENT
+CE.       INTEGRATION POINT (R,S,T - ARE NATURAL COORDINATES)
+C .
+C ......................................................................
+C
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
+      COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /ORIENT/ CPP(3,3),XJJ(3,3),TSG(6,6),BETA,LBET0,IBB0
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SRPSKI/ ISRPS
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION NOP(NE,*),CORD(NP,*),H(NCVE,*),IPERM(8),NCVOR(10)
+      DATA IPERM/2,3,4,1,6,7,8,5/
+C
+      IF(IDEBUG.GT.0) PRINT *, ' JACTE33'
+C
+C     INTERPOLACIJSKE FINKCIJE I NJIHOVI IZVODI
+C
+C
+C     PRVIH 4 CVOROVA
+C
+      H(1,1)=T
+      H(2,1)=R
+      H(3,1)=1-R-S-T
+      H(4,1)=S
+C
+      H(1,2)= 0.
+      H(2,2)= 1.
+      H(3,2)=-1.
+      H(4,2)= 0.
+C
+      H(1,3)= 0.
+      H(2,3)= 0.
+      H(3,3)=-1.
+      H(4,3)= 1.
+C
+      H(1,4)= 1.
+      H(2,4)= 0.
+      H(3,4)=-1.
+      H(4,4)= 0.
+C
+      IF(NCVE.EQ.4) GO TO 50
+      IF(NCVE.NE.10) STOP 'NCVE.NE.10'
+      I=0
+   55 I=I+1
+      NN=I+4
+      IF(NOP(NLM,NN).EQ.0) GO TO 55
+      GO TO (5,6,7,8,9,10),I
+C
+C     STEPENE SLOBODE ZA CVOROVE PREKO 4
+C
+C     PETI CVOR
+    5 H(5,1)= 4.*R*S
+      H(5,2)= 4.*S
+      H(5,3)= 4.*R
+      H(5,4)= 0.
+      GO TO 55
+C     SESTI CVOR
+    6 H(6,1)= 4.*R*T
+      H(6,2)= 4.*T
+      H(6,3)= 0.
+      H(6,4)= 4.*R
+      GO TO 55
+C     SEDMI CVOR
+    7 H(7,1)= 4.*S*T
+      H(7,2)= 0.
+      H(7,3)= 4.*T
+      H(7,4)= 4.*S
+      GO TO 55
+C     OSMI CVOR
+    8 H(8,1)= 4.*R*(1.-R-S-T)
+      H(8,2)= 4.*(1.-R-S-T)-4.*R
+      H(8,3)=-4.*R
+      H(8,4)=-4.*R
+      GO TO 55
+C     DEVETI CVOR
+    9 H(9,1)= 4.*S*T
+      H(9,2)= 0.
+      H(9,3)= 4.*T
+      H(9,4)= 4.*S
+      GO TO 55
+C     DESETI CVOR
+   10 H(10,1)= 4.*S*(1.-R-S-T)
+      H(10,2)= 4.*(1.-R-S-T)-4.*S
+      H(10,3)=-4.*S
+      H(10,4)=-4.*S
+C
+C     KOREKCIJE PRVIH 4 FUNKCIJA AKO SU UPOTREBLJENI CVOROVI PREKO 4
+C
+C  MEDJUCVOROVI OD 5 DO 10
+      DO 210 J=1,4
+      H(1,J)=H(1,J)-0.5*(H(5,J)+H(7,J)+H(10,J))
+      H(2,J)=H(2,J)-0.5*(H(5,J)+H(6,J)+H(8,J))
+      H(3,J)=H(3,J)-0.5*(H(6,J)+H(7,J)+H(9,J))
+      H(4,J)=H(4,J)-0.5*(H(7,J)+H(8,J)+H(9,J))
+  210 CONTINUE
+C
+C     JAKOBIJAN U TACKI R,S,T
+C
+   50 DO 60 I=1,3
+      DO 60 J=1,3
+      XJ(I,J)=0.
+      DO 60 KM=1,NCVE
+      K=NOP(NLM,KM)
+      IF(K.EQ.0) GO TO 60
+      XJ(I,J)=XJ(I,J)+H(KM,I+1)*CORD(K,J)
+   60 CONTINUE
+      CALL JEDNA1(XJJ,XJ,9) 
+C
+C     DERERMINANTA JAKOBIJANA U TACKI R,S,T
+C
+      CALL MINV3(XJ,DET)
+      IF(DET.GT.1.D-13) RETURN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2000) NLM,KFIX,R,S,T,DET
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6000) NLM,KFIX,R,S,T,DET
+	write(izlaz,*) 'ncve',ncve
+      I0=0
+      I1=1
+      I7=7
+      I8=8
+      I19=19
+      I115=115
+      DO 61 KM=1,NCVE
+      K=NOP(NLM,KM)
+      IF(K.EQ.0) GO TO 61
+      NCVOR(KM)=K
+      WRITE(IZLAZ,1000) K,I0,I0,I8,(CORD(K,J),J=1,3)
+C      write(izlaz,1200) (h(km,j),j=1,4)
+   61 CONTINUE
+      WRITE(IZLAZ,1100) NLM,I19,I115,I1,I1,I7,NCVE
+      WRITE(IZLAZ,1100) (NCVOR(J),J=1,NCVE)
 
-        
+      STOP 'PROGRAM STOP - PAK32 - JACTE33'
+C
+C
+ 1000 FORMAT(4I10,3(1PE13.5))
+ 1100 FORMAT(8I10)
+ 1200 FORMAT(' h',4(1PE13.5))
+C-----------------------------------------------------------------------
+ 2000 FORMAT(' ** GRESKA **: NEGATIVNA ILI NULA DETERMINATA JAKOBIJANA',
+     1       ' ZA ELEMENT BR.',I5/
+     1       9X,'KFIX=',I5/
+     2       12X,'R=',F10.5/
+     3       12X,'S=',F10.5/
+     4       12X,'T=',F10.5/
+     5       10X,'DET=',F12.5)
+C-----------------------------------------------------------------------
+ 6000 FORMAT(/' ','ZERO OR NEGATIVE JACOBIAN DETERMINANTE'/
+     1' ','ELEMENT NUM. =',I5/
+     1       9X,'KFIX=',I5/
+     2       12X,'R=',F10.5/
+     3       12X,'S=',F10.5/
+     4       12X,'T=',F10.5/
+     5       10X,'DET=',D12.5)
+C-----------------------------------------------------------------------
+      END
+C======================================================================
+      SUBROUTINE JACTE33A(NOP,CORD,H,R,S,T,KFIX)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.   P R O G R A M
+CE.       FOR INTERPOLATION FUNCTIONS AND JACOBIAN MATRIX IN CURRENT
+CE.       INTEGRATION POINT (R,S,T - ARE NATURAL COORDINATES)
+C .
+C ......................................................................
+C
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /ELEIND/ NGAUSX,NGAUSY,NGAUSZ,NCVE,ITERME,MAT,IETYP
+      COMMON /ELEALL/ NETIP,NE,IATYP,NMODM,NGE,ISKNP,LMAX8
+      COMMON /ELEMEN/ ELAST(6,6),XJ(3,3),ALFA(6),TEMP0,DET,NLM,KK
+      COMMON /ORIENT/ CPP(3,3),XJJ(3,3),TSG(6,6),BETA,LBET0,IBB0
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SRPSKI/ ISRPS
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION NOP(NE,*),CORD(NP,*),H(NCVE,*),IPERM(8),NCVOR(10)
+      DATA IPERM/2,3,4,1,6,7,8,5/
+C
+      IF(IDEBUG.GT.0) PRINT *, ' JACTE33A'
+C
+C     INTERPOLACIJSKE FINKCIJE I NJIHOVI IZVODI
+C
+C      WRITE(3,1001) NCVE
+C      DO I=1,47
+C        WRITE(3,1001) (NOP(I,J), J=1,10)
+C      ENDDO
+C 1001 FORMAT(10I5)
+C      STOP
+C
+C     PRVIH 4 CVOROVA
+C
+      H(1,1)= 1-R-S-T
+      H(2,1)= R
+      H(3,1)= S
+      H(4,1)= T
+C
+      H(1,2)=-1.
+      H(2,2)= 1.
+      H(3,2)= 0.
+      H(4,2)= 0.
+C
+      H(1,3)=-1.
+      H(2,3)= 0.
+      H(3,3)= 1.
+      H(4,3)= 0.
+C
+      H(1,4)=-1.
+      H(2,4)= 0.
+      H(3,4)= 0.
+      H(4,4)= 1.
+C
+      IF(NCVE.EQ.4) GO TO 50
+      IF(NCVE.NE.10) STOP 'NCVE.NE.10'
+      I=0
+   55 I=I+1
+      NN=I+4
+      IF(NOP(NLM,NN).EQ.0) GO TO 55
+      GO TO (5,6,7,8,9,10),I
+C
+C     STEPENE SLOBODE ZA CVOROVE PREKO 4
+C
+C     PETI CVOR
+    5 H(5,1)= 4.*R*(1.-R-S-T)
+      H(5,2)= 4.*(1.-R-S-T)-4.*R
+      H(5,3)=-4.*R
+      H(5,4)=-4.*R
+      GO TO 55
+C     SESTI CVOR
+    6 H(6,1)= 4.*R*S
+      H(6,2)= 4.*S
+      H(6,3)= 4.*R
+      H(6,4)= 0.
+      GO TO 55
+C     SEDMI CVOR
+    7 H(7,1)= 4.*S*(1.-R-S-T)
+      H(7,2)=-4.*S
+      H(7,3)= 4.*(1.-R-S-T)-4.*S
+      H(7,4)=-4.*S
+      GO TO 55
+C     OSMI CVOR
+    8 H(8,1)= 4.*T*(1.-R-S-T)
+      H(8,2)=-4.*T
+      H(8,3)=-4.*T
+      H(8,4)= 4.*(1.-R-S-T)-4.*T
+      GO TO 55
+C     DEVETI CVOR
+    9 H(9,1)= 4.*R*T
+      H(9,2)= 4.*T
+      H(9,3)= 0.
+      H(9,4)= 4.*R
+      GO TO 55
+C     DESETI CVOR
+   10 H(10,1)= 4.*S*T
+      H(10,2)= 0.
+      H(10,3)= 4.*T
+      H(10,4)= 4.*S
+C
+C     KOREKCIJE PRVIH 4 FUNKCIJA AKO SU UPOTREBLJENI CVOROVI PREKO 4
+C
+C  MEDJUCVOROVI OD 5 DO 10
+      DO 210 J=1,4
+      H(1,J)=H(1,J)-0.5*(H(5,J)+H(7,J)+H(8,J))
+      H(2,J)=H(2,J)-0.5*(H(5,J)+H(6,J)+H(9,J))
+      H(3,J)=H(3,J)-0.5*(H(6,J)+H(7,J)+H(10,J))
+      H(4,J)=H(4,J)-0.5*(H(8,J)+H(9,J)+H(10,J))
+  210 CONTINUE
+C
+C     JAKOBIJAN U TACKI R,S,T
+C
+   50 DO 60 I=1,3
+      DO 60 J=1,3
+      XJ(I,J)=0.
+      DO 60 KM=1,NCVE
+      K=NOP(NLM,KM)
+      IF(K.EQ.0) GO TO 60
+      XJ(I,J)=XJ(I,J)+H(KM,I+1)*CORD(K,J)
+   60 CONTINUE
+      CALL JEDNA1(XJJ,XJ,9) 
+C
+C     DERERMINANTA JAKOBIJANA U TACKI R,S,T
+C
+      CALL MINV3(XJ,DET)
+      IF(DET.GT.1.D-13) RETURN
+      IF(ISRPS.EQ.0)
+     1WRITE(IZLAZ,2000) NLM,KFIX,R,S,T,DET
+      IF(ISRPS.EQ.1)
+     1WRITE(IZLAZ,6000) NLM,KFIX,R,S,T,DET
+	write(izlaz,*) 'ncve',ncve
+      I0=0
+      I1=1
+      I7=7
+      I8=8
+      I19=19
+      I115=115
+      DO 61 KM=1,NCVE
+      K=NOP(NLM,KM)
+      IF(K.EQ.0) GO TO 61
+      NCVOR(KM)=K
+      WRITE(IZLAZ,1000) K,I0,I0,I8,(CORD(K,J),J=1,3)
+C      write(izlaz,1200) (h(km,j),j=1,4)
+   61 CONTINUE
+      WRITE(IZLAZ,1100) NLM,I19,I115,I1,I1,I7,NCVE
+      WRITE(IZLAZ,1100) (NCVOR(J),J=1,NCVE)
+
+      STOP 'PROGRAM STOP - PAK32 - JACTE33A'
+C
+C
+ 1000 FORMAT(4I10,3(1PE13.5))
+ 1100 FORMAT(8I10)
+ 1200 FORMAT(' h',4(1PE13.5))
+C-----------------------------------------------------------------------
+ 2000 FORMAT(' ** GRESKA **: NEGATIVNA ILI NULA DETERMINATA JAKOBIJANA',
+     1       ' ZA ELEMENT BR.',I5/
+     1       9X,'KFIX=',I5/
+     2       12X,'R=',F10.5/
+     3       12X,'S=',F10.5/
+     4       12X,'T=',F10.5/
+     5       10X,'DET=',F12.5)
+C-----------------------------------------------------------------------
+ 6000 FORMAT(/' ','ZERO OR NEGATIVE JACOBIAN DETERMINANTE'/
+     1' ','ELEMENT NUM. =',I5/
+     1       9X,'KFIX=',I5/
+     2       12X,'R=',F10.5/
+     3       12X,'S=',F10.5/
+     4       12X,'T=',F10.5/
+     5       10X,'DET=',D12.5)
+C-----------------------------------------------------------------------
+      END

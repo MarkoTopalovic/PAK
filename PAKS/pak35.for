@@ -185,6 +185,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE ELTM3(SKE,LM,NEL,NMAT,HE,BET,CORD,IPGC,LMEL,GUSM,NCVE3)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     INTEGRACIJA MATRICE MASA 3D ELEMENATA
@@ -310,12 +311,12 @@ C     KONCETRISANA MATRICA MASA I PAKOVANJE
 C
       IF(IMASS.EQ.2)THEN
         CALL PODMA3(NEL,CMC)
-        CALL LUMMAS(A(LSK),A(LMAXA),NEL,LM,CMC,AMASA,NCVE,NE,NLM,3)
+        CALL LUMMAS(ALSM,A(LMAXA),NEL,LM,CMC,AMASA,NCVE,NE,NLM,3)
       ENDIF
 C
 C     PAKOVANJE KONZISTENTNE MATRICE ELEMENTA U MATRICU SISTEMA
 C
-      IF(IMASS.EQ.1) CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM,NCVE3)
+      IF(IMASS.EQ.1) CALL SPAKUJ(ALSM,A(LMAXA),SKE,LM,NCVE3)
       RETURN
       END
 C=======================================================================

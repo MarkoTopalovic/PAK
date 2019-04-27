@@ -53,6 +53,7 @@ C
       END
 C=====================================================================
       SUBROUTINE MASIG(AG,AE)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
 C
 C POTPROGRAM ZA POZIVANJE POTPROGRAMA ZA INTEGRALJENJE MATRICE
@@ -87,7 +88,7 @@ C
       LMXAE=LSKE + NT6*(NT6+1)/2*IDVA
 C
       CALL INTMG(A(LCORD),AG(LIGNOP),AG(LIGNDS),AG(LIGMAT),
-     *           AG(LIGDST),AG(LIGCTR),A(LMAXA),A(LSK),
+     *           AG(LIGDST),AG(LIGCTR),A(LMAXA),ALSK,
      *           AG(LLM),AE(LHE),AE(LH),AE(LSKE),A(LGUSM),LH)
 C
       RETURN

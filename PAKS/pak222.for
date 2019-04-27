@@ -371,6 +371,7 @@ C=======================================================================
      1                SKS,SKES,NDNDS,HS,QS,PS,ndead,tdth,
      1                CORS,NOC,NOS,PE,
      1                PN,PX,PY,AA,AI,AX,AY,WXY,FXY,IPRC)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     FORMIRANJE MATRICA ELEMENATA I SISTEMA
@@ -1737,12 +1738,12 @@ C
                   SKP1(J,I1)=SKP1(I1,J)
   483          CONTINUE
             ENDIF  
-            IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKP1,LM,ND)
+            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,ND)
          ELSE
 	WRITE(3,*)'NLM',NLM
 	CALL IWRR(LM,ND,'LM  ')
       CALL WRR(SKE,ND,'SKE ')
-            IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM,ND)
+            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
          ENDIF 
   20      continue
   25     continue 
@@ -1832,24 +1833,24 @@ C
 C    KOEFICIJENT ALFA SE RAZLIKUJE OD AUTORA DO AUTORA  
 C     
       ALF=0.4
-	DO 23 II=1,N
+      DO 23 II=1,N
      	   CI(II)=0.0
 C
          NN1=NOS(JGG,II)
          X1=CORD(NN1,1)
          Y1=CORD(NN1,2)
 C
-	DO 23 JJ=1,N
-	 IF(II.NE.JJ)THEN 
-	   NN2=NOS(JGG,JJ)
-         X2=CORD(NN2,1)
-         Y2=CORD(NN2,2)
+      DO 23 JJ=1,N
+         IF(II.NE.JJ)THEN 
+            NN2=NOS(JGG,JJ)
+            X2=CORD(NN2,1)
+            Y2=CORD(NN2,2)
 C
-         DX=X2-X1
-	   DY=Y2-Y1
-	   RASTOJ=DSQRT(DX*DX+DY*DY)
-	   IF(RASTOJ.GT.CI(II))CI(II)=RASTOJ
-	  ENDIF
+            DX=X2-X1
+            DY=Y2-Y1
+            RASTOJ=DSQRT(DX*DX+DY*DY)
+            IF(RASTOJ.GT.CI(II))CI(II)=RASTOJ
+         ENDIF
    23 CONTINUE
 C
       DO 25 II=1,N
@@ -1888,26 +1889,24 @@ C
 C      IZVODI MATRICE A, MATRICA DA1 PO X, DA2 PO Y
 C
       DO 80 iSS=1,M
-	DO 80 MM=1,M
-	   DA1(iSS,MM)=0
-	   DA2(iSS,MM)=0
+      DO 80 MM=1,M
+         DA1(iSS,MM)=0
+         DA2(iSS,MM)=0
       DO 80 II=1,N
-	   DA1(iSS,MM)=DA1(iSS,MM)+P(II,iSS)*WT(2,II)*P(II,MM)
-	   DA2(iSS,MM)=DA2(iSS,MM)+P(II,iSS)*WT(3,II)*P(II,MM)
+         DA1(iSS,MM)=DA1(iSS,MM)+P(II,iSS)*WT(2,II)*P(II,MM)
+         DA2(iSS,MM)=DA2(iSS,MM)+P(II,iSS)*WT(3,II)*P(II,MM)
    80 CONTINUE
 C   
 C      IZVODI MATRICE AM1, MATRICA DAM11 PO X, DAM12 PO Y   
 C
       DO 82 iSS=1,M
-	DO 82 iRR=1,M
-	   DAM11(iSS,iRR)=0
-	   DAM12(iSS,iRR)=0
-	   DO 82 MM=1,M
-	   DO 82 JJ=1,M
-	   DAM11(iSS,iRR)=DAM11(iSS,iRR)-
-     1                  AM1(iSS,MM)*DA1(MM,JJ)*AM1(JJ,iRR)
-	   DAM12(iSS,iRR)=DAM12(iSS,iRR)-
-     1                  AM1(iSS,MM)*DA2(MM,JJ)*AM1(JJ,iRR)
+      DO 82 iRR=1,M
+         DAM11(iSS,iRR)=0
+         DAM12(iSS,iRR)=0
+      DO 82 MM=1,M
+      DO 82 JJ=1,M
+        DAM11(iSS,iRR)=DAM11(iSS,iRR)-AM1(iSS,MM)*DA1(MM,JJ)*AM1(JJ,iRR)
+        DAM12(iSS,iRR)=DAM12(iSS,iRR)-AM1(iSS,MM)*DA2(MM,JJ)*AM1(JJ,iRR)
    82	CONTINUE 
 C
 C      INTERPOLACIONE FUNKCIJE (XG,YG) I NJIHOVI IZVODI
@@ -1918,15 +1917,15 @@ C
        HEFG(3,II)=0.0D0
       DO 40 JJ=1,M
       DO 40 MM=1,M
-      HEFG(1,II)=HEFG(1,II)+PV(1,MM)*AM1(MM,JJ)*P(II,JJ)*WT(1,II)
+         HEFG(1,II)=HEFG(1,II)+PV(1,MM)*AM1(MM,JJ)*P(II,JJ)*WT(1,II)
 
-      HEFG(2,II)=HEFG(2,II)+PV(2,MM)*AM1(MM,JJ)*P(II,JJ)*WT(1,II)
-     1   +PV(1,MM)*DAM11(MM,JJ)*P(II,JJ)*WT(1,II)
-     1   +PV(1,MM)*AM1(MM,JJ)*P(II,JJ)*WT(2,II)
+         HEFG(2,II)=HEFG(2,II)+PV(2,MM)*AM1(MM,JJ)*P(II,JJ)*WT(1,II)
+     1                      +PV(1,MM)*DAM11(MM,JJ)*P(II,JJ)*WT(1,II)
+     1                        +PV(1,MM)*AM1(MM,JJ)*P(II,JJ)*WT(2,II)
 
-      HEFG(3,II)=HEFG(3,II)+PV(3,MM)*AM1(MM,JJ)*P(II,JJ)*WT(1,II)
-     1   +PV(1,MM)*DAM12(MM,JJ)*P(II,JJ)*WT(1,II)
-     1   +PV(1,MM)*AM1(MM,JJ)*P(II,JJ)*WT(3,II)
+         HEFG(3,II)=HEFG(3,II)+PV(3,MM)*AM1(MM,JJ)*P(II,JJ)*WT(1,II)
+     1                      +PV(1,MM)*DAM12(MM,JJ)*P(II,JJ)*WT(1,II)
+     1                        +PV(1,MM)*AM1(MM,JJ)*P(II,JJ)*WT(3,II)
    40 CONTINUE 
 C
 C     KONTROLNA STAMPA

@@ -33,6 +33,7 @@
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSK
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSM
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSC
+        INTEGER*8 NWMmod
       END MODULE
 !
 !     podaci o preseku za koji se crtaju rezultati za djerdap

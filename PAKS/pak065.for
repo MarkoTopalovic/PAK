@@ -4,7 +4,7 @@
       INCLUDE 'dmumps_struc.h'
       TYPE (DMUMPS_STRUC) mumps_par
 c      common /mumps/ mumps_par
-      INTEGER IERR,I,j,n,nz,irn(nz),jcn(nz),kkk
+      INTEGER IERR,I,j,n,nz,irn(nz),jcn(nz),kkk,memsk,iAllocateStatus
       double precision a,rhs,amax
       dimension a(nz),rhs(n)
 c      amax=a(1)
@@ -39,10 +39,21 @@ C  Define problem on the host (processor 0)
             mumps_par%NZ=nz
 c           READ(5,*) mumps_par%N
 c           READ(5,*) mumps_par%NZ
-            ALLOCATE( mumps_par%IRN ( mumps_par%NZ ) )
-            ALLOCATE( mumps_par%JCN ( mumps_par%NZ ) )
-            ALLOCATE( mumps_par%A ( mumps_par%NZ ) )
-            ALLOCATE( mumps_par%RHS ( mumps_par%N  ) )
+            memsk=(8*(2*mumps_par%NZ+mumps_par%N))/1000000
+            write(*,*) ' stiffness matrix memory MB=',memsk 
+            write(3,*) ' stiffness matrix memory MB=',memsk 
+      ALLOCATE( mumps_par%IRN ( mumps_par%NZ ), STAT = iAllocateStatus)
+      IF (iAllocateStatus /= 0) write(3,*)'IRN Not enough memory ***'
+      IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
+      ALLOCATE( mumps_par%JCN ( mumps_par%NZ ), STAT = iAllocateStatus)
+      IF (iAllocateStatus /= 0) write(3,*)'JCN Not enough memory ***'
+      IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
+      ALLOCATE( mumps_par%A ( mumps_par%NZ ), STAT = iAllocateStatus )
+      IF (iAllocateStatus /= 0) write(3,*)'SK Not enough memory ***'
+      IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
+      ALLOCATE( mumps_par%RHS ( mumps_par%N ), STAT = iAllocateStatus)
+      IF (iAllocateStatus /= 0) write(3,*)'RHS Not enough memory ***'
+      IF (iAllocateStatus /= 0) STOP '*** Not enough memory ***'
             DO I = 1, mumps_par%NZ
                mumps_par%IRN(I)=irn(i)
                mumps_par%JCN(I)=jcn(i)

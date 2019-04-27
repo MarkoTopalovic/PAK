@@ -66,7 +66,7 @@ C       WRITE(*,*) '6 - PAKP'
 C       WRITE(*,*) '7 - PAKP + PAKS'
 C       READ(*,*) KOJPAK
         iBrisiBrojac = 0 !ovo moze da se obrise pomocni brojac za debug
-        KOJPAK=7
+        KOJPAK=5
         mcm_kojpak = KOJPAK
         pakV_pisiNEU = .TRUE.
         IF(KOJPAK.EQ.0) KOJPAK=3

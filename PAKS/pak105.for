@@ -2,6 +2,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE MIKA(NPODS)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -69,9 +70,9 @@ C              CALL IWRR(A(LMAXA),JEDN,'MAX1')
 C              CALL WRR(A(LSK),NWG,'SK1 ')
 C              LDLT - Kj
             ENDIF
-            CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,1)
+            CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
             IF (myid.eq.0) THEN
-               CALL WSTAZK(NPODS,LSK,60)
+C               CALL WSTAZK(NPODS,LSK,60)!todo topalovic proveriti da li treba komentar
                LRAD=LID
             ENDIF
   250    CONTINUE
@@ -94,12 +95,12 @@ C
             LMAX13=NPODS(JPBR,12)-1
             CALL IREADD(A(LIGRUP),NP6,IPODS,LMAX13,LDUZI)
             LMAX13=NPODS(JPBR,61)-1
-            CALL READDD(A(LSK),NWK-NWP,IPODS,LMAX13,LDUZI)
-            CALL TROUGO(A(LSK),A(LSKG),A(LMAXA+JEDNP),JED,NWP)
+            CALL READDD(ALSK,NWK-NWP,IPODS,LMAX13,LDUZI)
+            CALL TROUGO(ALSK,A(LSKG),A(LMAXA+JEDNP),JED,NWP)
             LMAX13=NPODS(JPBR,37)-1
 C           Kbb
             CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
-            IF(IST.EQ.1) CALL WRR(A(LSK),NWK-NWP,'SK  ')
+C            IF(IST.EQ.1) CALL WRR(A(LSK),NWK-NWP,'SK  ')!todo topalovic proveriti da li treba komentar
             IF(IST.EQ.1) CALL WRR(A(LSKG),NWKP,'SKG ')
   300    CONTINUE
       ENDIF
@@ -114,7 +115,7 @@ C
 C
          LSK=LRAD
          LRAD=LSK+NWG*IDVA
-         CALL CLEAR(A(LSK),NWG)
+         CALL CLEAR(ALSK,NWG)
 C
          DO 400 JPBR=1,JPS
             JEDN=NPODS(JPBR,6)
@@ -129,18 +130,18 @@ C
             CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
             LMAX13=NPODS(JPBR,27)-1
             CALL IREADD(A(LLMG),JED,IPODS,LMAX13,LDUZI)
-            CALL SPAKUJ(A(LSK),A(JMAXA),A(LSKG),A(LLMG),JED)
+            CALL SPAKUJ(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
   400    CONTINUE
          JPBR=JPS1
          JEDN=JEDNG
 C        LDLT - Kg
-         IF(IST.EQ.1) CALL WRR(A(LSK),NWG,'KG1 ')
+C         IF(IST.EQ.1) CALL WRR(A(LSK),NWG,'KG1 ')
 C         CALL IWRR(A(JMAXA),JEDN,'MAXA')
 C         CALL WRR(A(LSK),NWG,'A   ')
       ENDIF
-      CALL RESEN(A(LSK),A(LRTDT),A(JMAXA),JEDN,1)
+      CALL RESEN(ALSK,A(LRTDT),A(JMAXA),JEDN,1)
       IF (myid.eq.0) THEN
-         IF(IST.EQ.1)  CALL WRR(A(LSK),NWG,'KGIN')
+C         IF(IST.EQ.1)  CALL WRR(A(LSK),NWG,'KGIN')!todo topalovic proveriti da li treba komentar
          CALL WSTAZK(NPODS,LSK,60)
          LRAD=JMAXA
          IF(IST.EQ.1) WRITE(3,*) 'LRAD100',LRAD
@@ -179,7 +180,7 @@ C              LDLT - Kg
                IF(IST.EQ.1) CALL WRR(A(LRTDT),JEDN,'POCE')
             ENDIF
       IF(IST.EQ.1) CALL WRR(A(LRTDT),JEDN,'POCE')
-            CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,2)
+            CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,2)
             IF (myid.eq.0) THEN
                IF(IST.EQ.1) CALL WRR(A(LRTDT),JEDN,'RDES')
                LMAX13=NPODS(JPBR,39)-1+NST
@@ -223,11 +224,11 @@ CE          BACKSUBSTITUTION - SOLUTION OF SYSTEM EQUATIONS
 CS          ZAMENA UNAZAD - RESAVANJE :SISTEMA JEDNACINA
 C
 C           6.           Kg . Xg(k) = Fg(k)
-            IF(IST.EQ.1) CALL WRR(A(LSK),NWG,'KG  ')
+C            IF(IST.EQ.1) CALL WRR(A(LSK),NWG,'KG  ')!todo topalovic proveriti da li treba komentar
             IF(IST.EQ.1) CALL WRR(A(LRTDT),JEDN,'RTDT')
             IF(IST.EQ.1) CALL IWRR(A(JMAXA),JEDN+1,'MAXA')
          ENDIF
-         CALL RESEN(A(LSK),A(LRTDT),A(JMAXA),JEDN,2)
+         CALL RESEN(ALSK,A(LRTDT),A(JMAXA),JEDN,2)
          IF (myid.eq.0) THEN
             IF(IST.EQ.1) CALL WRR(A(LRTDT),JEDN,'UTDT')
 C
@@ -286,7 +287,7 @@ C              LDLT - Kg
                LMAX13=NPODS(JPBR,39)-1+NST
                CALL READDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
             ENDIF
-            CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,3)
+            CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,3)
             IF (myid.eq.0) THEN
                LMAX13=NPODS(JPBR,39)-1+NST
 C              7.    Xj(k)**
@@ -357,7 +358,7 @@ C                 CALL IWRR(A(LMAXA),JEDN,'MAX ')
 C                 CALL WRR(A(LSK),NWK,'M   ')
                   LMAX13=NPODS(JPBR,39)-1+NST
                   CALL READDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
-                  CALL MAXAPR(A(LSK),A(LRTDT),A(LRM),A(LMAXA),JEDN)
+                  CALL MAXAPR(ALSK,A(LRTDT),A(LRM),A(LMAXA),JEDN)
                   LMAX13=NPODS(JPBR,39)-1+NST
                   CALL WRITDD(A(LRM),JEDN,IPODS,LMAX13,LDUZI)
 C
@@ -383,7 +384,7 @@ C              M -
                CALL RSTAZK(NPODS,LSK,54)
                LMAX13=NPODS(JPBR,52)-1+NST
                CALL READDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
-               CALL MAXAPR(A(LSK),A(LRTDT),A(LRM),A(LMAXA),JEDN)
+               CALL MAXAPR(ALSK,A(LRTDT),A(LRM),A(LMAXA),JEDN)
                CALL SCALAR(A(LRM),A(LRTDT),ALF,JEDN)
                ALFA=ALFA+ALF
 C
@@ -413,7 +414,7 @@ C
 C              15.NALAZENJE  Fj(k+1)
 C
                CALL CLEAR(A(LRTDT),JEDN)
-               CALL MAXAPR(A(LSK),A(LRM),A(LRTDT),A(LMAXA),JEDN)
+               CALL MAXAPR(ALSK,A(LRM),A(LRTDT),A(LMAXA),JEDN)
                IF(IX.LT.NSOPV) THEN
                   LMAX13=NPODS(JPBR,39)-1+NST+NSTAZ
                   CALL WRITDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
@@ -454,7 +455,7 @@ C            CALL WRR(A(LRTDT),JEDN*NSOPV,'RTDT')
             DO 920 I=1,NSOPV
                LRTD=LRTDT+JEDN*(I-1)*IDVA
                CALL CLEAR(A(LRM),JEDN)
-               CALL MAXAPR(A(LSK),A(LRTD),A(LRM),A(LMAXA),JEDN)
+               CALL MAXAPR(ALSK,A(LRTD),A(LRM),A(LMAXA),JEDN)
             DO 920 J=1,NSOPV
                IJ=IJ+1
                LS=LSKG+IJ*IDVA
