@@ -842,8 +842,8 @@ C           CALL WRR(A(LRTDT),JEDN,'RKO1')
 C
             IF(IREST.EQ.1.AND.METOD.EQ.-1.AND.
      1          KOR.EQ.1.AND.ITER.EQ.0.AND.NBLOCK.EQ.1) THEN
-C               CALL READD(A(LSK),NWK,ILDLT)!todo topalovic proveriti komentar
-C               CALL WRR(A(LSK),NWK,'RLDL')
+               CALL READD(ALSK,NWK,ILDLT)
+C               CALL WRR(ALSK,NWK,'RLDL')
             ENDIF
 C            IF(IREST.EQ.1.AND.VREME.LE.TSTART) RETURN
 C            CALL WRR6(A(LSK),NWK,'SK00')

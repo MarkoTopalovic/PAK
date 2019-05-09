@@ -543,9 +543,9 @@ C???  NIJE UGRADJEN NELINEARNI ALGORITAM ZA CENTRALNE RAZLIKE
       LPUU=LUMC+JEDN*IDVA
       LMAX=LPUU+JEDN*IDVA
 C     (T)R
-C      CALL RSTAZ(A(LIPODS),LRTDT,38)!todo topalovic proveriti da li treba komentar
+      CALL RSTAZ(A(LIPODS),LRTDT,38)
 C     (T)UU
-C      CALL RSTAZ(A(LIPODS),LPUU,59)!todo topalovic proveriti da li treba komentar
+      CALL RSTAZ(A(LIPODS),LPUU,59)
       LSKP=LMAX
       LMAX=LSKP+NWK*IDVA
 CE    READ LINEAR MATRIX K FROM DISK 4
@@ -554,19 +554,18 @@ C!!!! PROVERI DA LI JE U (LSK) MATRICA KRUTOSTI !!!!!!!???????
 C     CALL RSTAZK(A(LIPODS),LSKP,35)
 C     (T)R=(T)R-K*(T)UU
 cc      IF(KOR.GT.1) THEN
-!        NUL=NWK
-        NUL=NWMmod
+        NUL=NWK
         IF(NBLOCK.GT.1) NUL=KC
-       CALL CLEARB(ALSM,A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)! nul treba da bude dimenzija alsm
+       CALL CLEARB(A(LSKP),A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
         OPEN (ISCRC,FILE='ZSKLIN',FORM='UNFORMATTED',STATUS='UNKNOWN')
         REWIND ISCRC
         LLM =LMAX
         LSKE=LLM+100
-        CALL SPAKUA(ALSM,A(LMAXA),A(LSKE),A(LLM),ND,1,
+        CALL SPAKUA(A(LSKP),A(LMAXA),A(LSKE),A(LLM),ND,1,
      &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
         CLOSE (ISCRC,STATUS='KEEP')
 cc      ENDIF
-      CALL MAXAPM(ALSM,A(LPUU),A(LRTDT),A(LMAXA),JEDN)
+      CALL MAXAPM(A(LSKP),A(LPUU),A(LRTDT),A(LMAXA),JEDN)
 c      call wrr6(a(LskP),NWK,'sk  ')
 c      call wrr6(a(LRTDT),jedn,'R1  ')
 
@@ -586,26 +585,26 @@ c      call iwrr(a(LMAXA),jedn,'MAXA')
 
 C     (T)R=(T)R+(A0*M+A1*C)*(T-T)UU
       if (IABS(ICCGG).EQ.1) then 
-         IF(IMASS.NE.2) CALL MAXAPRI(ALSM,A(LUMC),A(LRTDT),
+         IF(IMASS.NE.2) CALL MAXAPRI(ALSK,A(LUMC),A(LRTDT),
      1                       JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-         IF(IMASS.NE.2) CALL MAXAPR(ALSM,A(LUMC),A(LRTDT),
+         IF(IMASS.NE.2) CALL MAXAPR(ALSK,A(LUMC),A(LRTDT),
      &                       A(LMAXA),JEDN)
       endif
 C      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
 C sneza proba
-      IF(IMASS.EQ.2) CALL MAXAPR(ALSM,A(LUMC),A(LRTDT),A(LMAXA),JEDN)
+      IF(IMASS.EQ.2) CALL MAXAPR(ALSK,A(LUMC),A(LRTDT),A(LMAXA),JEDN)
 c      call wrr6(a(LUMC),jedn,'LUMC  ')
 c      call wrr6(a(LRTDT),jedn,'R2  ')
 C
-      CALL JEDNA1(ALSM,A(LUMC),JEDN)
+      CALL JEDNA1(A(LSKP),A(LUMC),JEDN)
       AM2=-A2
 C     A2*(T)UU-A2*(T-T)UU
-      CALL ZBIR2(A(LUMC),A(LPUU),ALSM,A2,AM2,JEDN)
+      CALL ZBIR2(A(LUMC),A(LPUU),A(LSKP),A2,AM2,JEDN)
 CE    READ LINEAR MATRIX M FROM DISK 11
 CS    UCITAVANJE LINEARNE MATRICE M SA DISKA 11
-C      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,54)
-C      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,54)
+      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,54)
+      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,54)
 c      call wrr6(a(LSKP),NWK,'MMAS')
 c      call wrr6(a(LUMC),jedn,'A2DU')
 C     (T)R=(T)R+A2*M*((T)UU-(T-T)UU)
