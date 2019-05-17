@@ -875,8 +875,8 @@ C OPASNO !!! PRIVREMENO ZA CAM-CLAY
       EMIN=TOLA
 C      EMIN=1.D-15
 C      WRITE(3,*) 'KOR,ITER,JEDN,NZADP,ICONT',KOR,ITER,JEDN,NZADP,ICONT
-C      CALL WRR(A(LRTDT),JEDN,'RTDT')
-C      CALL WRR(A(LFTDT),JEDN,'FTDT')
+      CALL WRR(A(LRTDT),JEDN,'RTDT')
+      CALL WRR(A(LFTDT),JEDN,'FtDT')
       IF(NZADP.EQ.0) THEN
          IF(ITER.GT.0) GO TO 10
       ELSE
@@ -1355,9 +1355,9 @@ C
 C
 C     FAKTORIZACIJA UKUPNE EFEKTIVNE MATRICE SISTEMA: KEF = L*D*LT
 C
-C      CALL WRR6(A(LSK),NWK,'REFN')
+      CALL WRR6(ALSK,NWK,'REFN')
  10   CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
-      IF (myid.eq.0) CALL WSTAZKMT(NPODS,LSK,60)!todo topalovic proveriti
+      !IF (myid.eq.0) CALL WSTAZKMT(NPODS,LSK,60)!todo topalovic proveriti
       RETURN
       END
 C=======================================================================

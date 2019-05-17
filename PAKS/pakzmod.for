@@ -23,7 +23,7 @@
         INTEGER*4, DIMENSION(:,:), ALLOCATABLE :: VTKELEMENTI
       END MODULE
 !     ovo sluzi za citanje / pisanje mesto fajla ali samo za 1 slucaj koji je pravio problem      
-      MODULE WSTAZK
+      MODULE WSTAZKTOP
         LOGICAL ALLOCIRANAMATRICA
         REAL*8, DIMENSION(:), ALLOCATABLE :: RTWRITE
       END MODULE

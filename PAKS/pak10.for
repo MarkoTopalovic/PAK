@@ -501,6 +501,7 @@ C=======================================================================
       SUBROUTINE CENRAZ
       USE MATRICA
       USE DRAKCE8
+      USE WSTAZKTOP
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -566,8 +567,8 @@ cc      IF(KOR.GT.1) THEN
         CLOSE (ISCRC,STATUS='KEEP')
 cc      ENDIF
       CALL MAXAPM(A(LSKP),A(LPUU),A(LRTDT),A(LMAXA),JEDN)
-c      call wrr6(a(LskP),NWK,'sk  ')
-c      call wrr6(a(LRTDT),jedn,'R1  ')
+      call wrr6(a(LskP),NWK,'sk  ')
+      CALL WRR(A(LRTDT),JEDN,'R1  ')
 
 C
 C     (T-T)UU
@@ -579,11 +580,14 @@ CS    UCITAVANJE LINEARNE EFEKTIVNE MATRICE (A0*M+A1*C) SA DISKA 7
 C      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,58)
 c      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,58)
 C sneza proba
-C      IF(IMASS.EQ.2) CALL RSTAZK(A(LIPODS),LSKP,58)
-c      call wrr6(a(LSKP),NWK,'MEFE')
+      IF(IMASS.EQ.2) CALL RSTAZK(A(LIPODS),LSKP,58)
+      call wrr6(a(LSKP),NWK,'MEFE')
+      !call wrr6(RTWRITE,NWK,'RTW2')
 c      call iwrr(a(LMAXA),jedn,'MAXA')
 
 C     (T)R=(T)R+(A0*M+A1*C)*(T-T)UU
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBI9')
+      !if(jedn.le.30) CALL WRR6(A(LSKP),NWK,'ZBA9')
       if (IABS(ICCGG).EQ.1) then 
          IF(IMASS.NE.2) CALL MAXAPRI(ALSK,A(LUMC),A(LRTDT),
      1                       JEDN,AIROWS,AIROWS(nwk+1),nwk)
@@ -593,9 +597,10 @@ C     (T)R=(T)R+(A0*M+A1*C)*(T-T)UU
       endif
 C      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
 C sneza proba
-      IF(IMASS.EQ.2) CALL MAXAPR(ALSK,A(LUMC),A(LRTDT),A(LMAXA),JEDN)
-c      call wrr6(a(LUMC),jedn,'LUMC  ')
-c      call wrr6(a(LRTDT),jedn,'R2  ')
+      CALL WRR(A(LSKP),JEDN,'c65 ')
+      IF(IMASS.EQ.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),A(LMAXA),JEDN)
+      call wrr6(a(LUMC),jedn,'LUMC  ')
+      call wrr6(a(LRTDT),jedn,'R2  ')
 C
       CALL JEDNA1(A(LSKP),A(LUMC),JEDN)
       AM2=-A2
@@ -619,7 +624,7 @@ C     (T)R=(T)R+A2*M*((T)UU-(T-T)UU)
 C
 C     (T)R
       CALL WSTAZ(A(LIPODS),LRTDT,38)
-c      call wrr6(a(LRTDT),jedn,'RTDT')
+      call wrr6(a(LRTDT),jedn,'RTDT')
       LMAX=LUMC
       RETURN
       END

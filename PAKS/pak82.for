@@ -269,6 +269,7 @@ C
       COMMON /CDEBUG/ IDEBUG
 C
       IF(IDEBUG.GT.0) PRINT *, ' SISTEL'
+
 C      WRITE(3,*) 'LLJUS',LLJUS
       LA=1
       IF(IPODT.EQ.0.OR.IPODT.EQ.4.OR.IPODT.EQ.5) THEN
@@ -303,6 +304,7 @@ C      CALL WRR(AU(LALFE),(LMXAU-LALFE)/IDVA,'WA82')
          IF(IDIREK.EQ.0) RETURN
       ENDIF
 C
+      
       IF(IATYP.EQ.0) GO TO 10
       IF(NMODM.LE.4) GO TO 10
       IF(IILS.NE.-1) THEN
@@ -350,6 +352,7 @@ C=======================================================================
      1                 ALFE,HAEM,HINV,GEEK,NCVE3,IALFA,LA,UPRI,COR0,GM0,
      1                 TEMGT,CORGT,AU,N45,ZAPS,NPRZ,INDZS,GUSM,KAKO6,
      1                 CEGE,IPGC,ESILA,IPRC,TBTH,TDTH,MCVEL,NCVEL,ICVEL)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     FORMIRANJE MATRICA ELEMENATA I SISTEMA
@@ -693,7 +696,8 @@ C            WRITE(3,*) 'BB0',BB0
                ENDIF
             ENDIF
  1010 FORMAT(5I8,F10.3,I5,2F10.3,3F5.2)
-   40    CONTINUE
+   40          CONTINUE
+               
          RETURN
       ENDIF
 CS.....   REPERI ZA MODEL MATERIJALA  
@@ -1299,7 +1303,7 @@ C
    20    CONTINUE
          IF(NGAUSU.LT.NGS12) GO TO 998
 C
-   25 CONTINUE
+   25    CONTINUE
 C
 CS-------------------------- KRAJ PETLJE PO GAUSOVIM TACKAMA --------
 CE-------------------------- END  LOOP  OVER  GAUSS  POINTS  --------
@@ -1338,7 +1342,7 @@ C
             IF(ISKNP.NE.2)
      1      CALL INTEGK(SKE,GEEK(1,1,NLM),HINV(1,1,NLM),LM,-1.D0,ND,LA)
 C
-         ENDIF
+      ENDIF
 C
 CS       RASPOREDJIVANJE MATRICE KRUTOSTI (SKE)
 CE       ASSEMBLE STIFFNESS MATRIX
