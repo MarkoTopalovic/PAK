@@ -23,7 +23,7 @@
         INTEGER*4, DIMENSION(:,:), ALLOCATABLE :: VTKELEMENTI
       END MODULE
 !     ovo sluzi za citanje / pisanje mesto fajla ali samo za 1 slucaj koji je pravio problem      
-      MODULE WSTAZKTOP
+      MODULE WSTAZK
         LOGICAL ALLOCIRANAMATRICA
         REAL*8, DIMENSION(:), ALLOCATABLE :: RTWRITE
       END MODULE
@@ -33,7 +33,6 @@
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSK
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSM
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSC
-        INTEGER*8 NWMmod
       END MODULE
 !
 !     podaci o preseku za koji se crtaju rezultati za djerdap

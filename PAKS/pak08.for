@@ -642,7 +642,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE BACKSB(D)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C....   ZAMENA UNAZAD  (BACKSUBSTITUTION)
       include 'paka.inc'
@@ -660,7 +659,7 @@ C
 C
 C         CALL WRR(A(LSK),NWK,'S8-1')
 C         CALL WRR(D,JEDN,'RTD8')
-      CALL RESEN(ALSK,D,A(LMAXA),JEDN,2)
+      CALL RESEN(A(LSK),D,A(LMAXA),JEDN,2)
 C         CALL WRR(D,JEDN,'RES8')
       RETURN
       END
@@ -668,7 +667,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE FRESID(NPODS)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       include 'paka.inc'
       
@@ -717,7 +715,7 @@ C
             CALL DESSTR(NPODS)
 C
  10         IF(JPS.GT.1) THEN
-               CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,2)
+               CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,2)
                IF (myid.eq.0) then
                   LMAX13=NPODS(JPBR,39)-1
                   CALL WRITDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
@@ -875,8 +873,8 @@ C OPASNO !!! PRIVREMENO ZA CAM-CLAY
       EMIN=TOLA
 C      EMIN=1.D-15
 C      WRITE(3,*) 'KOR,ITER,JEDN,NZADP,ICONT',KOR,ITER,JEDN,NZADP,ICONT
-      CALL WRR(A(LRTDT),JEDN,'RTDT')
-      CALL WRR(A(LFTDT),JEDN,'FtDT')
+C      CALL WRR(A(LRTDT),JEDN,'RTDT')
+C      CALL WRR(A(LFTDT),JEDN,'FTDT')
       IF(NZADP.EQ.0) THEN
          IF(ITER.GT.0) GO TO 10
       ELSE
@@ -1198,8 +1196,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTFNJ(IGRUP,NPODS)
-      USE MATRICA
-      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C  PETLJA PO GRUPAMA ELEMENATA RADI INTEGRACIJE NELINEARNE MATRICE KNL
@@ -1232,9 +1228,8 @@ C
       COMMON /DRAKCE/ IDRAKCE,NELUK,NZERO,NEED1,NEED2,NEED3,NNZERO
      1                ,IROWS,LAILU,LUCG,LVCG,LWCG,LPCG,LRCG
       COMMON /GEORGE/ TOLG,ALFAG,ICCGG
-      COMMON /CDEBUG/ IDEBUG
-      COMMON /NEWMARK/ ALFAM,BETAK,DAMPC,NEWACC
       DIMENSION IGRUP(NGELEM,*),NPODS(JPS1,*)
+      COMMON /CDEBUG/ IDEBUG
       INCLUDE 'mpif.h'
       integer myid, ierr
 C
@@ -1252,7 +1247,7 @@ CSKDISK      CALL RSTAZK(NPODS,LSK,LMA)
 CSKDISK      GO TO 20
       NUL=NWK
       IF(NBLOCK.GT.1) NUL=KC
-      CALL CLEARB(ALSK,A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
+      CALL CLEARB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
 C
       IF(NGEL.NE.0)THEN
 	write(*,*) 'uriplje,ngel',ngel
@@ -1263,55 +1258,46 @@ C
         LSKE=LLM+100
         if (IABS(ICCGG).EQ.1) then
           if (iccgg.eq.1) then
-             CALL ISPAK(ALSK,AIROWS,A(LMAXA),A(LSKE),A(LLM),ND,1,
+             CALL ISPAK(A(LSK),A(IROWS),A(LMAXA),A(LSKE),A(LLM),ND,1,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
           else
-             CALL ISPAKG(ALSK,AIROWS,A(LMAXA),A(LSKE),A(LLM),ND,1,
+             CALL ISPAKG(A(LSK),A(IROWS),A(LMAXA),A(LSKE),A(LLM),ND,1,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
           endif
         else
-            CALL SPAKUA(ALSK,A(LMAXA),A(LSKE),A(LLM),ND,1,
+            CALL SPAKUA(A(LSK),A(LMAXA),A(LSKE),A(LLM),ND,1,
      &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
         endif
         CLOSE (ISCRC,STATUS='KEEP')
       ENDIF
       IF(NDIN.NE.0) THEN
          NWM=NWK
-         NWD=NWK
          IF(IMASS.EQ.2) NWM=JEDN
-         IF(IDAMP.EQ.2) NWD=JEDN
          LSKP=LSK+NWK*IDVA
 C
 CE       READ LINEAR MATRIX M FROM DISK
 CS       UCITAVANJE LINEARNE MATRICE M SA DISKA
-C     SAD SU U MODULU
-C         IF(IMASS.EQ.1) CALL RSTAZK(NPODS,LSKP,54)
-C         IF(IMASS.EQ.2) CALL RSTAZ(NPODS,LSKP,54)
+C     
+         IF(IMASS.NE.2) CALL RSTAZK(NPODS,LSKP,54)
+         IF(IMASS.EQ.2) CALL RSTAZ(NPODS,LSKP,54)
 C         CALL WRR6(A(LSK),NWK,'SKFN')
 C         CALL WRR6(A(LSKP),NWM,'MAFN')
-      IF(IDAMP.EQ.3) THEN
-         A0M=A0+A1*ALFAM
-         A0K=1.D0+A1*BETAK
-         IF(IMASS.EQ.1) CALL ZBIRAB(ALSK,ALSM,A0K,A0M,NWK)
-         IF(IMASS.EQ.2) CALL ZBIRKD(ALSK,ALSM,A0K,A0M,NWM,A(LMAXA))
-      ELSE
-         IF(IMASS.EQ.1) CALL ZBIRM(ALSK,ALSM,A0,NWK)
-         IF(IMASS.EQ.2) CALL ZBIRKM(ALSK,ALSM,A0,NWM,A(LMAXA))
-      ENDIF
+         IF(IMASS.NE.2) CALL ZBIRM(A(LSK),A(LSKP),A0,NWK)
+         IF(IMASS.EQ.2) CALL ZBIRKM(A(LSK),A(LSKP),A0,NWM,A(LMAXA))
 C         CALL WRR6(A(LSK),NWK,'ZBFN')
 C
 CE       READ LINEAR MATRIX C FROM DISK
 CS       UCITAVANJE LINEARNE MATRICE C SA DISKA
-C SAD JE U MODULU
-         IF(IDAMP.EQ.0) GO TO 20
-C         IF(IDAMP.EQ.1) CALL RSTAZK(NPODS,LSKP,56)
-C         IF(IDAMP.EQ.2) CALL RSTAZ(NPODS,LSKP,56)
-C         call wrr6(a(lskp),nwd,'D1FN')
-         IF(IDAMP.EQ.1) CALL ZBIRM(ALSK,ALSC,A1,NWD)
-         IF(IDAMP.EQ.2) CALL ZBIRKM(ALSK,ALSC,A1,NWD,A(LMAXA))
+C
+         IF(IDAMP.NE.0) THEN
+            IF(IDAMP.NE.2) CALL RSTAZK(NPODS,LSKP,56)
+            IF(IDAMP.EQ.2) CALL RSTAZ(NPODS,LSKP,56)
+            IF(IDAMP.NE.2) CALL ZBIRM(A(LSK),A(LSKP),A1,NWK)
+            IF(IDAMP.EQ.2) CALL ZBIRKM(A(LSK),A(LSKP),A1,NWM,A(LMAXA))
+         ENDIF
       ENDIF
 CSKDISK
-   20 CALL CLEAR(A(LFTDT),JEDN)
+      CALL CLEAR(A(LFTDT),JEDN)
       IF((METOD.EQ.7.OR.METOD.EQ.9).AND.ITER.GT.0)GO TO 30
       CALL RSTAZ(NPODS,LRTDT,52)
 C....  KOREKCIJA KOORDINATA ZA U.L.
@@ -1344,7 +1330,7 @@ C
       IF(NBLOCK.GT.1)THEN
         LLM =LRAD
         LSKE=LLM+100
-        CALL SPAKUA(ALSK,A(LMAXA),A(LSKE),A(LLM),ND,0,
+        CALL SPAKUA(A(LSK),A(LMAXA),A(LSKE),A(LLM),ND,0,
      &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
         CLOSE (ISCRC,STATUS='KEEP')
       ENDIF
@@ -1355,9 +1341,9 @@ C
 C
 C     FAKTORIZACIJA UKUPNE EFEKTIVNE MATRICE SISTEMA: KEF = L*D*LT
 C
-      CALL WRR6(ALSK,NWK,'REFN')
- 10   CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
-      !IF (myid.eq.0) CALL WSTAZKMT(NPODS,LSK,60)!todo topalovic proveriti
+C      CALL WRR6(A(LSK),NWK,'REFN')
+ 10   CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,1)
+      IF (myid.eq.0) CALL WSTAZKMT(NPODS,LSK,60)
       RETURN
       END
 C=======================================================================
@@ -1430,7 +1416,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE FRESIF(NPODS)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       include 'paka.inc'
       
@@ -1483,7 +1468,7 @@ C
             CALL DESSTR(NPODS)
 C
 20          IF(JPS.GT.1) THEN
-               CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,2)
+               CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,2)
                IF (myid.ne.0) goto 30
                LMAX13=NPODS(JPBR,39)-1
                CALL WRITDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
@@ -1508,9 +1493,8 @@ C
                LMAX13=NPODS(JPBR,12)-1
                CALL IREADD(A(LIGRUP),NP6,IPODS,LMAX13,LDUZI)
                LMAX13=NPODS(JPBR,61)-1
-c testirati sa arhivom pf160218.zip
-               CALL READDD(ALSK,NWK-NWP,IPODS,LMAX13,LDUZI)
-               CALL TROUGO(ALSK,A(LSKG),A(LMAXA+JEDNP),JED,NWP)
+               CALL READDD(A(LSK),NWK-NWP,IPODS,LMAX13,LDUZI)
+               CALL TROUGO(A(LSK),A(LSKG),A(LMAXA+JEDNP),JED,NWP)
                LMAX13=NPODS(JPBR,37)-1
                CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
   300       CONTINUE
@@ -1524,7 +1508,7 @@ CE          READING OF RIGHT SIDE VECTOR CONTOUR MECHANICAL LOADS, RTDT
 CS          UCITAVANJE VEKTORA DESNE STRANE KONTURNE MEHANICKE SILE,RTDT
 C
             CALL RSTAZ(NPODS,LRTDT,38)
-            CALL CLEAR(ALSK,NWG)
+            CALL CLEAR(A(LSK),NWG)
 C
             DO 400 JPBR=1,JPS
                JEDN=NPODS(JPBR,6)
@@ -1542,7 +1526,7 @@ C
                CALL READDD(A(LRTG),JEDN,IPODS,LMAX13,LDUZI)
                LMAX13=NPODS(JPBR,27)-1
                CALL IREADD(A(LLMG),JED,IPODS,LMAX13,LDUZI)
-               CALL SPAKUJ(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
+               CALL SPAKUJ(A(LSK),A(JMAXA),A(LSKG),A(LLMG),JED)
                LRTG=LRTG+JEDNP*IDVA
                CALL SPAKUD(A(LRTDT),A(LRTG),A(LLMG),JED)
   400       CONTINUE
@@ -1550,9 +1534,9 @@ C
             JEDN=JEDNG
             IF(NGENN.GT.0) CALL JEDNA1(A(LFTDT),A(LRTDT),JEDN)
             CALL WSTAZK(NPODS,LSK,35)
- 40         CALL RESEN(ALSK,A(LRTDT),A(JMAXA),JEDN,1)
+ 40         CALL RESEN(A(LSK),A(LRTDT),A(JMAXA),JEDN,1)
             IF (myid.ne.0) return
-!            CALL WSTAZK(NPODS,LSK,60)!todo topalovic proveriti da li treba komentar
+            CALL WSTAZK(NPODS,LSK,60)
             LMAXA=JMAXA
          ENDIF
       RETURN
@@ -1561,7 +1545,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE UKUPNP(NPODS,INDC)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1651,7 +1634,7 @@ C
             CALL PODDAT(NPODS,1)
             CALL PODDAT(NPODS,3)
             CALL PODDAT(NPODS,4)
-20          CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,3)
+20          CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,3)
             IF (myid.eq.0) CALL UKUPNA
          ELSE
             IF (myid.eq.0) JPBR=JPS1

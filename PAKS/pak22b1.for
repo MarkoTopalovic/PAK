@@ -7,7 +7,6 @@ C=======================================================================
      1                GEEK,NCVE2,IALFA,COR0,TEMGT,CORGT,AU,TSG2,N45,
      1                ZAPS,NPRZ,INDZS,GUSM,LA,CEGE,ESILA,
      1                SKS,SKES,NDNDS,HS,QS,PS)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     FORMIRANJE MATRICA ELEMENATA I SISTEMA
@@ -1493,9 +1492,9 @@ C
                   SKP1(J,I1)=SKP1(I1,J)
   483          CONTINUE
             ENDIF
-            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,NDNDS)
+            IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKP1,LM,NDNDS)
          ELSE
-            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
+            IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM,ND)
          ENDIF
 C        RASPOREDJIVANJE KONCENTRISANIH MATRICE MASA AMASC U VEKTOR ZAPS
          IF(ITER.EQ.0.AND.INDZS.GT.0)THEN

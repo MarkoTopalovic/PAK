@@ -551,7 +551,7 @@ C=======================================================================
 C
 C======================================================================
       SUBROUTINE WRITDDMT(A,N,II,LS,LD)
-      USE WSTAZKTOP
+      USE WSTAZK
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -570,8 +570,7 @@ C
 C
       IF(IDEBUG.GT.0) PRINT *, ' WRITDD'
 C      IF(ISKDSK.EQ.0.AND.N.EQ.NWK)RETURN
-      !mala.dat ulazi
-      !1de.dat ne ulazi
+      
       IBROJAC = 1
       IF(N.EQ.0) RETURN
       IF (ALLOCIRANAMATRICA.EQ.(.FALSE.)) THEN
@@ -685,7 +684,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE READDDMT(A,N,II,LS,LD)
-      USE WSTAZKTOP
+      USE WSTAZK
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................

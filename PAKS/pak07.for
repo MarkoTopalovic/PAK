@@ -25,7 +25,6 @@ C              UCITAM
 C
 C=======================================================================
       SUBROUTINE PODDAT(NPODS,IND)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -168,7 +167,7 @@ C
          LRTDB=LRTDT+JEDNP*IDVA
          LSKG=LRTDT+JEDN*IDVA
          LSKB=LSKG+JEDNP*IDVA
-C         CALL READDD(A(LSKG),JEDN,IPODS,LMAX13,LDUZI)!todo topalovic proveriti komentar
+         CALL READDD(A(LSKG),JEDN,IPODS,LMAX13,LDUZI)
          NWKP=JEDN-JEDNP
          CALL JEDNA1(A(LRTDB),A(LSKB),NWKP)
       ENDIF
@@ -210,20 +209,20 @@ C
          LMAX13=NPODS(JPBR,60)-1
          IF(NBLOCK.EQ.1) THEN
             IF(JPBR.EQ.JPS1) THEN
-C               CALL READDD(A(LSK),NWG,IPODS,LMAX13,LDUZI)!todo topalovic proveriti komentar
+               CALL READDD(A(LSK),NWG,IPODS,LMAX13,LDUZI)
             ELSE
-C               CALL READDD(A(LSK),NWP,IPODS,LMAX13,LDUZI)!todo topalovic proveriti komentar
+               CALL READDD(A(LSK),NWP,IPODS,LMAX13,LDUZI)
                LMAX13=NPODS(JPBR,61)-1
                LSKG=LSK+NWP*IDVA
                NWKP=NWK-NWP
-C               CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)!todo topalovic proveriti komentar
+               CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
             ENDIF
             LRAD=NPODS(JPBR,51)
          ENDIF
       ELSE
          LMAX13=NPODS(JPBR,35)-1
          IF(NBLOCK.EQ.1) THEN
-C            CALL READDD(A(LSK),NWK,IPODS,LMAX13,LDUZI)!todo topalovic proveriti komentar
+            CALL READDD(A(LSK),NWK,IPODS,LMAX13,LDUZI)
             LRAD=NPODS(JPBR,51)
          ENDIF
       ENDIF
@@ -274,7 +273,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTKMK(NPODS)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -316,19 +314,18 @@ C
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6000)
       CALL ISPITA(ACOZ)
-C      CALL READTE(A(LSK),NWK)!todo topalovic proveriti komentar
-C     
+      CALL READTE(A(LSK),NWK)
+C
 CS    WRITE LINEAR MATRIX K ON DISK
 CS    ZAPISIVANJE LINEARNE MATRICE K NA DISK
-C     MATRICA JE SADA U MODULU
-C      CALL WSTAZK(NPODS,LSK,35)!todo topalovic proveriti komentar
+C
+      CALL WSTAZK(NPODS,LSK,35)
       GO TO  20
 C
 C
    10 NUL=NWK
       IF(NBLOCK.GT.1) NUL=KC
-!      RAD SA BLOKOVIMA JE ZASTAREO     
-      CALL CLEARB(ALSK,A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
+      CALL CLEARB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
 CE    FORM LINEAR PART OF THE STIFFNESS MATRIX
       CALL INTKK(A(LIGRUP),NPODS)
 20    RETURN
@@ -342,7 +339,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTKK(IGRUP,NPODS)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -405,23 +401,21 @@ C
       IF(NBLOCK.GT.1)THEN
         LLM =LRAD
         LSKE=LLM+100
-        CALL SPAKUA(ALSK,A(LMAXA),A(LSKE),A(LLM),ND,0,
+        CALL SPAKUA(A(LSK),A(LMAXA),A(LSKE),A(LLM),ND,0,
      &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
       ENDIF
       CLOSE (ISCRC,STATUS='KEEP')
 C
 CS    WRITE LINEAR MATRIX K ON DISK
 CS    ZAPISIVANJE LINEARNE MATRICE K NA DISK
-C     SADA SE ZAPISUJE U MODUL
-      CALL WSTAZK(NPODS,LSK,35)!todo topalovic proveriti komentar !sa komentarom ne radi sd_1a
-      if(jedn.le.30) CALL WRR6(ALSK,NWK,'K07W')
+C
+      CALL WSTAZK(NPODS,LSK,35)
       RETURN
       END
 C=======================================================================
 C
 C=======================================================================
       SUBROUTINE PPAKS(NPODS,KOCID,IPDT,DT0,VREM0,KORB0,KOJPAK)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -653,8 +647,8 @@ CE                UPDATE OF COORDINATES FOR IMPERFECTION
 CS                KOREKCIJA KOORDINATA ZA IMPERFEKCIJU
                   CALL ULCOR(A(LCORD),A(LCORD),A(LRTDT),A(LID),NP)
 C                 CALL WRR3(A(LCORD),NP*3,'CORD')
-                 CALL WRR6(A(LRTDT),JEDN,'RTDT')
-                 CALL WRR6(A(LFTDT),JEDN,'FTDT')
+C                 CALL WRR6(A(LRTDT),JEDN,'RTDT')
+C                 CALL WRR6(A(LFTDT),JEDN,'FTDT')
                ENDIF
             ENDIF
 C
@@ -668,7 +662,7 @@ C
 C
          IF(IREST.EQ.1.AND.METOD.EQ.-1.AND.
      +                  KOR.EQ.1.AND.ITER.EQ.0.AND.NBLOCK.EQ.1) THEN
-C            CALL READD(A(LSK),NWK,ILDLT)!todo topalovic proveriti komentar
+            CALL READD(A(LSK),NWK,ILDLT)
 C           CALL WRR(A(LSK),NWK,'RLDL')
          ENDIF
          IF(NDIN.EQ.0.AND.NGENL.GT.0) GO TO 20
@@ -838,12 +832,12 @@ CS                   KOREKCIJA KOORDINATA ZA IMPERFEKCIJU
                ENDIF
 56          ENDIF
             if (myid.ne.0) goto 49
-           CALL WRR(A(LRTDT),JEDN,'RKO1')
+C           CALL WRR(A(LRTDT),JEDN,'RKO1')
 C
             IF(IREST.EQ.1.AND.METOD.EQ.-1.AND.
      1          KOR.EQ.1.AND.ITER.EQ.0.AND.NBLOCK.EQ.1) THEN
-               CALL READD(ALSK,NWK,ILDLT)
-C               CALL WRR(ALSK,NWK,'RLDL')
+               CALL READD(A(LSK),NWK,ILDLT)
+C               CALL WRR(A(LSK),NWK,'RLDL')
             ENDIF
 C            IF(IREST.EQ.1.AND.VREME.LE.TSTART) RETURN
 C            CALL WRR6(A(LSK),NWK,'SK00')
@@ -894,7 +888,7 @@ CE          FORM CONSTANT PART OF LOAD (RIGHT-HAND-SIDE) VECTOR
 CS          FORMIRANJE KONSTANTNOG DELA VEKTORA OPTERECENJA
 C
             CALL DESNAL(NPODS,KOJPAK)
-           CALL WRR(A(LRTDT),JEDN,'RDEL')
+C           CALL WRR(A(LRTDT),JEDN,'RDEL')
 C
 CE          LOOP OVER NONLINEAR GROUP OF ELEMENTS TO INTEGRATE NONLINEAR
 CE          STIFFNESS MATRIX KNL
@@ -913,9 +907,8 @@ CS          FORMIRANJE KONACNOG VEKTORA DESNE STRANE:
 CS          NA UCITANE KONSTANTNE SILE DODAJU SE GEOMETRIJSKI
 CS          NELINEARNE I ODUZMU SE UNUTRASNJE SILE, RTDT=RTDT-FTDT
 C
-            CALL WRR(A(LRTDT),JEDN,'dest')
             CALL DESSTR(NPODS)
-           CALL WRR(A(LRTDT),JEDN,'RDSS')
+C           CALL WRR(A(LRTDT),JEDN,'RDSS')
 C
 CE          PUT ON RIGHT SIDE PRODUCT OF LARGE NUMBER AND PRESCRIBED
 CE          DISPLACEMENT
@@ -927,8 +920,7 @@ C
 51          CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
             CALL MPI_BCAST(JPS,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
             IF(JPS.GT.1) THEN
-                !mozda je ovde problem
-               CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,2)
+               CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,2)
                IF (myid.eq.0) then
                   LMAX13=NPODS(JPBR,39)-1
                   CALL WRITDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
@@ -960,11 +952,10 @@ C
                LMAX13=NPODS(JPBR,12)-1
                CALL IREADD(A(LIGRUP),NP6,IPODS,LMAX13,LDUZI)
                LMAX13=NPODS(JPBR,61)-1
-!                 SADA JE SACUVANO U MODULU               
-C               CALL READDD(A(LSK),NWK-NWP,IPODS,LMAX13,LDUZI)!todo topalovic proveriti komentar
-C               CALL TROUGO(A(LSK),A(LSKG),A(LMAXA+JEDNP),JED,NWP)
+               CALL READDD(A(LSK),NWK-NWP,IPODS,LMAX13,LDUZI)
+               CALL TROUGO(A(LSK),A(LSKG),A(LMAXA+JEDNP),JED,NWP)
               LMAX13=NPODS(JPBR,37)-1
-C              CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
+              CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
   300       CONTINUE
 C
             JPBR=JPS1
@@ -976,7 +967,7 @@ CE          SET DISK ON ZERO
 CS          POSTAVLJANJE DISKA  NA NULU
 C
             CALL NULDIS(NPODS)
-            CALL CLEAR(ALSK,NWG)
+            CALL CLEAR(A(LSK),NWG)
 C
 CE          FORM VECTOR OF CONCENTRATED FORCES AT TIME T+DT
 CS          FORMIRANJE VEKTORA KONCENTRISANIH SILA U TRENUTKU T+DT
@@ -1015,15 +1006,15 @@ C
                CALL READDD(A(LRTG),JEDN,IPODS,LMAX13,LDUZI)
                LMAX13=NPODS(JPBR,27)-1
                CALL IREADD(A(LLMG),JED,IPODS,LMAX13,LDUZI)
-               CALL SPAKUJ(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
+               CALL SPAKUJ(A(LSK),A(JMAXA),A(LSKG),A(LLMG),JED)
                LRTG=LRTG+JEDNP*IDVA
                CALL SPAKUD(A(LRTDT),A(LRTG),A(LLMG),JED)
   400       CONTINUE
             JPBR=JPS1
             JEDN=JEDNG
             IF(NGENN.GT.0) CALL JEDNA1(A(LFTDT),A(LRTDT),JEDN)
-C            CALL WSTAZK(NPODS,LSK,35)!todo topalovic proveriti komentar
-52          CALL RESEN(ALSK,A(LRTDT),A(JMAXA),JEDN,1)
+            CALL WSTAZK(NPODS,LSK,35)
+52          CALL RESEN(A(LSK),A(LRTDT),A(JMAXA),JEDN,1)
             IF (myid.ne.0) goto 53
             CALL WSTAZK(NPODS,LSK,60)
             LMAXA=JMAXA
@@ -1039,10 +1030,10 @@ CE       BACKSUBSTITUTION - SOLUTION OF SYSTEM EQUATIONS
 CS       ZAMENA UNAZAD - RESAVANJE :SISTEMA JEDNACINA
 C
 C
-        CALL WRR6(ALSK,NWK,'SR-1')
-        CALL WRR6(A(LRTDT),JEDN,'Res1')
-54       CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,2)
-        CALL WRR6(A(LRTDT),JEDN,'RESE')
+C        CALL WRR6(A(LSK),NWK,'SR-1')
+C        CALL WRR6(A(LRTDT),JEDN,'RTDT')
+54       CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,2)
+C        CALL WRR6(A(LRTDT),JEDN,'RESE')
 C
 C
 CE       N O N L I N E A R      A N A L Y S I S
@@ -1126,7 +1117,7 @@ C
                   ENDIF
                   write(*,*) 'pre drugog poziva resen 
      1                          iz pak07 sabrutine',myid
-                  CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,3)
+                  CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,3)
                   IF (myid.eq.0) CALL UKUPNA
                ELSE
                   IF (myid.eq.0) JPBR=JPS1
@@ -1238,7 +1229,7 @@ c
             CALL MPI_BCAST(JPS,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
 C
             DO 800 JPBB=1,JPS
-C           OVO SU PODSTRUKTURE KOJE SE NE KORISTE
+C
                IF(JPS.GT.1) THEN
                   IF (myid.eq.0) THEN
                      JPBR=JPBB
@@ -1247,7 +1238,7 @@ C           OVO SU PODSTRUKTURE KOJE SE NE KORISTE
                      CALL PODDAT(NPODS,3)
                      CALL PODDAT(NPODS,4)
                   ENDIF
-C                  CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,3)
+                  CALL RESEN(A(LSK),A(LRTDT),A(LMAXA),JEDN,3)
                   IF (myid.eq.0) THEN
                      LMAX13=NPODS(JPBR,52)-1
                      CALL WRITDD(A(LRTDT),JEDN,IPODS,LMAX13,LDUZI)
