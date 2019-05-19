@@ -24,6 +24,7 @@ C              SILAAN
 C
 C=======================================================================
       SUBROUTINE INTKMM
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -52,10 +53,14 @@ C
       COMMON /CDEBUG/ IDEBUG
       COMMON /EXPLICITNA/ INDEXPL
       COMMON /EXPLALOK/ IUBRZ,IBRZINA,IBRZINAIPO,IPOMAK,IMASA,IPRIGUSEN
+      COMMON /SKDISK/ ISKDSK
 C
       IF(IDEBUG.GT.0) PRINT *, ' INTKMM'
+      write(3,*) 'iskdsk', iskdsk
       NWM=NWK
+      NWD=NWK
       IF(IMASS.EQ.2) NWM=JEDN
+      IF(IDAMP.EQ.2) NWD=JEDN
 CSKDISK....
       LSKP=LSK
       LSK =LSKP+NWK*IDVA
@@ -66,46 +71,47 @@ CSKDISK
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6010)
       CALL ISPITA(ACOZ)
-      CALL READTE(A(LSK),NWM)
+C      CALL READTE(A(LSK),NWM)
       GO TO 20
-   10 CALL CLEAR(A(LSK),NWM)
+   10 CALL CLEAR(ALSM,NWM)
       CALL INTKM(A(LIGRUP))
 
-      IF(INDEXPL.EQ.1) CALL JEDNA1(A(IMASA),A(LSK),JEDN)
+C      IF(INDEXPL.EQ.1) CALL JEDNA1(A(IMASA),A(LSK),JEDN)
 C
 CE    STORE LINEAR MATRIX M ON UNIT 11
 CS    ZAPISIVANJE LINEARNE MATRICE M NA DISK 11
 C
-   20 IF(IMASS.NE.2) CALL WSTAZK(A(LIPODS),LSK,54)
-      IF(IMASS.EQ.2) CALL WSTAZ(A(LIPODS),LSK,54)
+   20 CONTINUE !IF(IMASS.EQ.1) CALL WSTAZK(A(LIPODS),LSK,54)
+C      IF(IMASS.EQ.2) CALL WSTAZ(A(LIPODS),LSK,54)
 C      WRITE(3,*) 'LSK',LSK
-c      CALL WRR(A(LSK),NWM,'MASA')
-c      CALL WRR(A(IMASA),JEDN,'IMASA')
-CSKDISK....
-      LSK =LSKP
-CSKDISK
+      if(jedn.le.30) CALL WRR6(ALSM,NWM,'MASW')
+c      CALL WRR6(A(IMASA),JEDN,'IMASA')
 C
 CE    LOOP FOR GROUPS OF ELEMENTS TO INTEGRATION MATRIX C
 CS    PETLJA PO GRUPAMA ELEMENATA RADI INTEGRACIJE MATRICE  C
 C
-      IF(IDAMP.EQ.0) RETURN
+      IF(IDAMP.EQ.0) GO TO 50
       IF(ITEST.EQ.0) GO TO 30
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2020)
       IF(ISRPS.EQ.1)
      1WRITE(IZLAZ,6020)
       CALL ISPITA(ACOZ)
-      CALL READTE(A(LSK),NWM)
+C      CALL READTE(A(LSK),NWD)
       GO TO 40
-   30 CALL CLEAR(A(LSK),NWM)
-      CALL INTKMC(A(LIGRUP))
+   30 CALL CLEAR(ALSK,NWD)
+      if(idamp.ne.3) CALL INTKMC(A(LIGRUP))
 C      IF(INDEXPL.EQ.1) CALL JEDNA1(A(IPRIGUSEN),A(LSK),JEDN)
 C
 CE    TO STORE LINERAR MATRIX C ON DISK 11
 CS    ZAPISIVANJE LINEARNE MATRICE C NA DISK 11
 C
-   40 IF(IDAMP.NE.2) CALL WSTAZK(A(LIPODS),LSK,56)
-      IF(IDAMP.EQ.2) CALL WSTAZ(A(LIPODS),LSK,56)
+   40 CONTINUE !IF(IDAMP.EQ.1) CALL WSTAZK(A(LIPODS),LSK,56)
+C      IF(IDAMP.EQ.2) CALL WSTAZ(A(LIPODS),LSK,56)
+C      if(idamp.ne.3.and.jedn.le.30) call wrr6(a(lsk),nwd,'D10W')
+CSKDISK....
+   50 LSK =LSKP
+CSKDISK
       RETURN
 C-----------------------------------------------------------------------
  2010 FORMAT(///' M A T R I C A   M')
@@ -247,6 +253,8 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE VILNEW
+      USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -288,17 +296,27 @@ C
      1                ,IROWS,LAILU,LUCG,LVCG,LWCG,LPCG,LRCG
       COMMON /GEORGE/ TOLG,ALFAG,ICCGG
       COMMON /CDEBUG/ IDEBUG
+      COMMON /NEWMARK/ ALFAM,BETAK,DAMPC,NEWACC
 C
       IF(IDEBUG.GT.0) PRINT *, ' VILNEW'
       NWM=NWK
+      NWD=NWK
       IF(IMASS.EQ.2) NWM=JEDN
+      IF(IDAMP.EQ.2) NWD=JEDN
       IF(ICONT.GT.0) JEDN=NEQ
 CSKDISK
       LSKP=LSK+NWK*IDVA
+C      LDUM =LSKP+NWK*IDVA
+C      IF(IMASS.EQ.2.AND.(IDAMP.EQ.0.OR.IDAMP.EQ.2)LDUM =LSKP+JEDN*IDVA 
+      if(jedn.le.30) CALL WRR6(ALSK,NWK,'K-10')
+C      CALL RSTAZK(A(LIPODS),LSKP,35)
+      if(jedn.le.30) CALL WRR6(ALSM,NWK,'K10R')
 CSKDISK
       LMAX=LRAD
       LUMC=LMAX
       LMAX=LUMC+JEDN*IDVA
+      LVMC=LMAX
+      IF(IDAMP.EQ.3) LMAX=LVMC+JEDN*IDVA
 C
 CE    FORMIRANJE VEKTORA DESNE STRANE USLED ZADATIH SPOLJ. OPTERECENJA
 CS    FORMIRANJE VEKTORA DESNE STRANE USLED ZADATIH SPOLJ. OPTERECENJA	
@@ -308,12 +326,12 @@ C       WILSON
         LRT=LMAX
         LMAX=LRT+JEDN*IDVA
 C       (T+T)R
-        IF(ITERGL.EQ.0) CALL RSTAZ(A(LIPODS),LRTDT,38)
+C        IF(ITERGL.EQ.0) CALL RSTAZ(A(LIPODS),LRTDT,38)!todo topalovic proveriti da li treba komentar
 C???    NA 53 NISU ZAPISANE SILE OD NELINEARNIH PRITISAKA
         IF(ITERGL.GT.0.AND.(NPP2.GT.0.OR.NPP3.GT.0.OR.NPLJ.GT.0)) STOP
      1     'STOP - PAK10 - VILNEW - VILSON'
 C       (T)R
-        CALL RSTAZ(A(LIPODS),LRT,53)
+C        CALL RSTAZ(A(LIPODS),LRT,53)!todo topalovic proveriti da li treba komentar
         TETA=PIP
         TETAM=1.0-PIP
 C       (T+�T)R=�*(T+T)R+(1-�)*(T)R
@@ -324,7 +342,7 @@ C       (T+�T)R=�*(T+T)R+(1-�)*(T)R
 C       NEWMARK
 C       (T+T)R
         IF(ITERGL.EQ.0) CALL RSTAZ(A(LIPODS),LRTDT,38)
-C         CALL WRR(A(LRTDT),JEDN,'RUF0')
+        CALL WRR6(A(LRTDT),JEDN,'RUF0')!todo topalovic proveriti da li treba da stoji
       ENDIF
 C
 CE    FORMIRANJE VEKTORA DESNE STRANE USLED MASA
@@ -340,12 +358,13 @@ C     (T)UU, (T)UV, (T)UA, (T+DT)UU
       CALL RSTAZ(A(LIPODS),LPUU,59)
       CALL RSTAZ(A(LIPODS),LPUV,55)
       CALL RSTAZ(A(LIPODS),LPUA,57)
-C         CALL WRR(A(LPUU),JEDN,'PUU ')
-C         CALL WRR(A(LPUV),JEDN,'PUV ')
-C         CALL WRR(A(LPUA),JEDN,'PUA ')
+         CALL WRR6(A(LPUU),JEDN,'PUU ')!todo topalovic proveriti da li treba da budu sledeca 3
+         CALL WRR6(A(LPUV),JEDN,'PUV ')
+         CALL WRR6(A(LPUA),JEDN,'PUA ')
       IF(ITERGL.GT.0)THEN
         IF(ITER.EQ.0)CALL JEDNA1(A(LTDT),A(LPUU),JEDN)
         IF(ITER.GT.0)CALL RSTAZ(A(LIPODS),LTDT,52)
+         CALL WRR6(A(LTDT),JEDN,'PTDT')!todo topalovic proveriti 
       ENDIF
 C     UM=A0*(T)UU+A2*(T)UV+A3*(T)UA
       IF(ITERGL.EQ.0)
@@ -366,34 +385,63 @@ C.. KOREKCIJA UBRZANJA ZA KONTAKTNE PROBLEME
            LPUU=IDUM
          ENDIF
       ENDIF
+      IF(IDAMP.EQ.3) THEN
+C     FORMIRANJE BRZINE
+C     UC=A1*(T)UU+A4*(T)UV+A5*(T)UA
+      IF(ITERGL.EQ.0)
+     1CALL ZBIR3(A(LVMC),A(LPUU),A(LPUV),A(LPUA),A1,A4,A5,JEDN)
+      IF(ITERGL.GT.0) THEN
+C        UC=A4*(T)UV+A5*(T)UA
+         IF(ITER.EQ.0)
+     1   CALL ZBIR2(A(LVMC),A(LPUV),A(LPUA),A4,A5,JEDN)
+C        UC=-A1*(T+DT)UU+A1*(T)UU+A4*(T)UV+A5*(T)UA
+         A1M=-A1
+         IF(ITER.GT.0)
+     1   CALL ZBIR4(A(LVMC),A(LTDT),A(LPUU),A(LPUV),A(LPUA),
+     1              A1M,A1,A4,A5,JEDN)
+      ENDIF
+C        UA=(T)UA+alfa*(T)UV
+         CALL ZBIRACB(A(LUMC),A(LVMC),ALFAM,JEDN)
+C        UV=beta*(T)UV
+         CALL JEDNAK(A(LVMC),A(LVMC),BETAK,JEDN)
+C        K*beta*(T)UV
+         if (IABS(ICCGG).EQ.1) then 
+            CALL MAXAPRI(ALSM,A(LVMC),A(LRTDT),
+     1                     JEDN,AIROWS,AIROWS(nwk+1),nwk)
+         else
+            CALL MAXAPR(ALSM,A(LVMC),A(LRTDT),
+     1                     A(LMAXA),JEDN)
+         endif
+C         if(jedn.le.30) CALL WRR6(A(LSKP),NWK,'K10B')
+      ENDIF
       LMAX=LPUU
-C
+C PROVERITI DA SE OVO PUSTI A GORE ZABRAVI AKO NIJE REZERVISAN PROSTOR IZ K
 CSKDISK      LSKP=LMAX
 CSKDISK      LMAX=LSKP+NWK*IDVA
 CE    READ LINEAR MATRIX M FROM UNIT 11
 CS    UCITAVANJE LINEARNE MATRICE M SA DISKA 11
-      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,54)
-      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,54)
+C      IF(IMASS.EQ.1) CALL RSTAZK(A(LIPODS),LSKP,54)
+C      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,54)
+      if(jedn.le.30) CALL WRR6(ALSM,NWM,'M10R')
 C     (T+T)R=(T+T)R+M*UM
       if (IABS(ICCGG).EQ.1) then 
-            IF(IMASS.NE.2) CALL MAXAPRI(A(LSKP),A(LUMC),A(LRTDT),
-     1                     JEDN,A(IROWS),A(IROWS+nwk),nwk)
+            IF(IMASS.EQ.1) CALL MAXAPRI(ALSM,A(LUMC),A(LRTDT),
+     1                     JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-            IF(IMASS.NE.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),
+            IF(IMASS.EQ.1) CALL MAXAPR(ALSM,A(LUMC),A(LRTDT),
      1                     A(LMAXA),JEDN)
       endif
 C         CALL WRR(A(LRTDT),JEDN,'RPR ')
 C         CALL WRR(A(LUMC),JEDN,'UMC ')
 C         WRITE(3,*) 'LSKP,JEDN',LSKP,JEDN
-C         CALL WRR(A(LSKP),JEDN,'SKP ')
-      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
+      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),ALSM,A(LUMC),JEDN)
 C         CALL WRR(A(LRTDT),JEDN,'RPO ')
 CSKDISK      LMAX=LSKP
 C
 CE    FORM ON RIGHT SIDE VECTOR BECAUSE DAMPERS
 CS    FORMIRANJE VEKTORA DESNE STRANE USLED PRIGUSENJA
 C
-      IF(IDAMP.EQ.0) GO TO 10
+      IF(IDAMP.EQ.0.OR.IDAMP.EQ.3) GO TO 10
       LPUU=LMAX
       LPUV=LPUU+JEDN*IDVA
       LPUA=LPUV+JEDN*IDVA
@@ -404,7 +452,12 @@ C     (T)UU, (T)UV, (T)UA, (T+DT)UU
       CALL RSTAZ(A(LIPODS),LPUU,59)
       CALL RSTAZ(A(LIPODS),LPUV,55)
       CALL RSTAZ(A(LIPODS),LPUA,57)
-      IF(ITERGL.GT.0.AND.ITER.GT.0) CALL RSTAZ(A(LIPODS),LTDT,52)
+c      IF(ITERGL.GT.0.AND.ITER.GT.0) CALL RSTAZ(A(LIPODS),LTDT,52)
+      IF(ITERGL.GT.0)THEN
+        IF(ITER.EQ.0)CALL JEDNA1(A(LTDT),A(LPUU),JEDN)
+        IF(ITER.GT.0)CALL RSTAZ(A(LIPODS),LTDT,52)
+c         CALL WRR6(A(LTDT),JEDN,'PTDT')
+      ENDIF
 C     UC=A1*(T)UU+A4*(T)UV+A5*(T)UA
       IF(ITERGL.EQ.0)
      1CALL ZBIR3(A(LUMC),A(LPUU),A(LPUV),A(LPUA),A1,A4,A5,JEDN)
@@ -423,17 +476,18 @@ C
 CSKDISK      LSKP=LMAX
 CSKDISK      LMAX=LSKP+NWK*IDVA
 C     UCITAVANJE LINEARNE MATRICE C SA DISKA 11
-      IF(IDAMP.NE.2) CALL RSTAZK(A(LIPODS),LSKP,56)
-      IF(IDAMP.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,56)
+C      IF(IDAMP.EQ.1) CALL RSTAZK(A(LIPODS),LSKP,56)
+C      IF(IDAMP.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,56)
+C      if(idamp.ne.3.and.jedn.le.30) CALL WRR6(A(LSKP),NWD,'D10R')
 C     (T+T)R=(T+T)R+C*UC
       if (IABS(ICCGG).EQ.1) then 
-         IF(IDAMP.NE.2) CALL MAXAPRI(A(LSKP),A(LUMC),A(LRTDT),
-     1                       JEDN,A(IROWS),A(IROWS+nwk),nwk)
+         IF(IDAMP.EQ.1) CALL MAXAPRI(ALSM,A(LUMC),A(LRTDT),
+     1                       JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-         IF(IDAMP.NE.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),
+         IF(IDAMP.EQ.1) CALL MAXAPR(ALSM,A(LUMC),A(LRTDT),
      &                       A(LMAXA),JEDN)
       endif
-      IF(IDAMP.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
+      IF(IDAMP.EQ.2) CALL MNOZMU(A(LRTDT),ALSM,A(LUMC),JEDN)
 C
 C     (T+T)R
    10 IF(ITERGL.EQ.0) CALL WSTAZ(A(LIPODS),LRTDT,38)
@@ -445,6 +499,9 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE CENRAZ
+      USE MATRICA
+      USE DRAKCE8
+      USE WSTAZKTOP
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -510,8 +567,8 @@ cc      IF(KOR.GT.1) THEN
         CLOSE (ISCRC,STATUS='KEEP')
 cc      ENDIF
       CALL MAXAPM(A(LSKP),A(LPUU),A(LRTDT),A(LMAXA),JEDN)
-c      call wrr6(a(LskP),NWK,'sk  ')
-c      call wrr6(a(LRTDT),jedn,'R1  ')
+      call wrr6(a(LskP),NWK,'sk  ')
+      CALL WRR(A(LRTDT),JEDN,'R1  ')
 
 C
 C     (T-T)UU
@@ -520,26 +577,30 @@ c      call wrr6(a(LUMC),jedn,'-DTU')
 
 CE    READ LINEAR EFECTIVE MATRIX (A0*M+A1*C) FROM DISK 7
 CS    UCITAVANJE LINEARNE EFEKTIVNE MATRICE (A0*M+A1*C) SA DISKA 7
-      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,58)
+C      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,58)
 c      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,58)
 C sneza proba
       IF(IMASS.EQ.2) CALL RSTAZK(A(LIPODS),LSKP,58)
-c      call wrr6(a(LSKP),NWK,'MEFE')
+      call wrr6(a(LSKP),NWK,'MEFE')
+      !call wrr6(RTWRITE,NWK,'RTW2')
 c      call iwrr(a(LMAXA),jedn,'MAXA')
 
 C     (T)R=(T)R+(A0*M+A1*C)*(T-T)UU
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBI9')
+      !if(jedn.le.30) CALL WRR6(A(LSKP),NWK,'ZBA9')
       if (IABS(ICCGG).EQ.1) then 
-         IF(IMASS.NE.2) CALL MAXAPRI(A(LSKP),A(LUMC),A(LRTDT),
-     1                       JEDN,A(IROWS),A(IROWS+nwk),nwk)
+         IF(IMASS.NE.2) CALL MAXAPRI(ALSK,A(LUMC),A(LRTDT),
+     1                       JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-         IF(IMASS.NE.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),
+         IF(IMASS.NE.2) CALL MAXAPR(ALSK,A(LUMC),A(LRTDT),
      &                       A(LMAXA),JEDN)
       endif
 C      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
 C sneza proba
+      CALL WRR(A(LSKP),JEDN,'c65 ')
       IF(IMASS.EQ.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),A(LMAXA),JEDN)
-c      call wrr6(a(LUMC),jedn,'LUMC  ')
-c      call wrr6(a(LRTDT),jedn,'R2  ')
+      call wrr6(a(LUMC),jedn,'LUMC  ')
+      call wrr6(a(LRTDT),jedn,'R2  ')
 C
       CALL JEDNA1(A(LSKP),A(LUMC),JEDN)
       AM2=-A2
@@ -553,17 +614,17 @@ c      call wrr6(a(LSKP),NWK,'MMAS')
 c      call wrr6(a(LUMC),jedn,'A2DU')
 C     (T)R=(T)R+A2*M*((T)UU-(T-T)UU)
       if (IABS(ICCGG).EQ.1) then 
-            IF(IMASS.NE.2) CALL MAXAPRI(A(LSKP),A(LUMC),A(LRTDT),
-     1                          JEDN,A(IROWS),A(IROWS+nwk),nwk)
+            IF(IMASS.NE.2) CALL MAXAPRI(ALSM,A(LUMC),A(LRTDT),
+     1                          JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-            IF(IMASS.NE.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),
+            IF(IMASS.NE.2) CALL MAXAPR(ALSM,A(LUMC),A(LRTDT),
      &                          A(LMAXA),JEDN)
       endif
-      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
+      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),ALSM,A(LUMC),JEDN)
 C
 C     (T)R
       CALL WSTAZ(A(LIPODS),LRTDT,38)
-c      call wrr6(a(LRTDT),jedn,'RTDT')
+      call wrr6(a(LRTDT),jedn,'RTDT')
       LMAX=LUMC
       RETURN
       END
@@ -680,6 +741,7 @@ C
       COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
      1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
       COMMON /KONTKT/ ICONT,NEQC,NEQ,NWKC,LMAXAC,LRCTDT
+      COMMON /ZADATA/ LNZADJ,LNZADF,LZADFM,NZADP
       COMMON /CDEBUG/ IDEBUG
 C
       IF(IDEBUG.GT.0) PRINT *, ' NEWMAR'
@@ -694,6 +756,10 @@ C     (T)UU, (T)UV, (T)UA
       CALL RSTAZ(A(LIPODS),LPUU,59)
       CALL RSTAZ(A(LIPODS),LPUV,55)
       CALL RSTAZ(A(LIPODS),LPUA,57)
+         CALL WRR6(A(LPUU),JEDN,'NUU ')
+         CALL WRR6(A(LPUV),JEDN,'NUV ')
+         CALL WRR6(A(LPUA),JEDN,'NUA ')
+         CALL WRR6(A(LRTDT),JEDN,'NTDT')
 C
 CE    ACCELERATIONS IN (T+T)
 CS    UBRZANJA U TRENUTKU (T+T)
@@ -720,6 +786,8 @@ C.. KOREKCIJA UBRZANJA I BRZINA ZA KONTAKTNE PROBLEME
       ELSE
         CALL JEDNA1(A(LPUA),A(LUMC),JEDN)
       ENDIF
+C     BRZINE I UBRZANJA NA ZADATIM POMERANJIMA
+      IF(NZADP.GT.0) CALL ZADAVD(A(LIPODS))
 C     (T+T)UU
       CALL JEDNA1(A(LPUU),A(LRTDT),JEDN)
 C
@@ -727,6 +795,8 @@ C     (T+T)UU, (T+T)UV, (T+T)UA
       CALL WSTAZ(A(LIPODS),LPUU,59)
       CALL WSTAZ(A(LIPODS),LPUV,55)
       CALL WSTAZ(A(LIPODS),LPUA,57)
+         CALL WRR6(A(LPUV),JEDN,'IUV ')
+         CALL WRR6(A(LPUA),JEDN,'IUA ')
       LMAX=LUMC
       IF(ICONT.GT.0) JEDN=NEQ+NEQC
       RETURN
@@ -1255,5 +1325,90 @@ C.. SAMO ZA KONTAKTNE ELEMENTE ( 10 = 2D , 11 = 3D )
          CALL ELEME(NETIP,IND)
        ENDIF
   100 CONTINUE
+      RETURN
+      END
+C=======================================================================
+C
+C=======================================================================
+      SUBROUTINE ZADAVD(NPODS)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.   P R O G R A M
+CE.      TO FORM POINTERS OF PRESCRIBED DISPLACEMENTS
+CS.   P R O G R A M
+CS.      ZA FORMIRANJE REPERA ZA ZADATA POMERANJA
+C .
+C ......................................................................
+C
+      include 'paka.inc'
+      
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /DUPLAP/ IDVA
+      COMMON /DUZINA/ LMAX,MTOT,LMAXM,LRAD,NRAD
+      COMMON /PERKOR/ LNKDT,LDTDT,LVDT,NDT,DT,VREME,KOR
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /OPSTIP/ JPS,JPBR,NPG,JIDG,JCORG,JCVEL,JELCV,NGA,NGI,NPK,
+     1                NPUP,LIPODS,IPODS,LMAX13,MAX13,JEDNG,JMAXA,JEDNP,
+     1                NWP,NWG,IDF,JPS1
+      COMMON /ZADATA/ LNZADJ,LNZADF,LZADFM,NZADP
+      COMMON /EPUREP/ LPUU,LPUV,LPUA,IPUU,IPUV,IPUA,ISUU,ISUV,ISUA
+      COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
+      DIMENSION NPODS(JPS1,*)
+      COMMON /CDEBUG/ IDEBUG
+C
+      IF(IDEBUG.GT.0) PRINT *, ' ZADAVD'
+      LMAX13=NPODS(JPBR,36)-1
+      LZADFM = LMAX
+      LNZADF = LZADFM + NZADP*IDVA
+      LNZADJ = LNZADF + NZADP
+      LMAX   = LNZADJ + NZADP
+      IF(LMAX.GT.MTOT) CALL ERROR(1)
+      NPRO=LMAX-LZADFM
+      CALL DELJIV(NPRO,2,INDL)
+      IF(INDL.EQ.1) NPRO=NPRO+1
+C
+      CALL READDD(A(LZADFM),NPRO/IDVA,IPODS,LMAX13,LDUZI)
+      CALL ZADDAV(A(LNZADJ),A(LRTDT),A(LPUU),A(LPUV),A(LPUA),DT,NZADP,
+     1            KOR)
+      RETURN
+      END
+C=======================================================================
+C
+C=======================================================================
+      SUBROUTINE ZADDAV(NZADJ,RTDT,PUU,PUV,PUA,DT,NZADP,KOR)
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C
+C ......................................................................
+C .
+CE.   P R O G R A M
+CE.     TO CALCULATE PRESCRIBED DISPLACEMENTS AT TIME T+DT
+CS.   P R O G R A M
+CS.     ZA RACUNANJE ZADATIH POMERANJA U TRENUTKU T+DT
+C .
+C ......................................................................
+C
+      include 'paka.inc'
+      
+      COMMON /FVREME/ NTABFT,MAXTFT,LNTFT,LTABFT
+      COMMON /TRAKEJ/ IULAZ,IZLAZ,IELEM,ISILE,IRTDT,IFTDT,ILISK,ILISE,
+     1                ILIMC,ILDLT,IGRAF,IDINA,IPOME,IPRIT,LDUZI
+      COMMON /SRPSKI/ ISRPS
+      COMMON /KAKVZP/ INDVZP
+      COMMON /CDEBUG/ IDEBUG
+      DIMENSION RTDT(*),NZADJ(*),PUU(*),PUV(*),PUA(*)
+C
+      IF(IDEBUG.GT.0) PRINT *, ' ZADDAV'
+      DO 10 I=1,NZADP
+         NJ=NZADJ(I)
+         IF(NJ.EQ.0) GO TO 10
+         PUV(NJ) = (RTDT(NJ)-PUU(NJ))/DT
+         PUA(NJ) = PUV(NJ)/DT
+C        NA SILU PRIVREMENO
+         IF(KOR.EQ.3)PUA(NJ)=160.D0
+   10 CONTINUE
       RETURN
       END

@@ -18,6 +18,7 @@ C                WRITEB
 C
 C=======================================================================
       SUBROUTINE SPAKUJ(SK,MAXA,SKE,LM,ND)
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -38,8 +39,8 @@ C
       COMMON /DRAKCE/ IDRAKCE,NELUK,NZERO,NEED1,NEED2,NEED3,NNZERO
      1                ,IROWS,LAILU,LUCG,LVCG,LWCG,LPCG,LRCG
       COMMON /GEORGE/ TOLG,ALFAG,ICCGG
-      COMMON /DINAMI/ IMASS,IDAMP,PIP,DIP,MDVI
-      common /elejob/ indjob
+c      COMMON /DINAMI/ IMASS,IDAMP,PIP,DIP,MDVI
+c      common /elejob/ indjob
       DIMENSION SKE(*),LM(*),MAXA(*),SK(*)
 C
       IF(IDEBUG.GT.0) PRINT *, ' SPAKUJ'
@@ -49,10 +50,10 @@ CE       WITHOUT BLOCKS
 CS       BEZ BLOKOVA
          IF(IABS(ICCGG).EQ.1)THEN
           IF(ICCGG.EQ.1)THEN
-           CALL ISPAK(SK,A(IROWS),MAXA,SKE,LM,ND,0,
+           CALL ISPAK(SK,AIROWS,MAXA,SKE,LM,ND,0,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
           ELSE
-           CALL ISPAKG(SK,A(IROWS),MAXA,SKE,LM,ND,0,
+           CALL ISPAKG(SK,AIROWS,MAXA,SKE,LM,ND,0,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
           ENDIF
          ELSE
@@ -75,6 +76,8 @@ C
 C=======================================================================
       SUBROUTINE SPAKUA(SK,MAXA,SKE,LM,ND,INDD,
      &                  MNQ,LREC,NBLOCK,LR,IBLK,CMPC,MPC)
+      USE MATRICA
+      USE PLAST3D
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -99,6 +102,9 @@ C
       DIMENSION SKE(*),LM(*),MAXA(*),SK(*),MNQ(*),LREC(*),
      &          CMPC(MMP,*),MPC(NEZA1,*)
       IF(IDEBUG.GT.0) PRINT *, ' SPAKUA'
+      iBrisiBrojac = iBrisiBrojac+1
+      !write(3,*)'POCETAK brojac=',iBrisiBrojac
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'spa1')
 C
 C
 CS  PETLJA PO BLOKOVIMA
@@ -118,6 +124,7 @@ C
       MXMN=MAXA(MNQ(KB0))-1
       LDB=MAXA(MNQ(KB0+1))-MAXA(MNQ(KB0))
       CALL RBLOCK(SK,LREC,KB0,LR,LDB,IBLK)
+      
 CS  PETLJA PO ELEMENTIMA
     9   REWIND ISCRC
    10   IF(ICCGG.EQ.2) THEN
@@ -192,6 +199,8 @@ C
   320   CONTINUE
         GO TO 200
       ENDIF
+      !write(3,*)'brojac=',iBrisiBrojac
+      !if(jedn.le.30) CALL WRR6(SK,NWK,'spa3')
       IF(II.LT.MNQ0.OR.(II.GT.MNQ1.AND.NBLOCK.GT.1)) GO TO 200
       MI=MAXA(II)-MXMN
       KS=I
@@ -251,6 +260,8 @@ C
    15 IF(NBLOCK.GT.1) CALL WBLOCK(SK,LREC,KB0,LR,LDB,IBLK)
 C
    20 CONTINUE
+      !write(3,*)'KRAJ brojac=',iBrisiBrojac
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'spa9')
       RETURN
 999   PRINT *,'ERROR: reading element stifness matrix from disk'
       STOP
@@ -259,6 +270,8 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE RESEN(B,V,MAXA,NN,KKK)
+      USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -299,7 +312,7 @@ C
       if ( myid .ne. 0 ) goto 10
       k=kkk
 C
-      write(3,*)'kkk',kkk
+c      write(3,*)'kkk',kkk
       IF(IDEBUG.GT.0) PRINT *, ' RESEN'
       IF(ISRPS.EQ.0.AND.INDBG.EQ.0)
      1WRITE(*,2000) KKK
@@ -320,6 +333,7 @@ C     CALL SWRR(A(LSK),MAXA,JEDN,'SK U')
       CALL MPI_BCAST(k,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
       IF(IABS(ICCGG).EQ.1) THEN
          IF(ICCGG.EQ.1) THEN
+! iterativni Papadrakakis
             if (myid.ne.0) goto 20
             IF(kkk.EQ.1)THEN
 c              PSI=1.D-6
@@ -327,7 +341,7 @@ c              PSI=1.D-6
                MAXA(JEDN+1)=MAXA(JEDN)+1
 C	         CALL DRSWRR(A(LSK),MAXA,A(IROWS),JEDN,'SK U')
                CALL ICM(JEDN,NWK,NNZERO,NM,NMREJ,PSI,
-     +                  A(LSK),MAXA,A(IROWS),A(LM0),A(LMaxM1),A(LColM),
+     +                  ALSK,MAXA,AIROWS,A(LM0),A(LMaxM1),A(LColM),
      +                  A(Lr1),A(Lz1),A(Lp1))
                PRINT*, NWK, NNZERO, NM
 C	         CALL DRSWRR(A(LSK),MAXA,A(IROWS),JEDN,'SK I')
@@ -335,19 +349,21 @@ C	         CALL DRSWRR(A(LSK),MAXA,A(IROWS),JEDN,'SK I')
                CALL JEDNA1(A(Lr1),V,JEDN)
 C              EPSILON=1.D-10
                EPSILON=1.D-8
-               CALL ICM_CG(V,A(LSK),MAXA,A(IROWS),A(LM0),A(LMaxM1),
+               CALL ICM_CG(V,ALSK,MAXA,AIROWS,A(LM0),A(LMaxM1),
      +                  A(LColM),A(Lr1),A(Lz1),A(Lp1),
      +                  JEDN,NWK,NM,EPSILON,TOL,NITER)
 20          ENDIF
          ELSE
             if(imumps.eq.1) then
+! MUMPS solver
 c	          if(k.eq.2) then
                     CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
-                    CALL dmumps1(A(IROWS),A(IROWS+nwk),B,V,nwk,nn,k)
+                    CALL dmumps1(AIROWS,AIROWS(nwk+1),B,V,nwk,nn,k)
                     IF (myid.ne.0) return
 c	          end if
             else
-                IF (myid.eq.0) CALL ICCGMA(B,V,MAXA,NWK,NN,
+! iterativni Djordje
+            IF (myid.eq.0) CALL ICCGMA(B,V,MAXA,NWK,NN,
      1                                      K,IZLAZ,TOLG,ALFAG)
             endif
          ENDIF
@@ -359,16 +375,17 @@ CS          BEZ BLOKOVA
             IF(JPS.GT.1.AND.JPBR.LT.JPS1) THEN
                CALL RESENP(B,V,MAXA,NN,JEDNP,IZLAZ,K)
             ELSE
-C              if(nn.le.30) call swrr(B,MAXA,NN,'B-  ')
-C              call wrr6(B,NWK,'B-  ')
+c              if(nn.le.30) call swrr(B,MAXA,NN,'B-  ')
+c              call wrr6(B,NWK,'B-  ')
 C              call wrr6(B,36,'B-  ')
-C              if(nn.le.30) call wrr6(V,NN,'V-  ')
+c              if(nn.le.30) call wrr6(V,NN,'V-  ')
                IF(ICCGG.EQ.2) THEN
                   CALL UACTCF(B,C(1),V,MAXA,NN,K)
                ELSE
                   CALL RESENA(B,V,MAXA,NN,IZLAZ,K)
                ENDIF
 c              if(nn.le.30) call swrr(B,MAXA,NN,'B+  ')
+c              call wrr6(B,NWK,'B+  ')
 c              if(nn.le.30) call wrr6(V,NN,'V+  ')
             ENDIF
          ELSE
@@ -1023,7 +1040,7 @@ C
       EQUIVALENCE (A(1),IA(1))
       MNQ(NN)=IA(LMNQ+NN-1)
 C
-      IF(IDEBUG.GT.0) PRINT *, ' ZADLEB'
+      IF(IDEBUG.GT.0) PRINT *, ' ZADLEV'
       VBR=1.0D35
       DO 20 NB=1,NBLOCK
       IF(NBLOCK.EQ.1)THEN
@@ -1243,6 +1260,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE ZADATL
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1270,7 +1288,7 @@ C
       COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
       COMMON /CDEBUG/ IDEBUG
 C
-      IF(IDEBUG.GT.0) PRINT *, ' FORMCT'
+      IF(IDEBUG.GT.0) PRINT *, ' ZADATL'
       LZADFM = LRAD
       LNZADF = LZADFM + NZADP*IDVA
       LNZADJ = LNZADF + NZADP
@@ -1281,7 +1299,7 @@ C
       IF(INDL.EQ.1) NPRO=NPRO+1
 C
       CALL READDD(A(LZADFM),NPRO/IDVA,IPODS,LMAX13,LDUZI)
-      CALL ZADLEV(A(LSK),A(LMAXA),A(LNZADJ),NZADP)
+      CALL ZADLEV(ALSK,A(LMAXA),A(LNZADJ),NZADP)
       RETURN
       END
 C=======================================================================

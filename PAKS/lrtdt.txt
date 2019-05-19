@@ -1,0 +1,75 @@
+Find all "WSTAZ", Match case, Subfolders, Find Results 1, Entire Solution, ""
+  E:\PAK\PAKS\pak0.for(7):      USE WSTAZK
+  E:\PAK\PAKS\pak0.for(284):      USE WSTAZK
+  E:\PAK\PAKS\pak01.for(554):      USE WSTAZK
+  E:\PAK\PAKS\pak01.for(687):      USE WSTAZK
+  E:\PAK\PAKS\pak01.for(1739):      SUBROUTINE WSTAZ(NPODS,LRTD,NS)
+  E:\PAK\PAKS\pak01.for(1763):      IF(IDEBUG.GT.0) PRINT *, ' WSTAZ '
+  E:\PAK\PAKS\pak01.for(1875):      SUBROUTINE WSTAZK(NPODS,LRTD,NS)
+  E:\PAK\PAKS\pak01.for(1902):      IF(IDEBUG.GT.0) PRINT *, ' WSTAZK'
+  E:\PAK\PAKS\pak01.for(1926):      SUBROUTINE WSTAZKMT(NPODS,LRTD,NS)
+  E:\PAK\PAKS\pak01.for(1954):      IF(IDEBUG.GT.0) PRINT *, ' WSTAZK'
+  E:\PAK\PAKS\pak07.for(324):C      CALL WSTAZK(NPODS,LSK,35)!todo topalovic proveriti komentar
+  E:\PAK\PAKS\pak07.for(416):      CALL WSTAZK(NPODS,LSK,35)!todo topalovic proveriti komentar !sa komentarom ne radi sd_1a
+  E:\PAK\PAKS\pak07.for(579):      CALL WSTAZ(NPODS,LRTDT,87)
+  E:\PAK\PAKS\pak07.for(583):C        CALL WSTAZ(NPODS,LRTDT,87)
+  E:\PAK\PAKS\pak07.for(985):               CALL WSTAZ(NPODS,LRTDT,38)
+  E:\PAK\PAKS\pak07.for(1023):C            CALL WSTAZK(NPODS,LSK,35)!todo topalovic proveriti komentar
+  E:\PAK\PAKS\pak07.for(1026):            CALL WSTAZK(NPODS,LSK,60)
+  E:\PAK\PAKS\pak07.for(1109):                     CALL WSTAZ(NPODS,LRTG,47)
+  E:\PAK\PAKS\pak07.for(1448):            CALL WSTAZ(NPODS,LRTDT,39)
+  E:\PAK\PAKS\pak071.for(210):C      CALL WSTAZK(NPODS,LSK,58)
+  E:\PAK\PAKS\pak071.for(244):         CALL WSTAZK(NPODS,LSK,60)
+  E:\PAK\PAKS\pak071.for(403):      CALL WSTAZ(NPODS,LRTDT,38)
+  E:\PAK\PAKS\pak071.for(487):      CALL WSTAZ(A(LIPODS),LUPRI,47)
+  E:\PAK\PAKS\pak071.for(497):      CALL WSTAZ(A(LIPODS),LRTDT,52)
+  E:\PAK\PAKS\pak071.for(501):        CALL WSTAZ(A(LIPODS),LRTDT,92)
+  E:\PAK\PAKS\pak071.for(551):   15 CALL WSTAZ(NPODS,LRTDT,53)
+  E:\PAK\PAKS\pak071.for(552):   10 CALL WSTAZ(NPODS,LRTDT,38)
+  E:\PAK\PAKS\pak071.for(554):         CALL WSTAZ(NPODS,LRTDT,45)
+  E:\PAK\PAKS\pak071.for(555):         CALL WSTAZ(NPODS,LRTDT,47)
+  E:\PAK\PAKS\pak071.for(650):      CALL WSTAZ(A(LIPODS),LRTDT,38)
+  E:\PAK\PAKS\pak071.for(655):      CALL WSTAZ(A(LIPODS),LRTDT,53)
+  E:\PAK\PAKS\pak071.for(682):      CALL WSTAZ(A(LIPODS),LPOMS,53)
+  E:\PAK\PAKS\pak071.for(1296):C            CALL WSTAZK(NPODS,LSK,60)
+  E:\PAK\PAKS\pak071.for(1297):            CALL WSTAZKMT(NPODS,LSK,60)!TODO TOPALOVIC PROVERITI
+  E:\PAK\PAKS\pak071.for(1312):            CALL WSTAZKMT(NPODS,LSK,35)!TODO TOPALOVIC PROVERITI
+  E:\PAK\PAKS\pak071.for(1320):            CALL WSTAZKMT(NPODS,LSK,54)!TODO TOPALOVIC PROVERITI
+  E:\PAK\PAKS\pak071.for(1408):      CALL WSTAZ(NPODS,LFTDT,45)
+  E:\PAK\PAKS\pak071.for(1616):            CALL WSTAZ(A(LIPODS),N10,38)
+  E:\PAK\PAKS\pak071.for(1631):         CALL WSTAZ(A(LIPODS),LRTDT,52)
+  E:\PAK\PAKS\pak071.for(1653):            CALL WSTAZ(A(LIPODS),LRAD,59)
+  E:\PAK\PAKS\pak071.for(1655):            CALL WSTAZ(A(LIPODS),LRAD,55)
+  E:\PAK\PAKS\pak071.for(1657):            CALL WSTAZ(A(LIPODS),LRAD,57)
+  E:\PAK\PAKS\pak071.for(1784):      CALL WSTAZ(A(LIPODS),LPOMS,53)
+  E:\PAK\PAKS\pak071.for(2065):      CALL WSTAZ(A(LIPODS),LPOMS,53)
+  E:\PAK\PAKS\pak08.for(1360):      IF (myid.eq.0) CALL WSTAZKMT(NPODS,LSK,60)!todo topalovic proveriti
+  E:\PAK\PAKS\pak08.for(1552):            CALL WSTAZK(NPODS,LSK,35)
+  E:\PAK\PAKS\pak08.for(1555):!            CALL WSTAZK(NPODS,LSK,60)!todo topalovic proveriti da li treba komentar
+  E:\PAK\PAKS\pak08.for(1640):            CALL WSTAZ(NPODS,LRTG,47)
+  E:\PAK\PAKS\pak081.for(147):                                 CALL WSTAZ(A(LIPODS),N10,38)
+  E:\PAK\PAKS\pak081.for(587):      CALL WSTAZ(A(LIPODS),LRTDT,52)
+  E:\PAK\PAKS\pak10.for(84):   20 CONTINUE !IF(IMASS.EQ.1) CALL WSTAZK(A(LIPODS),LSK,54)
+  E:\PAK\PAKS\pak10.for(85):C      IF(IMASS.EQ.2) CALL WSTAZ(A(LIPODS),LSK,54)
+  E:\PAK\PAKS\pak10.for(109):   40 CONTINUE !IF(IDAMP.EQ.1) CALL WSTAZK(A(LIPODS),LSK,56)
+  E:\PAK\PAKS\pak10.for(110):C      IF(IDAMP.EQ.2) CALL WSTAZ(A(LIPODS),LSK,56)
+  E:\PAK\PAKS\pak10.for(493):   10 IF(ITERGL.EQ.0) CALL WSTAZ(A(LIPODS),LRTDT,38)
+  E:\PAK\PAKS\pak10.for(622):      CALL WSTAZ(A(LIPODS),LRTDT,38)
+  E:\PAK\PAKS\pak10.for(700):      CALL WSTAZ(A(LIPODS),LPUU,59)
+  E:\PAK\PAKS\pak10.for(701):      CALL WSTAZ(A(LIPODS),LPUV,55)
+  E:\PAK\PAKS\pak10.for(702):      CALL WSTAZ(A(LIPODS),LPUA,57)
+  E:\PAK\PAKS\pak10.for(791):      CALL WSTAZ(A(LIPODS),LPUU,59)
+  E:\PAK\PAKS\pak10.for(792):      CALL WSTAZ(A(LIPODS),LPUV,55)
+  E:\PAK\PAKS\pak10.for(793):      CALL WSTAZ(A(LIPODS),LPUA,57)
+  E:\PAK\PAKS\pak10.for(861):      CALL WSTAZ(A(LIPODS),LPUU,53)
+  E:\PAK\PAKS\pak10.for(866):      CALL WSTAZ(A(LIPODS),LPUU,59)
+  E:\PAK\PAKS\pak10.for(867):      CALL WSTAZ(A(LIPODS),LPUV,55)
+  E:\PAK\PAKS\pak10.for(868):      CALL WSTAZ(A(LIPODS),LPUA,57)
+  E:\PAK\PAKS\pak10.for(923):      CALL WSTAZ(A(LIPODS),LUMC,53)
+  E:\PAK\PAKS\pak105.for(75):C               CALL WSTAZK(NPODS,LSK,60)!todo topalovic proveriti da li treba komentar
+  E:\PAK\PAKS\pak105.for(145):         CALL WSTAZK(NPODS,LSK,60)
+  E:\PAK\PAKS\pak72.for(1009):      CALL WSTAZ(A(LIPODS),LPOMS,53)
+  E:\PAK\PAKS\pak932.for(249):      IF(IILS.NE.-1)CALL WSTAZ(A(LIPODS),LRTDT,52)
+  E:\PAK\PAKS\pak932p.for(203):      IF(IILS.NE.-1)CALL WSTAZ(A(LIPODS),LRTDT,52)
+  E:\PAK\PAKS\pakzmod.for(26):      MODULE WSTAZK
+  Matching lines: 73    Matching files: 12    Total files searched: 358

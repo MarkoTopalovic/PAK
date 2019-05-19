@@ -157,6 +157,7 @@ C
       END
 C======================================================================
       SUBROUTINE SIS93(AE,AU,IND)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     GLAVNI UPRAVLJACKI PROGRAM  ZA MATRICE ELEMENATA I SISTEMA
@@ -252,7 +253,7 @@ CS     PRIPADAJUCE MASE CVOROVA
 CE     NODES MASSES
 C
 C       call WRR(A(LSK),NWK,'MASE')
-       CALL MASE93(A(LSK),A(LMAXA),A(LID),AU(LMASE),AU(LNEL),AU(LNGLOB),
+       CALL MASE93(ALSK,A(LMAXA),A(LID),AU(LMASE),AU(LNEL),AU(LNGLOB),
      &             NP,NE,NTTOT)
 C
        LMA8=LSTAZA(2)-1
@@ -327,6 +328,7 @@ C=======================================================================
       SUBROUTINE ELTE93(SKE,NCVSF,ITSRF,NELSF,ISNA,LM,IDC,
      &                  NEL,CORD,ID,U,RC,UPRI,IK,IK1,ALFK,FSFD,SILE,
      &                  NELAB,XYZ,HE,TRA,EPSIL,ICCMOV)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     FORMIRANJE MATRICA ELEMENATA I SISTEMA
@@ -502,7 +504,7 @@ C
        SKE(4)=-1.D0
        SKE(6)=-1.D0
 C
-       CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM3,MDIM)
+       CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM3,MDIM)
 C
        DO 30 J=1,3
         IJ=LM3(J)
@@ -616,7 +618,7 @@ C
        KK=-MAXCE-1
        DO 56 K=1,3
          KK=KK+MAXCE+2
-         CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM(KK),MDIM)
+         CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM(KK),MDIM)
    56  CONTINUE
       ENDIF
 C           SILE NA CILJNIM CVOROVIMA
@@ -660,7 +662,7 @@ C          KONTAKTNA KRUTOST
          LMDUM=LM(KK1)
          IF(LMDUM.NE.0) LM(KK1)=LMILM
 C         CALL IWRR(LM(KK),MDIM,'LM**')
-         CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM(KK),MDIM)
+         CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM(KK),MDIM)
          LM(KK1)=LMDUM
   258  CONTINUE
        MDIM=2
@@ -676,7 +678,7 @@ C         CALL IWRR(LM(KK),MDIM,'LM**')
        SKE(2) = 0.D0
        SKE(3) =-1.D0
 C         CALL IWRR(LM3,MDIM,'LM3*')
-       CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM3,MDIM)
+       CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM3,MDIM)
       ENDIF
 C
 C          KONTAKTNE SILE PRI KLIZANJU

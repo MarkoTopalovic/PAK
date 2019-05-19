@@ -1,7 +1,7 @@
 C======================================================================
 CE        ALL SUBROUTINES IN THIS FILE ARE PROGRAMD BY DRAKCE
 C======================================================================
-      SUBROUTINE ISPAKUJ(ISK,MAXA,NWK,JEDN)
+      SUBROUTINE ISPAKUJ(IROW,ISK,MAXA,NWK,JEDN)
 C
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
@@ -20,7 +20,7 @@ C
 C
       INTEGER*8 MAXA,NWK,I8,NZERO8
       INTEGER*1 ISK(1+NWK/7)
-      DIMENSION MAXA(*),LM(100)
+      DIMENSION MAXA(*),LM(100),IROW(*)
       IF(IDEBUG.GT.0) PRINT *, ' SPAKUJ'
       NBLOCK=1
       IF(NBLOCK.EQ.1) THEN
@@ -51,7 +51,7 @@ c         READ(IDRAKCE,1000) ND,(LM(I),I=1,ND)
 C
 C         CALL IIISWR(LM,ND,' LM ')  
 C
-         CALL ISPAKUA(ISK,MAXA,LM,ND,0,
+         CALL ISPAKUA(IROW,ISK,MAXA,LM,ND,0,
      &               A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC),
      &               NWK,JEDN)
   20  CONTINUE
@@ -66,7 +66,7 @@ C         WRITE(ISCRC)ND,(LM(I),I=1,ND),(SKE(I),I=1,ND*(ND+1)/2)
       RETURN
       END
 C====================
-      SUBROUTINE ISPAKUA(ISK,MAXA,LM,ND,INDD,
+      SUBROUTINE ISPAKUA(IROW,ISK,MAXA,LM,ND,INDD,
      &                  MNQ,LREC,NBLOCK,LR,IBLK,CMPC,MPC,NWK,JEDN)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
@@ -94,7 +94,7 @@ C
      1                IOPGL(6),KOSI,NDIN,ITEST
       INTEGER*8 MAXA,NWK,MI,KK,KKNWK
       DIMENSION LM(*),MAXA(*),MNQ(*),LREC(*),
-     &          CMPC(MMP,*),MPC(NEZA1,*)
+     &          CMPC(MMP,*),MPC(NEZA1,*),IROW(*)
       INTEGER*1 ISK(1+NWK/7)
       IF(IDEBUG.GT.0) PRINT *, ' SPAKUA'
 C
@@ -291,15 +291,15 @@ C===========================================================
      1WRITE(IZLAZ,30)NN,NWK,NZERO,A1,NNZERO,A2,NEED1,NEED2,NEED3
 20    FORMAT(//' DIMENZIJA MATRICE    : ',I12/
      *         ' UKUPAN BROJ CLANOVA  : ',I12/
-     *         ' BROJ CLANOVA = 0     : ',I12,'  ILI ',F6.0,' %'/
-     *         ' BROJ NE NULA CLANOVA : ',I12,'  ILI ',F6.0,' %'/
+     *         ' BROJ CLANOVA = 0     : ',I12,'  ILI ',F6.3,' %'/
+     *         ' BROJ NE NULA CLANOVA : ',I12,'  ILI ',F6.3,' %'/
      *         ' POTREBNA VELICINA GLAVNOG VEKTORA  : ',I12/
      *         ' POTREBNA VELICINA POMOCNOG VEKTORA : ',I12/
      *' UKUPNA POTREBNA VELICINA GLAVNOG I POMOCNOG VEKTORA : ',I9//)
 30    FORMAT(//' DIMENSION OF SYSTEM MATRIX: ',I12/
      *         ' TOTAL NUMBER OF MEMBERS   : ',I12/
-     *         ' NUMBER OF MEMBERS = 0     : ',I12,'  OR ',F6.0,' %'/
-     *         ' NUMBER OF NONZERO MEMBERS : ',I12,'  OR ',F6.0,' %'/
+     *         ' NUMBER OF MEMBERS = 0     : ',I12,'  OR ',F6.3,' %'/
+     *         ' NUMBER OF NONZERO MEMBERS : ',I12,'  OR ',F6.3,' %'/
      *         ' REQUIRED DIMENSION IN MAIN ARRAY     : ',I12/
      *         ' REQUIRED DIMENSION IN AUXILIARY ARRAY: ',I12/
      *' TOTAL REQUIRED DIMENSION IN MAIN AND AUXILIARY ARRAY: ',I12//)
@@ -401,8 +401,9 @@ C
   314           CMJ=CMPC(JCM,K)
                 IF(ICCGG.EQ.2) THEN
                   KK=MI-IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
-                  KK=KK+1
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  KK=KK+1
+                  KK=MAXA(II+1)
   666               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 666
@@ -411,8 +412,9 @@ C
                    SK(KKNWK)=SK(KKNWK)+CMI*CMJ*SKE(KSSL)
                 ELSE          
                   KK=MI+IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
-                  KK=KK+1
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  KK=KK+1
+                  KK=MAXA(II+1)
  1666               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 1666
@@ -426,8 +428,9 @@ C
               IF(IJ)310,311,311
   311         IF(ICCGG.EQ.2) THEN
                 KK=MI-IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
-                  KK=KK+1
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  KK=KK+1
+                  KK=MAXA(II+1)
  6166               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6166
@@ -438,8 +441,9 @@ C
                 SK(KKNWK)=SK(KKNWK)+CMI*SKE(KSSL)
               ELSE
                 KK=MI+IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
-                  KK=KK+1
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  KK=KK+1
+                  KK=MAXA(II+1)
  6616               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6616
@@ -477,8 +481,9 @@ C
                 IF(IJ)418,415,415
   415           IF(ICCGG.EQ.2) THEN
                   KK=MI-IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
-                  KK=KK+1
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  KK=KK+1
+                  KK=MAXA(II+1)
  6661               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6661
@@ -487,7 +492,8 @@ C
                   SK(KKNWK)=SK(KKNWK)+CMJ*SKE(KSSL)
                 ELSE
                   KK=MI+IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  2666               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 2666
@@ -501,8 +507,9 @@ C
       IF(IJ)220,210,210
   210 IF(ICCGG.EQ.2) THEN
          KK=MI-IJ
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
-                  KK=KK+1
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  KK=KK+1
+                  KK=MAXA(II+1)
  6266               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6266
@@ -513,7 +520,8 @@ C
          SK(KKNWK)=SK(KKNWK)+SKE(KSSL)
       ELSE
          KK=MI+IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  6626               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6626
@@ -631,29 +639,27 @@ C
  5000 FORMAT(30I5)
       END
 C=======================================================================
-      SUBROUTINE FORM(IROW,ISK,IVRS,MAXA,JEDN,NWK1)
-      IMPLICIT NONE
-      INTEGER*8 IROW(*),MAXA(*),NWK1,J
-      INTEGER*4 IVRS(*),I,IPOZ,JEDN,IMAX,JJ,IJ
+      SUBROUTINE FORM(IROW,ISK,MAXA,MAXA8,JEDN,NWK,NWK1)
+      COMMON /smumps/ imumps,ipar
+      INTEGER*8 MAXA8(JEDN+1),I8
+      DIMENSION IROW(*),MAXA(JEDN+1),IVRS(JEDN)
       INTEGER*1 ISK(1+NWK1/7)
-      WRITE(*,*) ' FORM'
-      WRITE(3,*) ' FORM'
-      DO 10 I=1,JEDN
-         IVRS(I)=MAXA(I)+I+1-MAXA(I+1)
-         MAXA(I)=MAXA(I+1)-1
+      DO 10 I8=1,JEDN
+         IVRS(I8)=MAXA8(I8)+I8+1-MAXA8(I8+1)
+         MAXA8(I8)=MAXA8(I8+1)-1
    10 CONTINUE
       IPOZ=1
       DO 20 I=1,JEDN
          IMAX=IPOZ
          DO 30 JJ=I,JEDN
             IF(IVRS(JJ).EQ.I) THEN
-               J=MAXA(JJ)
+               J=MAXA8(JJ)
                CALL UZMI1(ISK(1+(J-1)/7),J-((J-1)/7)*7,IJ)
                IF(IJ.EQ.1)THEN
                   IROW(IPOZ)=JJ
                   IPOZ=IPOZ+1
                ENDIF
-               MAXA(JJ)=MAXA(JJ)-1
+               MAXA8(JJ)=MAXA8(JJ)-1
                IVRS(JJ)=IVRS(JJ)+1
             ENDIF
    30    CONTINUE
@@ -704,11 +710,12 @@ C=======================================================================
       IV(3)=16
       IV(2)=32
       IV(1)=64
-      N=ISK
-      DO 10 I=1,NP-1
-         IF(N.GE.IV(I)) N=N-IV(I)
-   10 CONTINUE
-      IF (N.LT.IV(NP)) ISK=ISK+IV(NP)
+      ISK=OR(ISK,IV(NP))
+C      N=ISK
+C      DO 10 I=1,NP-1
+C         IF(N.GE.IV(I)) N=N-IV(I)
+C   10 CONTINUE
+C      IF (N.LT.IV(NP)) ISK=ISK+IV(NP)
       RETURN
       END
 C=======================================================================
@@ -721,10 +728,11 @@ C=======================================================================
       IV(3)=16
       IV(2)=32
       IV(1)=64
-      N=ISK
-      DO 10 I=1,NP-1
-         IF(N.GE.IV(I)) N=N-IV(I)
-   10 CONTINUE
+      N=AND(ISK,IV(NP))
+C      N=ISK
+C      DO 10 I=1,NP-1
+C         IF(N.GE.IV(I)) N=N-IV(I)
+C   10 CONTINUE
       IJ=0
       IF (N.GE.IV(NP)) IJ=1
       RETURN
@@ -732,41 +740,24 @@ C=======================================================================
 C================================================================	
       SUBROUTINE FORM0(IROW,ISK,MAXA,MAXA8,JEDN,NWK,NWK1)
       COMMON /smumps/ imumps,ipar
-      INTEGER*8 MAXA8(*),NWK1,J8
-      DIMENSION IROW(*),MAXA(*)
-C      DIMENSION IROW(*),MAXA(*),IVRS(JEDN)
+      INTEGER*8 MAXA8(JEDN+1),NWK1,J8
+      DIMENSION IROW(NWK),MAXA(JEDN+1),IVRS(JEDN)
       INTEGER*1 ISK(1+NWK1/7)
-      WRITE(*,*) ' FORM0 ul'
-      WRITE(3,*) ' FORM0 ul'
       IPOZ=1
       DO 20 I=1,JEDN
          IMAX=IPOZ
          DO 30 J8=MAXA8(I),MAXA8(I+1)-1
             CALL UZMI1(ISK(1+(J8-1)/7),J8-((J8-1)/7)*7,IJ)
-C            CALL UZMI1(ISK(1+(JJ-1)/7),J-((JJ-1)/7)*7,IJ)
             IF(IJ.EQ.1)THEN
                IROW(IPOZ)=I+MAXA8(I)-J8
-               if(imumps.eq.1) IROW(NWK+IPOZ)=I
+               IF(IMUMPS.EQ.1) IROW(NWK+IPOZ)=I
                IPOZ=IPOZ+1
             ENDIF
-C         DO 30 JJ=I,JEDN
-C            IF(IVRS(JJ).EQ.I) THEN
-C               J=MAXA(JJ)
-C               CALL UZMI1(ISK(1+(J-1)/7),J-((J-1)/7)*7,IJ)
-C               IF(IJ.EQ.1)THEN
-C                  IROW(IPOZ)=JJ
-C                  IPOZ=IPOZ+1
-C               ENDIF
-C               MAXA(JJ)=MAXA(JJ)-1
-C               IVRS(JJ)=IVRS(JJ)+1
-C            ENDIF
    30    CONTINUE
          MAXA(I)=IMAX
    20 CONTINUE
       MAXA(JEDN+1)=IPOZ
 C      CALL IWRR(IROW,NN,'IROW')
-      WRITE(*,*) ' FORM0 iz'
-      WRITE(3,*) ' FORM0 iz'
       RETURN
       END
 C=======================================================================
@@ -868,7 +859,8 @@ C
   314           CMJ=CMPC(JCM,K)
                 IF(ICCGG.EQ.2) THEN
                   KK=MI-IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
   666               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 666
@@ -883,7 +875,8 @@ C                  WRITE(*,99999)KSSL,KKNWK
 C                  PRINT *,KSSL,KKNWK
                 ELSE          
                   KK=MI+IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  1666               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 1666
@@ -900,7 +893,8 @@ C
               IF(IJ)310,311,311
   311         IF(ICCGG.EQ.2) THEN
                 KK=MI-IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  6166               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6166
@@ -917,7 +911,8 @@ C                WRITE(*,99999)KSSL,KKNWK
 C                PRINT *,KSSL,KKNWK
               ELSE
                 KK=MI+IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  6616               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6616
@@ -960,7 +955,8 @@ C
                 IF(IJ)418,415,415
   415           IF(ICCGG.EQ.2) THEN
                   KK=MI-IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  6661               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6661
@@ -975,7 +971,8 @@ C                  WRITE(*,99999)KSSL,KKNWK
 C                  PRINT *,KSSL,KKNWK
                 ELSE
                   KK=MI+IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  2666               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 2666
@@ -992,7 +989,8 @@ C
       IF(IJ)220,210,210
   210 IF(ICCGG.EQ.2) THEN
          KK=MI-IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  6266               CONTINUE
                     KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6266
@@ -1009,7 +1007,8 @@ C         WRITE(*,99999)KSSL,KK
 C         PRINT *,KSSL,KK
       ELSE
          KK=MI+IJ+1
-                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+c                  IF(KK.GT.MAXA(II+1))KK=MAXA(II+1)
+                  KK=MAXA(II+1)
  6626               CONTINUE
                        KK=KK-1
                     IF(IROW(KK).NE.II-IJ)GOTO 6626

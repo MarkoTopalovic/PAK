@@ -440,6 +440,7 @@ C=======================================================================
      1                GEEK,NCVE2,IALFA,COR0,TEMGT,CORGT,AU,TSG2,N45,
      1                ZAPS,NPRZ,INDZS,GUSM,LA,CEGE,ESILA,
      1                SKS,SKES,NDNDS,HS,QS,PS,ID,DEF,NNOD,ngg,TBTH)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C      
       include 'pakxfem.inc'
@@ -2067,9 +2068,9 @@ C
                   SKP1(J,I1)=SKP1(I1,J)
   483          CONTINUE
             ENDIF
-            IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKP1,LM,NDNDS)
+            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,NDNDS)
          ELSE
-            IF(ISKNP.NE.2) CALL SPAKUJ(A(LSK),A(LMAXA),SKE,LM,NDD)
+            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,NDD)
 c            IF(nlm.eq.1) THEN
 c               NDUM=NDD*(NDD+1)/2
 c               write(3,*) 'nlm,ndd,neq',nlm,ndd,jedn
@@ -2284,7 +2285,7 @@ C
      1WRITE(IZLAZ,6000) NGE,GRZAP,NGE,GRMAS
       ELSE
 C      WRITE(3,*) 'DETGM,DETGP',DETGM,DETGP
-      WRITE(3,*) 'NGE,GRZAP,ITER',NGE,GRZAP,ITER
+C      WRITE(3,*) 'NGE,GRZAP,ITER',NGE,GRZAP,ITER
       ENDIF
       IF(NMODM.EQ.2) THEN
       WRITE(3,*) 'DSQMK,KOR,NLMMK,JGMK',DSQMK,KOR,NLMMK,JGMK
@@ -3376,7 +3377,7 @@ C
      1          999,999,999, 14, 15, 16, 17, 18, 19, 20,
      2           21, 22,999,999, 25, 26,999, 28,999, 30,
      3           31,999,999,999,999,999,999,999,999, 40,
-     4          999,999,999,999,999,999,999,999,999,999,
+     4           41,999,999,999,999,999,999,999,999,999,
      5           51,999,999,999,999,999,999,999,999,999,
      6           61,999,999,999,999,999,999,999,999,999,
      7          999,999,999,999,999,999,999,999,999,999,
@@ -3424,6 +3425,9 @@ C
    31 CALL D2M31(TAU,DEF,IRAC,LPLAS,LPLA1)
       RETURN
    40 CALL D2M6G(TAU,DEF,IRAC,LPLAS,LPLA1)
+      RETURN
+C     Drucker-Prager (rakic)
+   41 CALL D2M41(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC)
       RETURN
 C ARGENTINA
    51 CALL D2M51(TAU,DEF,IRAC,LPLAS,LPLA1,IBTC)

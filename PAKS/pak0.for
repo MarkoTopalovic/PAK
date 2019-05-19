@@ -4,7 +4,7 @@ C=======================================================================
       program main
       use mcm_database
       USE CVOROVI
-      USE WSTAZK
+      USE WSTAZKTOP
       USE PLAST3D
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       logical newproblem
@@ -281,7 +281,7 @@ C=======================================================================
       use mcm_database
       USE ELEMENTI
       USE CVOROVI
-      USE WSTAZK
+      USE WSTAZKTOP
       
       USE RESULTS
       USE PAKVREPOVI
