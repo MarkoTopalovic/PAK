@@ -2243,7 +2243,11 @@ C
             ENDIF
             NPODS(JPBR,69)=-1
   170    CONTINUE
-      ENDIF
+            ENDIF
+            
+      write (*,*) 'READING AND GENERATING OF INPUT DATA IS OVER' 
+      write (3,*) 'READING AND GENERATING OF INPUT DATA IS OVER'
+      
       IF(IREST.EQ.2) THEN
       IF(ISRPS.EQ.0)
      1WRITE(IZLAZ,2020)
