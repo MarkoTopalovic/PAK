@@ -13,6 +13,7 @@ C              PRKOR
 C
 C=======================================================================
       SUBROUTINE UCDATA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -235,6 +236,12 @@ C    1READ(ACOZ,1030) IREST,TSTART,NMODS,ICCGG,TOLG,ALFAG
       irestp=irest
 C* SAMO ZA TESTIRANJE
       imumps=0
+      TIPTACKANJA = 1
+!      1=drakce 2=busy 
+      if(iccgg.eq.-12) then
+          iccgg=-11
+          TIPTACKANJA = 2
+      endif
       if(iabs(iccgg).gt.10) then
          imumps=1
          if(iccgg.gt.0) then

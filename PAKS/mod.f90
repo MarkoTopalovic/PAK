@@ -8,13 +8,7 @@
         integer,dimension(:,:),allocatable :: IDJSTAMP1
       end module ppr
       
-      module STIFFNESS
-        integer*8 :: stiff_n
-        integer*8 :: nonzeros
-        integer*8,dimension(:),allocatable :: rows
-        integer*8,dimension(:),allocatable :: columns
-        double precision,dimension(:),allocatable :: stiff
-      end module STIFFNESS
+      
       
       module ELEMENTS
         double precision,dimension(:),allocatable :: thick

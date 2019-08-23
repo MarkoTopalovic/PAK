@@ -552,6 +552,7 @@ C
 C======================================================================
       SUBROUTINE WRITDDMT(A,N,II,LS,LD)
       USE WSTAZKTOP
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1821,7 +1822,7 @@ CLJ1        za ljusku mora da se skine komentar
 C=======================================================================
 C
 C=======================================================================
-      SUBROUTINE RSTAZKMT(NPODS,LRTD,NS)
+      SUBROUTINE RSTAZKMT(NPODS,ALSK,NS)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1861,7 +1862,7 @@ CLJ1        za ljusku mora da se skine komentar ! vise ne
          !IF(ISKDSK.NE.0) THEN      ! nova topova mt metoda    
             IF(NBLOCK.EQ.1) THEN ! modul umesto fajla
                !CALL READDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
-              CALL READDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+              CALL READDDMT(ALSK,NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL READDB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),
      1                     NBLOCK,LR,IBLK,LMAX13)
@@ -1964,7 +1965,7 @@ C      WRITE(3,*) 'WK,NS,LRTD',NS,LRTD
 CLJ2        za ljusku mora da se skine komentar ! vise ne
          !IF(ISKDSK.NE.0) THEN ! nova topova metoda mt
             IF(NBLOCK.EQ.1) THEN ! modul umesto fajla
-               CALL WRITDDMT(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
+               CALL WRITDDMT(LRTD,NWK,IPODS,LMAX13,LDUZI)
                !CALL WRITDD(A(LRTD),NWK,IPODS,LMAX13,LDUZI)
             ELSE
                CALL WRITEB(A(LSK),A(LMAXA),A(LMNQ),A(LLREC),

@@ -3,6 +3,7 @@ C
 C=======================================================================
       SUBROUTINE MIKA(NPODS)
       USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -72,7 +73,7 @@ C              LDLT - Kj
             ENDIF
             CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
             IF (myid.eq.0) THEN
-C               CALL WSTAZK(NPODS,LSK,60)!todo topalovic proveriti da li treba komentar
+C               CALL WSTAZK(NPODS,LSK,60)
                LRAD=LID
             ENDIF
   250    CONTINUE
@@ -100,7 +101,7 @@ C
             LMAX13=NPODS(JPBR,37)-1
 C           Kbb
             CALL WRITDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
-C            IF(IST.EQ.1) CALL WRR(A(LSK),NWK-NWP,'SK  ')!todo topalovic proveriti da li treba komentar
+C            IF(IST.EQ.1) CALL WRR(A(LSK),NWK-NWP,'SK  ')
             IF(IST.EQ.1) CALL WRR(A(LSKG),NWKP,'SKG ')
   300    CONTINUE
       ENDIF
@@ -130,7 +131,11 @@ C
             CALL READDD(A(LSKG),NWKP,IPODS,LMAX13,LDUZI)
             LMAX13=NPODS(JPBR,27)-1
             CALL IREADD(A(LLMG),JED,IPODS,LMAX13,LDUZI)
+            IF (TIPTACKANJA.EQ.1) THEN
             CALL SPAKUJ(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
+            ELSE
+            CALL SPAKUJMT(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
+            ENDIF
   400    CONTINUE
          JPBR=JPS1
          JEDN=JEDNG
@@ -141,7 +146,7 @@ C         CALL WRR(A(LSK),NWG,'A   ')
       ENDIF
       CALL RESEN(ALSK,A(LRTDT),A(JMAXA),JEDN,1)
       IF (myid.eq.0) THEN
-C         IF(IST.EQ.1)  CALL WRR(A(LSK),NWG,'KGIN')!todo topalovic proveriti da li treba komentar
+C         IF(IST.EQ.1)  CALL WRR(A(LSK),NWG,'KGIN')
          CALL WSTAZK(NPODS,LSK,60)
          LRAD=JMAXA
          IF(IST.EQ.1) WRITE(3,*) 'LRAD100',LRAD
@@ -224,7 +229,7 @@ CE          BACKSUBSTITUTION - SOLUTION OF SYSTEM EQUATIONS
 CS          ZAMENA UNAZAD - RESAVANJE :SISTEMA JEDNACINA
 C
 C           6.           Kg . Xg(k) = Fg(k)
-C            IF(IST.EQ.1) CALL WRR(A(LSK),NWG,'KG  ')!todo topalovic proveriti da li treba komentar
+C            IF(IST.EQ.1) CALL WRR(A(LSK),NWG,'KG  ')
             IF(IST.EQ.1) CALL WRR(A(LRTDT),JEDN,'RTDT')
             IF(IST.EQ.1) CALL IWRR(A(JMAXA),JEDN+1,'MAXA')
          ENDIF

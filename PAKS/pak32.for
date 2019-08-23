@@ -265,6 +265,9 @@ CE    POINTER FOR INTEGRATION POINTS COORDINATES
 C======================================================================
       SUBROUTINE SIST3E(AE,AU)
       USE PLAST3D
+      USE STIFFNESS
+      USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -290,6 +293,10 @@ C ......................................................................
 C
       include 'paka.inc'
       
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /DINAMI/ IMASS,IDAMP,PIP,DIP,MDVI
+      COMMON /SOPSVR/ ISOPS,ISTYP,NSOPV,ISTSV,IPROV,IPROL
       COMMON /IZOL4B/ NGS12,ND,MSLOJ,MXS,MSET,LNSLOJ,LMATSL,LDSLOJ,LBBET
       COMMON /REPERI/ LCORD,LID,LMAXA,LMHT
       COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
@@ -436,7 +443,9 @@ C=======================================================================
      1                COR0,TEMGT,CORGT,AU,ZAPS,NPRZ,INDZS,GUSM,LA,CEGE,
      1                ESILA,ID,DEF,NNOD,ALFT,INDBEL,BIRTHC,TBTH,MCVEL)
       USE PLAST3D
+      USE STIFFNESS
       USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -524,7 +533,7 @@ C
      1          ALFE(LA,*),HAEM(LA,*),HINV(LA,LA,*),GEEK(LA,24,*),
      1          DEF(NLD,NGS12,*),NNOD(*),ID(NP,*),ALFT(LA,*)
       DIMENSION INDBEL(*),BIRTHC(NE,*),TBTH(*),MCVEL(*)
-      DIMENSION STRAIN(6),STRESS(6),TA(6)
+      DIMENSION STRAIN(6),STRESS(6),TA(6),SKEF(100,100)
       DIMENSION XG(55),WGT(55),NREF(11),XNC(15),WNC(15)
       DIMENSION XG9(9),YG9(9),ZG9(9),WG9(9)
       DIMENSION COR(21,3),CORT(21,3),CON(21,3),COR0(NE,3,*),
@@ -2396,11 +2405,19 @@ C
 CS       RASPOREDJIVANJE MATRICE KRUTOSTI (SKE)
 CE       ASSEMBLE STIFFNESS MATRIX 
 C
-c         if(nlm.lt.10) then
-c            WRITE(*,*) 'pre spakuj'
-c            WRITE(3,*) 'pre spakuj'
-c         endif
-         IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
+         if(nlm.lt.10) then
+!            WRITE(*,*) 'pre spakuj'
+!            WRITE(3,*) 'pre spakuj'
+         endif
+         IF(ISKNP.NE.2) THEN
+             IF (TIPTACKANJA.EQ.1) THEN
+             CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
+             ELSE
+!             CALL REVERSEPSKEFN(SKEF,SKE,ND)
+!                             MATRICA,NIZ,DIMENZIJA
+             CALL SPAKUJMT(ALSK,A(LMAXA),SKE,LM,ND)
+             ENDIF
+         ENDIF
 C
 CS       RAZMESTANJE UNUTRASNJIH SILA FE U GLOBALNI VEKTOR FTDT
 CE       ASSEMBLE INTERNAL FORCE VECTOR
@@ -4056,3 +4073,20 @@ C-----------------------------------------------------------------------
      5       10X,'DET=',D12.5)
 C-----------------------------------------------------------------------
       END
+C=========================================================================
+      SUBROUTINE REVERSEPSKEFN(SKEF,SKEFN,NDES)
+      !                      MATRICA,NIZ,DIMENZIJA
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+       DIMENSION SKEF(NDES,*),SKEFN(*)
+
+	 K=0
+       DO I=1,NDES
+        DO J=I,NDES
+          K=K+1
+         	SKEF(I,J)=SKEFN(K)
+          SKEF(J,I)=SKEF(I,J)
+        ENDDO
+       ENDDO
+
+      END
+C==========================================================================

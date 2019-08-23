@@ -76,8 +76,6 @@ C
 C=======================================================================
       SUBROUTINE SPAKUA(SK,MAXA,SKE,LM,ND,INDD,
      &                  MNQ,LREC,NBLOCK,LR,IBLK,CMPC,MPC)
-      USE MATRICA
-      USE PLAST3D
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -102,9 +100,6 @@ C
       DIMENSION SKE(*),LM(*),MAXA(*),SK(*),MNQ(*),LREC(*),
      &          CMPC(MMP,*),MPC(NEZA1,*)
       IF(IDEBUG.GT.0) PRINT *, ' SPAKUA'
-      iBrisiBrojac = iBrisiBrojac+1
-      !write(3,*)'POCETAK brojac=',iBrisiBrojac
-      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'spa1')
 C
 C
 CS  PETLJA PO BLOKOVIMA
@@ -124,7 +119,6 @@ C
       MXMN=MAXA(MNQ(KB0))-1
       LDB=MAXA(MNQ(KB0+1))-MAXA(MNQ(KB0))
       CALL RBLOCK(SK,LREC,KB0,LR,LDB,IBLK)
-      
 CS  PETLJA PO ELEMENTIMA
     9   REWIND ISCRC
    10   IF(ICCGG.EQ.2) THEN
@@ -199,8 +193,6 @@ C
   320   CONTINUE
         GO TO 200
       ENDIF
-      !write(3,*)'brojac=',iBrisiBrojac
-      !if(jedn.le.30) CALL WRR6(SK,NWK,'spa3')
       IF(II.LT.MNQ0.OR.(II.GT.MNQ1.AND.NBLOCK.GT.1)) GO TO 200
       MI=MAXA(II)-MXMN
       KS=I
@@ -260,8 +252,6 @@ C
    15 IF(NBLOCK.GT.1) CALL WBLOCK(SK,LREC,KB0,LR,LDB,IBLK)
 C
    20 CONTINUE
-      !write(3,*)'KRAJ brojac=',iBrisiBrojac
-      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'spa9')
       RETURN
 999   PRINT *,'ERROR: reading element stifness matrix from disk'
       STOP
@@ -270,6 +260,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE RESEN(B,V,MAXA,NN,KKK)
+      USE STIFFNESS
       USE MATRICA
       USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -357,9 +348,16 @@ C              EPSILON=1.D-10
             if(imumps.eq.1) then
 ! MUMPS solver
 c	          if(k.eq.2) then
-                    CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
-                    CALL dmumps1(AIROWS,AIROWS(nwk+1),B,V,nwk,nn,k)
-                    IF (myid.ne.0) return
+                CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
+                 IF (TIPTACKANJA.EQ.1) THEN
+                CALL dmumps1(AIROWS,AIROWS(nwk+1),B,V,nwk,nn,k) ! Drakce
+                ELSE
+                          IF(K.EQ.1) THEN
+                              stiff_n = JEDN
+                          ENDIF
+                CALL dmumps1(iirows,iicolumns,ALSK,V,
+     1           nonzeros,stiff_n,kkk) ! Busarac
+                ENDIF
 c	          end if
             else
 ! iterativni Djordje
@@ -381,7 +379,7 @@ C              call wrr6(B,36,'B-  ')
 c              if(nn.le.30) call wrr6(V,NN,'V-  ')
                IF(ICCGG.EQ.2) THEN
                   CALL UACTCF(B,C(1),V,MAXA,NN,K)
-               ELSE
+               ELSE        
                   CALL RESENA(B,V,MAXA,NN,IZLAZ,K)
                ENDIF
 c              if(nn.le.30) call swrr(B,MAXA,NN,'B+  ')
@@ -799,7 +797,7 @@ C-----------------------------------------------------------------------
      2  D20.12)
  6001 FORMAT(' DIAGONAL STIFFNESS MATRIX = 0 FOR EQUATION',I8)
 C-----------------------------------------------------------------------
-        END
+       END
 C=======================================================================
 C
 C=======================================================================
@@ -1261,6 +1259,8 @@ C
 C=======================================================================
       SUBROUTINE ZADATL
       USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1299,7 +1299,11 @@ C
       IF(INDL.EQ.1) NPRO=NPRO+1
 C
       CALL READDD(A(LZADFM),NPRO/IDVA,IPODS,LMAX13,LDUZI)
+      IF (TIPTACKANJA.EQ.1) THEN
       CALL ZADLEV(ALSK,A(LMAXA),A(LNZADJ),NZADP)
+      ELSE
+         CALL ZADLEV(ALSK,IMAXA,A(LNZADJ),NZADP) 
+      ENDIF
       RETURN
       END
 C=======================================================================

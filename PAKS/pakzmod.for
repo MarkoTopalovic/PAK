@@ -4,6 +4,7 @@
         INTEGER*4, DIMENSION(:), ALLOCATABLE :: IVRS
         INTEGER*4, DIMENSION(:), ALLOCATABLE :: ISK
         INTEGER*4, DIMENSION(:), ALLOCATABLE :: AIROWS
+        INTEGER*4 TIPTACKANJA
       END MODULE
       
       MODULE FSIDENT
@@ -33,6 +34,8 @@
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSK
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSM
         REAL*8, DIMENSION(:), ALLOCATABLE :: ALSC
+        REAL*8, DIMENSION(:), ALLOCATABLE :: ALSKP
+        REAL*8, DIMENSION(:), ALLOCATABLE :: ALSKE58
         INTEGER*8 NWMmod
       END MODULE
 !
@@ -49,3 +52,16 @@
         integer*4,dimension(:,:),allocatable :: NPRO3
         double precision,dimension(:),allocatable :: UPRIS
       end module
+      
+      module STIFFNESS
+        integer*8 :: stiff_n
+        integer*8 :: nonzeros
+        integer*8,dimension(:),allocatable :: rows
+        integer*8,dimension(:),allocatable :: columns
+        double precision,dimension(:),allocatable :: stiff
+        !ova druga 2 su privremena dok ne regulisem razliku izmedju integer 4 i 8
+        integer*4,dimension(:),allocatable :: iirows
+        integer*4,dimension(:),allocatable :: iicolumns
+        integer*4,dimension(:),allocatable :: IMAXA
+        integer*4,dimension(:),allocatable :: IMHT
+      end module STIFFNESS

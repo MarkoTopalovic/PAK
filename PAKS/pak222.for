@@ -372,6 +372,7 @@ C=======================================================================
      1                CORS,NOC,NOS,PE,
      1                PN,PX,PY,AA,AI,AX,AY,WXY,FXY,IPRC)
       USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     FORMIRANJE MATRICA ELEMENATA I SISTEMA
@@ -1738,12 +1739,24 @@ C
                   SKP1(J,I1)=SKP1(I1,J)
   483          CONTINUE
             ENDIF  
-            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,ND)
+            IF(ISKNP.NE.2) THEN
+                IF (TIPTACKANJA.EQ.1) THEN
+                CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,ND)
+                ELSE
+                CALL SPAKUJMT(ALSK,A(LMAXA),SKP1,LM,ND)
+                ENDIF
+           ENDIF
          ELSE
 	WRITE(3,*)'NLM',NLM
 	CALL IWRR(LM,ND,'LM  ')
       CALL WRR(SKE,ND,'SKE ')
-            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
+            IF(ISKNP.NE.2) THEN
+                IF (TIPTACKANJA.EQ.1) THEN
+                CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,ND)
+                ELSE
+                CALL SPAKUJMT(ALSK,A(LMAXA),SKE,LM,ND)
+                ENDIF
+            ENDIF
          ENDIF 
   20      continue
   25     continue 

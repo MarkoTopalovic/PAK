@@ -237,13 +237,19 @@ C
       END
 C======================================================================
       SUBROUTINE SISTTE(AE,AU)
+      USE STIFFNESS
+      USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     GLAVNI UPRAVLJACKI PROGRAM  ZA MATRICE ELEMENATA I SISTEMA
 CE     MAIN MANAGEMENT  PROGRAM  FOR ELEMENT MATRIX
 C
       include 'paka.inc'
-      
+      COMMON /GLAVNI/ NP,NGELEM,NMATM,NPER,
+     1                IOPGL(6),KOSI,NDIN,ITEST
+      COMMON /DINAMI/ IMASS,IDAMP,PIP,DIP,MDVI
+      COMMON /SOPSVR/ ISOPS,ISTYP,NSOPV,ISTSV,IPROV,IPROL
       COMMON /IZOL4B/ NGS12,ND,MSLOJ,MXS,MSET,LNSLOJ,LMATSL,LDSLOJ,LBBET
       COMMON /REPERI/ LCORD,LID,LMAXA,LMHT
       COMMON /SISTEM/ LSK,LRTDT,NWK,JEDN,LFTDT
@@ -375,6 +381,7 @@ C
      6A(LZAPS),A(LNPRZ),INDZS,A(LGUSM),LA,AE(LCEGE),AU(LESILA),
      7AE(LSKS),AE(LSKES),NDNDS,AE(LHS),AE(LQS),AE(LPS),A(LID),A(LDEFOR),
      8AU(LNNOD),au(lngg),AU(LTBTH))
+
       ELSE
       CALL ELTE2B(AE(LBET),AE(LSKE),AE(LUEL),AE(LLM),AU(LNEL),AU(LNMAT),
      1AU(LTHID),AE(LHE),A(KORD),A(LUPRI),A(LRTDT),A(LFTDT),A(LSIGMA),
@@ -440,7 +447,9 @@ C=======================================================================
      1                GEEK,NCVE2,IALFA,COR0,TEMGT,CORGT,AU,TSG2,N45,
      1                ZAPS,NPRZ,INDZS,GUSM,LA,CEGE,ESILA,
      1                SKS,SKES,NDNDS,HS,QS,PS,ID,DEF,NNOD,ngg,TBTH)
+      USE STIFFNESS
       USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C      
       include 'pakxfem.inc'
@@ -532,7 +541,7 @@ C
      1          ZAPS(*),NPRZ(*),GUSM(99,*),AMASC(9),ID(NP,*),
      1          ALFE(LA,*),HAEM(LA,*),HINV(LA,LA,*),GEEK(LA,NCVE2,*),
      1          DEF(N45,NGS12,NE,*),NNOD(*),ngg(*),TBTH(*)
-      DIMENSION STRAIN(6),STRESS(8),TA(6)
+      DIMENSION STRAIN(6),STRESS(8),TA(6), SKEF(100,100) !todo hardkodovano
       DIMENSION XG(55),WGT(55),NREF(11),XNC(15),WNC(15)
       DIMENSION XG5(5),YG5(5),WG5(5)
       DIMENSION TTE(2,3),CORDL(2,9),A12(3),A13(3),EN(3),Y(3),FTDTL(40),
@@ -734,7 +743,7 @@ C
       ENDIF
 C
       IF(ISKNP.NE.2) THEN
-c      call iwrr(lm,NDD,'LM0 ')
+      !call iwrr(lm,NDD,'LM0 ')
 c      WRITE(3,*) 'LLM,LSKE,NWE',LLM,LSKE,NWE
          CALL CLEAR(SKE,NWE)
 c      call iwrr(lm,NDD,'LM1 ')
@@ -2068,9 +2077,32 @@ C
                   SKP1(J,I1)=SKP1(I1,J)
   483          CONTINUE
             ENDIF
-            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,NDNDS)
+            IF(ISKNP.NE.2) THEN
+                IF (TIPTACKANJA.EQ.1) THEN
+                CALL SPAKUJ(ALSK,A(LMAXA),SKP1,LM,NDNDS)
+                ELSE
+                CALL SPAKUJMT(ALSK,A(LMAXA),SKP1,LM,NDNDS)
+                ENDIF
+            ENDIF
          ELSE
-            IF(ISKNP.NE.2) CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,NDD)
+            IF(ISKNP.NE.2) THEN
+             IF (TIPTACKANJA.EQ.1) THEN
+            CALL SPAKUJ(ALSK,A(LMAXA),SKE,LM,NDD)
+            !     write(*,*) 'SKE'
+           ! do i=1,nwe
+           !  write(*,*) i, SKE(i)   
+           ! enddo
+         !  write(*,*) 'ALSK2'
+           !do i=1,93
+           !  write(*,*) i, ALSK(i)   
+           !     enddo     
+            ELSE
+                
+!              CALL REVERSEPSKEFN(SKEF,SKE,NDD)
+!                              MATRICA,NIZ,DIMENZIJA
+             CALL SPAKUJMT(ALSK,A(LMAXA),SKE,LM,NDD)
+            ENDIF
+             ENDIF
 c            IF(nlm.eq.1) THEN
 c               NDUM=NDD*(NDD+1)/2
 c               write(3,*) 'nlm,ndd,neq',nlm,ndd,jedn

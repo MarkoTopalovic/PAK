@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <malloc.h>
 
-typedef int64_t Tkey;
+typedef int Tkey;
 typedef double Tinfo;
 
 typedef enum {red,black} COLOR;

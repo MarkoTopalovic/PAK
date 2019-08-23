@@ -25,8 +25,8 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug|x64" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.exe;$(TargetPath)">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include;..\MCM\x64\Debug;..\PAKP\x64\Debug;..\cplusplus\x64\Debug" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" AssemblerListingLocation="$(INTDIR)/" Traceback="true" NullPointerCheck="true" UninitializedVariablesCheck="true" RuntimeLibrary="rtMultiThreadedDebug" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
-				<Tool Name="VFLinkerTool" AdditionalOptions=" /FORCE:MULTIPLE" OutputFile="$(OUTDIR)/PAKS.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" ProgramDatabaseFile="$(OUTDIR)/PAKS.pdb" SubSystem="subSystemConsole" AdditionalDependencies="E:\PAK\cplusplus\x64\Debug\cplusplus.lib C:\mumps\lapack-3.6.1\lib\x64\Debug\blas.lib C:\mumps\lapack-3.6.1\lib\x64\Debug\lapack.lib C:\mumps\MUMPS_5.1.2\x64\Debug\libdmumps.lib"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include;..\MCM\x64\Debug;..\cplusplus\x64\Debug" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" AssemblerListingLocation="$(INTDIR)/" Traceback="true" NullPointerCheck="true" UninitializedVariablesCheck="true" RuntimeLibrary="rtMultiThreadedDebug" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions=" /FORCE:MULTIPLE" OutputFile="$(OUTDIR)/PAKS.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" ProgramDatabaseFile="$(OUTDIR)/PAKS.pdb" SubSystem="subSystemConsole" AdditionalDependencies="..\cplusplus\x64\Debug\cplusplus.lib C:\mumps\lapack-3.6.1\lib\x64\Debug\blas.lib C:\mumps\lapack-3.6.1\lib\x64\Debug\lapack.lib C:\mumps\MUMPS_5.1.2\x64\Debug\libdmumps.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -36,7 +36,7 @@
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.exe;$(TargetPath)">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="C:\mumps\MUMPS_5.1.2\libseq;C:\mumps\MUMPS_5.1.2\include;C:\mumps\MUMPS_5.1.2\PORD\include;..\MCM\x64\Release;..\cplusplus\x64\Release" PreprocessorDefinitions="pord" LocalSavedScalarsZero="true" InitArrays="true" ExtendSinglePrecisionConstants="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" NullPointerCheck="true" UninitializedVariablesCheck="true" UseWindowsLibs="true" UsePortlib="true" UseMkl="mklSequential" DisableDefaultLibSearch="true"/>
-				<Tool Name="VFLinkerTool" AdditionalOptions=" /FORCE:MULTIPLE" OutputFile="$(OUTDIR)/PAKS.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole" AdditionalDependencies="E:\PAK\cplusplus\x64\Release\cplusplus.lib C:\mumps\lapack-3.6.1\lib\x64\Release\blas.lib C:\mumps\lapack-3.6.1\lib\x64\Release\lapack.lib C:\mumps\MUMPS_5.1.2\x64\Release\libdmumps.lib"/>
+				<Tool Name="VFLinkerTool" AdditionalOptions=" /FORCE:MULTIPLE" OutputFile="$(OUTDIR)/PAKS.exe" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole" AdditionalDependencies="..\cplusplus\x64\Release\cplusplus.lib C:\mumps\lapack-3.6.1\lib\x64\Release\blas.lib C:\mumps\lapack-3.6.1\lib\x64\Release\lapack.lib C:\mumps\MUMPS_5.1.2\x64\Release\libdmumps.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -65,6 +65,7 @@
 		<File RelativePath=".\pak061a.for"/>
 		<File RelativePath=".\pak062.for"/>
 		<File RelativePath=".\pak062a.for"/>
+		<File RelativePath=".\pak062mt.for"/>
 		<File RelativePath=".\pak062t.for"/>
 		<File RelativePath=".\pak065.for"/>
 		<File RelativePath=".\pak065v.for"/>

@@ -120,7 +120,7 @@ C
       integer myid, ierr
       DIMENSION NPODS(JPS1,*)
 C
-      if(jedn.le.30) CALL WRR6(ALSK,NWK,'SKul')
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'SKul')
       CALL MPI_COMM_RANK(MPI_COMM_WORLD,myid,ierr)
       IF (myid.ne.0) goto 30
       IF(IDEBUG.GT.0) PRINT *, ' LEVSTR'
@@ -178,11 +178,11 @@ C
       IF(IDAMP.EQ.2) NWD=JEDN
       LSKP=LSK+NWK*IDVA
 CZILE      IF(IREST.EQ.1.AND.METOD.EQ.-1) RETURN
-      write(3,*) 'iskdsk,alfam,betak', iskdsk,alfam,betak
+      !write(3,*) 'iskdsk,alfam,betak', iskdsk,alfam,betak
 C      IF(IMASS.EQ.1) CALL RSTAZK(NPODS,LSKP,54)
 C      IF(IMASS.EQ.2) CALL RSTAZ(NPODS,LSKP,54)
-        if(jedn.le.30) CALL WRR6(ALSK,NWK,'SKLS')
-        if(jedn.le.30) CALL WRR6(ALSM,NWM,'MASA')
+        !if(jedn.le.30) CALL WRR6(ALSK,NWK,'SKLS')
+        !if(jedn.le.30) CALL WRR6(ALSM,NWM,'MASA')
       IF(IDAMP.EQ.3) THEN
          A0M=A0+A1*ALFAM
          A0K=1.D0+A1*BETAK
@@ -200,20 +200,18 @@ C
 C      IF(IDAMP.EQ.1) CALL RSTAZK(NPODS,LSKP,56)
 C      IF(IDAMP.EQ.2) CALL RSTAZ(NPODS,LSKP,56)
 C      if(idamp.ne.3.and.jedn.le.30) CALL WRR6(A(LSKP),NWD,'D07R')
-      IF(IDAMP.EQ.1) CALL ZBIRM(ALSK,ALSM,A1,NWD)
-      IF(IDAMP.EQ.2) CALL ZBIRKM(ALSK,ALSM,A1,NWD,A(LMAXA))
+      IF(IDAMP.EQ.1) CALL ZBIRM(ALSK,ALSC,A1,NWD)
+      IF(IDAMP.EQ.2) CALL ZBIRKM(ALSK,ALSC,A1,NWD,A(LMAXA))
 C
 CE    STORE LINEAR EFFECTIVE MTRIX ON UNIT 7: KE = K + A0*M + A1*C
 CS    ZAPISIVANJE LINEARNE EFEKTIVNE MATRICE : KE = K + A0*M + A1*C
 C
    20 CONTINUE
       !OVO JE SADA VEC U MODULU
-      CALL WSTAZK(NPODS,LSK,58)
-      CALL WSTAZKMT(NPODS,LSK,58)
-      write(3,*) 'a0,a1',a0,a1
-      if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBI1')
-      !if(jedn.le.30) CALL WRR6(A(LSK),NWK,'ZBI2')
-      !if(jedn.le.30) CALL WRR6(RTWRITE,NWK,'RTW1')
+      !CALL WSTAZK(NPODS,LSK,58)
+      ALSKE58=ALSK
+      !write(3,*) 'a0,a1',a0,a1
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBIR')
 c za proveru
 c	LDUM=1000001
 c      IF(IMASS.NE.2) CALL RSTAZK(NPODS,LDUM,54)
@@ -237,7 +235,7 @@ CS    FAKTORIZACIJA LINEARNE EFEKTIVNE MATRICE: KE = K + A0*M + A1*C
 CS    SVODJENJE NA TROUGAONI OBLIK: KE = L*D*LT
 C
       CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
-      if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBI2')
+      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBI2')
       IF (myid.eq.0) THEN
 C
 CE       STORE TRIANGULARIZE MATRIX ON UNIT 10 : KE = L*D*LT
@@ -246,7 +244,7 @@ C
 C        IF(METOD.EQ.-1) ISKDSK=1
          CALL WSTAZK(NPODS,LSK,60)
 C        ISKDSK=0
-C         IF(METOD.EQ.-1.AND.NBLOCK.EQ.1) CALL WRITED(A(LSK),NWK,ILDLT)!todo topalovic proveriti da li treba komentar
+C         IF(METOD.EQ.-1.AND.NBLOCK.EQ.1) CALL WRITED(A(LSK),NWK,ILDLT)
       ENDIF
       CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
       RETURN
@@ -255,6 +253,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE DESNAL(NPODS,KOJPAK)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1119,6 +1118,8 @@ C
 C=======================================================================
       SUBROUTINE INTNMK(IGRUP,NPODS)
       USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1263,6 +1264,11 @@ C
            CALL ELEME(NETIP,2)
 C
   100 CONTINUE
+
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()    
+      ENDIF
+      
 C        CALL WRR6(A(LFTDT),JEDN,'FLEV')
 C        CALL WRR6(A(LRTDT),JEDN,'RLEV')
 C        CALL WRR6(A(LSK),NWK,'SLEV')
@@ -1296,15 +1302,18 @@ C
 40    CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
       CALL MPI_BCAST(IPROL,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
       IF(IPROL.EQ.0) THEN
+         IF (TIPTACKANJA.EQ.1) THEN 
          CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
+         ELSE
+             CALL RESEN(ALSK,A(LRTDT),IMAXA,JEDN,1)
+         ENDIF
          IF (myid.eq.0) THEN
 C           IF(KOR.EQ.1.AND.ITER.EQ.0.AND.METOD.EQ.-1) ISKDSK=1
 C            CALL WSTAZK(NPODS,LSK,60)
-             CALL WRR6(ALSK,NWK,'MT-1')
-            !CALL WSTAZKMT(NPODS,LSK,60)!TODO TOPALOVIC PROVERITI
+            CALL WSTAZKMT(NPODS,ALSK,60)
 C           ISKDSK=0
 C            IF(KOR.EQ.1.AND.ITER.EQ.0.AND.METOD.EQ.-1.AND.NBLOCK.EQ.1) 
-C     +      CALL WRITED(A(LSK),NWK,ILDLT)!TODO TOPALOVIC PROVERITI
+C     +      CALL WRITED(A(LSK),NWK,ILDLT)
          ENDIF
       ENDIF
 C
@@ -1316,8 +1325,7 @@ CS    NELINEARNA MATRICA KRUTOSTI U TRENUTKU VREME = TSTART + DT = T
 C
       IF (myid.eq.0) THEN
          IF(IPROL.EQ.1) THEN
-             CALL WRR6(ALSK,NWK,'MT-2')
-            CALL WSTAZKMT(NPODS,LSK,35)!TODO TOPALOVIC PROVERITI
+            CALL WSTAZKMT(NPODS,ALSK,35)
          ENDIF
 C
 CE       NONLINEAR STIFFNESS MATRIX IN TIME = TSTART = T - DT
@@ -1325,8 +1333,7 @@ CS       NELINEARNA MATRICA KRUTOSTI U TRENUTKU VREME = TSTART = T - DT
 C
 C         IF(NDIN.EQ.0.AND.ISOPS.GT.0.AND.ITER.EQ.0.AND.KOR.EQ.NDT) THEN
          IF(IPROL.EQ.2) THEN
-             CALL WRR6(ALSK,NWK,'MT-3')
-            CALL WSTAZKMT(NPODS,LSK,54)!TODO TOPALOVIC PROVERITI
+            CALL WSTAZKMT(NPODS,ALSK,54)
          ENDIF
       ENDIF
 CZILESK
@@ -1336,6 +1343,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE DESSTR(NPODS)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1382,8 +1390,8 @@ CS    UCITAVANJE VEKTORA DESNE STRANE SA DISKA 2 MEHANICKE SILE, RTDT
 C
 CR    Citanje spoljasnjih sila sa staze 38
       CALL RSTAZ(NPODS,LRTDT,38)
-      CALL WRR(A(LRTDT),JEDN,'1RPRR')
-      CALL WRR(A(LFTDT),JEDN,'1FPRR')
+      !CALL WRR(A(LRTDT),JEDN,'1RPRR')
+      !CALL WRR(A(LFTDT),JEDN,'1FPRR')
 C
 CE    FORM VECTOR OF GEOMETRICAL NONLINEAR PRESSURE LOADING IN (T+DT)
 CS    FORMIR. VEKTORA PRITISAKA GEOMETRIJSKI NELINEARNIH U TRENUTKU T+DT
@@ -1408,7 +1416,7 @@ C    +            A(LNCVP),NCVPR)
 C
 CE    FORM EFFECTIVE VECTOR OF RIGHT-HAND-SIDE FOR DYNAMICS
 C
-      CALL WRR(A(LRTDT),JEDN,'form')
+      !CALL WRR(A(LRTDT),JEDN,'form')
       IF(NDIN.NE.0.AND.ITERGL.GT.0) CALL FORMEF
 C
 CE    DIFFERENCE BETWEEN EXTERNAL AND INTERNALL FORCES: RTDT=RTDT-FTDT
@@ -1416,8 +1424,8 @@ CS    RAZLIKA SPOLJASNJIH I UNUTRASNJIH SILA: RTDT=RTDT-FTDT
 C
 CR    Zapisivanje unutrasnjih sila
       CALL WSTAZ(NPODS,LFTDT,45)
-         CALL WRR(A(LRTDT),JEDN,'RPRR')
-         CALL WRR(A(LFTDT),JEDN,'FPRR')
+         !CALL WRR(A(LRTDT),JEDN,'RPRR')
+         !CALL WRR(A(LFTDT),JEDN,'FPRR')
 C
 CR    Razlika spoljasnjih i unutrasnjih sila
       CALL ZBIRMM(A(LRTDT),A(LFTDT),JEDN)
@@ -1442,6 +1450,9 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTNAP(IGRUP)
+      USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1509,6 +1520,9 @@ CE       STRESS CALCULATION AT INTEGRATION POINTS OF ELEMENTS
          CALL ELEME(NETIP,3)
 C
   380 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       IF(NBLOCK.GT.1) CLOSE (ISCRC,STATUS='KEEP')
       RETURN
       END

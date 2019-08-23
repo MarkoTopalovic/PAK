@@ -498,6 +498,7 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE FULLS(RESID,OLDRES,D,JEDN,INDC)
+      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C....   PUNI NJUTN + LINE SEARCH
       include 'paka.inc'
@@ -757,7 +758,7 @@ C
             JPBR=JPS1
             JEDN=JEDNG
             IF(NGENN.GT.0) CALL JEDNA1(A(LFTDT),A(LRTDT),JEDN)
-            CALL RSTAZK(NPODS,LSK,60)
+            !CALL RSTAZK(NPODS,LSK,60)
             LMAXA=JMAXA
          ENDIF
       RETURN
@@ -875,8 +876,8 @@ C OPASNO !!! PRIVREMENO ZA CAM-CLAY
       EMIN=TOLA
 C      EMIN=1.D-15
 C      WRITE(3,*) 'KOR,ITER,JEDN,NZADP,ICONT',KOR,ITER,JEDN,NZADP,ICONT
-      CALL WRR(A(LRTDT),JEDN,'RTDT')
-      CALL WRR(A(LFTDT),JEDN,'FtDT')
+      !CALL WRR(A(LRTDT),JEDN,'RTDT')
+      !CALL WRR(A(LFTDT),JEDN,'FtDT')
       IF(NZADP.EQ.0) THEN
          IF(ITER.GT.0) GO TO 10
       ELSE
@@ -1133,6 +1134,9 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTMNJ(IGRUP,NPODS)
+      USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C     PETLJA PO GRUPAMA ELEMENATA RADI RACUNANJA NAPONA I UNUTRASNJIH
@@ -1168,7 +1172,7 @@ C
 C
 C     UCITAVANJE FAKTORIZOVANE MATRICE SA DISKA
 C
-      CALL RSTAZKMT(NPODS,LSK,60)
+      CALL RSTAZKMT(NPODS,ALSK,60)
       CALL CLEAR(A(LFTDT),JEDN)
       IF(METOD.LT.4) CALL RSTAZ(NPODS,LRTDT,52)
 C....  KOREKCIJA KOORDINATA ZA U.L.
@@ -1191,6 +1195,9 @@ C
       CALL ELEME(NETIP,3)
 C
   100 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       IF(NBLOCK.GT.1) CLOSE (ISCRC,STATUS='KEEP')
       RETURN
       END
@@ -1341,6 +1348,9 @@ C
       CALL ELEME(NETIP,2)
 C
   100 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       IF(NBLOCK.GT.1)THEN
         LLM =LRAD
         LSKE=LLM+100
@@ -1355,9 +1365,9 @@ C
 C
 C     FAKTORIZACIJA UKUPNE EFEKTIVNE MATRICE SISTEMA: KEF = L*D*LT
 C
-      CALL WRR6(ALSK,NWK,'REFN')
+      !CALL WRR6(ALSK,NWK,'REFN')
  10   CALL RESEN(ALSK,A(LRTDT),A(LMAXA),JEDN,1)
-      !IF (myid.eq.0) CALL WSTAZKMT(NPODS,LSK,60)!todo topalovic proveriti
+      IF (myid.eq.0) CALL WSTAZKMT(NPODS,ALSK,60)
       RETURN
       END
 C=======================================================================
@@ -1431,6 +1441,7 @@ C
 C=======================================================================
       SUBROUTINE FRESIF(NPODS)
       USE MATRICA
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       include 'paka.inc'
       
@@ -1542,7 +1553,11 @@ C
                CALL READDD(A(LRTG),JEDN,IPODS,LMAX13,LDUZI)
                LMAX13=NPODS(JPBR,27)-1
                CALL IREADD(A(LLMG),JED,IPODS,LMAX13,LDUZI)
+               IF (TIPTACKANJA.EQ.1) THEN
                CALL SPAKUJ(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
+               ELSE
+               CALL SPAKUJMT(ALSK,A(JMAXA),A(LSKG),A(LLMG),JED)
+               ENDIF
                LRTG=LRTG+JEDNP*IDVA
                CALL SPAKUD(A(LRTDT),A(LRTG),A(LLMG),JED)
   400       CONTINUE
@@ -1552,7 +1567,7 @@ C
             CALL WSTAZK(NPODS,LSK,35)
  40         CALL RESEN(ALSK,A(LRTDT),A(JMAXA),JEDN,1)
             IF (myid.ne.0) return
-!            CALL WSTAZK(NPODS,LSK,60)!todo topalovic proveriti da li treba komentar
+!            CALL WSTAZK(NPODS,LSK,60)
             LMAXA=JMAXA
          ENDIF
       RETURN

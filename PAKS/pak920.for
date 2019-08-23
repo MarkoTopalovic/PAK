@@ -12,6 +12,7 @@ C=======================================================================
      1                   DLV,DLV1,DLV0,DLV2,FCFL,NCFF,SKE1,FTD1,
      1                   IPGG,ESILA,NPOMT,FPRL,NPRF,TEZP,BNLK,BNLKS,
      +                   MCVEL,NCVEL)
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 CS     FORMIRANJE MATRICA ELEMENATA I SISTEMA
@@ -2237,8 +2238,20 @@ CS       RASPOREDJIVANJE MATRICE KRUTOSTI (SKE)
 CE       ASSEMBLE STIFFNESS MATRIX
 C
             IF(ISKNP.NE.2) THEN
-               IF(JEDPP.GT.0) CALL SPAKUJ(SKEL,MAEL,SKE,LME,NCVJ+ND)
-               IF(JEDPP.EQ.0) CALL SPAKUJ(SK,MAXA,SKE,LM,ND)
+               IF(JEDPP.GT.0) THEN
+               IF (TIPTACKANJA.EQ.1) THEN    
+               CALL SPAKUJ(SKEL,MAEL,SKE,LME,NCVJ+ND)
+               ELSE
+               CALL SPAKUJMT(SKEL,MAEL,SKE,LME,NCVJ+ND)
+               ENDIF
+               ENDIF
+               IF(JEDPP.EQ.0) THEN
+                   IF (TIPTACKANJA.EQ.1) THEN
+               CALL SPAKUJ(SK,MAXA,SKE,LM,ND)
+               ELSE
+               CALL SPAKUJMT(SK,MAXA,SKE,LM,ND)
+               ENDIF
+               ENDIF
             ENDIF
 C
   200    CONTINUE
@@ -2395,7 +2408,11 @@ C            IF(IST.EQ.0) CALL WRR(SKE,JEDNN*(JEDNN+1)/2,'SKE ')
 C            IF(IST.EQ.0) CALL IWRR(A(LMAXA),JEDN+1,'MAXA')
 C            IF(IST.EQ.0) CALL IWRR(LMU,JEDNN,'LMU ')
 C PROVERITI OVO PAKOVANJE , MOZDA MORA RUCNO PREPISIVANJE
+             IF (TIPTACKANJA.EQ.1) THEN
             CALL SPAKUJ(SK,MAXA,SKE,LMU,JEDNN)
+            ELSE
+            CALL SPAKUJMT(SK,MAXA,SKE,LMU,JEDNN)
+            ENDIF
 C            IF(IST.EQ.0) CALL WRR(SK,NWK,'SKKK')
          ENDIF
          CLOSE (33,STATUS='KEEP')

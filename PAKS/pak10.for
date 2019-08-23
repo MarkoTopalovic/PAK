@@ -84,7 +84,7 @@ C
    20 CONTINUE !IF(IMASS.EQ.1) CALL WSTAZK(A(LIPODS),LSK,54)
 C      IF(IMASS.EQ.2) CALL WSTAZ(A(LIPODS),LSK,54)
 C      WRITE(3,*) 'LSK',LSK
-      if(jedn.le.30) CALL WRR6(ALSM,NWM,'MASW')
+      !if(jedn.le.30) CALL WRR6(ALSM,NWM,'MASW')
 c      CALL WRR6(A(IMASA),JEDN,'IMASA')
 C
 CE    LOOP FOR GROUPS OF ELEMENTS TO INTEGRATION MATRIX C
@@ -125,6 +125,9 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTKM(IGRUP)
+      USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -155,12 +158,18 @@ C
       CALL ELEME(NETIP,5)
 C
   100 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       RETURN
       END
 C=======================================================================
 C
 C=======================================================================
       SUBROUTINE INTKMC(IGRUP)
+      USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -191,6 +200,9 @@ C
       CALL ELEME(NETIP,6)
 C
   100 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       RETURN
       END
 C=======================================================================
@@ -326,12 +338,12 @@ C       WILSON
         LRT=LMAX
         LMAX=LRT+JEDN*IDVA
 C       (T+T)R
-C        IF(ITERGL.EQ.0) CALL RSTAZ(A(LIPODS),LRTDT,38)!todo topalovic proveriti da li treba komentar
+C        IF(ITERGL.EQ.0) CALL RSTAZ(A(LIPODS),LRTDT,38)
 C???    NA 53 NISU ZAPISANE SILE OD NELINEARNIH PRITISAKA
         IF(ITERGL.GT.0.AND.(NPP2.GT.0.OR.NPP3.GT.0.OR.NPLJ.GT.0)) STOP
      1     'STOP - PAK10 - VILNEW - VILSON'
 C       (T)R
-C        CALL RSTAZ(A(LIPODS),LRT,53)!todo topalovic proveriti da li treba komentar
+C        CALL RSTAZ(A(LIPODS),LRT,53)
         TETA=PIP
         TETAM=1.0-PIP
 C       (T+�T)R=�*(T+T)R+(1-�)*(T)R
@@ -342,7 +354,7 @@ C       (T+�T)R=�*(T+T)R+(1-�)*(T)R
 C       NEWMARK
 C       (T+T)R
         IF(ITERGL.EQ.0) CALL RSTAZ(A(LIPODS),LRTDT,38)
-        CALL WRR6(A(LRTDT),JEDN,'RUF0')!todo topalovic proveriti da li treba da stoji
+        CALL WRR6(A(LRTDT),JEDN,'RUF0')
       ENDIF
 C
 CE    FORMIRANJE VEKTORA DESNE STRANE USLED MASA
@@ -358,13 +370,13 @@ C     (T)UU, (T)UV, (T)UA, (T+DT)UU
       CALL RSTAZ(A(LIPODS),LPUU,59)
       CALL RSTAZ(A(LIPODS),LPUV,55)
       CALL RSTAZ(A(LIPODS),LPUA,57)
-         CALL WRR6(A(LPUU),JEDN,'PUU ')!todo topalovic proveriti da li treba da budu sledeca 3
+         CALL WRR6(A(LPUU),JEDN,'PUU ')
          CALL WRR6(A(LPUV),JEDN,'PUV ')
          CALL WRR6(A(LPUA),JEDN,'PUA ')
       IF(ITERGL.GT.0)THEN
         IF(ITER.EQ.0)CALL JEDNA1(A(LTDT),A(LPUU),JEDN)
         IF(ITER.GT.0)CALL RSTAZ(A(LIPODS),LTDT,52)
-         CALL WRR6(A(LTDT),JEDN,'PTDT')!todo topalovic proveriti 
+         CALL WRR6(A(LTDT),JEDN,'PTDT') 
       ENDIF
 C     UM=A0*(T)UU+A2*(T)UV+A3*(T)UA
       IF(ITERGL.EQ.0)
@@ -481,13 +493,13 @@ C      IF(IDAMP.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,56)
 C      if(idamp.ne.3.and.jedn.le.30) CALL WRR6(A(LSKP),NWD,'D10R')
 C     (T+T)R=(T+T)R+C*UC
       if (IABS(ICCGG).EQ.1) then 
-         IF(IDAMP.EQ.1) CALL MAXAPRI(ALSM,A(LUMC),A(LRTDT),
+         IF(IDAMP.EQ.1) CALL MAXAPRI(ALSC,A(LUMC),A(LRTDT),
      1                       JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-         IF(IDAMP.EQ.1) CALL MAXAPR(ALSM,A(LUMC),A(LRTDT),
+         IF(IDAMP.EQ.1) CALL MAXAPR(ALSC,A(LUMC),A(LRTDT),
      &                       A(LMAXA),JEDN)
       endif
-      IF(IDAMP.EQ.2) CALL MNOZMU(A(LRTDT),ALSM,A(LUMC),JEDN)
+      IF(IDAMP.EQ.2) CALL MNOZMU(A(LRTDT),ALSC,A(LUMC),JEDN)
 C
 C     (T+T)R
    10 IF(ITERGL.EQ.0) CALL WSTAZ(A(LIPODS),LRTDT,38)
@@ -552,23 +564,23 @@ C     (T)UU
 CE    READ LINEAR MATRIX K FROM DISK 4
 CS    UCITAVANJE LINEARNE MATRICE K SA DISKA 4
 C!!!! PROVERI DA LI JE U (LSK) MATRICA KRUTOSTI !!!!!!!???????
-C     CALL RSTAZK(A(LIPODS),LSKP,35)
+      !CALL RSTAZK(A(LIPODS),LSKP,35)
 C     (T)R=(T)R-K*(T)UU
 cc      IF(KOR.GT.1) THEN
         NUL=NWK
         IF(NBLOCK.GT.1) NUL=KC
-       CALL CLEARB(A(LSKP),A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
+       CALL CLEARB(ALSKP,A(LMAXA),A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,NUL)
         OPEN (ISCRC,FILE='ZSKLIN',FORM='UNFORMATTED',STATUS='UNKNOWN')
         REWIND ISCRC
         LLM =LMAX
         LSKE=LLM+100
-        CALL SPAKUA(A(LSKP),A(LMAXA),A(LSKE),A(LLM),ND,1,
+        CALL SPAKUA(ALSKP,A(LMAXA),A(LSKE),A(LLM),ND,1,
      &              A(LMNQ),A(LLREC),NBLOCK,LR,IBLK,A(LCMPC),A(LMPC))
         CLOSE (ISCRC,STATUS='KEEP')
 cc      ENDIF
-      CALL MAXAPM(A(LSKP),A(LPUU),A(LRTDT),A(LMAXA),JEDN)
-      call wrr6(a(LskP),NWK,'sk  ')
-      CALL WRR(A(LRTDT),JEDN,'R1  ')
+      CALL MAXAPM(ALSKP,A(LPUU),A(LRTDT),A(LMAXA),JEDN)
+      !call wrr6(ALSK,NWK,'sk  ')
+      !CALL WRR(A(LRTDT),JEDN,'R1  ')
 
 C
 C     (T-T)UU
@@ -577,39 +589,37 @@ c      call wrr6(a(LUMC),jedn,'-DTU')
 
 CE    READ LINEAR EFECTIVE MATRIX (A0*M+A1*C) FROM DISK 7
 CS    UCITAVANJE LINEARNE EFEKTIVNE MATRICE (A0*M+A1*C) SA DISKA 7
-C      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,58)
-c      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,58)
+      !IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),ALSKP,58)
+      !IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,58)
 C sneza proba
-      IF(IMASS.EQ.2) CALL RSTAZK(A(LIPODS),LSKP,58)
-      call wrr6(a(LSKP),NWK,'MEFE')
+      !IF(IMASS.EQ.2) CALL RSTAZK(A(LIPODS),ALSKP,58)
+      
+      ALSKP = ALSKE58
       !call wrr6(RTWRITE,NWK,'RTW2')
 c      call iwrr(a(LMAXA),jedn,'MAXA')
 
 C     (T)R=(T)R+(A0*M+A1*C)*(T-T)UU
-      !if(jedn.le.30) CALL WRR6(ALSK,NWK,'ZBI9')
-      !if(jedn.le.30) CALL WRR6(A(LSKP),NWK,'ZBA9')
       if (IABS(ICCGG).EQ.1) then 
-         IF(IMASS.NE.2) CALL MAXAPRI(ALSK,A(LUMC),A(LRTDT),
+         IF(IMASS.NE.2) CALL MAXAPRI(ALSKP,A(LUMC),A(LRTDT),
      1                       JEDN,AIROWS,AIROWS(nwk+1),nwk)
       else
-         IF(IMASS.NE.2) CALL MAXAPR(ALSK,A(LUMC),A(LRTDT),
+         IF(IMASS.NE.2) CALL MAXAPR(ALSKP,A(LUMC),A(LRTDT),
      &                       A(LMAXA),JEDN)
       endif
 C      IF(IMASS.EQ.2) CALL MNOZMU(A(LRTDT),A(LSKP),A(LUMC),JEDN)
 C sneza proba
-      CALL WRR(A(LSKP),JEDN,'c65 ')
-      IF(IMASS.EQ.2) CALL MAXAPR(A(LSKP),A(LUMC),A(LRTDT),A(LMAXA),JEDN)
-      call wrr6(a(LUMC),jedn,'LUMC  ')
-      call wrr6(a(LRTDT),jedn,'R2  ')
+      IF(IMASS.EQ.2) CALL MAXAPR(ALSKP,A(LUMC),A(LRTDT),A(LMAXA),JEDN)
+      !call wrr6(a(LUMC),jedn,'LUMC  ')
+      !call wrr6(a(LRTDT),jedn,'R2  ')
 C
-      CALL JEDNA1(A(LSKP),A(LUMC),JEDN)
+      CALL JEDNA1(ALSKP,A(LUMC),JEDN)
       AM2=-A2
 C     A2*(T)UU-A2*(T-T)UU
-      CALL ZBIR2(A(LUMC),A(LPUU),A(LSKP),A2,AM2,JEDN)
+      CALL ZBIR2(A(LUMC),A(LPUU),ALSKP,A2,AM2,JEDN)
 CE    READ LINEAR MATRIX M FROM DISK 11
 CS    UCITAVANJE LINEARNE MATRICE M SA DISKA 11
-      IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,54)
-      IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,54)
+      !IF(IMASS.NE.2) CALL RSTAZK(A(LIPODS),LSKP,54)
+      !IF(IMASS.EQ.2) CALL RSTAZ(A(LIPODS),LSKP,54)
 c      call wrr6(a(LSKP),NWK,'MMAS')
 c      call wrr6(a(LUMC),jedn,'A2DU')
 C     (T)R=(T)R+A2*M*((T)UU-(T-T)UU)
@@ -624,7 +634,7 @@ C     (T)R=(T)R+A2*M*((T)UU-(T-T)UU)
 C
 C     (T)R
       CALL WSTAZ(A(LIPODS),LRTDT,38)
-      call wrr6(a(LRTDT),jedn,'RTDT')
+      !call wrr6(a(LRTDT),jedn,'RTDT')
       LMAX=LUMC
       RETURN
       END
@@ -1294,6 +1304,9 @@ C
       END
 C=======================================================================
       SUBROUTINE CONCOR(IGRUP,IND)
+      USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -1325,6 +1338,9 @@ C.. SAMO ZA KONTAKTNE ELEMENTE ( 10 = 2D , 11 = 3D )
          CALL ELEME(NETIP,IND)
        ENDIF
   100 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       RETURN
       END
 C=======================================================================

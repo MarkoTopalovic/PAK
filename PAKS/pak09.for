@@ -639,6 +639,9 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE STANAP(IGRUP)
+      USE MATRICA
+      USE STIFFNESS
+      USE DRAKCE8
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C ......................................................................
@@ -673,6 +676,9 @@ CE       PRINT STRESSES
          CALL ELEME(NETIP,4)
 C
   100 CONTINUE
+      IF (TIPTACKANJA.NE.1) THEN
+      CALL BUSYMATRICA()
+      ENDIF
       RETURN
       END
 C=======================================================================
