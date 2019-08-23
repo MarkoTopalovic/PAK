@@ -111,7 +111,6 @@ C=======================================================================
 C
 C=======================================================================
       SUBROUTINE SISTTM(AE,AU)
-      USE MATRICA
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C
 C     GLAVNI UPRAVLJACKI PROGRAM  ZA MATRICE ELEMENATA I SISTEMA(KCAL=1)
@@ -162,7 +161,7 @@ C
               call eltmkt(ae(lske),ae(llm),a(lncgl),ncv1,a(lid),
      1                    a(lxmass),np,nkrt,izlaz,i)
 
-              call spakuj(ALSM,a(lmaxa),ae(lske),ae(llm),ncv1)
+              call spakuj(a(lsk),a(lmaxa),ae(lske),ae(llm),ncv1)
 c             call stakr(a(lsk),a(lmaxa))
    10       continue
    20    continue
@@ -204,7 +203,7 @@ C
         KORD=LCORD
         IF(IATYP.EQ.3) KORD=LCORUL
       IF(IMASS.EQ.1) GO TO 150
-      CALL DIMAS(ALSM,A(LMAXA),AE(LLM),AU(LNEL),AU(LNMAT),AU(LTHID),
+      CALL DIMAS(A(LSK),A(LMAXA),AE(LLM),AU(LNEL),AU(LNMAT),AU(LTHID),
      1           AU(LLMEL),AE(LHE),A(KORD),A(LGUSM),NCVE2)
       GO TO 100
 C
@@ -216,7 +215,7 @@ C
 C
 C     PAKOVANJE MATRICA ELEMENATA U MATRICU SISTEMA
 C
-      CALL SPAKUJ(ALSM,A(LMAXA),AE(LSKE),AE(LLM),NCVEN)
+      CALL SPAKUJ(A(LSK),A(LMAXA),AE(LSKE),AE(LLM),NCVEN)
   100 CONTINUE
       RETURN
       END
