@@ -15,10 +15,11 @@ integer, parameter :: d=real_acc
 !---------------------------------------------------------------------------
 ! Global variables
 !
-integer :: PAKSkorBR ! ZA PAK PVT
+integer :: PAKSkorBR ! for PAK PVT
 logical :: mcm_ctrlc
 logical :: pak_initialized
 logical :: pakV_pisiNEU
+logical :: mcm_emitter
 !
 integer :: mcm_np, mcm_nummat, mcm_ndim, mcm_nstressp, mcm_nvelocp, mcm_max_np
 integer :: mcm_max_ngp, mcm_ngp
@@ -166,6 +167,8 @@ real (kind=real_acc), dimension(3) :: mcm_base_a
 !
 type particle
   logical :: active                                 ! Particle deletion flag
+  logical :: newborn                                ! Topalovic flag for emmiter particles
+  logical :: retired                                ! Topalovic flag for absorber particles
   integer :: mat                                    ! Material model id
   integer :: dispbc                                 ! Displacement boundary condition
   integer :: llpointer                              ! linked list pointer

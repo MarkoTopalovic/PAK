@@ -160,7 +160,7 @@ do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
 ! Campbelova sila se ne ponasa lepo, bolje ponasanje daje default kernel  
  endif
 ! OVO JE INICIJALIZACIJA ZFLUID MODULA KOJIME SE PRENOSE SILE U PAK
-if((par(i).mat.eq.mcm_nummat).and.(mcm_contacttype.EQ.0)) then
+if((par(i).mat.eq.mcm_nummat).and.(mcm_contacttype.EQ.0).and.(mcm_kojpak.ne.4)) then
     NODEBROJ(INODEBROJAC) = i
     CVORNESILE(INODEBROJAC,1) = 0
     CVORNESILE(INODEBROJAC,2) = 0
@@ -202,6 +202,7 @@ end if
 !   RASTAVLJANJE KONTAKTNE SILE OD CESTICE (RAZLICITOG MATERIJALA) NA NORMALNU I TANGENTNU KOMPONENTU
 !   ZA POSMATRANU CESTICU I IMAMO K KONTAKTNIH CESTICA, AKO JE RAZLICIT MATERIJAL deltasigcont(n) <> 0
   bndnormlength = par(i)%bndnorm(1)**2+par(i)%bndnorm(2)**2+par(i)%bndnorm(3)**2
+  if (bndnormlength.gt.0) then
    dotproduct = deltasigcont(1)*par(i)%bndnorm(1)+deltasigcont(2)*par(i)%bndnorm(2)+deltasigcont(3)*par(i)%bndnorm(3)
    !   factor = massj*(dotproduct/par(i)%bndnormlength)
     do l=1,mcm_ndim
@@ -224,10 +225,11 @@ end if
     !   Fn = Tf/miS dakle u mcm_dynamicfriction figurise i 1/miS
     end if
   enddo !l=1,mcm_ndim
+  endif !if (bndnormallength.gt.0) then
 !******************************************** P A K *******************************************
 ! ovo se kopira u paks
 ! CESTICAMA KOPIRANIM IZ PAKA SU JE DODELJEN POSLEDNJI MATERIJAL  
-    if(par(i).mat.eq.mcm_nummat) then
+    if((par(i).mat.eq.mcm_nummat).and.(mcm_kojpak.ne.4)) then
         NODEBROJ(INODEBROJAC) = i
         CVORNESILE(INODEBROJAC,1) = CVORNESILE(INODEBROJAC,1) + massj * deltasigcont(1)
         CVORNESILE(INODEBROJAC,2) = CVORNESILE(INODEBROJAC,2) + massj * deltasigcont(2)
@@ -257,7 +259,7 @@ use mcm_database
 !
 implicit none
 !
-integer:: nn,nn1,i,j,l,k,m,n,kn
+integer:: nn,nn1,i,j,l,k,m,n,kn,idebug
 !
 real(kind=real_acc), dimension(3) :: deltapsi,normalprojection, tangentprojection
 REAL(kind=real_acc)    :: deltapsilength,bndnormlength,dotproduct, normalmagnitude,tangentmagnitude
@@ -291,6 +293,7 @@ do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
   deltapsi(1) = 0.0_d
   deltapsi(2) = 0.0_d
   deltapsi(3) = 0.0_d
+  idebug = par(i)%nnbr + par(i)%g_nnbr
   do k=1,par(i)%nnbr + par(i)%g_nnbr
   !
   call mcm_get_j_moment_info(i,k,xj,massj,rhoj,hj,holdj,sigmaj,qj)
@@ -453,6 +456,8 @@ enddo ! do i=mcm_svp,mcm_evp
 !
 !  ! racunanje normale 3.0 na osnovu 3 tacke koje su prenete iz paka (poslednji materijal)
 !   posto su cestice nastale od ljuske ove cestice su u jednoj povrsi 
+!   ovo izgleda radi samo za slucaj kada je mcm povezan sa pakom i kada su pak elementi ljuska
+if (mcm_kojpak.eq.5)then
 do i=mcm_svp,mcm_evp  
   distance = 0.0
   distance1 = 0.0
@@ -470,6 +475,7 @@ do i=mcm_svp,mcm_evp
   if (par(i)%mat.eq.mcm_nummat) then
 !   
 ! trazi najblizu cesticu od istog materijala u skupu kontaktnih cestica  
+      idebug = par(i)%nnbr + par(i)%g_nnbr
     do k=1,par(i)%nnbr + par(i)%g_nnbr
     j = mcm_nbrlist(k,i)
     if (par(i)%mat.eq.par(j)%mat) then
@@ -483,6 +489,7 @@ do i=mcm_svp,mcm_evp
     end do !do k=1,par(i)%nnbr + par(i)%g_nnbr
 !
 if (onecontact.eq.(.true.))then ! ako nema najblizu cesticu nema potrebe da trazim drugu, ako ima prvu, drugu trazim po istom principu kao i prvu
+    idebug = par(i)%nnbr + par(i)%g_nnbr
     do k=1,par(i)%nnbr + par(i)%g_nnbr
         j = mcm_nbrlist(k,i)
         if ((par(i)%mat.eq.par(j)%mat).and.(j.ne.closestid1)) then ! skup svih susednih cestica od razlicitog materijala osim najblize cestice
@@ -548,6 +555,8 @@ end if
 end if
 ! 
 enddo ! do i=mcm_svp,mcm_evp
+
+
 !
 ! RACUNANJE NORMALE 4.0 
 !ZA CESTICU PESKA SE TRAZI NAJBLIZA CESTICA PLOCE 
@@ -562,6 +571,7 @@ do i=mcm_svp,mcm_evp
   if (par(i)%mat.ne.mcm_nummat) then ! nije ploca onda mora da je pesak
 !    
   ! trazi najblizu cesticu od ploce 
+      idebug = par(i)%nnbr + par(i)%g_nnbr
     do k=1,par(i)%nnbr + par(i)%g_nnbr
     j = mcm_nbrlist(k,i)
         if (par(i)%mat.ne.par(j)%mat) then
@@ -584,6 +594,7 @@ end if
 !  
 enddo ! do i=mcm_svp,mcm_evp
 !
+endif
 do i=mcm_svp,mcm_evp
 !
 ! USKLADJIVANJE SMERA PREMA Z OSI    

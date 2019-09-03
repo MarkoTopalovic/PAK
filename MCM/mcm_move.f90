@@ -20,7 +20,7 @@ use mcm_database
 !
 implicit none
 !
-integer :: i,j
+integer :: i,j,icounter
 !
 do i=1,mcm_ndim
  mcm_coord_maxmin(1,i) =  1.0e+20_d
@@ -54,4 +54,20 @@ endif
 !
 if(mcm_boundary) call mcm_check_sym_pen
 !
+if(mcm_emitter.eq.(.true.))then ! hardcoded
+    icounter = 0
+ do i=1,mcm_np
+      if((par(i)%x(2).le.200).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then
+          icounter = icounter + 1
+          par(mcm_np + icounter)=par(i)
+          par(mcm_np + icounter)%x(2) = par(mcm_np + icounter)%x(2) +1
+          !par(mcm_np + icounter)%x(1) = par(mcm_np + icounter)%x(1) +1
+       par(i)%newborn = .false.
+      endif
+ enddo
+ mcm_np = mcm_np + icounter
+ mcm_esp=mcm_np
+ mcm_evp=mcm_np
+end if
+
 end subroutine mcm_move

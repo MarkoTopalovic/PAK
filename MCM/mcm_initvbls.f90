@@ -22,12 +22,14 @@ INTEGER :: i,j
 !
 do i=1,mcm_np
  par(i)%active = .true.    ! particle is active
+ par(i)%newborn = .true.   ! particle is new
  par(i)%delpointer = 0     ! initialise deleted particles linked list
 enddo
 !
 ! Store initial particle coordinates
 !
 pak_initialized = .false.
+mcm_emitter = .true. ! hardkodovano
 do i=1,mcm_np
  do j=1,mcm_ndim
   par(i)%xzero(j) = par(i)%x(j)

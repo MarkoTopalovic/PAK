@@ -35,7 +35,7 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/Qsave" SuppressStartupBanner="true"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/Qsave /fpe0-trap=invalid,zero,overflow" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" DebugParameter="debugParameterAll" WarnDeclarations="true" WarnUnusedVariables="true" FloatingPointExceptionHandling="fpe0" UninitializedVariablesCheck="true"/>
 				<Tool Name="VFLibrarianTool"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>

@@ -487,7 +487,7 @@ if (par(i).mat.eq.matID) then
  WRITE(88,882) par(i)%a(1),par(i)%a(2),par(i)%a(3)
   end if
 ENDDO
-
+if(mcm_kojpak.ne.4)then
 if ((matID.eq.mcm_nummat).and.(ALLOCIRANECVORNESILE.eq.(.TRUE.))) then
 WRITE(88,*)"VECTORS NodalForce double"
 INODEBROJAC =1
@@ -498,7 +498,7 @@ if (par(i).mat.eq.matID) then
  end if
 ENDDO
 end if
-
+end if
 WRITE(88,888)
 WRITE(88,889)
 DO i = 1,mcm_np1

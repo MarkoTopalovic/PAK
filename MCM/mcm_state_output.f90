@@ -102,12 +102,12 @@ select case (mcm_state_opt)
       mcm_initialized = .true.
       call WriteVtk
       call WriteVtkmat(1)
-      call WriteVtkmat(2)
+      !call WriteVtkmat(2)
       mcm_istate = mcm_istate + 1
   else if (mcm_kojpak.eq.4) then
       call WriteVtk
       call WriteVtkmat(1)
-      call WriteVtkmat(2)
+      !call WriteVtkmat(2)
       mcm_istate = mcm_istate + 1
   end if
   
