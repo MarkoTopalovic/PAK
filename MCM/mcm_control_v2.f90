@@ -95,7 +95,7 @@ read (unit=txts,fmt=100,err=400) mcm_axopt,mcm_disctype,mcm_nummat,mcm_np, mcm_m
                                  mcm_nstressp, mcm_nvelocp
 mcm_np = mcm_np + NPcvorova                                 
 !
-! Control card 2: time control
+! Control card 2: time control 4e10.0
 mssg =' error reading 2nd control card'
 call mcm_gttxsg (txts,lcount)
 read (unit=txts,fmt=110,err=400) mcm_endtime,mcm_tssf,mcm_itss,mcm_drelax_scale

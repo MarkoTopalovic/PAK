@@ -39,7 +39,12 @@ if(mcm_drelax) then
   par(i)%vabs = 0.0_d
   !
   do j=1,mcm_ndim
+      
+   if((mcm_emitter.eq.(.true.)).and.(par(i)%newborn.eq.(.true.)))then
+      par(i)%v(j) = par(i)%vinit(j) !+ mcm_base_a(j)*dtn
+   else
    par(i)%v(j) = mcm_drelax_scale*par(i)%v(j) + par(i)%a(j)*dtn
+   endif
    par(i)%vabs = par(i)%vabs + par(i)%v(j)**2
   enddo
  enddo

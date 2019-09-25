@@ -71,6 +71,7 @@ do i=1,mcm_max_np
  par(i)%xzero = 0.0_d     		             	    ! Initial particle coordinates
  par(i)%xmove = 0.0_d     		             	    ! Displacement particle coordinates
  par(i)%v = 0.0_d         		             	    ! Current particle velocity
+ par(i)%vinit = 0.0_d         		             	! Initial particle velocity
  par(i)%smooth_v = 0.0_d  		             	    ! Interpolated particle velocity, currently used only for XSPH
  par(i)%a = 0.0_d         		             	    ! Particle acceleration
  par(i)%bndnorm  = 0.0_d  		             	    ! Unit normal vector to surface for boundary particles

@@ -131,7 +131,13 @@ do i=mcm_svp+1,mcm_evp
 enddo
 !
 ! write out velocities to log file
-!
+
+do i=1,mcm_np
+ do j=1,mcm_ndim
+  par(i)%vinit(j) = par(i)%v(j)
+ enddo
+enddo
+
 write(13,3000)
 select case (mcm_ndim)
 case (1)

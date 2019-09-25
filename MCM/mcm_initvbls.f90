@@ -23,6 +23,11 @@ INTEGER :: i,j
 do i=1,mcm_np
  par(i)%active = .true.    ! particle is active
  par(i)%newborn = .true.   ! particle is new
+ 
+ if(par(i)%mat.eq.1) then
+    par(i)%newborn = .false.! ovaj deo stavlja false za 1 materijal da ne bi i on slobodno padao
+ endif
+ 
  par(i)%delpointer = 0     ! initialise deleted particles linked list
 enddo
 !

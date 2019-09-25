@@ -213,6 +213,7 @@ type particle
   real(kind=real_acc), dimension(3) :: xmove        ! Prescribed displacement particle coordinates  Added by M. Topalovic
   real(kind=real_acc), dimension(3) :: xold         ! previous displacement particle coordinates  Added by M. Topalovic
   real(kind=real_acc), dimension(3) :: v            ! Current particle velocity
+  real(kind=real_acc), dimension(3) :: vinit        ! Initial particle velocity
   real(kind=real_acc), dimension(3) :: smooth_v     ! Interpolated particle velocity, currently used only for XSPH
   real(kind=real_acc), dimension(3) :: a            ! Particle acceleration
   real(kind=real_acc), dimension(3) :: bndnorm      ! Unit normal vector to surface for boundary particles
