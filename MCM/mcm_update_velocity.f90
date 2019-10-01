@@ -42,6 +42,10 @@ if(mcm_drelax) then
       
    if((mcm_emitter.eq.(.true.)).and.(par(i)%newborn.eq.(.true.)))then
       par(i)%v(j) = par(i)%vinit(j) !+ mcm_base_a(j)*dtn
+   elseif (par(i)%contactparticle .eq. (.true.)) then
+   par(i)%v(j) = 0.999599*par(i)%v(j) + par(i)%a(j)*dtn
+   
+    
    else
    par(i)%v(j) = mcm_drelax_scale*par(i)%v(j) + par(i)%a(j)*dtn
    endif

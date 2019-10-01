@@ -58,8 +58,8 @@ if(mcm_emitter.eq.(.true.))then ! hardcoded
     if (mcm_np.lt.(mcm_max_np-100))then
     icounter = 0
  do i=1,mcm_np
-      if((par(i)%x(2).le.199).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.1.0
-     !if((par(i)%x(2).le.0.01).and.(par(i)%x(2).gt.0).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
+      !if((par(i)%x(2).le.199).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.1.0
+      if((par(i)%x(2).le.0.01).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
           icounter = icounter + 1
           par(mcm_np + icounter)=par(i)
           par(mcm_np + icounter)%x(1) = par(mcm_np + icounter)%xzero(1)

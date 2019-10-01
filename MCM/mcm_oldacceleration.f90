@@ -56,6 +56,7 @@ END IF
 !
 do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
  par(i)%a = 0.0_d
+ par(i)%contactparticle = .false.
  !________________________________________________________
  !
  ! Add acceleration due to contact force term if active
@@ -190,8 +191,9 @@ end if
     if(par(i)%mat.eq.par(j)%mat) then ! ISTI MATERIJAL
     deltasig(n) = deltasig(n)+ ( (sigmaj(m,n)-qj(m,n))/(rhoj**2)  +          &
 	                             (sigmai(m,n)-qi(m,n))/(rhoi**2)) * dwdx(m)
-   else ! RAZLICITI KONTAKT MATERIJAL
-   deltasigcont(n) = deltasigcont(n)+ ( (sigmaj(m,n)-qj(m,n))/(rhoj**2)  +          &
+    else ! RAZLICITI KONTAKT MATERIJAL
+    par(i)%contactparticle = .true.
+    deltasigcont(n) = deltasigcont(n)+ ( (sigmaj(m,n)-qj(m,n))/(rhoj**2)  +          &
 	                             (sigmai(m,n)-qi(m,n))/(rhoi**2)) * dwdx(m)
    !dotproduct = dotproduct + deltasigcont(n)*par(i)%bndnorm(n) 
    !contactparticle = .true.

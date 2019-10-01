@@ -21,7 +21,7 @@ use mcm_math_func
 implicit none
 !
 integer:: nn,nn1,i,j,l,k,m,n
-logical:: contactparticle
+!logical:: contactparticle
 REAL(kind=real_acc)    :: Volj, dwdx(mcm_ndim),deltasig(3,3,3),havg,w,dwdr,rhoi
 real(kind=real_acc), dimension(3,3) :: grad_v
 real(kind=real_acc), dimension(3,3) :: sigmai, qi
