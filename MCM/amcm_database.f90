@@ -169,7 +169,7 @@ type particle
   logical :: active                                 ! Particle deletion flag
   logical :: newborn                                ! Topalovic flag for emmiter particles
   logical :: retired                                ! Topalovic flag for absorber particles
-  logical:: contactparticle
+  integer :: contactparticle
   integer :: mat                                    ! Material model id
   integer :: dispbc                                 ! Displacement boundary condition
   integer :: llpointer                              ! linked list pointer

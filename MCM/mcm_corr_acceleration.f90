@@ -21,7 +21,7 @@ use mcm_math_func
 implicit none
 !
 integer:: nn,nn1,i,j,l,k,m,n
-!logical:: contactparticle
+
 REAL(kind=real_acc)    :: Volj, dwdx(mcm_ndim),deltasig(3,3,3),havg,w,dwdr,rhoi
 real(kind=real_acc), dimension(3,3) :: grad_v
 real(kind=real_acc), dimension(3,3) :: sigmai, qi
@@ -175,15 +175,15 @@ do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
 !  do k=1,par(i)%nnbr + par(i)%g_nnbr
 !  !
 !   
-!     contactparticle = .false.
+
 !     do j=1,par(i)%g_ncont
 !      if (mcm_g_contlist(j,i).eq.k) then ! k je kontaktna ghost cestica
-!      contactparticle = .true.
+
 !      end if
 !     enddo
 !     do j=1,par(i)%ncont
 !      if (mcm_contlist(j,i).eq.k) then ! k je kontaktna realna cestica
-!      contactparticle = .true.
+
 !      end if
 !     enddo
 !     

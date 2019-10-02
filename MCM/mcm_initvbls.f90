@@ -23,7 +23,7 @@ INTEGER :: i,j
 do i=1,mcm_np
  par(i)%active = .true.    ! particle is active
  par(i)%newborn = .true.   ! particle is new
- par(i)%contactparticle = .false. ! initially not in contact with other material
+ par(i)%contactparticle = 0 ! initially not in contact with other material
  
  if(par(i)%mat.eq.1) then
     par(i)%newborn = .false.! ovaj deo stavlja false za 1 materijal da ne bi i on slobodno padao

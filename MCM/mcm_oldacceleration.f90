@@ -21,7 +21,7 @@ USE ZFLUID
 implicit none
 !
 integer:: nn,nn1,i,j,l,k,m,n,kn,INODEBROJAC
-logical:: contactparticle
+
 REAL(kind=real_acc)    :: Volj, dwdx(mcm_ndim),deltasig(mcm_ndim),havg,dwdr,rhoi, deltasigcont(mcm_ndim)
 real(kind=real_acc), dimension(3,3) :: grad_v
 real(kind=real_acc), dimension(3,3) :: sigmai, qi
@@ -56,7 +56,7 @@ END IF
 !
 do i=mcm_svp,mcm_evp		!svp=start velocity point, evp=end velocity point
  par(i)%a = 0.0_d
- par(i)%contactparticle = .false.
+ par(i)%contactparticle = 1
  !________________________________________________________
  !
  ! Add acceleration due to contact force term if active
@@ -172,6 +172,12 @@ end if
  sigmai = par(i)%sigma
  qi = par(i)%q
  ! dotproduct = 0.0_d
+ do k=1,par(i)%nnbr
+     j = mcm_nbrlist(k,i)
+     if (par(i)%mat.ne.par(j)%mat) par(i)%contactparticle = 7
+
+ enddo
+ 
  do k=1,par(i)%nnbr + par(i)%g_nnbr
   !contactparticle = .false.
   call mcm_get_j_moment_info(i,k,xj,massj,rhoj,hj,holdj,sigmaj,qj)
@@ -192,7 +198,7 @@ end if
     deltasig(n) = deltasig(n)+ ( (sigmaj(m,n)-qj(m,n))/(rhoj**2)  +          &
 	                             (sigmai(m,n)-qi(m,n))/(rhoi**2)) * dwdx(m)
     else ! RAZLICITI KONTAKT MATERIJAL
-    par(i)%contactparticle = .true.
+    
     deltasigcont(n) = deltasigcont(n)+ ( (sigmaj(m,n)-qj(m,n))/(rhoj**2)  +          &
 	                             (sigmai(m,n)-qi(m,n))/(rhoi**2)) * dwdx(m)
    !dotproduct = dotproduct + deltasigcont(n)*par(i)%bndnorm(n) 
@@ -214,6 +220,11 @@ end if
 !   ZA PROVERU USLOVA TRENJA POTREBNI SU INTENYITETI KOMPONENTI  
     normalmagnitude = sqrt(normalprojection(1)**2 + normalprojection(2)**2 + normalprojection(3)**2)
     tangentmagnitude = sqrt(tangentprojection(1)**2 + tangentprojection(2)**2 + tangentprojection(3)**2)
+    
+    !if ((normalmagnitude.ne.0).and.(par(i)%mat.ne.par(j)%mat)) then
+        
+    !endif
+    
 !   DODAVANJE KONTAKTNE SILE U ZAVISNOSTI OD USLOVA TRENJA      
   do l=1,mcm_ndim
 !   sum form of basic SPH momentum equation
