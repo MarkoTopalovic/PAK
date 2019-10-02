@@ -59,6 +59,9 @@ if(mcm_emitter.eq.(.true.))then ! hardcoded
     icounter = 0
  do i=1,mcm_np
       !if((par(i)%x(2).le.199).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.1.0
+     if ((i.gt.825).and.(i.lt.844))then
+         par(i)%newborn = .false. !casa v.2.0
+         endif
       if((par(i)%x(2).le.0.01).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
           icounter = icounter + 1
           par(mcm_np + icounter)=par(i)
