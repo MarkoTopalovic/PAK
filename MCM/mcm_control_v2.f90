@@ -127,7 +127,14 @@ mssg =' error reading 7th control card'
 call mcm_gttxsg (txts,lcount)
 ! blank at this time
 if (txts.ne.'') then
+    read (unit=txts,fmt=150,err=400) mcm_birth_death, mcm_contact_option, mcm_plane_particle
+end if
+if (mcm_contact_option.eq.1) then
+    call mcm_gttxsg (txts,lcount)
 read (unit=txts,fmt=160,err=400) mcm_staticfriction, mcm_dynamicfriction
+elseif (mcm_contact_option.eq.2) then
+    call mcm_gttxsg (txts,lcount)
+read (unit=txts,fmt=161,err=400) mcm_fluidfriction
 end if
 !
 !========================================================================================
@@ -290,6 +297,7 @@ return
 140 format(10i5)
 150 format(3i5)
 160 format(e10.0,e10.0)
+161 format(e10.0)
 !
 165 format(//1x,70('*'),//1x,a78,//1x,70('*'),//10x,'input format version: ',i5,'')
 !

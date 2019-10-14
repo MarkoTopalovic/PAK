@@ -28,6 +28,9 @@ integer :: vern,lcount, i, j
 !
 mcm_boundary_type = 1  ! array of dimension (3)
 mcm_boundary_code = 0  ! array of dimension (2,3)
+mcm_birth_death = 0
+mcm_contact_option = 0
+mcm_plane_particle = 0
 !
 ! open input file
 !
@@ -126,6 +129,8 @@ select case (vern)
   if(mcm_contacttype.eq.1) call mcm_contact_in
   !
   if(mcm_baseaccel) call mcm_baseaccel_in
+  !
+  if(mcm_birth_death.eq.1) call mcm_birth_death_in
   !
  case default
   !

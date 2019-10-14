@@ -21,6 +21,7 @@ use mcm_database
 implicit none
 !
 integer :: i,j,icounter
+logical :: belowPlane
 !
 do i=1,mcm_ndim
  mcm_coord_maxmin(1,i) =  1.0e+20_d
@@ -54,15 +55,35 @@ endif
 !
 if(mcm_boundary) call mcm_check_sym_pen
 
-if(mcm_emitter.eq.(.true.))then ! hardcoded
-    if (mcm_np.lt.(mcm_max_np-100))then
+if(mcm_birth_death.eq.1)then 
+    if (mcm_np.lt.(mcm_max_np-newBornMax2))then
     icounter = 0
  do i=1,mcm_np
       !if((par(i)%x(2).le.199).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.1.0
-     if ((i.gt.825).and.(i.lt.844))then
-         par(i)%newborn = .false. !casa v.2.0
-         endif
-      if((par(i)%x(2).le.0.01).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
+     !if ((i.gt.825).and.(i.lt.844))then
+     !    par(i)%newborn = .false. !casa v.2.0
+     !    endif
+     ! if((par(i)%x(2).le.0.01).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
+     if(par(i)%newborn.eq.(.true.)) then
+         
+        belowPlane = .false.
+        if (mcm_plane_particle.eq.1)then
+            if(par(i)%x(1).le.mcm_birthPlane(1)) then
+                 belowPlane = .true. !particle is below x birth plane and needs to be copied
+            endif
+        endif
+        if (mcm_plane_particle.eq.2)then
+            if(par(i)%x(2).le.mcm_birthPlane(2)) then
+                 belowPlane = .true. !particle is below y birth plane and needs to be copied
+            endif
+        endif
+        if (mcm_plane_particle.eq.3)then
+            if(par(i)%x(3).le.mcm_birthPlane(3)) then
+                 belowPlane = .true. !particle is below x birth plane and needs to be copied
+            endif
+        endif
+         
+         if (belowPlane) then
           icounter = icounter + 1
           par(mcm_np + icounter)=par(i)
           par(mcm_np + icounter)%x(1) = par(mcm_np + icounter)%xzero(1)
@@ -80,6 +101,7 @@ if(mcm_emitter.eq.(.true.))then ! hardcoded
           par(i)%einc = 0.0_d 
           
        par(i)%newborn = .false.
+       endif
       endif
  enddo
  mcm_np = mcm_np + icounter

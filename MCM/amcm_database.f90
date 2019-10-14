@@ -19,7 +19,11 @@ integer :: PAKSkorBR ! for PAK PVT
 logical :: mcm_ctrlc
 logical :: pak_initialized
 logical :: pakV_pisiNEU
-logical :: mcm_emitter
+integer :: mcm_birth_death
+integer :: mcm_contact_option
+integer :: mcm_plane_particle
+integer :: newBornMax2
+real (kind=real_acc), dimension(3) :: mcm_birthPlane
 !
 integer :: mcm_np, mcm_nummat, mcm_ndim, mcm_nstressp, mcm_nvelocp, mcm_max_np
 integer :: mcm_max_ngp, mcm_ngp
@@ -36,6 +40,7 @@ real(kind=real_acc) :: mcm_coord_maxmin(2,3)
 real(kind=real_acc) :: pi
 real(kind=real_acc) :: mcm_staticfriction
 real(kind=real_acc) :: mcm_dynamicfriction
+real(kind=real_acc) :: mcm_fluidfriction
 !
 !--------------------------------------------------------------------------
 ! History variables
