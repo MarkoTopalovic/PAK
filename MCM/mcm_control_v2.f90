@@ -125,7 +125,7 @@ read (unit=txts,fmt=150,err=400) mcm_h_opt, mcm_krtype,mcm_maxnbr
 ! Control card 7: Options
 mssg =' error reading 7th control card'
 call mcm_gttxsg (txts,lcount)
-! blank at this time
+! not blank any more
 if (txts.ne.'') then
     read (unit=txts,fmt=150,err=400) mcm_birth_death, mcm_contact_option, mcm_plane_particle
 end if

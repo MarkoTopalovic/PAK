@@ -114,4 +114,33 @@ else
 end if
 end if
 
+if(mcm_birth_death.eq.2)then 
+icounter = 0
+ do i=1,mcm_np
+    if(par(i)%x(mcm_dPO).le.mcm_deathPlane(mcm_dPO)) then
+            icounter = icounter + 1
+            par(i)%active = .false.
+            par(i)%delpointer = i+1
+    endif
+ enddo
+ 
+ do i=1,mcm_np
+    if(par(i)%active.eq.(.false.)) then
+    do j=i+1,mcm_np
+        if(par(j)%active.eq.(.true.)) then
+            par(i)=par(j)
+            par(j)%active = .false.
+            exit
+        endif
+    enddo
+    endif
+ enddo
+ 
+ 
+ mcm_np = mcm_np - icounter
+ mcm_esp=mcm_np
+ mcm_evp=mcm_np
+
+end if
+
 end subroutine mcm_move

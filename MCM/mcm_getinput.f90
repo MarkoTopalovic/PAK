@@ -130,7 +130,7 @@ select case (vern)
   !
   if(mcm_baseaccel) call mcm_baseaccel_in
   !
-  if(mcm_birth_death.eq.1) call mcm_birth_death_in
+  if(mcm_birth_death.gt.0) call mcm_birth_death_in
   !
  case default
   !

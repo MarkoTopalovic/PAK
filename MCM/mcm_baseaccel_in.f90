@@ -86,11 +86,22 @@ if (mcm_plane_particle.gt.0) then
     call mcm_gttxsg(textline,lcount)
  !
     read(Unit=textline,fmt=101,err=500) mcm_birthPlane(1), mcm_birthPlane(2), mcm_birthPlane(3)
-    endif
+endif
+
+if(mcm_birth_death.eq.2) then
+ mssg='Error reading death particle card'
+ call mcm_gttxsg(textline,lcount)
+ !
+ read(Unit=textline,fmt=102,err=500) mcm_deathPlane(1), mcm_deathPlane(2), mcm_deathPlane(3), mcm_dPO
+ !
+endif
+
+
 return
 !
 100 format(2i10)
-    101 format(3e20.0)
+101 format(3e20.0)
+102 format(3e20.0,i5)    
 500 call mcm_termin(textline,mssg,lcount,1)
 !
 end subroutine mcm_birth_death_in

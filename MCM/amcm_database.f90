@@ -24,6 +24,9 @@ integer :: mcm_contact_option
 integer :: mcm_plane_particle
 integer :: newBornMax2
 real (kind=real_acc), dimension(3) :: mcm_birthPlane
+real (kind=real_acc), dimension(3) :: mcm_deathPlane
+integer :: mcm_bPO!mcm_birthPlaneOrientation ! not implemented, just a placeholder
+integer :: mcm_dPO!mcm_deathPlaneOrientation ! not to consider, default 0 can be expended
 !
 integer :: mcm_np, mcm_nummat, mcm_ndim, mcm_nstressp, mcm_nvelocp, mcm_max_np
 integer :: mcm_max_ngp, mcm_ngp
