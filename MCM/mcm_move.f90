@@ -55,7 +55,7 @@ endif
 !
 if(mcm_boundary) call mcm_check_sym_pen
 
-if(mcm_birth_death.eq.1)then 
+if((mcm_birth_death.eq.1).or.(mcm_birth_death.eq.3))then 
     if (mcm_np.lt.(mcm_max_np-newBornMax2))then
     icounter = 0
  do i=1,mcm_np
@@ -64,9 +64,14 @@ if(mcm_birth_death.eq.1)then
      !    par(i)%newborn = .false. !casa v.2.0
      !    endif
      ! if((par(i)%x(2).le.0.01).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
-     if(par(i)%newborn.eq.(.true.)) then
-         
+     if(par(i)%newborn.eq.(.true.)) then         
         belowPlane = .false.
+        
+        
+        
+        if(mcm_bPO.gt.0)then !particle gets reborn if it falls below the plane
+        
+        
         if (mcm_plane_particle.eq.1)then
             if(par(i)%x(1).le.mcm_birthPlane(1)) then
                  belowPlane = .true. !particle is below x birth plane and needs to be copied
@@ -82,6 +87,30 @@ if(mcm_birth_death.eq.1)then
                  belowPlane = .true. !particle is below x birth plane and needs to be copied
             endif
         endif
+        
+        else !particle gets reborn if it passes by the plane
+            
+            if (mcm_plane_particle.eq.1)then
+            if(par(i)%x(1).ge.mcm_birthPlane(1)) then
+                 belowPlane = .true. !particle passed x birth plane and needs to be copied
+            endif
+        endif
+        if (mcm_plane_particle.eq.2)then
+            if(par(i)%x(2).ge.mcm_birthPlane(2)) then
+                 belowPlane = .true. !particle passed y birth plane and needs to be copied
+            endif
+        endif
+        if (mcm_plane_particle.eq.3)then
+            if(par(i)%x(3).ge.mcm_birthPlane(3)) then
+                 belowPlane = .true. !particle passed x birth plane and needs to be copied
+            endif
+        endif
+            
+        endif
+        
+        
+        
+        
          
          if (belowPlane) then
           icounter = icounter + 1
@@ -114,14 +143,22 @@ else
 end if
 end if
 
-if(mcm_birth_death.eq.2)then 
+if(mcm_birth_death.ge.2)then 
 icounter = 0
  do i=1,mcm_np
+     if(mcm_dPO.gt.0)then !particle dies if it falls below the plane
     if(par(i)%x(mcm_dPO).le.mcm_deathPlane(mcm_dPO)) then
             icounter = icounter + 1
             par(i)%active = .false.
             par(i)%delpointer = i+1
     endif
+     else !particle dies if it goes by the plane
+         if(par(i)%x(abs(mcm_dPO)).ge.mcm_deathPlane(abs(mcm_dPO))) then
+            icounter = icounter + 1
+            par(i)%active = .false.
+            par(i)%delpointer = i+1
+    endif
+         endif
  enddo
  
  do i=1,mcm_np

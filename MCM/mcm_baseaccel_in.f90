@@ -64,7 +64,7 @@ integer startNewBorn
 integer endNewBorn
 character (len=80):: mssg,textline
 !
-if(mcm_birth_death.eq.1) then
+if((mcm_birth_death.eq.1).or.(mcm_birth_death.eq.3)) then
  mssg='Error reading birth particle card'
  call mcm_gttxsg(textline,lcount)
  !
@@ -85,10 +85,10 @@ enddo
 if (mcm_plane_particle.gt.0) then
     call mcm_gttxsg(textline,lcount)
  !
-    read(Unit=textline,fmt=101,err=500) mcm_birthPlane(1), mcm_birthPlane(2), mcm_birthPlane(3)
+    read(Unit=textline,fmt=101,err=500) mcm_birthPlane(1), mcm_birthPlane(2), mcm_birthPlane(3), mcm_bPO
 endif
 
-if(mcm_birth_death.eq.2) then
+if(mcm_birth_death.ge.2) then
  mssg='Error reading death particle card'
  call mcm_gttxsg(textline,lcount)
  !
@@ -100,7 +100,7 @@ endif
 return
 !
 100 format(2i10)
-101 format(3e20.0)
+101 format(3e20.0,i5)
 102 format(3e20.0,i5)    
 500 call mcm_termin(textline,mssg,lcount,1)
 !
