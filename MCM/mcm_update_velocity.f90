@@ -40,7 +40,7 @@ if(mcm_drelax) then
   !
   do j=1,mcm_ndim
       
-   if((mcm_birth_death.eq.1).and.(par(i)%newborn.eq.(.true.)))then
+   if((mcm_birth_death.eq.1).and.(par(i)%lifeStatus.eq.1))then
       par(i)%v(j) = par(i)%vinit(j) !+ mcm_base_a(j)*dtn
    elseif (par(i)%contactparticle .eq. 7) then
    par(i)%v(j) = mcm_fluidfriction*par(i)%v(j) + par(i)%a(j)*dtn

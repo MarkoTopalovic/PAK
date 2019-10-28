@@ -247,6 +247,19 @@ DO i = 1,mcm_np1
  WRITE(88,*) par(i)%contactparticle
 ENDDO
 
+
+
+
+WRITE(88,900)
+WRITE(88,889)
+DO i = 1,mcm_np1
+
+
+ WRITE(88,*) par(i)%lifeStatus
+ENDDO
+
+
+
 CLOSE(UNIT=88)
 
   81 FORMAT ("# vtk DataFile Version 3.0")
@@ -274,6 +287,7 @@ CLOSE(UNIT=88)
  897 FORMAT ("SCALARS Shear_Stress_YZ double 1")
  898 FORMAT ("SCALARS VM_Stress double 1")
  899 FORMAT ("SCALARS Contact double 1")
+ 900 FORMAT ("SCALARS LifeStatus double 1")
 
 !
 end subroutine WriteVTK 

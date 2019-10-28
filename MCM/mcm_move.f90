@@ -59,12 +59,8 @@ if((mcm_birth_death.eq.1).or.(mcm_birth_death.eq.3))then
     if (mcm_np.lt.(mcm_max_np-newBornMax2))then
     icounter = 0
  do i=1,mcm_np
-      !if((par(i)%x(2).le.199).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.1.0
-     !if ((i.gt.825).and.(i.lt.844))then
-     !    par(i)%newborn = .false. !casa v.2.0
-     !    endif
-     ! if((par(i)%x(2).le.0.01).and.(par(i)%mat.eq.2).and.(par(i)%newborn.eq.(.true.))) then !casa v.2.0
-     if(par(i)%newborn.eq.(.true.)) then         
+
+     if(par(i)%lifeStatus.eq.1) then         
         belowPlane = .false.
         
         
@@ -129,7 +125,7 @@ if((mcm_birth_death.eq.1).or.(mcm_birth_death.eq.3))then
           par(i)%etry = 0.0_d                                ! trial particle internal energy
           par(i)%einc = 0.0_d 
           
-       par(i)%newborn = .false.
+       par(i)%lifeStatus = 0
        endif
       endif
  enddo
@@ -138,7 +134,7 @@ if((mcm_birth_death.eq.1).or.(mcm_birth_death.eq.3))then
  mcm_evp=mcm_np
 else
     do i=1,mcm_np
-        par(i)%newborn = .false.
+        par(i)%lifeStatus = 0
         enddo
 end if
 end if

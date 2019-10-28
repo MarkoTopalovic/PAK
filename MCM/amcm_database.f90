@@ -175,7 +175,7 @@ real (kind=real_acc), dimension(3) :: mcm_base_a
 !
 type particle
   logical :: active                                 ! Particle deletion flag
-  logical :: newborn                                ! Topalovic flag for emmiter particles
+  integer :: lifeStatus                             ! Topalovic flag for emmitter and dying particles
   logical :: retired                                ! Topalovic flag for absorber particles
   integer :: contactparticle
   integer :: mat                                    ! Material model id

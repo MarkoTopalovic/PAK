@@ -75,9 +75,9 @@ endif
 !
 do i=1,mcm_np
  if ((i.ge.startNewBorn).and.(i.le.endNewBorn))then
-  par(i)%newborn = .true.
+  par(i)%lifeStatus = 1
  else
-     par(i)%newborn = .false.
+     par(i)%lifeStatus = 0
  endif
   par(i)%contactparticle = 0 ! initially not in contact with other material
 enddo
