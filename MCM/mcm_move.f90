@@ -22,6 +22,7 @@ implicit none
 !
 integer :: i,j,icounter
 logical :: belowPlane
+real :: mcm_dyingPlane
 !
 do i=1,mcm_ndim
  mcm_coord_maxmin(1,i) =  1.0e+20_d
@@ -143,18 +144,30 @@ if(mcm_birth_death.ge.2)then
 icounter = 0
  do i=1,mcm_np
      if(mcm_dPO.gt.0)then !particle dies if it falls below the plane
-    if(par(i)%x(mcm_dPO).le.mcm_deathPlane(mcm_dPO)) then
+    
+         
+         
+        if((par(i)%x(mcm_dPO).le.(mcm_deathPlane(mcm_dPO)+2*par(i)%h)).and.(par(i)%x(mcm_dPO).ge.mcm_deathPlane(mcm_dPO))) then
+            par(i)%lifeStatus = 2 !particle is dying, but its not dead yet
+        endif
+        
+        
+        if(par(i)%x(mcm_dPO).le.mcm_deathPlane(mcm_dPO)) then
             icounter = icounter + 1
             par(i)%active = .false.
             par(i)%delpointer = i+1
-    endif
+        endif
      else !particle dies if it goes by the plane
+         mcm_dyingPlane = mcm_deathPlane(abs(mcm_dPO))-2*par(i)%h
+         if((par(i)%x(abs(mcm_dPO)).ge.mcm_dyingPlane).and.(par(i)%x(abs(mcm_dPO)).le.mcm_deathPlane(abs(mcm_dPO))))then
+            par(i)%lifeStatus = 2 !particle is dying, but its not dead yet
+        endif
          if(par(i)%x(abs(mcm_dPO)).ge.mcm_deathPlane(abs(mcm_dPO))) then
             icounter = icounter + 1
             par(i)%active = .false.
             par(i)%delpointer = i+1
-    endif
          endif
+    endif
  enddo
  
  do i=1,mcm_np
