@@ -47,8 +47,9 @@ efps_flag = nint(cm(1,6))
 blk    = mcm_dt*ym / ((1.-2.*pr))		! Bulk modulus *3 *dt
 davg   = othird*par(i)%tracerod
 p_incr = blk*davg				! Presure increment
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p   = par(i)%p - p_incr				! Pressure
-!
+endif!
 !	particle internal energy increment befor the stress update 
 !
 par(i)%einc = (par(i)%rod(1,1)*(par(i)%sigma(1,1)+par(i)%q(1,1)) + par(i)%rod(2,2)*(par(i)%sigma(2,2)+par(i)%q(2,2))            &

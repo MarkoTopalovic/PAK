@@ -38,7 +38,9 @@ vol0     = par(i)%mass/par(i)%rho0
 !
 ! CALCULATE p(i)
 !
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p = b*((par(i)%rho/par(i)%rho0)**gamma - 1.0)
+endif
 !
 ! CALCULATE e(i)
 !

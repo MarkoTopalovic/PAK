@@ -44,8 +44,12 @@ if(mcm_drelax) then
       par(i)%v(j) = par(i)%vinit(j) !+ mcm_base_a(j)*dtn
       
    elseif((mcm_birth_death.ge.2).and.(par(i)%lifeStatus.eq.2))then
-      par(i)%v(j) = mcm_fluidfriction*par(i)%v(j) + mcm_base_a(j)*dtn!no change 
-      
+      !par(i)%v(j) = mcm_fluidfriction*par(i)%v(j) + mcm_base_a(j)*dtn!no change 
+       if (par(i)%contactparticle .eq. 7) then
+           par(i)%v(j) = mcm_fluidfriction*par(i)%v(j)
+           else
+      par(i)%v(j) = mcm_drelax_scale*par(i)%v(j)
+      endif
    elseif ((par(i)%contactparticle .eq. 7).and.(par(i)%lifeStatus.ne.2)) then
    par(i)%v(j) = mcm_fluidfriction*par(i)%v(j) + par(i)%a(j)*dtn
    

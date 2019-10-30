@@ -32,6 +32,9 @@ enddo
 ! Update positions and store max and min values for linked list.
 !
 do i=1,mcm_np
+    if(par(i)%lifeStatus.eq.1) then
+        par(i)%x(abs(mcm_plane_particle)) = par(i)%x(abs(mcm_plane_particle))+ par(i)%v(abs(mcm_plane_particle))*mcm_dt
+        else
  do j=1,mcm_ndim
   par(i)%x(j) = par(i)%x(j) + par(i)%v(j)*mcm_dt
   !
@@ -39,6 +42,7 @@ do i=1,mcm_np
   if(par(i)%x(j).gt.mcm_coord_maxmin(2,j)) mcm_coord_maxmin(2,j) = par(i)%x(j)
   !
  enddo
+ endif
 enddo
 !
 if(mcm_axopt.eq.4) then
@@ -147,7 +151,7 @@ icounter = 0
     
          
          
-        if((par(i)%x(mcm_dPO).le.(mcm_deathPlane(mcm_dPO)+2*par(i)%h)).and.(par(i)%x(mcm_dPO).ge.mcm_deathPlane(mcm_dPO))) then
+        if((par(i)%x(mcm_dPO).le.(mcm_deathPlane(mcm_dPO)+par(i)%h)).and.(par(i)%x(mcm_dPO).ge.mcm_deathPlane(mcm_dPO))) then
             par(i)%lifeStatus = 2 !particle is dying, but its not dead yet
         endif
         
@@ -158,7 +162,7 @@ icounter = 0
             par(i)%delpointer = i+1
         endif
      else !particle dies if it goes by the plane
-         mcm_dyingPlane = mcm_deathPlane(abs(mcm_dPO))-2*par(i)%h
+         mcm_dyingPlane = mcm_deathPlane(abs(mcm_dPO))-par(i)%h
          if((par(i)%x(abs(mcm_dPO)).ge.mcm_dyingPlane).and.(par(i)%x(abs(mcm_dPO)).le.mcm_deathPlane(abs(mcm_dPO))))then
             par(i)%lifeStatus = 2 !particle is dying, but its not dead yet
         endif

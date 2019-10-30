@@ -59,8 +59,9 @@ e1try  = par(i)%etry/vol0
 termone=c0+(c1+c3*mu**2)*mu+c2*mu_t**2
 termtwo=c4+c5*mu+c6*mu_t**2
 
+if (par(i)%lifeStatus.ne.2) then
       par(i)%p = (termone+termtwo*e1try)/(1+termtwo*(dvol/vol0))
-!
+endif!
 ! Pressure cutoff
 !
 if(par(i)%p.lt.par(i)%pcut) then

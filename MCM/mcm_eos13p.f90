@@ -32,6 +32,7 @@ e1     = par(i)%e/par(i)%mass
 !
 ! CALCULATE p(i)
 !
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p   = par(i)%rho * (gamma-1.0_d) * e1
-!
+endif!
 END SUBROUTINE mcm_eos13p

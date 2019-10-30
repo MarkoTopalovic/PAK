@@ -52,12 +52,16 @@ IF(mu.gt.0.0_d) THEN
    mu21 = (mu*mu)/(mu+1.0_d)
    mu32 = (mu*mu*mu)/((mu+1.0_d)*(mu+1.0_d))
    eosden  = 1.0_d-(s1-1.0_d)*mu-s2*mu21-s3*mu32
+   if (par(i)%lifeStatus.ne.2) then
    par(i)%p = eosnum/eosden**2 + (gamma+a1*mu)*e1
+   endif
 ELSE
    !
    ! CALCULATE p(i) IN COMPRESSION
    !
+    if (par(i)%lifeStatus.ne.2) then
    par(i)%p = par(i)%rho0*c1**2*mu + (gamma+a1*mu)*e1
+   endif
 ENDIF
 !
 END SUBROUTINE mcm_eos4p

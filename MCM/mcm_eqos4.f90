@@ -56,16 +56,17 @@ IF(mu.gt.0.0) THEN
    eosden  = 1.0-(s1-1.0)*mu-s2*mu21-s3*mu32
    !
    !	DYNA current gama is = gama+a1*mu
+   if (par(i)%lifeStatus.ne.2) then
    par(i)%p    = (eosnum/(eosden*eosden) + (gamma+a1*mu)*e1try) / &
              & (1.0 + 0.5*(gamma+a1*mu)*dvol/vol0)
-   !
+   endif!
 ELSE
    !
    ! CALCULATE p(i) IN TENSION
-   !
+   if (par(i)%lifeStatus.ne.2) then!
    par(i)%p    = (par(i)%rho0*(c1*c1)*mu + (gamma+a1*mu)*e1try) / &
              & (1.0 + 0.5*(gamma+a1*mu)*dvol/vol0)
-   !
+   endif!
 ENDIF
 !
 ! Pressure cutoff

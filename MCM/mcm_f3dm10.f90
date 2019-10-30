@@ -38,8 +38,9 @@ g2     = 2.*mcm_dt*gg				!2*G*dt
 !
 !	davg(i)=-third*(d1(i)+d2(i)+d3(i))
 davg   = othird*par(i)%tracerod
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p   =-othird*(par(i)%sigma(1,1)+par(i)%sigma(2,2)+par(i)%sigma(3,3))
-!
+endif!
 akt      = qh
 par(i)%p_cut = par(i)%pcut   
 ak       = qs + qh*par(i)%efps + (a1 + a2*par(i)%p)*max(0.0_d,par(i)%p)	!old yield stress

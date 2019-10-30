@@ -68,8 +68,9 @@ par(i)%einc = 0.5_d*((par(i)%rod(1,1)*par(i)%sigma(1,1) + par(i)%rod(2,2)*par(i)
 ! Calculate pressure so it is available for post-processing
 !
 !p(i)=p(i)-p_incr
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p = -othird * (par(i)%sigma(1,1) + par(i)%sigma(2,2) + par(i)%sigma(3,3))
-!
+endif!
 return
 !
 end subroutine mcm_f3dm1

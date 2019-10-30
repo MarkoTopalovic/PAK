@@ -44,6 +44,7 @@ e1    = par(i)%e * par(i)%rho0/par(i)%mass
  
 e1=0.0_d  !just to simulate ab problem
 !
+if (par(i)%lifeStatus.ne.2) then
    par(i)%p = c0+(c1+c3*mu**2)*mu+c2*mu_t**2+(c4+c5*mu+c6*mu_t**2)*e1
-!
+endif!
 END SUBROUTINE mcm_eos1p

@@ -838,9 +838,9 @@ othird = 1.0_d/3.0_d
 !        par(i)%rod(1,2)=-2.0*dd4
 !        par(i)%rod(1,3)=-2.0*dd5
 !        par(i)%rod(2,3)=-2.0*dd6
-
+if (par(i)%lifeStatus.ne.2) then
         par(i)%p = -othird * (par(i)%sigma(1,1) + par(i)%sigma(2,2) + par(i)%sigma(3,3))
-
+endif
 
 !      idone=idone+iupd
 

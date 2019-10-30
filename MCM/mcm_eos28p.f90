@@ -30,8 +30,9 @@ gamma  = mcm_mat(par(i)%mat)%eosinput(2)
 !
 ! CALCULATE p(i)
 !
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p   = B*((par(i)%rho/par(i)%rho0)**gamma-1.0)
-  
+endif  
 
 RETURN
 

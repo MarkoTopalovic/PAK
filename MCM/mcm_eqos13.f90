@@ -39,8 +39,9 @@ vol0   = par(i)%mass/par(i)%rho0
 !         (according to J ANDERSON: Modern Compressible Flow
 !           James' notes)
 !
+if (par(i)%lifeStatus.ne.2) then
 par(i)%p = (par(i)%rho*gamma_m1*e1try) / (1.0_d+0.5_d*par(i)%rho*gamma_m1*dvol/par(i)%mass)
-!
+endif!
 ! CALCULATE e(i)
 !
 par(i)%e = par(i)%etry - 0.5_d*dvol*par(i)%p
