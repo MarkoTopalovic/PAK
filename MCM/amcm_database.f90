@@ -25,8 +25,8 @@ integer :: mcm_plane_particle
 integer :: newBornMax2
 real (kind=real_acc), dimension(3) :: mcm_birthPlane
 real (kind=real_acc), dimension(3) :: mcm_deathPlane
-integer :: mcm_bPO!mcm_birthPlaneOrientation ! not implemented, just a placeholder
-integer :: mcm_dPO!mcm_deathPlaneOrientation ! not to consider, default 0 can be expended
+integer :: mcm_bPO!mcm_birthPlaneOrientation
+integer :: mcm_dPO!mcm_deathPlaneOrientation
 !
 integer :: mcm_np, mcm_nummat, mcm_ndim, mcm_nstressp, mcm_nvelocp, mcm_max_np
 integer :: mcm_max_ngp, mcm_ngp
@@ -176,7 +176,6 @@ real (kind=real_acc), dimension(3) :: mcm_base_a
 type particle
   logical :: active                                 ! Particle deletion flag
   integer :: lifeStatus                             ! Topalovic flag for emmitter and dying particles
-  logical :: retired                                ! Topalovic flag for absorber particles
   integer :: contactparticle
   integer :: mat                                    ! Material model id
   integer :: dispbc                                 ! Displacement boundary condition
@@ -213,7 +212,7 @@ type particle
   real(kind=real_acc) :: mindist                    ! Distance to nearest neighbour
   real(kind=real_acc) :: critts                     ! Particle critical timestep
   real(kind=real_acc) :: capa                       ! Added by M. Topalovic capa for mat model 25
-  integer :: ptype                                  ! Added by M. Topalovic ptype for mat model 25 - Tijana added, for control print
+  integer :: ptype                                  ! Added by M. Topalovic ptype for mat model 25
   real(kind=real_acc), dimension(6) :: epx          ! material history variables
   real(kind=real_acc) :: alfa(3,3)					! back stress (kinematic hardening)
   ! vectors

@@ -194,7 +194,7 @@ ifst=1
   !
   case(28)
     call mcm_gttxsg (txts,lcount)
-    read (unit=txts,fmt=222,err=200) (mcm_mat(n)%eosinput(i),i=1,2)
+    read (unit=txts,fmt=222,err=200) (mcm_mat(n)%eosinput(i),i=1,4)
   !
   case(41)
     call mcm_gttxsg (txts,lcount)

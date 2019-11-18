@@ -16,7 +16,7 @@ subroutine mcm_calcrhopc
 !        Errors: Wrong material model no. or EOS no.
 !
 !         Notes:
-!
+!int MSimulationInit::InitRho_P_C()
 !************************************************************************
 !
 use mcm_database
@@ -74,7 +74,7 @@ DO i = mcm_ssp, mcm_esp
 		 ! PRESSURE CUT-OFF
 		 !
 		 pmax = mcm_mat(par(i)%mat)%strinput(1)
-		 IF (par(i)%p.lt.pmax) THEN
+		 IF (par(i)%p.gt.pmax) THEN ! uskladjeno sa sph07 if (par[i].p > pmax) par[i].p = pmax;
 		    par(i)%p = pmax
 		 ENDIF
 		 !

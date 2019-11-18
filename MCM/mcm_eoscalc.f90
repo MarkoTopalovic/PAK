@@ -75,6 +75,9 @@ Case(1)  ! polynomial EOS
    !
    ! CALCULATES DENSITY rho
    !
+     if (mcm_mat(pmat)%eosinput(3).eq.(0.0)) mcm_mat(pmat)%eosinput(3)=1.0
+     if (mcm_mat(pmat)%eosinput(4).eq.(0.0)) mcm_mat(pmat)%eosinput(4)=1.0
+     
    if(mcm_init_rhoe.ne.1) then
    par(i)%rho = par(i)%rho0/mcm_mat(pmat)%eosinput(4)
    par(i)%e   = mcm_mat(pmat)%eosinput(3)*par(i)%mass
