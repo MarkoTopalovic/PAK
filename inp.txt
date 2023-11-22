@@ -1,5 +1,0 @@
-paks.dat
-paks.lst
-paks.unv
-paks.neu
- 

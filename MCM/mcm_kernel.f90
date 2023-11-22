@@ -83,7 +83,7 @@ ENDDO
 !
 rad = SQRT(rad)
 z = rad/havg
-!
+! polinom 3 reda 4.3.1.18 iz doktorata
 IF (z .lt. 1.0_d) THEN
  W = const1 * ( ( (0.75_d * z - 1.5_d) * z) * z + 1.0_d)
 ELSEIF (z .lt. 2.0_d) THEN
